@@ -89,8 +89,10 @@ module.exports = yeoman.generators.Base.extend({
      * Install Behat.
      */
     behat: function () {
-      process.chdir(this.projectName + '/behat');
-      this.spawnCommand('composer', ['install']);
+      var options = {
+        cwd: this.projectName + '/behat'
+      }
+      this.spawnCommand('composer', ['install'], options);
 
     },
 
