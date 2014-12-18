@@ -1,0 +1,90 @@
+#!/bin/bash
+set -e
+
+# Drush executable.
+[[ $DRUSH && ${DRUSH-x} ]] || DRUSH=drush
+
+# Functions.
+function input_error() {
+  echo "ERROR: You must enter value."
+  exit 1
+}
+
+# Move to www directory.
+ROOT=$(git rev-parse --show-toplevel)
+OLD_DIR=`pwd`
+cd $ROOT
+if [ ! -d www ]; then
+  mkdir -p www/sites/default/
+fi
+
+# Get parameters from user.
+read -p "DB host (default: localhost): " -e DB_HOST
+[ -z "$DB_HOST" ] && DB_HOST="localhost"
+read -p "DB name: " -e DB_NAME
+[ -z "$DB_NAME" ] && input_error
+read -p "DB user: " -e DB_USER
+[ -z "$DB_USER" ] && input_error
+read -p "DB password: " -e DB_PASS
+[ -z "$DB_PASS" ] && input_error
+
+# Generate settings.local.php.
+echo "Generating www/sites/default/settings.local.php..."
+cat > www/sites/default/settings.local.php <<EOF
+<?php
+/**
+ * @file
+ * Environment-specific configuration.
+ */
+
+// Database configuration.
+\$databases['default']['default'] = array(
+  'driver' => 'mysql',
+  'host' => '$DB_HOST',
+  'username' => '$DB_USER',
+  'password' => '$DB_PASS',
+  'database' => '$DB_NAME',
+  'prefix' => '',
+);
+EOF
+
+echo "Generating www/sites/default/settings.php..."
+cat > www/sites/default/settings.php <<EOF
+<?php
+
+/**
+ * Access control for update.php script.
+ */
+\$update_free_access = FALSE;
+
+/**
+ * Salt for one-time login links and cancel links, form tokens, etc.
+ */
+\$drupal_hash_salt = '';
+
+/**
+ * PHP settings:
+ */
+ini_set('session.gc_probability', 1);
+ini_set('session.gc_divisor', 100);
+ini_set('session.gc_maxlifetime', 200000);
+ini_set('session.cookie_lifetime', 2000000);
+
+/**
+ * Variable overrides:
+
+/**
+ * Fast 404 pages:
+ */
+\$conf['404_fast_paths_exclude'] = '/\/(?:styles)\//';
+\$conf['404_fast_paths'] = '/\.(?:txt|png|gif|jpe?g|css|js|ico|swf|flv|cgi|bat|pl|dll|exe|asp)$/i';
+\$conf['404_fast_html'] = '<html xmlns="http://www.w3.org/1999/xhtml"><head><title>404 Not Found</title></head><body><h1>Not Found</h1><p>The requested URL "@path" was not found on this server.</p></body></html>';
+
+\$local_settings = dirname(__FILE__) . '/settings.local.php';
+if (file_exists(\$local_settings)) {
+  include \$local_settings;
+}
+EOF
+
+cd $OLD_DIR
+echo "Setup finished. Please run the build script."

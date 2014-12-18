@@ -1,0 +1,16 @@
+Unique ID,Title,Item,Materials,Images,Status,Retail price,Wholesale price
+ItemVariant1,Lines v-neck shirt,item1,material1,itemVariant1.0.jpg,itemStatus1,80,55
+ItemVariant2,Black v-neck shirt,item1,material1|material2,itemVariant2.0.jpg,itemStatus2,100,70
+ItemVariant3,Grey v-neck shirt,item1,material3,itemVariant5.0.jpg,itemStatus3,55,55
+ItemVariant4,"Pink Vest dress",item2,material4,itemVariant4.0.jpg|itemVariant4.1.jpg,itemStatus1,34,30
+ItemVariant5,Salmon Vest dress,item2,material5,itemVariant5.jpg,itemStatus2,80,55
+ItemVariant6,Peach Vest dress,item2,material6,itemVariant6.jpg,itemStatus3,100,70
+ItemVariant7,"White Open sleeves shirt",item3,material7|material8,itemVariant7.0.jpg|itemVariant7.1.jpg,itemStatus1,55,55
+ItemVariant8,Lines Open sleeves shirt,item3,material2,itemVariant8.0.jpg,itemStatus2,34,30
+ItemVariant9,Cotton Open sleeves shirt,item3,material3,itemVariant9.0.jpg,itemStatus3,80,55
+ItemVariant10,"Black Pearls Epaulets shirt",item4,material4,itemVariant10.0.jpg|itemVariant10.1.jpg,itemStatus1,100,70
+ItemVariant11,Printed Pearls Epaulets shirt,item4,material4,itemVariant11.0.jpg,itemStatus2,55,55
+ItemVariant12,White Pearls Epaulets shirt,item4,material5,itemVariant12.0.jpg,itemStatus3,34,30
+ItemVariant13,"White mini dress",item5,material2,itemVariant13.0.jpg|itemVariant13.1.jpg,itemStatus1,80,55
+ItemVariant14,Grey mini dress,item5,material8,itemVariant14.0.jpg,itemStatus2,100,70
+ItemVariant15,Black mini dress,item5,material5,itemVariant15.0.jpg,itemStatus3,55,55

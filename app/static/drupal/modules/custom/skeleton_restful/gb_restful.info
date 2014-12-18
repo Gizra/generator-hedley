@@ -1,0 +1,9 @@
+name = Garmentbox RESTFul
+core = 7.x
+package = Garmentbox
+dependencies[] = restful
+dependencies[] = entity_validator
+
+dependencies[] = gb_company
+
+files[] = plugins/restful/node/GbEntityBaseNode.php

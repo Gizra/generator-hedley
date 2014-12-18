@@ -1,0 +1,68 @@
+<?php
+/**
+ * @file
+ * Code for the Garmentbox Item feature.
+ */
+
+include_once 'gb_item.features.inc';
+
+
+/**
+ * Implements hook_node_presave().
+ */
+function gb_item_node_presave($node) {
+  if (!empty($node->nid)) {
+    return;
+  }
+
+  _gb_item_node_presave_item($node);
+  _gb_item_node_presave_item_variant($node);
+}
+
+/**
+ * Populate the season OG audience field of an unsaved item.
+ *
+ * @param $node
+ *   The node object.
+ */
+function _gb_item_node_presave_item($node) {
+  if ($node->type != 'item') {
+    return;
+  }
+
+  $wrapper = entity_metadata_wrapper('node', $node);
+  if ($wrapper->{OG_AUDIENCE_FIELD}->value()) {
+    // Company already populated.
+    return;
+  }
+
+  // Get the company from the season.
+  $group_id = $wrapper->field_season->{OG_AUDIENCE_FIELD}->value(array('identifier' => TRUE));
+  $wrapper->{OG_AUDIENCE_FIELD}->set($group_id);
+}
+
+/**
+ * Populate the OG audience field of an unsaved item variant.
+ *
+ * @param $node
+ *   The node object.
+ */
+function _gb_item_node_presave_item_variant($node) {
+  if ($node->type != 'item_variant') {
+    return;
+  }
+
+  $wrapper = entity_metadata_wrapper('node', $node);
+  if ($season_id = $wrapper->field_season->value(array('identifier' => TRUE))) {
+    // Season already populated.
+    return;
+  }
+
+  $season_id = $wrapper->field_item->field_season->value(array('identifier' => TRUE));
+  $wrapper->field_season->set($season_id);
+
+
+  // Get the company from the season.
+  $group_id = $wrapper->field_season->{OG_AUDIENCE_FIELD}->value(array('identifier' => TRUE));
+  $wrapper->{OG_AUDIENCE_FIELD}->set($group_id);
+}

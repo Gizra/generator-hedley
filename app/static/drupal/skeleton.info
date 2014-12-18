@@ -1,0 +1,48 @@
+name = Garmentbox
+description = Garmentbox PLM (Product Lifecycle Management)
+version = VERSION
+core = 7.x
+
+; Core
+dependencies[] = block
+dependencies[] = comment
+dependencies[] = contextual
+dependencies[] = image
+dependencies[] = list
+dependencies[] = menu
+dependencies[] = number
+dependencies[] = options
+dependencies[] = taxonomy
+dependencies[] = file
+
+; Contrib modules
+dependencies[] = admin_menu_toolbar
+dependencies[] = admin_views
+dependencies[] = ctools
+dependencies[] = date
+dependencies[] = entity
+dependencies[] = entity_token
+dependencies[] = entityreference
+dependencies[] = entity_validator
+dependencies[] = features
+dependencies[] = flag
+dependencies[] = libraries
+dependencies[] = message
+dependencies[] = migrate
+dependencies[] = migrate_extras
+dependencies[] = module_filter
+dependencies[] = og
+dependencies[] = og_access
+dependencies[] = og_ui
+dependencies[] = og_vocab
+dependencies[] = restful
+dependencies[] = restful_token_auth
+dependencies[] = strongarm
+dependencies[] = token
+dependencies[] = views
+dependencies[] = views_bulk_operations
+
+; GarmentBox
+dependencies[] = gb_company
+dependencies[] = gb_item
+dependencies[] = gb_restful
