@@ -48,38 +48,30 @@ module.exports = yeoman.generators.Base.extend({
 
 
   writing: {
-    containers: function() {
-      this.mkdir(this.projectName);
-    },
-    app: function () {
-      var directory = this.projectName + '/client/';
-      this.mkdir(directory);
-      this.fs.copy(
-        this.templatePath('client/_package.json'),
-        this.destinationPath(directory + 'package.json')
-      );
-      this.fs.copy(
-        this.templatePath('client/_bower.json'),
-        this.destinationPath(directory + 'bower.json')
-      );
-    },
 
-    appStatic: function () {
+    appStatic: function() {
       var self = this;
       // @todo: Use a function to get the "static" folder.
       var source = this.templatePath('../static');
-      var destination = this.projectName;
-      var options = {
-        // Don't overwrite existing files.
-        clobber: false
-      };
+      var destination = this.projectName + '/../';
 
-      ncp(source, destination, options, function(err) {
+      ncp(source, destination, function(err) {
         if (err) {
           return self.log(err);
         }
-        self.log('Copy done!');
+        self.log('Static files copied');
       });
+    },
+
+    app: function() {
+      this.fs.copy(
+        this.templatePath('client/_package.json'),
+        this.destinationPath('client/package.json')
+      );
+      this.fs.copy(
+        this.templatePath('client/_bower.json'),
+        this.destinationPath('client/bower.json')
+      );
     }
   },
 
@@ -89,35 +81,15 @@ module.exports = yeoman.generators.Base.extend({
      * Install Behat.
      */
     behat: function() {
-      var options = {
-        cwd: this.projectName + '../behat'
-      };
-
-      // @todo: Download a local composer?
-      this.spawnCommand('composer', ['install'], options);
-
     },
 
     /**
      * Install bower/ npm on the "client" directory.
      */
     client: function() {
-      var self = this;
-      process.chdir(this.projectName + '/client');
-      this.installDependencies({
-        skipInstall: this.options['skip-install'],
-        callback: function() {
-          // Change path back to the root.
-          process.chdir('../../');
-        }
-      });
     },
 
     drupal: function() {
-      var options = {
-        cwd: this.projectName + '/behat'
-      };
-      this.spawnCommand('install', ['-dly'], options);
     }
   }
 
