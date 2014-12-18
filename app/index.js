@@ -2,6 +2,7 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var ncp = require('ncp').ncp;
 
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
@@ -63,7 +64,16 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     appStatic: function () {
-      var directory = this.projectName + '/client/';
+      var source = this.templatePath('client/');
+      var destination = this.projectName + '/client';
+      var options = {
+        // Don't overwrite existing files.
+        clobber: false;
+      };
+
+      ncp(source, destination, options, function(err) {
+
+      });
       this.fs.copy(
         'editorconfig',
         this.destinationPath(directory)
