@@ -81,12 +81,22 @@ module.exports = yeoman.generators.Base.extend({
      * Install Behat.
      */
     behat: function() {
+
     },
 
     /**
      * Install bower/ npm on the "client" directory.
      */
     client: function() {
+      var options = {
+        cwd: './client'
+      };
+
+      this.log('bower install');
+      this.bowerInstall(null, options);
+
+      this.log('npm install');
+      this.npmInstall(null, options);
     },
 
     drupal: function() {
