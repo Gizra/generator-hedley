@@ -88,10 +88,12 @@ module.exports = yeoman.generators.Base.extend({
     /**
      * Install Behat.
      */
-    behat: function () {
+    behat: function() {
       var options = {
-        cwd: this.projectName + '/behat'
-      }
+        cwd: this.projectName + '../behat'
+      };
+
+      // @todo: Download a local composer?
       this.spawnCommand('composer', ['install'], options);
 
     },
@@ -99,7 +101,7 @@ module.exports = yeoman.generators.Base.extend({
     /**
      * Install bower/ npm on the "client" directory.
      */
-    client: function () {
+    client: function() {
       var self = this;
       process.chdir(this.projectName + '/client');
       this.installDependencies({
@@ -109,6 +111,13 @@ module.exports = yeoman.generators.Base.extend({
           process.chdir('../../');
         }
       });
+    },
+
+    drupal: function() {
+      var options = {
+        cwd: this.projectName + '/behat'
+      };
+      this.spawnCommand('install', ['-dly'], options);
     }
   }
 
