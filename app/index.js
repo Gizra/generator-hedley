@@ -7,28 +7,43 @@ module.exports = yeoman.generators.Base.extend({
   initializing: function () {
     this.pkg = require('../package.json');
   },
-
-  prompting: function () {
+  askForProjectName: function () {
     var done = this.async();
 
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the primo' + chalk.red('Hedley') + ' generator!'
+      'Welcome to the ' + chalk.red('Hedley') + ' generator!'
     ));
 
     var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
+      name: 'projectName',
+      message: 'What is the project name?',
+      default: 'headless-drupal7'
     }];
 
     this.prompt(prompts, function (props) {
-      this.someOption = props.someOption;
+      this.projectName = props.projectName;
 
       done();
     }.bind(this));
   },
+
+  askForGithubRepo: function () {
+    var done = this.async();
+
+    var prompts = [{
+      name: 'githubRepo',
+      message: 'What is the GitHub repo URL?',
+      default: ''
+    }];
+
+    this.prompt(prompts, function (props) {
+      this.githubRepo = props.githubRepo;
+
+      done();
+    }.bind(this));
+  },
+
 
   writing: {
     app: function () {

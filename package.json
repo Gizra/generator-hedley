@@ -1,14 +1,14 @@
 {
   "name": "generator-hedley",
   "version": "0.0.0",
-  "description": "Yeoman generator",
+  "description": "Headless Drupal, Angular app, and Behat framework.",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "amitaibu/generator-hedley",
+  "repository": "Gizra/generator-hedley",
   "author": {
-    "name": "Amitai Burstein",
+    "name": "Gizra",
     "email": "",
-    "url": "https://github.com/amitaibu"
+    "url": "https://github.com/Gizra"
   },
   "engines": {
     "node": ">=0.10.0"
