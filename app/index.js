@@ -3,6 +3,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var ncp = require('ncp').ncp;
+var process = require('process');
 
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
@@ -65,7 +66,8 @@ module.exports = yeoman.generators.Base.extend({
 
     appStatic: function () {
       var self = this;
-      var source = this.templatePath('client/');
+      // @todo: Use a function to get the "static" folder.
+      var source = this.templatePath('../static/client');
       var destination = this.projectName + '/client';
       var options = {
         // Don't overwrite existing files.
@@ -74,16 +76,25 @@ module.exports = yeoman.generators.Base.extend({
 
       ncp(source, destination, options, function(err) {
         if (err) {
-          return self.error(err);
+          return self.log(err);
         }
         self.log('Copy done!');
       });
     }
   },
 
+  /**
+   * Install bower/ npm on the "client" directory.
+   */
   install: function () {
+    var self = this;
+    process.chdir(this.projectName + '/client');
     this.installDependencies({
-      skipInstall: this.options['skip-install']
+      skipInstall: this.options['skip-install'],
+      callback: function() {
+        // Change path back to the root.
+        process.chdir('../../');
+      }
     });
   }
 });
