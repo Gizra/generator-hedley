@@ -64,20 +64,20 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     appStatic: function () {
+      var self = this;
       var source = this.templatePath('client/');
       var destination = this.projectName + '/client';
       var options = {
         // Don't overwrite existing files.
-        clobber: false;
+        clobber: false
       };
 
       ncp(source, destination, options, function(err) {
-
+        if (err) {
+          return self.error(err);
+        }
+        self.log('Copy done!');
       });
-      this.fs.copy(
-        'editorconfig',
-        this.destinationPath(directory)
-      );
     }
   },
 
