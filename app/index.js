@@ -46,25 +46,27 @@ module.exports = yeoman.generators.Base.extend({
 
 
   writing: {
+    containers: function() {
+      this.mkdir(this.projectName);
+    },
     app: function () {
+      var directory = this.projectName + '/client/';
+      this.mkdir(directory);
       this.fs.copy(
-        this.templatePath('_package.json'),
-        this.destinationPath('package.json')
+        this.templatePath('client/_package.json'),
+        this.destinationPath(directory + 'package.json')
       );
       this.fs.copy(
-        this.templatePath('_bower.json'),
-        this.destinationPath('bower.json')
+        this.templatePath('client/_bower.json'),
+        this.destinationPath(directory + 'bower.json')
       );
     },
 
-    projectfiles: function () {
+    appStatic: function () {
+      var directory = this.projectName + '/client/';
       this.fs.copy(
-        this.templatePath('editorconfig'),
-        this.destinationPath('.editorconfig')
-      );
-      this.fs.copy(
-        this.templatePath('jshintrc'),
-        this.destinationPath('.jshintrc')
+        'editorconfig',
+        this.destinationPath(directory)
       );
     }
   },
