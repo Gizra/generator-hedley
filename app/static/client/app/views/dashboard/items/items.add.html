@@ -1,0 +1,12 @@
+<div class="col-md-8">
+
+  <form role="form" ng-submit="create(data)">
+    <div class="form-group">
+      <label for="label">Label</label>
+      <input required id="label" ng-model="data.label" type="text" class="form-control" placeholder="Item name">
+    </div>
+
+    <input ng-disabled="creating" type="submit" class="btn btn-default" value="Save"/>
+  </form>
+</div>
+

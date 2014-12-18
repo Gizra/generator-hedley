@@ -1,0 +1,8 @@
+{
+  "development": {
+    "backend": "http://localhost/<%= projectName %>/www"
+  },
+  "production": {
+    "backend": "https://server.com"
+  }
+}

@@ -1,9 +1,13 @@
 'use strict';
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
+var glob = require('glob');
+var path = require('path');
 var yosay = require('yosay');
 var ncp = require('ncp').ncp;
 var process = require('process');
+var replace = require('replace');
+var fs = require('fs');
 
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
@@ -19,8 +23,8 @@ module.exports = yeoman.generators.Base.extend({
 
     var prompts = [{
       name: 'projectName',
-      message: 'What is the project name?',
-      default: 'headless-drupal7'
+      message: 'What is the project machine name?',
+      default: 'headless_drupal7'
     }];
 
     this.prompt(prompts, function (props) {
@@ -48,30 +52,46 @@ module.exports = yeoman.generators.Base.extend({
 
 
   writing: {
-
     appStatic: function() {
       var self = this;
       // @todo: Use a function to get the "static" folder.
       var source = this.templatePath('../static');
-      var destination = this.projectName + '/../';
+      var destination = this.destinationPath();
 
       ncp(source, destination, function(err) {
         if (err) {
           return self.log(err);
         }
         self.log('Static files copied');
-      });
-    },
 
-    app: function() {
-      this.fs.copy(
-        this.templatePath('client/_package.json'),
-        this.destinationPath('client/package.json')
-      );
-      this.fs.copy(
-        this.templatePath('client/_bower.json'),
-        this.destinationPath('client/bower.json')
-      );
+        glob(self.destinationPath() + '/**/skeleton*.*', function(err, files) {
+          var processed = 0;
+          self.log(files);
+          files.forEach(function(file) {
+            var dir = path.dirname(file);
+            var filename = path.basename(file);
+            fs.renameSync(file, dir + '/' + filename.replace('skeleton', self.projectName));
+            processed++;
+          });
+          self.log(processed + " files processed");
+        });
+
+        replace({
+          regex: "skeleton",
+          replacement: self.projectName,
+          paths: [self.destinationPath() + '/drupal'],
+          recursive: true,
+          silent: false
+        });
+
+        replace({
+          regex: 'drupal',
+          replacement: self.projectName,
+          paths: [self.destinationPath()],
+          recursive: false,
+          silent: false
+        });
+      });
     }
   },
 
@@ -85,7 +105,7 @@ module.exports = yeoman.generators.Base.extend({
         cwd: './behat'
       };
 
-      this.spawnCommand('composer', ['install'], options);
+      // this.spawnCommand('composer', ['install'], options);
     },
 
     /**
@@ -97,10 +117,10 @@ module.exports = yeoman.generators.Base.extend({
       };
 
       this.log('bower install');
-      this.bowerInstall(null, options);
+      // this.bowerInstall(null, options);
 
       this.log('npm install');
-      this.npmInstall(null, options);
+      // this.npmInstall(null, options);
     },
 
     drupal: function() {

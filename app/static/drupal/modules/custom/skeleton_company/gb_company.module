@@ -4,6 +4,6 @@
  * Code for the Garmentbox Company feature.
  */
 
-include_once 'gb_company.features.inc';
+include_once 'skeleton_company.features.inc';
 
 

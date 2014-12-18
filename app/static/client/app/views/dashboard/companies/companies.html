@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-md-4">
+    <ul>
+      <li ng-repeat="company in companies">
+        <a href ui-sref="dashboard.companies.company({ id: company.id })">{{ company.label }}</a>
+      </li>
+    </ul>
+  </div>
+
+  <div ui-view></div>
+</div>

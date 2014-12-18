@@ -1,0 +1,8 @@
+{
+  "development": {
+    "backend": "http://localhost/gb/www"
+  },
+  "production": {
+    "backend": "https://server.com"
+  }
+}
