@@ -67,8 +67,8 @@ module.exports = yeoman.generators.Base.extend({
     appStatic: function () {
       var self = this;
       // @todo: Use a function to get the "static" folder.
-      var source = this.templatePath('../static/client');
-      var destination = this.projectName + '/client';
+      var source = this.templatePath('../static');
+      var destination = this.projectName;
       var options = {
         // Don't overwrite existing files.
         clobber: false
