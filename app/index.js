@@ -64,6 +64,7 @@ module.exports = yeoman.generators.Base.extend({
         }
         self.log('Static files copied');
 
+        // @todo: Rename all "skeleton" folder and files to the project name.
         glob(self.destinationPath() + '/**/skeleton*.*', function(err, files) {
           var processed = 0;
           self.log(files);
