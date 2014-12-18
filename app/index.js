@@ -83,18 +83,32 @@ module.exports = yeoman.generators.Base.extend({
     }
   },
 
-  /**
-   * Install bower/ npm on the "client" directory.
-   */
-  install: function () {
-    var self = this;
-    process.chdir(this.projectName + '/client');
-    this.installDependencies({
-      skipInstall: this.options['skip-install'],
-      callback: function() {
-        // Change path back to the root.
-        process.chdir('../../');
-      }
-    });
+  install: {
+
+    /**
+     * Install Behat.
+     */
+    behat: function () {
+      process.chdir(this.projectName + '/behat');
+      this.spawnCommand('composer', ['install']);
+
+    },
+
+    /**
+     * Install bower/ npm on the "client" directory.
+     */
+    client: function () {
+      var self = this;
+      process.chdir(this.projectName + '/client');
+      this.installDependencies({
+        skipInstall: this.options['skip-install'],
+        callback: function() {
+          // Change path back to the root.
+          process.chdir('../../');
+        }
+      });
+    }
   }
+
+
 });
