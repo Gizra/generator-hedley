@@ -4,12 +4,10 @@
 set -e
 
 
-# Define the root of the GIT repository
+# Define the root.
 cd ${0%/*}
-ROOT=$(git rev-parse --show-toplevel)
+ROOT=$(pwd)
 cd $ROOT
-
-
 
 # Load the configuration file.
 source $ROOT/config.sh
@@ -21,10 +19,6 @@ source $ROOT/scripts/helper-colors.sh
 
 # Drush executable.
 [[ $DRUSH && ${DRUSH-x} ]] || DRUSH=drush
-
-# Move to the top directory.
-ROOT=$(git rev-parse --show-toplevel)
-cd $ROOT
 
 # Build the profile itself.
 (

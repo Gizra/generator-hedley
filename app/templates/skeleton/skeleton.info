@@ -43,6 +43,5 @@ dependencies[] = views
 dependencies[] = views_bulk_operations
 
 ; GarmentBox
-dependencies[] = gb_company
-dependencies[] = gb_item
-dependencies[] = gb_restful
+dependencies[] = skeleton_company
+dependencies[] = skeleton_restful

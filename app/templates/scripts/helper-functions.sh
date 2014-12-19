@@ -229,7 +229,7 @@ function import_demo_content {
   MIGRATE_UI=$(drush pm-list --pipe --type=module | grep "^migrate_ui$")
   MIGRATE_EXTRAS=$(drush pm-list --pipe --type=module | grep "^migrate_extras$")
   if [ $MIGRATE_UI ] && [ $MIGRATE_EXTRAS ]; then
-    drush en -y gb_migrate
+    drush en -y skeleton_migrate
     drush en -y migrate migrate_ui migrate_extras
     drush mi --all --user=1
   else

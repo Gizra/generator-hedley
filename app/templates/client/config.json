@@ -1,0 +1,8 @@
+{
+  "development": {
+    "backend": "http://localhost/skeleton/www"
+  },
+  "production": {
+    "backend": "https://server.com"
+  }
+}
