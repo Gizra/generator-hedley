@@ -4,7 +4,7 @@ var chalk = require('chalk');
 var path = require('path');
 var yosay = require('yosay');
 var process = require('process');
-var fs = require('fs');
+var fs = require('fs-extra');
 var glob = require('glob');
 
 module.exports = yeoman.generators.Base.extend({
@@ -55,22 +55,25 @@ module.exports = yeoman.generators.Base.extend({
       var source = this.templatePath();
       var destination = this.destinationPath();
 
-      glob(self.templatePath() + '/**/*', function(err, files) {
-        self.log(files);
-        files.forEach(function(file) {
-          self.log('Processing file:');
-          self.log(file);
+      var files = glob.sync(self.templatePath() + '/**/*');
 
-          var dir = path.dirname(file).replace('skeleton', self.projectName).replace(self.templatePath(), self.destinationPath());
-          var filename = path.basename(file).replace('skeleton', self.projectName);
+      files.forEach(function(file) {
+        if (fs.lstatSync(file).isDirectory()) {
+          // Don't try to copy a directory.
+          return;
+        }
 
-          self.log('to: ' + dir);
 
-          self.fs.copy(
-            self.templatePath(file),
-            self.destinationPath(dir + '/' + filename)
-          );
-        });
+        var filename = file
+          .replace(self.templatePath('/'), '')
+          .replace(/^_/g, '_');
+
+        self.log(self.destinationPath(filename));
+
+        self.fs.copy(
+          self.templatePath(filename),
+          self.destinationPath(filename)
+        );
       });
     }
   },
