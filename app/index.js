@@ -3,9 +3,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var path = require('path');
 var yosay = require('yosay');
-var ncp = require('ncp').ncp;
 var process = require('process');
-var replace = require('replace');
 var fs = require('fs');
 var glob = require('glob');
 
@@ -57,39 +55,19 @@ module.exports = yeoman.generators.Base.extend({
       var source = this.templatePath();
       var destination = this.destinationPath();
 
-      ncp(source, destination, function(err) {
-        if (err) {
-          return self.log(err);
-        }
-        self.log('Static files copied');
+      glob(self.templatePath() + '/**/*', function(err, files) {
+        self.log(files);
+        files.forEach(function(file) {
+          self.log('Processing file:');
+          self.log(file);
 
+          var dir = path.dirname(file).replace('skeleton', self.projectName);
+          var filename = path.basename(file).replace('skeleton', self.projectName);
 
-        glob(self.destinationPath() + '/**/skeleton*', function(err, files) {
-          var processed = 0;
-          self.log('Renaming following files:');
-          self.log(files);
-          files.forEach(function(file) {
-            var dir = path.dirname(file);
-            var filename = path.basename(file);
-            fs.renameSync(file, dir + '/' + filename.replace('skeleton', self.projectName));
-            processed++;
-          });
-        });
-
-        replace({
-          regex: "skeleton",
-          replacement: self.projectName,
-          paths: [self.destinationPath() + '/drupal'],
-          recursive: true,
-          silent: false
-        });
-
-        replace({
-          regex: 'drupal',
-          replacement: self.projectName,
-          paths: [self.destinationPath()],
-          recursive: false,
-          silent: false
+          self.fs.copy(
+            self.templatePath(file),
+            self.destinationPath(destination + '/' + dir + '/' + filename)
+          );
         });
       });
     }
