@@ -52,7 +52,7 @@ module.exports = yeoman.generators.Base.extend({
 
 
   writing: {
-    appStatic: function() {
+    app: function() {
       var self = this;
       var files = glob.sync(self.templatePath() + '/**/*');
 
@@ -88,7 +88,7 @@ module.exports = yeoman.generators.Base.extend({
         cwd: './behat'
       };
 
-      // this.spawnCommand('composer', ['install'], options);
+      this.spawnCommand('composer', ['install'], options);
     },
 
     /**
@@ -100,10 +100,10 @@ module.exports = yeoman.generators.Base.extend({
       };
 
       this.log('bower install');
-      // this.bowerInstall(null, options);
+      this.bowerInstall(null, options);
 
       this.log('npm install');
-      // this.npmInstall(null, options);
+      this.npmInstall(null, options);
     },
 
     drupal: function() {
