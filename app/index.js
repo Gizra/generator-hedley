@@ -107,6 +107,7 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     drupal: function() {
+      this.spawnCommand('bash', ['install', '-dly']);
     }
   }
 
