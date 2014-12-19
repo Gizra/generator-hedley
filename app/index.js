@@ -94,7 +94,7 @@ module.exports = yeoman.generators.Base.extend({
       };
 
       this.log('Composer install');
-      // this.spawnCommand('composer', ['install'], options);
+      this.spawnCommand('composer', ['install'], options);
     },
 
     /**
@@ -113,9 +113,8 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     drupal: function() {
-      // this.spawnCommand('bash', ['install', '-dly']);
+      this.log('Drupal install');
+      this.spawnCommand('bash', ['install', '-dly']);
     }
   }
-
-
 });
