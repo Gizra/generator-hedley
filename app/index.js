@@ -24,7 +24,7 @@ module.exports = yeoman.generators.Base.extend({
     var prompts = [{
       name: 'projectName',
       message: 'What is the project machine name?',
-      default: 'headless_drupal7'
+      default: 'hedley'
     }];
 
     this.prompt(prompts, function (props) {
@@ -65,8 +65,13 @@ module.exports = yeoman.generators.Base.extend({
         var fileName = file.replace(self.templatePath('/'), '');
         var newFileName = fileName
           .replace(/skeleton/g, self.projectName)
-          .replace(/Skeleton/g, camelCase(self.projectName))
-          .replace(/^_/g, '.');
+          .replace(/Skeleton/g, camelCase(self.projectName));
+
+
+        var dir = path.dirname(newFileName);
+        var baseName = path.basename(newFileName).replace(/^_/g, '.');
+
+        newFileName = dir ? dir + '/' + baseName : baseName;
 
         var contents = self.fs.read(self.templatePath(fileName));
         var newContents = contents
@@ -88,7 +93,8 @@ module.exports = yeoman.generators.Base.extend({
         cwd: './behat'
       };
 
-      this.spawnCommand('composer', ['install'], options);
+      this.log('Composer install');
+      // this.spawnCommand('composer', ['install'], options);
     },
 
     /**
@@ -107,7 +113,7 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     drupal: function() {
-      this.spawnCommand('bash', ['install', '-dly']);
+      // this.spawnCommand('bash', ['install', '-dly']);
     }
   }
 
