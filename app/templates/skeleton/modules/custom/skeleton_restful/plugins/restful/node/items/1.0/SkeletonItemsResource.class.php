@@ -2,11 +2,10 @@
 
 /**
  * @file
- * Contains SkeletonItemsResource.
+ * Contains \SkeletonItemsResource.
  */
 
 class SkeletonItemsResource extends \SkeletonEntityBaseNode {
-
 
   /**
    * Overrides \RestfulEntityBaseNode::publicFieldsInfo().
