@@ -1,11 +1,13 @@
 'use strict';
 var yeoman = require('yeoman-generator');
+var camelCase = require('camelcase');
 var chalk = require('chalk');
 var path = require('path');
 var yosay = require('yosay');
 var process = require('process');
 var fs = require('fs-extra');
 var glob = require('glob');
+var replace = require('replace');
 
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
@@ -62,13 +64,16 @@ module.exports = yeoman.generators.Base.extend({
 
         var fileName = file.replace(self.templatePath('/'), '');
         var newFileName = fileName
-          .replace('skeleton', self.projectName)
+          .replace(/skeleton/g, self.projectName)
+          .replace(/Skeleton/g, camelCase(self.projectName))
           .replace(/^_/g, '.');
 
-        self.fs.copy(
-          self.templatePath(fileName),
-          self.destinationPath(newFileName)
-        );
+        var contents = self.fs.read(self.templatePath(fileName));
+        var newContents = contents
+          .replace(/skeleton/g, self.projectName)
+          .replace(/Skeleton/g, camelCase(self.projectName));
+
+        self.fs.write(newFileName, newContents);
       });
     }
   },
