@@ -10,7 +10,7 @@
 
 
 # The profile used to install the platform.
-PROFILE_NAME="garmentbox"
+PROFILE_NAME="skeleton"
 # The human name of the install profile
 PROFILE_TITLE="GarmentBox"
 

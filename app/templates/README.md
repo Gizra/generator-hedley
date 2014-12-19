@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Gizra/garmentbox.svg)](https://travis-ci.org/Gizra/garmentbox)
+[![Build Status](https://travis-ci.org/Gizra/skeleton.svg)](https://travis-ci.org/Gizra/skeleton)
 
 # Drupal 7 - Install Profile GarmentBox
 
@@ -10,7 +10,7 @@ This is a starting base to create Drupal 7 websites using an install profile.
 **Warning:** you need to setup [Drush](https://github.com/drush-ops/drush)
 first or the installation and update scripts will not work.
 
-Clone the project from [GitHub](https://github.com/Gizra/garmentbox).
+Clone the project from [GitHub](https://github.com/Gizra/skeleton).
 
 #### Create config file
 
@@ -59,7 +59,7 @@ You can Reinstall the platform any type by running the install script.
    subfolders of the profile.
 4. Download and extract Drupal 7 core in the /www folder
 5. Create an empty sites/default/files directory
-6. Makes a symlink within the /www/profiles directory to the /garmentbox
+6. Makes a symlink within the /www/profiles directory to the /skeleton
    directory.
 7. Run the Drupal installer (Drush) using the GarmentBox profile.
 
@@ -97,5 +97,5 @@ when you run the upgrade script.
    subfolders of the profile.
 5. Download and extract Drupal 7 core in the /www folder.
 6. Makes a symlink within the /www/profiles directory to the
-   /garmentbox 7. directory.
+   /skeleton 7. directory.
 7. Restore the backup of the sites/default folder.

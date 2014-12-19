@@ -1,6 +1,6 @@
-name = Garmentbox RESTFul
+name = Skeleton RESTFul
 core = 7.x
-package = Garmentbox
+package = Skeleton
 dependencies[] = restful
 dependencies[] = entity_validator
 

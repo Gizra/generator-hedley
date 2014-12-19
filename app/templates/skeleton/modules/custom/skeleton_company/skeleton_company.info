@@ -1,6 +1,6 @@
-name = Garmentbox Company
+name = Skeleton Company
 core = 7.x
-package = Garmentbox
+package = Skeleton
 dependencies[] = ctools
 dependencies[] = features
 dependencies[] = image
@@ -33,4 +33,4 @@ features[variable][] = node_options_company
 features[variable][] = node_preview_company
 features[variable][] = node_submitted_company
 features_exclude[dependencies][og_ui] = og_ui
-project path = profiles/garmentbox/modules/custom
+project path = profiles/skeleton/modules/custom

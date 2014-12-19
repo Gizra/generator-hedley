@@ -4,8 +4,8 @@
 /**
  * Implements hook_install().
  */
-function garmentbox_install() {
-  garmentbox_standard_install();
+function skeleton_install() {
+  skeleton_standard_install();
 
   // Fixes problems when the CSV files used for importing have been created
   // on a Mac, by forcing PHP to detect the appropriate line endings.
@@ -32,7 +32,7 @@ function garmentbox_install() {
 /**
  * Copied from Standard profile -- standard_install()
  */
-function garmentbox_standard_install() {
+function skeleton_standard_install() {
   // Add text formats.
   $filtered_html_format = array(
     'format' => 'filtered_html',

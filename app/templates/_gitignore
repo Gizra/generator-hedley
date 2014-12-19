@@ -46,11 +46,11 @@ Thumbs.db
 
 # Drupal profile #
 ##################
-garmentbox/modules/contrib
-garmentbox/modules/development
-garmentbox/1
-garmentbox/themes/contrib
-garmentbox/libraries
+skeleton/modules/contrib
+skeleton/modules/development
+skeleton/1
+skeleton/themes/contrib
+skeleton/libraries
 
 # Behat
 behat/vendor/

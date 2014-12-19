@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Code for the Garmentbox Company feature.
+ * Code for the Skeleton Company feature.
  */
 
 include_once 'skeleton_company.features.inc';

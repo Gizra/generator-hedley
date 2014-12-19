@@ -1,5 +1,5 @@
-name = Garmentbox
-description = Garmentbox PLM (Product Lifecycle Management)
+name = Skeleton
+description = Skeleton PLM (Product Lifecycle Management)
 version = VERSION
 core = 7.x
 

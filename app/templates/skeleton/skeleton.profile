@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Garmentbox profile.
+ * Skeleton profile.
  */
 
 /**
@@ -9,7 +9,7 @@
  *
  * Allows the profile to alter the site configuration form.
  */
-function garmentbox_form_install_configure_form_alter(&$form, $form_state) {
+function skeleton_form_install_configure_form_alter(&$form, $form_state) {
   // Pre-populate the site name with the server name.
   $form['site_information']['site_name']['#default_value'] = $_SERVER['SERVER_NAME'];
 }
@@ -17,26 +17,26 @@ function garmentbox_form_install_configure_form_alter(&$form, $form_state) {
 /**
  * Implements hook_install_tasks().
  */
-function garmentbox_install_tasks() {
+function skeleton_install_tasks() {
   $tasks = array();
 
-  $tasks['garmentbox_setup_variables'] = array(
+  $tasks['skeleton_setup_variables'] = array(
     'display_name' => st('Set Variables'),
     'display' => FALSE,
   );
 
-  $tasks['garmentbox_setup_vocabularies'] = array(
+  $tasks['skeleton_setup_vocabularies'] = array(
     'display_name' => st('Set Vocabularies'),
     'display' => FALSE,
   );
 
-  $tasks['garmentbox_setup_og_permissions'] = array(
+  $tasks['skeleton_setup_og_permissions'] = array(
     'display_name' => st('Set Blocks'),
     'display' => FALSE,
   );
 
   // Run this as the last task!
-  $tasks['garmentbox_setup_rebuild_permissions'] = array(
+  $tasks['skeleton_setup_rebuild_permissions'] = array(
     'display_name' => st('Rebuild permissions'),
     'display' => FALSE,
   );
@@ -47,15 +47,15 @@ function garmentbox_install_tasks() {
 /**
  * Task callback; Set variables.
  */
-function garmentbox_setup_variables() {
+function skeleton_setup_variables() {
   $variables = array(
     // Features default export path.
-    'features_default_export_path' => 'profiles/garmentbox/modules/custom',
+    'features_default_export_path' => 'profiles/skeleton/modules/custom',
     // Mime-mail.
     'mimemail_format' => 'full_html',
     'mimemail_sitestyle' => FALSE,
     'mimemail_name' => 'GarmentBox',
-    'mimemail_mail' => 'info@garmentbox.com',
+    'mimemail_mail' => 'info@skeleton.com',
     // jQuery versions.
     'jquery_update_jquery_version' => '1.10',
     'jquery_update_jquery_admin_version' => '1.5',
@@ -77,7 +77,7 @@ function garmentbox_setup_variables() {
  * We do this here, late enough to make sure all group-content were
  * created.
  */
-function garmentbox_setup_og_permissions() {
+function skeleton_setup_og_permissions() {
   $og_roles = og_roles('node', 'company');
   $rid = array_search(OG_AUTHENTICATED_ROLE, $og_roles);
 
@@ -99,7 +99,7 @@ function garmentbox_setup_og_permissions() {
 /**
  * Task callback; Create site wide vocabularies.
  */
-function garmentbox_setup_vocabularies() {
+function skeleton_setup_vocabularies() {
   $info = array(
     'season_status' => array(
       'name' => 'Season status',
@@ -124,7 +124,7 @@ function garmentbox_setup_vocabularies() {
 /**
  * Task callback; Setup blocks.
  */
-function garmentbox_setup_blocks() {
+function skeleton_setup_blocks() {
   $default_theme = variable_get('theme_default', 'bartik');
 
   $blocks = array(
@@ -163,6 +163,6 @@ function garmentbox_setup_blocks() {
  * We do this here so no manual rebuild is necessary when we finished the
  * installation.
  */
-function garmentbox_setup_rebuild_permissions() {
+function skeleton_setup_rebuild_permissions() {
   node_access_rebuild();
 }

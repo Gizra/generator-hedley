@@ -2,4 +2,4 @@ default:
   extensions:
     Drupal\DrupalExtension:
       drupal:
-        drupal_root: "/home/travis/build/Gizra/garmentbox/www"
+        drupal_root: "/home/travis/build/Gizra/skeleton/www"
