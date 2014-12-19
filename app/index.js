@@ -1,13 +1,13 @@
 'use strict';
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
-var glob = require('glob');
 var path = require('path');
 var yosay = require('yosay');
 var ncp = require('ncp').ncp;
 var process = require('process');
 var replace = require('replace');
 var fs = require('fs');
+var glob = require('glob');
 
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
@@ -64,9 +64,11 @@ module.exports = yeoman.generators.Base.extend({
         }
         self.log('Static files copied');
 
+
         // @todo: Rename all "skeleton" folder and files to the project name.
-        glob(self.destinationPath() + '/**/skeleton*.*', function(err, files) {
+        glob(self.destinationPath() + '/**/skeleton*', function(err, files) {
           var processed = 0;
+          self.log('Renaming following files:');
           self.log(files);
           files.forEach(function(file) {
             var dir = path.dirname(file);
@@ -74,24 +76,23 @@ module.exports = yeoman.generators.Base.extend({
             fs.renameSync(file, dir + '/' + filename.replace('skeleton', self.projectName));
             processed++;
           });
-          self.log(processed + " files processed");
         });
 
-        replace({
-          regex: "skeleton",
-          replacement: self.projectName,
-          paths: [self.destinationPath() + '/drupal'],
-          recursive: true,
-          silent: false
-        });
-
-        replace({
-          regex: 'drupal',
-          replacement: self.projectName,
-          paths: [self.destinationPath()],
-          recursive: false,
-          silent: false
-        });
+        //replace({
+        //  regex: "skeleton",
+        //  replacement: self.projectName,
+        //  paths: [self.destinationPath() + '/drupal'],
+        //  recursive: true,
+        //  silent: false
+        //});
+        //
+        //replace({
+        //  regex: 'drupal',
+        //  replacement: self.projectName,
+        //  paths: [self.destinationPath()],
+        //  recursive: false,
+        //  silent: false
+        //});
       });
     }
   },
