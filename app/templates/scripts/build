@@ -5,7 +5,7 @@ set -e
 
 
 # Define the root.
-cd ${0%/*}
+cd ${0%/*}/..
 ROOT=$(pwd)
 cd $ROOT
 
