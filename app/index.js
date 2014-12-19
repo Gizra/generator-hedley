@@ -54,8 +54,7 @@ module.exports = yeoman.generators.Base.extend({
   writing: {
     appStatic: function() {
       var self = this;
-      // @todo: Use a function to get the "static" folder.
-      var source = this.templatePath('../static');
+      var source = this.templatePath();
       var destination = this.destinationPath();
 
       ncp(source, destination, function(err) {
@@ -65,7 +64,6 @@ module.exports = yeoman.generators.Base.extend({
         self.log('Static files copied');
 
 
-        // @todo: Rename all "skeleton" folder and files to the project name.
         glob(self.destinationPath() + '/**/skeleton*', function(err, files) {
           var processed = 0;
           self.log('Renaming following files:');
@@ -78,21 +76,21 @@ module.exports = yeoman.generators.Base.extend({
           });
         });
 
-        //replace({
-        //  regex: "skeleton",
-        //  replacement: self.projectName,
-        //  paths: [self.destinationPath() + '/drupal'],
-        //  recursive: true,
-        //  silent: false
-        //});
-        //
-        //replace({
-        //  regex: 'drupal',
-        //  replacement: self.projectName,
-        //  paths: [self.destinationPath()],
-        //  recursive: false,
-        //  silent: false
-        //});
+        replace({
+          regex: "skeleton",
+          replacement: self.projectName,
+          paths: [self.destinationPath() + '/drupal'],
+          recursive: true,
+          silent: false
+        });
+
+        replace({
+          regex: 'drupal',
+          replacement: self.projectName,
+          paths: [self.destinationPath()],
+          recursive: false,
+          silent: false
+        });
       });
     }
   },

@@ -1,0 +1,21 @@
+<?php
+/**
+ * @file
+ * Code for the RESTful integration.
+ */
+
+if (!drupal_is_cli()) {
+  header('Access-Control-Allow-Origin: *');
+  header('Access-Control-Allow-Credentials: true');
+  header('Access-Control-Allow-Headers: Authorization, access_token');
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function skeleton_restful_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'restful') {
+    return 'plugins/' . $plugin;
+  }
+}
+
