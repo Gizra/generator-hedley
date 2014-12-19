@@ -61,12 +61,14 @@ module.exports = yeoman.generators.Base.extend({
           self.log('Processing file:');
           self.log(file);
 
-          var dir = path.dirname(file).replace('skeleton', self.projectName);
+          var dir = path.dirname(file).replace('skeleton', self.projectName).replace(self.templatePath(), self.destinationPath());
           var filename = path.basename(file).replace('skeleton', self.projectName);
+
+          self.log('to: ' + dir);
 
           self.fs.copy(
             self.templatePath(file),
-            self.destinationPath(destination + '/' + dir + '/' + filename)
+            self.destinationPath(dir + '/' + filename)
           );
         });
       });
