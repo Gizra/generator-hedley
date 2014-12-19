@@ -52,9 +52,6 @@ module.exports = yeoman.generators.Base.extend({
   writing: {
     appStatic: function() {
       var self = this;
-      var source = this.templatePath();
-      var destination = this.destinationPath();
-
       var files = glob.sync(self.templatePath() + '/**/*');
 
       files.forEach(function(file) {
@@ -66,7 +63,7 @@ module.exports = yeoman.generators.Base.extend({
         var fileName = file.replace(self.templatePath('/'), '');
         var newFileName = fileName
           .replace('skeleton', self.projectName)
-          .replace(/^_/g, '_');
+          .replace(/^_/g, '.');
 
         self.fs.copy(
           self.templatePath(fileName),
@@ -94,7 +91,7 @@ module.exports = yeoman.generators.Base.extend({
      */
     client: function() {
       var options = {
-        cwd: './client'
+        cwd: 'client'
       };
 
       this.log('bower install');
