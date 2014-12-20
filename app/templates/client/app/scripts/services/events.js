@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc service
- * @name clientApp.items
+ * @name clientApp.events
  * @description
- * # items
+ * # events
  * Service in the clientApp.
  */
 angular.module('clientApp')
@@ -18,7 +18,7 @@ angular.module('clientApp')
 
 
     /**
-     * Return the promise with the items list, from cache or the server.
+     * Return the promise with the events list, from cache or the server.
      *
      * @param int companyId
      *   The company ID.
@@ -42,7 +42,7 @@ angular.module('clientApp')
      */
     this.create= function(data) {
       var deferred = $q.defer();
-      var url = Config.backend + '/api/items';
+      var url = Config.backend + '/api/events';
       var self = this;
 
       $http({
@@ -65,7 +65,7 @@ angular.module('clientApp')
     };
 
     /**
-     * Return items array from the server.
+     * Return events array from the server.
      *
      * @param int companyId
      *   The company ID.
@@ -74,7 +74,7 @@ angular.module('clientApp')
      */
     function getDataFromBackend(companyId) {
       var deferred = $q.defer();
-      var url = Config.backend + '/api/items';
+      var url = Config.backend + '/api/events';
       var params = {
         sort: '-updated',
         'filter[company]': companyId

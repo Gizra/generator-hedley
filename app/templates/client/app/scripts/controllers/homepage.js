@@ -11,7 +11,7 @@ angular.module('clientApp')
   .controller('HomepageCtrl', function ($scope, $state, companies, Auth) {
     if (Auth.isAuthenticated()) {
       var defaultCompanyId = companies[0].id;
-      $state.go('dashboard.byCompany.items', {companyId: defaultCompanyId});
+      $state.go('dashboard.byCompany.events', {companyId: defaultCompanyId});
     }
     else {
       // Redirect to login.

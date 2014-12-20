@@ -14,7 +14,7 @@ angular.module('clientApp')
     var cache = {};
 
     /**
-     * Return the promise with the items list, from cache or the server.
+     * Return the promise with the events list, from cache or the server.
      *
      * @returns {*}
      */
@@ -23,7 +23,7 @@ angular.module('clientApp')
     };
 
     /**
-     * Return items array from the server.
+     * Return events array from the server.
      *
      * @returns {$q.promise}
      */

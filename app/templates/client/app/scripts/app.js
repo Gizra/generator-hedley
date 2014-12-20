@@ -73,13 +73,13 @@ angular
         // Since the state is abstract, we inline the <ui-view> tag.
         template: '<ui-view/>'
       })
-      .state('dashboard.byCompany.items', {
-        url: '/items',
-        templateUrl: 'views/dashboard/items/items.html',
-        controller: 'ItemsCtrl',
+      .state('dashboard.byCompany.events', {
+        url: '/events',
+        templateUrl: 'views/dashboard/events/events.html',
+        controller: 'EventsCtrl',
         onEnter: page403,
         resolve: {
-          items: function($stateParams, Items) {
+          events: function($stateParams, Items) {
             return Items.get($stateParams.companyId);
           },
           itemVariants: function() {
@@ -87,28 +87,16 @@ angular
           }
         }
       })
-      .state('dashboard.byCompany.items.variants', {
+      .state('dashboard.byCompany.events.variants', {
         url: '/item/{itemId:int}',
-        templateUrl: 'views/dashboard/items/items.variants.html',
-        controller: 'ItemsCtrl',
+        templateUrl: 'views/dashboard/events/events.variants.html',
+        controller: 'EventsCtrl',
         onEnter: page403,
         resolve: {
           itemVariants: function(ItemVariants, $stateParams) {
             return ItemVariants.get($stateParams.itemId);
           }
         }
-      })
-      .state('dashboard.byCompany.items.variants.variant', {
-        url: '/variant/{itemVariantId:int}',
-        templateUrl: 'views/dashboard/items/items.variants.variant.html',
-        controller: 'ItemsCtrl',
-        onEnter: page403
-      })
-      .state('dashboard.byCompany.items.add', {
-        url: '/add',
-        templateUrl: 'views/dashboard/items/items.add.html',
-        controller: 'ItemsAddCtrl',
-        onEnter: page403
       })
       .state('dashboard.companies', {
         url: '/companies',

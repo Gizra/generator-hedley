@@ -39,7 +39,7 @@ abstract class SkeletonEntityBaseNode extends \RestfulEntityBaseNode {
   }
 
   /**
-   * Process callback, Remove Drupal specific items from the image array.
+   * Process callback, Remove Drupal specific events from the image array.
    *
    * @param array $value
    *   The image array.
