@@ -52,13 +52,7 @@ skeleton/1
 skeleton/themes/contrib
 skeleton/libraries
 
-# Behat
-behat/vendor/
-behat.local.yml
-behat/bin
-behat/composer.phar
-
-# Temporay "build" files
+# Temporary "build" files
 www
 
 # Local Configuration
