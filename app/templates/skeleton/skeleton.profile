@@ -25,11 +25,6 @@ function skeleton_install_tasks() {
     'display' => FALSE,
   );
 
-  $tasks['skeleton_setup_vocabularies'] = array(
-    'display_name' => st('Set Vocabularies'),
-    'display' => FALSE,
-  );
-
   $tasks['skeleton_setup_og_permissions'] = array(
     'display_name' => st('Set Blocks'),
     'display' => FALSE,
@@ -54,7 +49,7 @@ function skeleton_setup_variables() {
     // Mime-mail.
     'mimemail_format' => 'full_html',
     'mimemail_sitestyle' => FALSE,
-    'mimemail_name' => 'GarmentBox',
+    'mimemail_name' => 'Skeleton',
     'mimemail_mail' => 'info@skeleton.com',
     // jQuery versions.
     'jquery_update_jquery_version' => '1.10',
@@ -94,31 +89,6 @@ function skeleton_setup_og_permissions() {
     $permissions["update any $type content"] = TRUE;
   }
   og_role_change_permissions($rid, $permissions);
-}
-
-/**
- * Task callback; Create site wide vocabularies.
- */
-function skeleton_setup_vocabularies() {
-  $info = array(
-    'season_status' => array(
-      'name' => 'Season status',
-      'description' => 'Status of a season.',
-    ),
-    'item_status' => array(
-      'name' => 'Item status',
-      'description' => 'Status of an item.',
-    ),
-  );
-
-  foreach ($info as $machine_name => $row) {
-    $vocabulary = (object) array(
-      'name' => $row['name'],
-      'description' => $row['description'],
-      'machine_name' => $machine_name,
-    );
-    taxonomy_vocabulary_save($vocabulary);
-  }
 }
 
 /**
