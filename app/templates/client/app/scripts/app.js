@@ -87,17 +87,6 @@ angular
           }
         }
       })
-      .state('dashboard.byCompany.events.variants', {
-        url: '/item/{itemId:int}',
-        templateUrl: 'views/dashboard/events/events.variants.html',
-        controller: 'EventsCtrl',
-        onEnter: page403,
-        resolve: {
-          itemVariants: function(ItemVariants, $stateParams) {
-            return ItemVariants.get($stateParams.itemId);
-          }
-        }
-      })
       .state('dashboard.companies', {
         url: '/companies',
         templateUrl: 'views/dashboard/companies/companies.html',

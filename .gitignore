@@ -1,1 +1,4 @@
 node_modules/
+
+# Prevent the client's config.json from being copied.
+app/templates/client/app/scripts/config.js
