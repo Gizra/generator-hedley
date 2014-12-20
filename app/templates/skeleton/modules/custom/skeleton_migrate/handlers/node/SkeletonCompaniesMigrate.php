@@ -5,7 +5,7 @@
  * Contains \SkeletonCompaniesMigrate.
  */
 
-class SkeletonCompaniesMigrate extends SkeletonMigration {
+class SkeletonCompaniesMigrate extends \SkeletonMigrateBase {
 
   public $entityType = 'node';
   public $bundle = 'company';

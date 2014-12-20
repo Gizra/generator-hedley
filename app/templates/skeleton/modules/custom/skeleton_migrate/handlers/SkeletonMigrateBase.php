@@ -5,7 +5,7 @@
  * Contains \SkeletonMigration.
  */
 
-abstract class SkeletonMigration extends Migration {
+abstract class SkeletonMigrateBase extends Migration {
 
   public function __construct() {
     parent::__construct();

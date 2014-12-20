@@ -6,7 +6,7 @@ dependencies[] = migrate
 dependencies[] = migrate_extras
 
 ; Handlers
-files[] = handlers/SkeletonMigrateNodeBase.php
+files[] = handlers/SkeletonMigrateBase.php
 
 files[] = handlers/node/SkeletonCompaniesMigrate.php
 files[] = handlers/node/SkeletonItemsMigrate.php

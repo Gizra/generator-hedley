@@ -1,6 +1,6 @@
 'use strict';
 var yeoman = require('yeoman-generator');
-var camelCase = require('camelcase');
+var changeCase = require('change-case');
 var chalk = require('chalk');
 var path = require('path');
 var yosay = require('yosay');
@@ -65,7 +65,7 @@ module.exports = yeoman.generators.Base.extend({
         var fileName = file.replace(self.templatePath('/'), '');
         var newFileName = fileName
           .replace(/skeleton/g, self.projectName)
-          .replace(/Skeleton/g, camelCase(self.projectName));
+          .replace(/Skeleton/g, changeCase.pascalCase(self.projectName));
 
 
         var dir = path.dirname(newFileName);
@@ -76,7 +76,7 @@ module.exports = yeoman.generators.Base.extend({
         var contents = self.fs.read(self.templatePath(fileName));
         var newContents = contents
           .replace(/skeleton/g, self.projectName)
-          .replace(/Skeleton/g, camelCase(self.projectName));
+          .replace(/Skeleton/g, changeCase.pascalCase(self.projectName));
 
         self.fs.write(newFileName, newContents);
       });

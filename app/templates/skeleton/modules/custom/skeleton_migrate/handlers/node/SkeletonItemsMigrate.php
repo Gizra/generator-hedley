@@ -5,7 +5,7 @@
  * Contains \SkeletonItemVariantsMigrate.
  */
 
-class SkeletonItemVariantsMigrate extends SkeletonMigration {
+class SkeletonItemVariantsMigrate extends \SkeletonMigrateBase {
 
   public $entityType = 'node';
   public $bundle = 'item_variant';
