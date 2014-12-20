@@ -15,6 +15,7 @@ angular
     'ngSanitize',
 
     'config',
+    'leaflet-directive',
     'LocalStorageModule',
     'ui.router'
   ])
@@ -60,18 +61,26 @@ angular
         url: '',
         templateUrl: 'views/dashboard/main.html',
         controller: 'DashboardCtrl',
-        onEnter: page403,
-        resolve: {
-          companies: function(Companies) {
-            return Companies.get();
-          }
-        }
+        onEnter: page403
       })
       .state('dashboard.byCompany', {
         url: '/dashboard/{companyId:int}',
         abstract: true,
         // Since the state is abstract, we inline the <ui-view> tag.
-        template: '<ui-view/>'
+        template: '<ui-view/>',
+        views: {
+          map: {
+            templateUrl: 'views/dashboard/main.map.html',
+            resolve: {
+              mapConfig: function(Map) {
+                return Map.getConfig();
+              }
+            }
+          },
+          details: {
+            templateUrl: 'views/dashboard/main.details.html'
+          }
+        }
       })
       .state('dashboard.byCompany.events', {
         url: '/events',
@@ -79,11 +88,8 @@ angular
         controller: 'EventsCtrl',
         onEnter: page403,
         resolve: {
-          events: function($stateParams, Items) {
-            return Items.get($stateParams.companyId);
-          },
-          itemVariants: function() {
-            return null;
+          events: function($stateParams, Events) {
+            return Events.get($stateParams.companyId);
           }
         }
       })
