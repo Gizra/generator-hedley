@@ -16,9 +16,11 @@ class SkeletonCompaniesResource extends \SkeletonEntityBaseNode {
 
     $public_fields['logo'] = array(
       'property' => 'field_company_logo',
-      'process_callback' => array($this, 'imageProcess'),
       // This will add 3 image variants in the output.
       'image_styles' => array('thumbnail', 'medium', 'large'),
+      'process_callbacks' => array(
+        array($this, 'imageProcess'),
+      ),
     );
 
     return $public_fields;
