@@ -86,33 +86,24 @@ module.exports = yeoman.generators.Base.extend({
   install: {
 
     /**
-     * Install Behat.
-     */
-    behat: function() {
-      var options = {
-        cwd: './behat'
-      };
-
-      this.log('Composer install');
-      this.spawnCommand('composer', ['install'], options);
-    },
-
-    /**
      * Install bower/ npm on the "client" directory.
      */
     client: function() {
-      var options = {
-        cwd: 'client'
-      };
+      if (this.options['skip-install']) {
+        // @todo: Improve message.
+        this.log('Skip install');
+        return;
+      }
 
       this.log('bower install');
-      this.bowerInstall(null, options);
+      this.bowerInstall(null, {cwd: 'client'});
 
       this.log('npm install');
-      this.npmInstall(null, options);
-    },
+      this.npmInstall(null, {cwd: 'client'});
 
-    drupal: function() {
+      this.log('Composer install');
+      this.spawnCommand('composer', ['install'], {cwd: './behat'});
+
       this.log('Drupal install');
       this.spawnCommand('bash', ['install', '-dly']);
     }
