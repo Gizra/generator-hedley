@@ -43,6 +43,9 @@ projects[features][version] = "2.2"
 projects[flag][subdir] = "contrib"
 projects[flag][version] = "3.5"
 
+projects[geolocation][subdir] = "contrib"
+projects[geolocation][version] = "1.6"
+
 projects[jquery_update][subdir] = "contrib"
 projects[jquery_update][version] = "2.4"
 
@@ -69,9 +72,6 @@ projects[og][version] = 2.x
 
 projects[og_vocab][subdir] = "contrib"
 projects[og_vocab][version] = "1.2"
-
-projects[purl][subdir] = "contrib"
-projects[purl][version] = "1.x-dev"
 
 projects[restful][subdir] = "contrib"
 projects[restful][download][type] = "git"

@@ -24,7 +24,7 @@ module.exports = yeoman.generators.Base.extend({
     var prompts = [{
       name: 'projectName',
       message: 'What is the project machine name?',
-      default: 'hedley'
+      default: 'skeleton'
     }];
 
     this.prompt(prompts, function (props) {

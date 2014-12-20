@@ -26,6 +26,8 @@ dependencies[] = entityreference
 dependencies[] = entity_validator
 dependencies[] = features
 dependencies[] = flag
+dependencies[] = geolocation
+dependencies[] = geolocation_html5
 dependencies[] = libraries
 dependencies[] = message
 dependencies[] = migrate
@@ -42,6 +44,7 @@ dependencies[] = token
 dependencies[] = views
 dependencies[] = views_bulk_operations
 
-; GarmentBox
+; Skeleton
 dependencies[] = skeleton_company
+dependencies[] = skeleton_event
 dependencies[] = skeleton_restful
