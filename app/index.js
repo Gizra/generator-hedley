@@ -39,12 +39,92 @@ module.exports = yeoman.generators.Base.extend({
 
     var prompts = [{
       name: 'githubRepo',
-      message: 'What is the GitHub repo URL?',
+      message: 'What is the GitHub repository URL?',
       default: ''
     }];
 
     this.prompt(prompts, function (props) {
       this.githubRepo = props.githubRepo;
+
+      done();
+    }.bind(this));
+  },
+
+  askForTravis: function () {
+    var done = this.async();
+
+    var prompts = [{
+      name: 'travisPublic',
+      message: 'Is the GitHub repository public (so we can set your Travis link correcrly)?',
+      default: true
+    }];
+
+    this.prompt(prompts, function (props) {
+      this.travisPublic = props.travisPublic;
+
+      done();
+    }.bind(this));
+  },
+
+  askForLocalUrl: function () {
+    var done = this.async();
+
+    var prompts = [{
+      name: 'localUrl',
+      message: 'What is the local URL?',
+      default: 'http://localhost/' + this.projectName + '/www'
+    }];
+
+    this.prompt(prompts, function (props) {
+      this.localUrl = props.localUrl;
+
+      done();
+    }.bind(this));
+  },
+
+  askForDbName: function () {
+    var done = this.async();
+
+    var prompts = [{
+      name: 'dbName',
+      message: 'What is the Database name?',
+      default: this.projectName
+    }];
+
+    this.prompt(prompts, function (props) {
+      this.dbName = props.dbName;
+
+      done();
+    }.bind(this));
+  },
+
+  askForDbUser: function () {
+    var done = this.async();
+
+    var prompts = [{
+      name: 'dbUser',
+      message: 'What is the Database user?',
+      default: 'root'
+    }];
+
+    this.prompt(prompts, function (props) {
+      this.dbUser = props.dbUser;
+
+      done();
+    }.bind(this));
+  },
+
+  askForDbPass: function () {
+    var done = this.async();
+
+    var prompts = [{
+      name: 'dbPass',
+      message: 'What is the Database password?',
+      default: 'root'
+    }];
+
+    this.prompt(prompts, function (props) {
+      this.dbPass = props.dbPass;
 
       done();
     }.bind(this));
