@@ -9,7 +9,7 @@ dependencies[] = migrate_extras
 files[] = handlers/SkeletonMigrateBase.php
 
 files[] = handlers/node/SkeletonCompaniesMigrate.php
-files[] = handlers/node/SkeletonItemsMigrate.php
+files[] = handlers/node/SkeletonEventsMigrate.php
 
 files[] = handlers/user/SkeletonUsersMigrate.php
 

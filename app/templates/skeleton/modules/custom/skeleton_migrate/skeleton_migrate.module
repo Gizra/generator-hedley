@@ -12,7 +12,7 @@ function skeleton_migrate_migrate_api() {
   $migrations = array(
     // Nodes.
     'SkeletonCompaniesMigrate',
-    // 'SkeletonItemsMigrate',
+    'SkeletonEventsMigrate',
     // Users.
     'SkeletonUsersMigrate',
   );

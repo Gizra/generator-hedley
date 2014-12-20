@@ -19,6 +19,10 @@ class SkeletonCompaniesMigrate extends \SkeletonMigrateBase {
     $this
       ->addFieldMapping(OG_ACCESS_FIELD)
       ->defaultValue(TRUE);
+
+    $this
+      ->addFieldMapping('uid')
+      ->defaultValue('1');
   }
 
 }
