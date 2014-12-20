@@ -50,17 +50,21 @@ module.exports = yeoman.generators.Base.extend({
     }.bind(this));
   },
 
-  askForTravis: function () {
+  askForRepoPublic: function () {
+    if (!this.githubRepo) {
+      return;
+    }
     var done = this.async();
 
     var prompts = [{
-      name: 'travisPublic',
+      type: 'confirm',
+      name: 'repoPublic',
       message: 'Is the GitHub repository public (so we can set your Travis link correcrly)?',
       default: true
     }];
 
     this.prompt(prompts, function (props) {
-      this.travisPublic = props.travisPublic;
+      this.repoPublic = props.repoPublic;
 
       done();
     }.bind(this));
