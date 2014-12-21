@@ -8,9 +8,10 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('HomepageCtrl', function ($scope, $state, companies, Auth) {
+  .controller('HomepageCtrl', function ($scope, $state, account, Auth, $log) {
+    $log.log(account);
     if (Auth.isAuthenticated()) {
-      var defaultCompanyId = companies[0].id;
+      var defaultCompanyId = account.companies[0].id;
       $state.go('dashboard.byCompany.events', {companyId: defaultCompanyId});
     }
     else {

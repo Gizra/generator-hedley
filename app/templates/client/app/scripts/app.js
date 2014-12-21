@@ -47,8 +47,8 @@ angular
         url: '/',
         controller: 'HomepageCtrl',
         resolve: {
-          companies: function(Companies) {
-            return Companies.get();
+          account: function(Account) {
+            return Account.get();
           }
         }
       })
@@ -61,7 +61,12 @@ angular
         url: '',
         templateUrl: 'views/dashboard/main.html',
         controller: 'DashboardCtrl',
-        onEnter: page403
+        onEnter: page403,
+        resolve: {
+          account: function(Account) {
+            return Account.get();
+          }
+        }
       })
       .state('dashboard.byCompany', {
         url: '/dashboard/{companyId:int}',

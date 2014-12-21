@@ -42,6 +42,6 @@ class SkeletonMeResource extends \RestfulEntityBaseUser {
    */
   public function viewEntity($entity_id) {
     $account = $this->getAccount();
-    return parent::viewEntity($account->uid);
+    return array(parent::viewEntity($account->uid));
   }
 }
