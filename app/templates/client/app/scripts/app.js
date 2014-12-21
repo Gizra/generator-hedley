@@ -88,6 +88,10 @@ angular
           }
         }
       })
+      .state('dashboard.byCompany.events.event', {
+        url: '/event/{eventId:int}',
+        controller: 'EventsCtrl',
+      })
       .state('dashboard.companies', {
         url: '/companies',
         templateUrl: 'views/dashboard/companies/companies.html',

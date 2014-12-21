@@ -8,22 +8,12 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('EventsCtrl', function ($scope, events, mapConfig, $stateParams, $log) {
+  .controller('EventsCtrl', function ($scope, events, mapConfig, $state, $stateParams, $log) {
 
     // Initialize values.
     $scope.events = events;
-    $scope.selectedEvent = null;
 
     $scope.mapConfig = mapConfig;
-    $scope.markers = {};
-
-    // Add markers.
-    angular.forEach(events, function(event) {
-      $scope.markers[event.id] = {
-        lat: parseFloat(event.location.lat),
-        lng: parseFloat(event.location.lng)
-      };
-    });
 
     /**
      * Set the selected item.
@@ -32,16 +22,15 @@ angular.module('clientApp')
      *   The event ID.
      */
     var setSelectedEvent = function(id) {
-      $scope.selectedEvent = null;
-
-      angular.forEach($scope.events, function(value) {
-        if (value.id == id) {
-          $scope.selectedEvent = value;
-        }
-      });
+      $scope.events[id].select();
     };
 
     if ($stateParams.eventId) {
       setSelectedEvent($stateParams.eventId);
     }
+
+    // Select marker in the Map.
+    $scope.$on('leafletDirectiveMarker.click', function(event, args) {
+      $state.go('dashboard.byCompany.events.event', {companyId: $stateParams.companyId, eventId: args.markerName});
+    });
   });

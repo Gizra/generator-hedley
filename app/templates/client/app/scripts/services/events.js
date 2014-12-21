@@ -8,7 +8,7 @@
  * Service in the clientApp.
  */
 angular.module('clientApp')
-  .service('Events', function ($q, $http, $timeout, Config, $rootScope, $log) {
+  .service('Events', function ($q, $http, $timeout, Config, Marker, $rootScope, $log) {
 
     // A private cache key.
     var cache = {};
@@ -83,10 +83,11 @@ angular.module('clientApp')
       $http({
         method: 'GET',
         url: url,
-        params: params
+        params: params,
+        transformResponse: prepareDataForLeafletMarkers
       }).success(function(response) {
-        setCache(companyId, response.data);
-        deferred.resolve(response.data);
+        setCache(companyId, response);
+        deferred.resolve(response);
       });
 
       return deferred.promise;
@@ -121,5 +122,41 @@ angular.module('clientApp')
     $rootScope.$on('clearCache', function() {
       cache = null;
     });
+
+    /**
+     * Convert the array of list of meters to and object of meters.
+     *
+     * Also prepare the lang and lat values so Leaflet can pick them up.
+     *
+     * @param list []
+     *   List of meters in an array.
+     *
+     * @returns {*}
+     *   List of events organized in an object, each meter it's a property keyed
+     *   by the id.
+     */
+    function prepareDataForLeafletMarkers(list) {
+      var events = {};
+
+      // Convert response serialized to an object.
+      list = angular.fromJson(list).data;
+
+      angular.forEach(list, function(event) {
+        events[event.id] = event;
+
+        // Convert the geo location properties as expected by leaflet map.
+        events[event.id].lat = parseFloat(event.location.lat);
+        events[event.id].lng = parseFloat(event.location.lng);
+
+        delete event.location;
+
+        // Extend meter with marker properties and methods.
+        angular.extend(events[event.id], Marker);
+        // Define default icon properties and methods, in order, to be changed later.
+        events[event.id].unselect();
+      });
+
+      return events;
+    }
 
   });
