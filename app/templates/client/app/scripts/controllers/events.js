@@ -15,10 +15,14 @@ angular.module('clientApp')
     $scope.selectedEvent = null;
 
     $scope.mapConfig = mapConfig;
-    $scope.markers = []
+    $scope.markers = {};
 
+    // Add markers.
     angular.forEach(events, function(event) {
-      $scope.markers.push(event.location);
+      $scope.markers[event.id] = {
+        lat: parseFloat(event.location.lat),
+        lng: parseFloat(event.location.lng)
+      };
     });
 
     /**
