@@ -14,7 +14,10 @@ angular.module('clientApp')
      */
     this.getConfig = function() {
       return {
-        zoomControlPosition: 'bottomleft'
+        zoomControlPosition: 'bottomleft',
+        minZoom: 8,
+        maxZoom:16,
+        center: this.getCenter()
       };
     };
 
@@ -35,7 +38,7 @@ angular.module('clientApp')
      *   Center object.
      */
     this.getCenter = function() {
-      return cache.center;
+      return cache.center || {lat: 51.505, lng: -0.09, zoom: 15};
     };
 
     /**

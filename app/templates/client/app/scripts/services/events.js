@@ -8,13 +8,13 @@
  * Service in the clientApp.
  */
 angular.module('clientApp')
-  .service('Items', function ($q, $http, $timeout, Config, $rootScope, $log) {
+  .service('Events', function ($q, $http, $timeout, Config, $rootScope, $log) {
 
     // A private cache key.
     var cache = {};
 
     // Update event broadcast name.
-    var broadcastUpdateEventName = 'gbItemsChanged';
+    var broadcastUpdateEventName = 'SkeletonEventsChange';
 
 
     /**
@@ -109,7 +109,9 @@ angular.module('clientApp')
 
       // Clear cache in 60 seconds.
       $timeout(function() {
-        delete(cache.data[companyId]);
+        if (cache.data && cache.data[companyId]) {
+          delete(cache.data[companyId]);
+        }
       }, 60000);
 
       // Broadcast a change event.

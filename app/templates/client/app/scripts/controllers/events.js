@@ -8,11 +8,18 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('EventsCtrl', function ($scope, events, $stateParams, $log) {
+  .controller('EventsCtrl', function ($scope, events, mapConfig, $stateParams, $log) {
 
     // Initialize values.
     $scope.events = events;
     $scope.selectedEvent = null;
+
+    $scope.mapConfig = mapConfig;
+    $scope.markers = []
+
+    angular.forEach(events, function(event) {
+      $scope.markers.push(event.location);
+    });
 
     /**
      * Set the selected item.

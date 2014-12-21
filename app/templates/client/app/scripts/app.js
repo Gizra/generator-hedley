@@ -72,20 +72,7 @@ angular
         url: '/dashboard/{companyId:int}',
         abstract: true,
         // Since the state is abstract, we inline the <ui-view> tag.
-        template: '<ui-view/>',
-        views: {
-          map: {
-            templateUrl: 'views/dashboard/main.map.html',
-            resolve: {
-              mapConfig: function(Map) {
-                return Map.getConfig();
-              }
-            }
-          },
-          details: {
-            templateUrl: 'views/dashboard/main.details.html'
-          }
-        }
+        template: '<ui-view/>'
       })
       .state('dashboard.byCompany.events', {
         url: '/events',
@@ -95,6 +82,9 @@ angular
         resolve: {
           events: function($stateParams, Events) {
             return Events.get($stateParams.companyId);
+          },
+          mapConfig: function(Map) {
+            return Map.getConfig();
           }
         }
       })

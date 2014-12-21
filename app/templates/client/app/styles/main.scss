@@ -4,3 +4,7 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 @import 'spinner.scss';
 
+#map {
+  min-height: 500px;
+}
+
