@@ -69,7 +69,12 @@ module.exports = yeoman.generators.Base.extend({
 
 
         var dir = path.dirname(newFileName);
-        var baseName = path.basename(newFileName).replace(/^_/g, '.');
+        var baseName = path.basename(newFileName);
+
+        if (path.extname(baseName) !== '.scss') {
+          // If not a SCSS file, convert the prefix of the underscore to a dot.
+          baseName = baseName.replace(/^_/g, '.');
+        }
 
         newFileName = dir ? dir + '/' + baseName : baseName;
 
