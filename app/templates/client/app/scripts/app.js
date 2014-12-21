@@ -90,7 +90,7 @@ angular
       })
       .state('dashboard.byCompany.events.event', {
         url: '/event/{eventId:int}',
-        controller: 'EventsCtrl',
+        controller: 'EventsCtrl'
       })
       .state('dashboard.companies', {
         url: '/companies',
