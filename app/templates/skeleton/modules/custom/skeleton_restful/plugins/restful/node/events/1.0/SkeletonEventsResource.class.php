@@ -20,6 +20,15 @@ class SkeletonEventsResource extends \SkeletonEntityBaseNode {
       ),
     );
 
+    $public_fields['user'] = array(
+      'property' => 'author',
+      'resource' => array(
+        'user' => array(
+          'name' => 'users',
+        ),
+      ),
+    );
+
     return $public_fields;
   }
 

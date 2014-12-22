@@ -25,12 +25,12 @@ angular.module('clientApp')
      *
      * @returns {*}
      */
-    this.get = function(companyId) {
+    this.get = function(companyId, userId) {
       if (cache && cache[companyId]) {
         return $q.when(cache[companyId].data);
       }
 
-      return getDataFromBackend(companyId);
+      return getDataFromBackend(companyId, userId);
     };
 
 
@@ -72,13 +72,17 @@ angular.module('clientApp')
      *
      * @returns {$q.promise}
      */
-    function getDataFromBackend(companyId) {
+    function getDataFromBackend(companyId, userId) {
       var deferred = $q.defer();
       var url = Config.backend + '/api/events';
       var params = {
         sort: '-updated',
         'filter[company]': companyId
       };
+
+      if (userId) {
+        params['filter[author]'] = userId;
+      }
 
       $http({
         method: 'GET',

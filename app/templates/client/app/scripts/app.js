@@ -72,7 +72,12 @@ angular
         url: '/dashboard/{companyId:int}',
         abstract: true,
         // Since the state is abstract, we inline the <ui-view> tag.
-        template: '<ui-view/>'
+        template: '<ui-view/>',
+        resolve: {
+          mapConfig: function(Map) {
+            return Map.getConfig();
+          }
+        }
       })
       .state('dashboard.byCompany.events', {
         url: '/events',
@@ -82,9 +87,23 @@ angular
         resolve: {
           events: function($stateParams, Events) {
             return Events.get($stateParams.companyId);
-          },
-          mapConfig: function(Map) {
-            return Map.getConfig();
+          }
+        }
+      })
+      .state('dashboard.byCompany.byUser', {
+        url: '/user/{userId:int}',
+        abstract: true,
+        // Since the state is abstract, we inline the <ui-view> tag.
+        template: '<ui-view/>'
+      })
+      .state('dashboard.byCompany.byUser.events', {
+        url: '/events',
+        templateUrl: 'views/dashboard/events/events.html',
+        controller: 'EventsCtrl',
+        onEnter: page403,
+        resolve: {
+          events: function($stateParams, Events) {
+            return Events.get($stateParams.companyId, $stateParams.userId);
           }
         }
       })

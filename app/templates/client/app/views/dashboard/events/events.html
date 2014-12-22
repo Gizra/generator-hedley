@@ -3,7 +3,7 @@
 
     <ul>
       <li ng-repeat="event in events">
-        <a href ui-sref="dashboard.byCompany.events.event({ eventId: event.id })">{{ event.label }}</a>
+        <a href ui-sref="dashboard.byCompany.events.event({ eventId: event.id })">{{ event.label }} by {{ event.user.label }}</a>
       </li>
     </ul>
   </div>
