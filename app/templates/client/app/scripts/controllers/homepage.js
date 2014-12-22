@@ -10,7 +10,8 @@
 angular.module('clientApp')
   .controller('HomepageCtrl', function ($scope, $state, account, $log) {
     if (account) {
-      var defaultCompanyId = account.companies[0].id;
+      // @todo: Remove parseInt()?
+      var defaultCompanyId = parseInt(account.companies[0].id);
       $state.go('dashboard.byCompany.events', {companyId: defaultCompanyId});
     }
     else {
