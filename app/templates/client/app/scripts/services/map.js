@@ -15,7 +15,8 @@ angular.module('clientApp')
     this.getConfig = function() {
       return {
         zoomControlPosition: 'bottomleft',
-        maxZoom:16,
+        maxZoom: 16,
+        minZoom: 1,
         center: this.getCenter()
       };
     };
