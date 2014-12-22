@@ -7,16 +7,16 @@ angular.module('clientApp')
     // Definitions of the map icons.
     var icons = {
       default: {
-        iconUrl: '../images/marker-blue.png',
-        shadowUrl: '../images/shadow.png',
+        iconUrl: '/images/marker-blue.png',
+        shadowUrl: '/images/shadow.png',
         iconSize:     [40, 40], // size of the icon
         shadowSize: [26, 26],
         iconAnchor:   [32, 30], // point of the icon which will correspond to marker's location
         shadowAnchor: [25, 7]  // the same for the shadow
       },
       selected: {
-        iconUrl: '../images/marker-red.png',
-        shadowUrl: '../images/shadow.png',
+        iconUrl: '/images/marker-red.png',
+        shadowUrl: '/images/shadow.png',
         iconSize:     [40, 40], // size of the icon
         shadowSize: [26, 26],
         iconAnchor:   [32, 30], // point of the icon which will correspond to marker's location
