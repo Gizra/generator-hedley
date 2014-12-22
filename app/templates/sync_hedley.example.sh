@@ -2,15 +2,21 @@
 
 ################################################################################
 #
-# This script will setup a local copy of Drupal 7
-# based on the Installation Profile.
+# This script will sync back to the original generator.
 #
-# Do not change the content of this file,
-# all configuration variables are in the config.sh file.
 #
 ################################################################################
 
 
 GENERATOR_FOLDER="/var/www/generator-hedley"
+PROFILE_NAME="skeleton"
 
-rsync -avz --exclude '.git' jekyll/dist/ ethosia/libraries/ethosia
+# Client
+rsync -avz --exclude '.*' ./client $GENERATOR_FOLDER/client
+
+# Behat
+rsync -avz --exclude 'bin', 'vendor', 'behat.local.yml' ./behat $GENERATOR_FOLDER/behat
+
+# Drupal - we make sure to hardcode the copy to "skeleton".
+rsync -avz --exclude 'contrib/' ./skeleton $GENERATOR_FOLDER/skeleton
+

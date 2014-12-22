@@ -1,4 +1,6 @@
 node_modules/
 
-# Prevent the client's config.json from being copied.
+
+# Prevent from ignored files to be copied back.
 app/templates/client/app/scripts/config.js
+sync_hedley.sh
