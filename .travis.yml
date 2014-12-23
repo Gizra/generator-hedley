@@ -4,3 +4,4 @@ node_js:
 before_install:
   - currentfolder=${PWD##*/}
   - if [ "$currentfolder" != 'generator-hedley' ]; then cd .. && eval "mv $currentfolder generator-hedley" && cd generator-hedley; fi
+  - php --version
