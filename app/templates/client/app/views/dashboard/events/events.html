@@ -2,8 +2,8 @@
   <div class="col-md-4">
 
     <ul>
-      <li ng-repeat="author in authors">
-        <a href ui-sref="dashboard.byCompany.byUser({ byUser: author.id })">{{ author.name }} ({{ author.count }})</a>
+      <li ng-repeat="author in authors | orderBy:name:reverse">
+        <a href ui-sref="dashboard.byCompany.byUser.events({ userId: author.id })">{{ author.name }} ({{ author.count }})</a>
       </li>
     </ul>
   </div>
