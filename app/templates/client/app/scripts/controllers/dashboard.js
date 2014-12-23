@@ -12,7 +12,7 @@ angular.module('clientApp')
 
     // Initialize values.
     $scope.companies = account.companies;
-    $scope.selectedCompany = selectedCompany ? selectedCompany : account.companies[0].id;
+    $scope.selectedCompany = selectedCompany ? selectedCompany : parseInt(account.companies[0].id);
 
 
 

@@ -12,8 +12,16 @@ angular.module('clientApp')
 
     // Initialize values.
     $scope.events = events;
-
     $scope.mapConfig = mapConfig;
+    $scope.authors = {};
+
+    angular.forEach(events, function(event) {
+      $scope.authors[event.user.id] = {
+        id: event.user.id,
+        name: event.user.label,
+        count: $scope.authors[event.user.id] ? ++$scope.authors[event.user.id].count : 1
+      };
+    });
 
     /**
      * Set the selected item.
