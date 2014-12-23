@@ -18,10 +18,10 @@ describe('hedley:app', function () {
 
   it('creates files', function () {
     assert.file([
-      'bower.json',
-      'package.json',
-      '.editorconfig',
-      '.jshintrc'
+      'client/bower.json',
+      'client/package.json',
+      'client/.editorconfig',
+      'client/.jshintrc'
     ]);
   });
 });
