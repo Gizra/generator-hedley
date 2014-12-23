@@ -8,10 +8,13 @@
  * Service in the clientApp.
  */
 angular.module('clientApp')
-  .service('Companies', function ($q, $http, $timeout, Config, $rootScope, localStorageService) {
+  .service('Companies', function ($q, $http, $timeout, Config, $rootScope) {
 
     // A private cache key.
     var cache = {};
+
+    // Update event broadcast name.
+    var broadcastUpdateEventName = 'SkeletonCompaniesChange';
 
     /**
      * Return the promise with the events list, from cache or the server.
@@ -61,8 +64,8 @@ angular.module('clientApp')
       }, 60000);
 
       // Broadcast a change event.
-      $rootScope.$broadcast('gb.companies.changed');
-    }
+      $rootScope.$broadcast(broadcastUpdateEventName);
+    };
 
     $rootScope.$on('clearCache', function() {
       cache = null;

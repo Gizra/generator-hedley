@@ -33,10 +33,11 @@ angular.module('clientApp')
 
       $http({
         method: 'GET',
-        url: url
+        url: url,
+        transformResponse: prepareResponse
       }).success(function(response) {
-        setCache(id, response.data[0]);
-        deferred.resolve(response.data[0]);
+        setCache(id, response[0]);
+        deferred.resolve(response[0]);
       });
 
       return deferred.promise;
@@ -64,7 +65,28 @@ angular.module('clientApp')
 
       // Broadcast a change event.
       $rootScope.$broadcast('gb.account.changed');
-    }
+    };
+
+    /**
+     * Prepare response; Convert ID to int.
+     *
+     * As we explicetly require ui-router to match an int, we must case the
+     * entity ID to integer.
+     *
+     * @param list
+     *
+     * @returns {*}
+     */
+    function prepareResponse(data) {
+      // Convert response serialized to an object.
+      data = angular.fromJson(data).data;
+
+      angular.forEach(data[0].companies, function(value, key) {
+        data[0].companies[key].id = parseInt(value.id);
+      });
+
+      return data;
+    };
 
     $rootScope.$on('clearCache', function() {
       cache = null;
