@@ -79,6 +79,9 @@ angular
         resolve: {
           mapConfig: function(Map) {
             return Map.getConfig();
+          },
+          authors: function($stateParams, Events) {
+            return Events.getAuthors($stateParams.companyId);
           }
         }
       })

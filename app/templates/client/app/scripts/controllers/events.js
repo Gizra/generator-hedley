@@ -8,20 +8,13 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('EventsCtrl', function ($scope, events, mapConfig, $state, $stateParams, $log) {
+  .controller('EventsCtrl', function ($scope, events, authors, mapConfig, $state, $stateParams, $log) {
 
     // Initialize values.
     $scope.events = events;
     $scope.mapConfig = mapConfig;
-    $scope.authors = {};
-
-    angular.forEach(events, function(event) {
-      $scope.authors[event.user.id] = {
-        id: parseInt(event.user.id),
-        name: event.user.label,
-        count: $scope.authors[event.user.id] ? ++$scope.authors[event.user.id].count : 1
-      };
-    });
+    $scope.authors = authors;
+    $scope.selectedAuthorId = null;
 
     /**
      * Set the selected item.
@@ -33,8 +26,22 @@ angular.module('clientApp')
       $scope.events[id].select();
     };
 
+    /**
+     * Set the selected item.
+     *
+     * @param int id
+     *   The event ID.
+     */
+    var selectedAuthorId = function(id) {
+      $scope.selectedAuthorId = id;
+    };
+
     if ($stateParams.eventId) {
       setSelectedEvent($stateParams.eventId);
+    }
+
+    if ($stateParams.userId) {
+      selectedAuthorId($stateParams.userId);
     }
 
     // Select marker in the Map.
