@@ -65,6 +65,9 @@ angular
         resolve: {
           account: function(Account) {
             return Account.get();
+          },
+          selectedCompany: function($stateParams) {
+            return $stateParams.companyId;
           }
         }
       })

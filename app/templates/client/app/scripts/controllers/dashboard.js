@@ -8,11 +8,13 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('DashboardCtrl', function ($scope, account, Auth, $state, Companies, $log) {
+  .controller('DashboardCtrl', function ($scope, account, selectedCompany, Auth, $state, $log) {
 
     // Initialize values.
     $scope.companies = account.companies;
-    $scope.defaultCompanyId = account.companies[0].id;
+    $scope.selectedCompany = selectedCompany ? selectedCompany : account.companies[0].id;
+
+
 
     /**
      * Logout current user.

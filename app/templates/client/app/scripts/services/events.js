@@ -81,7 +81,7 @@ angular.module('clientApp')
       };
 
       if (userId) {
-        params['filter[author]'] = userId;
+        params['filter[user]'] = userId;
       }
 
       $http({
