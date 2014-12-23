@@ -70,20 +70,28 @@ module.exports = yeoman.generators.Base.extend({
 
         var dir = path.dirname(newFileName);
         var baseName = path.basename(newFileName);
+        var extension = path.extname(baseName);
 
-        if (path.extname(baseName) !== '.scss') {
+        if (extension !== '.scss') {
           // If not a SCSS file, convert the prefix of the underscore to a dot.
           baseName = baseName.replace(/^_/g, '.');
         }
 
         newFileName = dir ? dir + '/' + baseName : baseName;
 
-        var contents = self.fs.read(self.templatePath(fileName));
-        var newContents = contents
-          .replace(/skeleton/g, self.projectName)
-          .replace(/Skeleton/g, changeCase.pascalCase(self.projectName));
+        if (extension !== '.png') {
+          // Not an image.
+          var contents = self.fs.read(self.templatePath(fileName));
+          var newContents = contents
+            .replace(/skeleton/g, self.projectName)
+            .replace(/Skeleton/g, changeCase.pascalCase(self.projectName));
 
-        self.fs.write(newFileName, newContents);
+          self.fs.write(newFileName, newContents);
+        }
+        else {
+          self.fs.copy(self.templatePath(fileName), self.destinationPath(newFileName));
+        }
+
       });
     }
   },
