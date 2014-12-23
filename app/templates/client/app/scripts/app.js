@@ -113,6 +113,10 @@ angular
           }
         }
       })
+      .state('dashboard.byCompany.byUser.events.event', {
+        url: '/event/{eventId:int}',
+        controller: 'EventsCtrl'
+      })
       .state('dashboard.byCompany.events.event', {
         url: '/event/{eventId:int}',
         controller: 'EventsCtrl'

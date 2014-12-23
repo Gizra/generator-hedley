@@ -46,6 +46,7 @@ angular.module('clientApp')
 
     // Select marker in the Map.
     $scope.$on('leafletDirectiveMarker.click', function(event, args) {
-      $state.go('dashboard.byCompany.events.event', {eventId: parseInt(args.markerName)});
+      var stateName = $stateParams.userId ? 'dashboard.byCompany.byUser.events.event' : 'dashboard.byCompany.events.event';
+      $state.go(stateName, {eventId: parseInt(args.markerName)});
     });
   });
