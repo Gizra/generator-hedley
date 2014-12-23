@@ -1,4 +1,4 @@
-# generator-hedley [![Build Status](https://secure.travis-ci.org/amitaibu/generator-hedley.png?branch=master)](https://travis-ci.org/amitaibu/generator-hedley)
+# generator-hedley [![Build Status](https://travis-ci.org/Gizra/generator-hedley.svg?branch=master)](https://travis-ci.org/Gizra/generator-hedley)
 
 > [Yeoman](http://yeoman.io) generator
 
