@@ -124,7 +124,7 @@ module.exports = yeoman.generators.Base.extend({
     var prompts = [{
       name: 'dbPass',
       message: 'What is the Database password?',
-      default: 'root'
+      default: ''
     }];
 
     this.prompt(prompts, function (props) {
@@ -161,6 +161,13 @@ module.exports = yeoman.generators.Base.extend({
         var newContents = contents
           .replace(/skeleton/g, self.projectName)
           .replace(/Skeleton/g, camelCase(self.projectName));
+
+        if (fileName == 'config.sh') {
+          newContents = newContents
+            .replace(/MYSQL_USERNAME=".*"/g, 'MYSQL_USERNAME="' + self.dbUser + '"')
+            .replace(/MYSQL_PASSWORD=".*"/g, 'MYSQL_PASSWORD="' + self.dbPass + '"')
+            .replace(/BASE_DOMAIN_URL=".*"/g, 'BASE_DOMAIN_URL="' + self.localUrl + '"');
+        }
 
         self.fs.write(newFileName, newContents);
       });
