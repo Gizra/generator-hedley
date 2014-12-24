@@ -8,7 +8,7 @@
  * Service in the clientApp.
  */
 angular.module('clientApp')
-  .service('Companies', function ($q, $http, $timeout, Config, $rootScope) {
+  .service('Companies', function ($q, $http, $timeout, Config, $rootScope, $log) {
 
     // A private cache key.
     var cache = {};
@@ -68,7 +68,7 @@ angular.module('clientApp')
     };
 
     $rootScope.$on('clearCache', function() {
-      cache = null;
+      cache = {};
     });
 
   });

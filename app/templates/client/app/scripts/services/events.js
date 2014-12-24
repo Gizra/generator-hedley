@@ -141,7 +141,7 @@ angular.module('clientApp')
       // Clear cache in 60 seconds.
       $timeout(function() {
         if (cache.data && cache.data[cacheId]) {
-          delete(cache.data[cacheId]);
+          cache.data[cacheId] = null;
         }
       }, 60000);
 
