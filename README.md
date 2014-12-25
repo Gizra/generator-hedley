@@ -1,6 +1,6 @@
 # generator-hedley [![Build Status](https://travis-ci.org/Gizra/generator-hedley.svg?branch=master)](https://travis-ci.org/Gizra/generator-hedley)
 
-> [Yeoman](http://yeoman.io) generator
+> Scaffold a headless Drupal backend, Angular app client, and Behat tests
 
 
 ## Getting Started
