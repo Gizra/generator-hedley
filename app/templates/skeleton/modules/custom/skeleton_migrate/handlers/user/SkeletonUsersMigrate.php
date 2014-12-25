@@ -12,7 +12,7 @@ class SkeletonUsersMigrate extends Migration {
    */
   public $csvColumns = array(
     array('id', 'Unique ID'),
-    array('og_user_company', 'Company'),
+    array('og_user_node', 'Company'),
     array('name', 'Username'),
     array('pass', 'Password'),
     array('mail', 'Email'),
@@ -29,7 +29,8 @@ class SkeletonUsersMigrate extends Migration {
     $this->description = t('Import users from a CSV file.');
 
     $this
-      ->addFieldMapping('og_user_company', 'og_user_company')
+      ->addFieldMapping('og_user_node', 'og_user_node')
+      ->separator('|')
       ->sourceMigration('SkeletonCompaniesMigrate');
 
     $this->addFieldMapping('name', 'name');
@@ -57,5 +58,19 @@ class SkeletonUsersMigrate extends Migration {
     // Create a MigrateSource object.
     $this->source = new MigrateSourceCSV(drupal_get_path('module', 'skeleton_migrate') . '/csv/' . $this->entityType . '/user.csv', $this->csvColumns, array('header_rows' => 1));
     $this->destination = new MigrateDestinationUser();
+  }
+
+
+  /**
+   * Fix an Entity reference related error when migrating multiple values.
+   */
+  public function prepare($entity, $row) {
+    $ids = array();
+    if (!empty($entity->og_user_node[LANGUAGE_NONE])) {
+      foreach ($entity->og_user_node[LANGUAGE_NONE] as $value) {
+        $ids[] = array('target_id' => $value['target_id']['destid1']);
+      }
+    }
+    $entity->og_user_node[LANGUAGE_NONE] = $ids;
   }
 }

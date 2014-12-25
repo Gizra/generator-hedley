@@ -7,7 +7,7 @@
   "repository": "Gizra/generator-hedley",
   "author": {
     "name": "Gizra",
-    "email": "",
+    "email": "info@gizra.com",
     "url": "https://github.com/Gizra"
   },
   "engines": {
@@ -27,7 +27,6 @@
     "change-case": "^2.1.6",
     "fs-extra": "^0.13.0",
     "glob": "^4.3.2",
-    "ncp": "^1.0.1",
     "process": "^0.10.0",
     "replace": "^0.3.0",
     "yeoman-generator": "^0.18.0",

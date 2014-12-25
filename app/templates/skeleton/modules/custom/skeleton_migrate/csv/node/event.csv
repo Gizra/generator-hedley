@@ -1,6 +1,11 @@
-Unique ID,Title,Location,Company
-event1,Event 1,50|50,imanimo
-event2,Event 2,60|60,imanimo
-event3,Event 3,70|70,imanimo
-event4,Event 4,20|20,adidas
-event5,Event 5,30|30,puma
+Unique ID,Title,Location,Company,Author
+event1,"10,000 Latkes",50|50,company1,user1
+event2,Aesthetic Bug Gloss,60|60,company1,user1
+event3,Cabbage Training,70|70,company1,user2
+event4,Cookie Pagent,20|20,company1,user3
+event5,Dot Circus,20|40,company1,user3
+event6,Food for Feet,50|15,company2,user2
+event7,Go for the Juggler,55|70,company2,user3
+event8,Glow Your Own,70|40,company2,user3
+event9,Jesus Drone,60|20,company3,user3
+event10,Kinder Rock,25|25,company4,user4

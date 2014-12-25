@@ -47,9 +47,9 @@ abstract class SkeletonMigrateBase extends Migration {
     $this->map = new MigrateSQLMap($this->machineName, $key, $destination_handler->getKeySchema($this->entityType));
 
     // Create a MigrateSource object.
-    $path = variable_get('skeleton_migrate_directory', FALSE) ? variable_get('skeleton_migrate_directory') : drupal_get_path('module', 'skeleton_migrate') . '/csv';
+    $path = variable_get('skeleton_migrate_directory', FALSE) ? variable_get('skeleton_migrate_directory') : drupal_get_path('module', 'skeleton_migrate');
 
-    $this->source = new MigrateSourceCSV($path . '/' . $this->entityType . '/' . $this->bundle . '.csv', $this->csvColumns, array('header_rows' => 1));
+    $this->source = new MigrateSourceCSV($path . '/csv/' . $this->entityType . '/' . $this->bundle . '.csv', $this->csvColumns, array('header_rows' => 1));
     $this->destination = new $class_name($this->bundle, array('text_format' => 'filtered_html'));
   }
 }

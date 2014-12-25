@@ -79,7 +79,10 @@ module.exports = yeoman.generators.Base.extend({
 
         newFileName = dir ? dir + '/' + baseName : baseName;
 
-        if (extension !== '.png') {
+        if (extension === '.png' || extension === '.jpg') {
+          self.fs.copy(self.templatePath(fileName), self.destinationPath(newFileName));
+        }
+        else {
           // Not an image.
           var contents = self.fs.read(self.templatePath(fileName));
           var newContents = contents
@@ -87,9 +90,7 @@ module.exports = yeoman.generators.Base.extend({
             .replace(/Skeleton/g, changeCase.pascalCase(self.projectName));
 
           self.fs.write(newFileName, newContents);
-        }
-        else {
-          self.fs.copy(self.templatePath(fileName), self.destinationPath(newFileName));
+
         }
 
       });
