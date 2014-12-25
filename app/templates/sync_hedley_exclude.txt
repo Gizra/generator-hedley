@@ -6,6 +6,7 @@ client/dist
 client/node_modules
 client/bower_components
 client/Gruntfile.js
+client/app/CNAME
 
 # Behat
 behat/bin
