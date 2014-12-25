@@ -1,5 +1,5 @@
 name = Skeleton
-description = Skeleton PLM (Product Lifecycle Management)
+description = Skeleton
 version = VERSION
 core = 7.x
 
