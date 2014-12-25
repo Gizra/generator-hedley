@@ -4,3 +4,4 @@ node_modules/
 # Prevent from ignored files to be copied back.
 app/templates/client/app/scripts/config.js
 sync_hedley.sh
+app/templates/behat/bin/behat
