@@ -23,19 +23,15 @@ class SkeletonCompaniesMigrate extends \SkeletonMigrateBase {
 
     // Add a logo image.
     $this
-      ->addFieldMapping('field_company_logo');
+      ->addFieldMapping('field_company_logo', 'field_company_logo');
 
     $this
       ->addFieldMapping('field_company_logo:file_replace')
       ->defaultValue(FILE_EXISTS_REPLACE);
 
-    $path = variable_get('skeleton_migrate_directory', FALSE) ? variable_get('skeleton_migrate_directory') : drupal_get_path('module', 'skeleton_migrate');
     $this
       ->addFieldMapping('field_company_logo:source_dir')
-      ->defaultValue($path . '/images');
-
-    $this
-      ->addFieldMapping('field_company_logo:destination_dir', 'destination');
+      ->defaultValue($this->getMigrateDirectory() . '/images/');
 
     // Group belong to the admin by default.
     $this
@@ -50,6 +46,9 @@ class SkeletonCompaniesMigrate extends \SkeletonMigrateBase {
    */
   public function prepareRow($row) {
     $row->field_company_logo = $row->id . '.jpg';
+    if (!file_exists($image_path = $this->getMigrateDirectory() . '/images/'. $row->field_company_logo)) {
+      $this->displayMessage(format_string('Unable to find image: @image', array('@image' => $image_path)));
+    }
     return parent::prepareRow($row);
   }
 }

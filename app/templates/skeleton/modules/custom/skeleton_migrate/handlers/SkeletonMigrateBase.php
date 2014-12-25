@@ -52,4 +52,14 @@ abstract class SkeletonMigrateBase extends Migration {
     $this->source = new MigrateSourceCSV($path . '/csv/' . $this->entityType . '/' . $this->bundle . '.csv', $this->csvColumns, array('header_rows' => 1));
     $this->destination = new $class_name($this->bundle, array('text_format' => 'filtered_html'));
   }
+
+  /**
+   * Return the migrate directory.
+   *
+   * @return string
+   *   The migrate directory.
+   */
+  protected function getMigrateDirectory() {
+    return variable_get('skeleton_migrate_directory', FALSE) ? variable_get('skeleton_migrate_directory') : drupal_get_path('module', 'skeleton_migrate');
+  }
 }
