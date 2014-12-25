@@ -7,5 +7,5 @@ Feature: User login
   Scenario: Login to site, and check access to the homepage.
     Given I login with user "admin"
      When I visit "/#/dashboard/1/events"
-     Then I should wait for the text "admin (2)" to "appear"
+     Then I should wait for the text "demo (2)" to "appear"
 
