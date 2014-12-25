@@ -241,6 +241,20 @@ module.exports = yeoman.generators.Base.extend({
             .replace(/skeleton/g, self.projectName)
             .replace(/Skeleton/g, changeCase.pascalCase(self.projectName));
 
+          if (fileName === 'config.sh') {
+            newContents = newContents
+              .replace(/MYSQL_USERNAME=".*"/g, 'MYSQL_USERNAME="' + self.dbUser + '"')
+              .replace(/MYSQL_PASSWORD=".*"/g, 'MYSQL_PASSWORD="' + self.dbPass + '"')
+              .replace(/BASE_DOMAIN_URL=".*"/g, 'BASE_DOMAIN_URL="' + self.drupalUrl + '"');
+          }
+
+          if (fileName === 'README.md') {
+            var repoName = self.githubRepo.replace('https://github.com/', '');
+
+            newContents = newContents
+              .replace('repoName', repoName);
+          }
+
           self.fs.write(newFileName, newContents);
 
         }
