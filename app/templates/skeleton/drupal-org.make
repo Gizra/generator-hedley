@@ -109,7 +109,3 @@ projects[migrate][version] = 2.5
 
 projects[migrate_extras][subdir] = "development"
 projects[migrate_extras][version] = 2.5
-
-; Themes
-projects[bootstrap][subdir] = "contrib"
-projects[bootstrap][version] = "3.0"
