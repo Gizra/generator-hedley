@@ -10,10 +10,6 @@ class SkeletonCompaniesMigrate extends \SkeletonMigrateBase {
   public $entityType = 'node';
   public $bundle = 'company';
 
-  public $csvColumns = array(
-    array('field_company_logo', 'Logo'),
-  );
-
   public function __construct() {
     parent::__construct();
     $this
@@ -56,5 +52,4 @@ class SkeletonCompaniesMigrate extends \SkeletonMigrateBase {
     $row->field_company_logo = $row->id . '.jpg';
     return parent::prepareRow($row);
   }
-
 }
