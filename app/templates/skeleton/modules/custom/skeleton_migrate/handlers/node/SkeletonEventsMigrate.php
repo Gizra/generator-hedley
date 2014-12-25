@@ -11,7 +11,6 @@ class SkeletonEventsMigrate extends \SkeletonMigrateBase {
   public $bundle = 'event';
 
   public $csvColumns = array(
-    array('field_location', 'Location'),
     array(OG_AUDIENCE_FIELD, 'Company'),
     array('uid', 'Author'),
   );
@@ -30,20 +29,7 @@ class SkeletonEventsMigrate extends \SkeletonMigrateBase {
       ->sourceMigration('SkeletonCompaniesMigrate');
 
     $this
-      ->addFieldMapping('uid', 'uid');
-  }
-
-  /**
-   * Map location field.
-   */
-  public function prepare($entity, $row) {
-    $row->field_location = explode('|', $row->field_location);
-
-    $wrapper = entity_metadata_wrapper('node', $entity);
-    $values = array(
-      'lat' => $row->field_location[0],
-      'lng' => $row->field_location[1],
-    );
-    $wrapper->field_location->set($values);
+      ->addFieldMapping('uid', 'uid')
+      ->sourceMigration('SkeletonUsersMigrate');
   }
 }
