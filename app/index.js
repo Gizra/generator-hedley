@@ -113,7 +113,7 @@ module.exports = yeoman.generators.Base.extend({
   askForDrupallUrl: function () {
     if (this.options['drupal-url']) {
       // Get the value from the CLI.
-      this.githubRepo = this.options['drupal-url'];
+      this.drupalUrl = this.options['drupal-url'];
       this.log('Setting Drupal URL to:' + this.drupalUrl);
       return;
     }
@@ -136,7 +136,7 @@ module.exports = yeoman.generators.Base.extend({
   askForDbName: function () {
     if (this.options['db']) {
       // Get the value from the CLI.
-      this.githubRepo = this.options['db'];
+      this.dbName = this.options['db'];
       this.log('Setting database name to:' + this.dbName);
       return;
     }
@@ -159,7 +159,7 @@ module.exports = yeoman.generators.Base.extend({
   askForDbUser: function () {
     if (this.options['db-user']) {
       // Get the value from the CLI.
-      this.githubRepo = this.options['db-user'];
+      this.dbUser = this.options['db-user'];
       this.log('Setting database user name to:' + this.dbUser);
       return;
     }
@@ -182,7 +182,7 @@ module.exports = yeoman.generators.Base.extend({
   askForDbPass: function () {
     if (this.options['db-pass']) {
       // Get the value from the CLI.
-      this.githubRepo = this.options['db-pass'];
+      this.dbPass = this.options['db-pass'];
       this.log('Setting database user password to:' + this.dbPass);
       return;
     }
