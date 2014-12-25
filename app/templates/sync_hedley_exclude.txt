@@ -1,9 +1,11 @@
 .*
 
 # Client
+client/config.json
+client/dist
 client/node_modules
 client/bower_components
-client/config.json
+client/Gruntfile.js
 
 # Behat
 behat/bin
