@@ -81,6 +81,11 @@ angular.module('clientApp')
       // Convert response serialized to an object.
       data = angular.fromJson(data).data;
 
+      if (!data) {
+        // A 401 response was sent.
+        return;
+      }
+
       angular.forEach(data[0].companies, function(value, key) {
         data[0].companies[key].id = parseInt(value.id);
       });
