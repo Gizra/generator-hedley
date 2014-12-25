@@ -252,7 +252,7 @@ module.exports = yeoman.generators.Base.extend({
             var repoName = self.githubRepo.replace('https://github.com/', '');
 
             newContents = newContents
-              .replace('repoName', repoName);
+              .replace(/repoName/g, repoName);
           }
 
           self.fs.write(newFileName, newContents);
