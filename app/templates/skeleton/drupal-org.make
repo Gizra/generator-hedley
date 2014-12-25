@@ -76,7 +76,8 @@ projects[og_vocab][version] = "1.2"
 projects[restful][subdir] = "contrib"
 projects[restful][download][type] = "git"
 projects[restful][download][url] = "https://github.com/Gizra/restful.git"
-projects[restful][download][branch] = 7.x-1.x
+# 7.x-1.x
+projects[restful][download][branch] = 340
 projects[restful][subdir] = "contrib"
 
 projects[search_api][subdir] = "contrib"
