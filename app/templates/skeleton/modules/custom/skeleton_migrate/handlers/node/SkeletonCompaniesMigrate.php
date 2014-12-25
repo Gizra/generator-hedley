@@ -20,6 +20,7 @@ class SkeletonCompaniesMigrate extends \SkeletonMigrateBase {
       ->addFieldMapping(OG_ACCESS_FIELD)
       ->defaultValue(TRUE);
 
+    // Group belong to the admin by default.
     $this
       ->addFieldMapping('uid')
       ->defaultValue('1');

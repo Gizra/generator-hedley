@@ -17,6 +17,7 @@ class SkeletonEventsMigrate extends \SkeletonMigrateBase {
 
   public $dependencies = array(
     'SkeletonCompaniesMigrate',
+    'SkeletonUsersMigrate',
   );
 
 
