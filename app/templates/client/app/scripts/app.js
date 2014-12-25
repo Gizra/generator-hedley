@@ -164,7 +164,7 @@ angular
         'request': function (config) {
           if (!config.url.match(/login-token/)) {
             config.headers = {
-              'access_token': localStorageService.get('access_token')
+              'access-token': localStorageService.get('access_token')
             };
           }
           return config;

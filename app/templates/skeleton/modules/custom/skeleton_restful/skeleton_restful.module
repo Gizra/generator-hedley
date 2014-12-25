@@ -7,7 +7,7 @@
 if (!drupal_is_cli()) {
   header('Access-Control-Allow-Origin: *');
   header('Access-Control-Allow-Credentials: true');
-  header('Access-Control-Allow-Headers: Authorization, access_token');
+  header('Access-Control-Allow-Headers: Authorization, access-token');
 }
 
 /**
