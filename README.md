@@ -27,7 +27,7 @@ yo hedley
 
 ## CLI
 
-You can scaffold a new app with no user interaction using:
+You can scaffold a new app with no user interaction, for example:
 ```
 yo hedley --skip-install --project-name=skeleton --github-repo=https://github.com/Foo/skeleton --db=skeleton --db-user=root --db-pass=root --drupal-url=http://localhost/skeleton/www
 ```
