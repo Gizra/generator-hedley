@@ -68,7 +68,7 @@ module.exports = yeoman.generators.Base.extend({
     if (this.options['project-name']) {
       // Get the value from the CLI.
       this.projectName = this.options['project-name'];
-      this.log('Setting project name to:' + this.projectName);
+      this.log('Setting project name to: ' + this.projectName);
       return;
     }
 
@@ -91,7 +91,7 @@ module.exports = yeoman.generators.Base.extend({
     if (this.options['github-repo']) {
       // Get the value from the CLI.
       this.githubRepo = this.options['github-repo'];
-      this.log('Setting GitHub repository to:' + this.githubRepo);
+      this.log('Setting GitHub repository to: ' + this.githubRepo);
       return;
     }
 
@@ -114,7 +114,7 @@ module.exports = yeoman.generators.Base.extend({
     if (this.options['drupal-url']) {
       // Get the value from the CLI.
       this.drupalUrl = this.options['drupal-url'];
-      this.log('Setting Drupal URL to:' + this.drupalUrl);
+      this.log('Setting Drupal URL to: ' + this.drupalUrl);
       return;
     }
 
@@ -137,7 +137,7 @@ module.exports = yeoman.generators.Base.extend({
     if (this.options['db']) {
       // Get the value from the CLI.
       this.dbName = this.options['db'];
-      this.log('Setting database name to:' + this.dbName);
+      this.log('Setting database name to: ' + this.dbName);
       return;
     }
 
@@ -160,7 +160,7 @@ module.exports = yeoman.generators.Base.extend({
     if (this.options['db-user']) {
       // Get the value from the CLI.
       this.dbUser = this.options['db-user'];
-      this.log('Setting database user name to:' + this.dbUser);
+      this.log('Setting database user name to: ' + this.dbUser);
       return;
     }
 
@@ -183,7 +183,7 @@ module.exports = yeoman.generators.Base.extend({
     if (this.options['db-pass']) {
       // Get the value from the CLI.
       this.dbPass = this.options['db-pass'];
-      this.log('Setting database user password to:' + this.dbPass);
+      this.log('Setting database user password to: ' + this.dbPass);
       return;
     }
 
@@ -247,8 +247,7 @@ module.exports = yeoman.generators.Base.extend({
               .replace(/MYSQL_PASSWORD=".*"/g, 'MYSQL_PASSWORD="' + self.dbPass + '"')
               .replace(/BASE_DOMAIN_URL=".*"/g, 'BASE_DOMAIN_URL="' + self.drupalUrl + '"');
           }
-
-          if (fileName === 'README.md') {
+          else if (fileName === 'README.md' || fileName === 'client/Gruntfile.js') {
             var repoName = self.githubRepo.replace('https://github.com/', '');
 
             newContents = newContents

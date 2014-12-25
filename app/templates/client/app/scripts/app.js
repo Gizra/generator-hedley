@@ -44,7 +44,7 @@ angular
     // Now set up the states.
     $stateProvider
       .state('homepage', {
-        url: '/',
+        url: '',
         controller: 'HomepageCtrl',
         resolve: {
           account: function(Account) {
@@ -58,6 +58,7 @@ angular
         controller: 'LoginCtrl'
       })
       .state('dashboard', {
+        abstract: true,
         url: '',
         templateUrl: 'views/dashboard/main.html',
         controller: 'DashboardCtrl',

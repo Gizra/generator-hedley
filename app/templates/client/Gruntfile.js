@@ -339,7 +339,7 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             '*.html',
-            'views/{,*/}*.html',
+            'views/**/*.html',
             'images/{,*/}*.{webp}',
             'fonts/{,*/}*.*'
           ]
@@ -352,6 +352,11 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '.',
           src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
+          dest: '<%= yeoman.dist %>'
+        }, {
+          expand: true,
+          cwd: '<%= yeoman.app %>',
+          src: 'CNAME',
           dest: '<%= yeoman.dist %>'
         }]
       },
@@ -410,6 +415,18 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>/scripts/config.js'
         }
       }
+    },
+
+    // Publish to gh-pages.
+    buildcontrol: {
+      dist: {
+        options: {
+          remote: 'https://github.com/repoName.git',
+          branch: 'gh-pages',
+          commit: true,
+          push: true
+        }
+      }
     }
   });
 
@@ -456,9 +473,14 @@ module.exports = function (grunt) {
     'cdnify',
     'cssmin',
     'uglify',
-    'filerev',
+    // 'filerev',
     'usemin',
     'htmlmin'
+  ]);
+
+  grunt.registerTask('deploy', [
+    'build',
+    'buildcontrol'
   ]);
 
   grunt.registerTask('default', [
