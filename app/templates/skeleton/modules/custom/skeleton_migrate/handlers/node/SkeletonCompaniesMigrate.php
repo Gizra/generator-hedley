@@ -10,6 +10,10 @@ class SkeletonCompaniesMigrate extends \SkeletonMigrateBase {
   public $entityType = 'node';
   public $bundle = 'company';
 
+  public $csvColumns = array(
+    array('field_company_logo', 'Logo'),
+  );
+
   public function __construct() {
     parent::__construct();
     $this
@@ -21,10 +25,9 @@ class SkeletonCompaniesMigrate extends \SkeletonMigrateBase {
       ->addFieldMapping(OG_ACCESS_FIELD)
       ->defaultValue(TRUE);
 
-    // Add an image by the unique ID name.
+    // Add a logo image.
     $this
-      ->addFieldMapping('field_company_logo')
-      ->defaultValue('company1');
+      ->addFieldMapping('field_company_logo');
 
     $this
       ->addFieldMapping('field_company_logo:file_replace')
@@ -42,6 +45,16 @@ class SkeletonCompaniesMigrate extends \SkeletonMigrateBase {
     $this
       ->addFieldMapping('uid')
       ->defaultValue('1');
+  }
+
+  /**
+   * Add company logo by naming convertion.
+   *
+   * @todo: Move to value callback.
+   */
+  public function prepareRow($row) {
+    $row->field_company_logo = $row->id . '.jpg';
+    return parent::prepareRow($row);
   }
 
 }
