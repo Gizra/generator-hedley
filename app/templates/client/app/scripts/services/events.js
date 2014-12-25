@@ -185,7 +185,6 @@ angular.module('clientApp')
       return events;
     };
 
-
     $rootScope.$on('clearCache', function() {
       cache = null;
     });
