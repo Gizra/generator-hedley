@@ -12,7 +12,7 @@ class SkeletonUsersMigrate extends Migration {
    */
   public $csvColumns = array(
     array('id', 'Unique ID'),
-    array('og_user_company', 'Company'),
+    array('og_user_node', 'Company'),
     array('name', 'Username'),
     array('pass', 'Password'),
     array('mail', 'Email'),
@@ -29,7 +29,7 @@ class SkeletonUsersMigrate extends Migration {
     $this->description = t('Import users from a CSV file.');
 
     $this
-      ->addFieldMapping('og_user_company', 'og_user_company')
+      ->addFieldMapping('og_user_node', 'og_user_node')
       ->separator('|')
       ->sourceMigration('SkeletonCompaniesMigrate');
 
