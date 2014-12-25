@@ -18,8 +18,8 @@ angular.module('clientApp')
      *
      * @returns {*}
      */
-    this.get = function(id) {
-      return $q.when(cache.data || getDataFromBackend(id));
+    this.get = function() {
+      return $q.when(cache.data || getDataFromBackend());
     };
 
     /**
@@ -27,7 +27,7 @@ angular.module('clientApp')
      *
      * @returns {$q.promise}
      */
-    function getDataFromBackend(id) {
+    function getDataFromBackend() {
       var deferred = $q.defer();
       var url = Config.backend + '/api/me/';
 
@@ -36,7 +36,7 @@ angular.module('clientApp')
         url: url,
         transformResponse: prepareResponse
       }).success(function(response) {
-        setCache(id, response[0]);
+        setCache(response[0]);
         deferred.resolve(response[0]);
       });
 
@@ -51,16 +51,16 @@ angular.module('clientApp')
      * @param data
      *   The data to cache.
      */
-    var setCache = function(itemId, data) {
+    var setCache = function(data) {
       // Cache data.
-      cache[itemId] = {
+      cache = {
         data: data,
         timestamp: new Date()
       };
 
       // Clear cache in 60 seconds.
       $timeout(function() {
-        delete(cache[itemId]);
+        cache = {};
       }, 60000);
 
       // Broadcast a change event.
@@ -89,7 +89,7 @@ angular.module('clientApp')
     };
 
     $rootScope.$on('clearCache', function() {
-      cache = null;
+      cache = {};
     });
 
   });

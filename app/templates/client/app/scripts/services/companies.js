@@ -68,7 +68,7 @@ angular.module('clientApp')
     };
 
     $rootScope.$on('clearCache', function() {
-      cache = null;
+      cache = {};
     });
 
   });
