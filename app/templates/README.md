@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Gizra/skeleton.svg)](https://travis-ci.org/Gizra/skeleton)
+[![Build Status](https://travis-ci.org/repoName.svg)](https://travis-ci.org/repoName)
 
 # Drupal 7 - Install Profile GarmentBox
 
