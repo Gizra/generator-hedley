@@ -1,0 +1,9 @@
+name = Skeleton RESTFul
+core = 7.x
+package = Skeleton
+dependencies[] = restful
+dependencies[] = entity_validator
+
+dependencies[] = skeleton_company
+
+files[] = plugins/restful/node/SkeletonEntityBaseNode.php

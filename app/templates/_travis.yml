@@ -1,0 +1,72 @@
+language: php
+
+php:
+  - 5.3
+
+mysql:
+  database: drupal
+  username: root
+  encoding: utf8
+
+before_install:
+  - sudo apt-get update > /dev/null
+  - composer self-update
+
+  # Install grunt.
+  - npm install -g grunt-cli
+  - npm install -g bower
+
+install:
+  # install php packages required for running a web server from drush on php 5.3
+  - sudo apt-get install -y --force-yes php5-cgi php5-mysql
+
+  # install drush
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+  - composer global require drush/drush:6.*
+  - phpenv rehash
+
+before_script:
+
+  # Install Drupal
+  - cp travis.config.sh config.sh
+  - ./install -dy
+
+  # Install client
+  - cd client
+  - npm install
+  - bower install
+  - cp config.travis.json config.json
+  - grunt serve > ~/grunt.log 2>&1 &
+  - cd ..
+
+  # Install Behat
+  - cd behat
+  - cp aliases.drushrc.php ~/.drush/
+  - cp behat.local.yml.travis behat.local.yml
+  - composer install --prefer-source
+  - cd ..
+
+script:
+  # Create display.
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3 # give xvfb some time to start
+
+  # start a web server on port 8080, run in the background; wait for initialization
+  - drush @site runserver 127.0.0.1:8080 &
+  - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do true; done
+
+  # Run selenium.
+  - wget http://selenium-release.storage.googleapis.com/2.40/selenium-server-standalone-2.40.0.jar
+  - java -jar selenium-server-standalone-2.40.0.jar -p 4444 &
+  - sleep 5
+
+  # Run phantomJs.
+  - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
+
+  # Run behat tests.
+  - cd behat
+  - ./bin/behat --tags=~@wip
+
+  # Print log ~/phantomjs.log
+  - cat ~/phantomjs.log

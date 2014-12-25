@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-md-4">
+    <h2>Authors list</h2>
+    <ul>
+      <li ng-repeat="author in authors | orderBy:name:reverse">
+        <span ng-show="author.id == selectedAuthorId"><a ui-sref="dashboard.byCompany.events"><i class="glyphicon glyphicon-remove"> </i></a></span>
+        <a href ui-sref="dashboard.byCompany.byUser.events({ userId: author.id })">{{ author.name }} ({{ author.count }})</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-md-8">
+    <leaflet id="map" defaults="mapConfig" center="mapConfig.center" markers="events"></leaflet>
+  </div>
+</div>
+
+<div ui-view></div>
+

@@ -1,0 +1,192 @@
+#!/bin/bash
+
+################################################################################
+#
+# This script will reset a local copy of Drupal 7 based on the Install Profile.
+#
+# Do not change the content of this file, 
+# all configuration variables are in the config.sh file.
+#
+################################################################################
+
+
+# Define the root of the GIT repository.
+cd ${0%/*}/..
+ROOT=$(pwd)
+cd $ROOT
+
+
+# Load the colors.
+source $ROOT/scripts/helper-colors.sh
+
+# Load the helpers.
+source $ROOT/scripts/helper-functions.sh
+
+# Load the configuration.
+load_config_file
+
+# Check config
+check_config_file
+
+
+##
+# Function to explain the script arguments.
+##
+function arguments_usage {
+  TITLE=$(fill_string_spaces "Reset $PROFILE_TITLE" 61)
+  INFO=$(fill_string_spaces "of the $PROFILE_NAME profile" 61)
+  USAGE=$(fill_string_spaces "Usage: $0 [options]" 61)
+  echo
+  echo -e  "${BGCYAN}                                                                 ${RESTORE}"
+  echo -e "${BGLCYAN}  $TITLE  ${RESTORE}"
+  echo -e  "${BGCYAN}  This will reset the installation back to a clean installation  ${RESTORE}"
+  echo -e  "${BGCYAN}  $INFO  ${RESTORE}"
+  echo -e  "${BGCYAN}                                                                 ${RESTORE}"
+  echo -e  "${BGCYAN}  $USAGE  ${RESTORE}"
+  echo -e  "${BGCYAN}                                                                 ${RESTORE}"
+  echo -e  "${BGCYAN}  OPTIONS:                                                       ${RESTORE}"
+  echo -e  "${BGCYAN}    -h   Show this message                                       ${RESTORE}"
+  echo -e  "${BGCYAN}    -d   Load demo content after the reset                       ${RESTORE}"
+  echo -e  "${BGCYAN}    -l   Open a new tab in your default browser and login to     ${RESTORE}"
+  echo -e  "${BGCYAN}         your project as the Administrator.                      ${RESTORE}"
+  echo -e  "${BGCYAN}    -y   Answer automatically yes to the confirmation questions. ${RESTORE}"
+  echo -e  "${BGCYAN}                                                                 ${RESTORE}"
+  echo
+}
+
+# Check and process arguments.
+# See http://rsalveti.wordpress.com/2007/04/03/bash-parsing-arguments-with-getopts/
+while getopts "hdly" OPTION
+do
+  case $OPTION in
+    h)
+      arguments_usage
+      exit 1
+      ;;
+    d)
+      DEMO_CONTENT=1
+      ;;
+    l)
+      AUTO_LOGIN=1
+      ;;
+    y)
+      UNATTENDED=1
+      ;;
+    ?)
+      arguments_usage
+      exit
+      ;;
+  esac
+done
+
+
+# Check if we have a working Drupal bootstrap.
+cd $ROOT/www
+BOOTSTRAP_SUCCESS=`drush status grep "Drupal bootstrap" | grep "Successful"`
+cd $ROOT
+
+if [ ! "$BOOTSTRAP_SUCCESS" ]; then
+  echo
+  echo -e  "${BGRED}                                                                 ${RESTORE}"
+  echo -e "${BGLRED}  No working Drupal installation!                                ${RESTORE}"
+  echo -e  "${BGRED}  > Drupal Bootstrap could not complete successfully.            ${RESTORE}"
+  echo -e  "${BGRED}  > An update can only be run on a working environment.          ${RESTORE}"
+  echo -e  "${BGRED}                                                                 ${RESTORE}"
+  echo -e  "${BGRED}  Run the ${BGLRED}./install${BGRED} command to install the platform.             ${RESTORE}"
+  echo -e  "${BGRED}                                                                 ${RESTORE}"
+  echo
+  exit 1
+fi
+
+
+# Always ask confirmation before destroying the Database & Files!
+TITLE=$(fill_string_spaces "Reset $PROFILE_TITLE" 61)
+INFO=$(fill_string_spaces "> This will install the $PROFILE_NAME profile." 61)
+echo
+echo -e  "${BGBLUE}                                                                 ${RESTORE}"
+echo -e "${BGLBLUE}  $TITLE  ${RESTORE}"
+echo -e  "${BGBLUE}                                                                 ${RESTORE}"
+echo -e  "${BGBLUE}  > This will delete the database and the files directory.       ${RESTORE}"
+echo -e  "${BGBLUE}  $INFO  ${RESTORE}"
+echo -e  "${BGBLUE}  > Drupal core, contrib modules & themes will not be replaced.  ${RESTORE}"
+if [ $DEMO_CONTENT ] || [ $AUTO_LOGIN ]; then
+  echo -e  "${BGBLUE}                                                                 ${RESTORE}"
+fi
+if [ $DEMO_CONTENT ]; then
+  echo -e  "${BGBLUE}  • Demo content will be loaded into the platform.               ${RESTORE}"
+fi
+if [ $AUTO_LOGIN ]; then
+  echo -e  "${BGBLUE}  • A browser tab will open and log you in as Administrator.     ${RESTORE}"
+fi
+echo -e  "${BGBLUE}                                                                 ${RESTORE}"
+echo
+
+if [ ! $UNATTENDED ]; then
+  echo -e -n "${LRED}Are you sure?${RESTORE} (Y/n) "
+  read -e -n 1 -r
+  if [[ ! $REPLY =~ ^[Y]$ ]]; then
+    echo
+    echo -e  "${BGYELLOW}                                                                 ${RESTORE}"
+    echo -e "${BGLYELLOW}  Reset aborted!                                                 ${RESTORE}"
+    echo -e  "${BGYELLOW}                                                                 ${RESTORE}"
+    echo
+    exit 0
+  fi
+  echo
+fi
+
+
+# Cleanup the www/sites/default directory.
+delete_sites_default_content
+
+# Install the installation profile.
+install_drupal_profile
+
+# Setup the files directory.
+create_sites_default_files_directory
+
+# Enable the development modules.
+enable_development_modules
+
+# Load demo content if requested.
+if [ $DEMO_CONTENT ]; then
+  import_demo_content
+fi
+
+# Run post script (if any).
+run_post_script "reset"
+
+
+# Check if we have a working bootstrap.
+cd $ROOT/www
+BOOTSTRAP_SUCCESS=`drush status grep "Drupal bootstrap" | grep "Successful"`
+cd $ROOT
+
+if [ ! "$BOOTSTRAP_SUCCESS" ]; then
+  echo
+  echo -e  "${BGRED}                                                                 ${RESTORE}"
+  echo -e "${BGLRED}  Reset failure!                                                 ${RESTORE}"
+  echo -e  "${BGRED}  > Drupal Bootstrap could not complete successfully.            ${RESTORE}"
+  echo -e  "${BGRED}                                                                 ${RESTORE}"
+  echo
+  exit 1
+fi
+
+
+# If we managed to get to here, the reset was a success.
+LINK_INFO=$(fill_string_spaces "> Visit the site : ${BGLGREEN}$BASE_DOMAIN_URL${BGGREEN}" 89)
+echo
+echo -e  "${BGGREEN}                                                                 ${RESTORE}"
+echo -e "${BGLGREEN}  Reset complete!                                                ${RESTORE}"
+echo -e  "${BGGREEN}  $LINK_INFO  ${RESTORE}"
+echo -e  "${BGGREEN}                                                                 ${RESTORE}"
+echo
+
+
+# Auto Login?
+if [ $AUTO_LOGIN ]; then
+  drupal_login
+fi
+
+
+exit 0

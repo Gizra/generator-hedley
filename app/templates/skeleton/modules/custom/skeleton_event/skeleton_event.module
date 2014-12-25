@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Skeleton Event feature.
+ */
+
+include_once 'skeleton_event.features.inc';

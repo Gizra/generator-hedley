@@ -1,0 +1,67 @@
+#!/bin/bash
+
+# Exit if we encounter a problem
+set -e
+
+
+# Define the root.
+cd ${0%/*}/..
+ROOT=$(pwd)
+cd $ROOT
+
+# Load the configuration file.
+source $ROOT/config.sh
+
+# Load the colors
+source $ROOT/scripts/helper-colors.sh
+
+
+
+# Drush executable.
+[[ $DRUSH && ${DRUSH-x} ]] || DRUSH=drush
+
+# Build the profile itself.
+(
+  cd $PROFILE_NAME
+  $DRUSH make --no-core --contrib-destination drupal-org.make .
+
+  # Cleanup profile folder
+  if [ -d ./1 ]; then
+    echo -e "${LBLUE}> Cleaning up the profile folder (remove directory 1)${RESTORE}"
+    rm -R ./1
+    echo
+  fi
+
+  cd ..
+)
+
+# Build core and move the profile in place.
+(
+  # Save the sites/default directory if it exists.
+  if [ -d www/sites/default ] || [ -L www/sites/default ]; then
+    echo -e "${LBLUE}> Create backup of the www/sites/default directory${RESTORE}"
+    chmod u+w www/sites/default
+    mv www/sites/default sites-backup
+    echo
+  else
+    mkdir -p www/sites/default
+  fi
+  chmod +w www/sites/* || true
+  rm -Rf www || true
+
+  # Build core.
+  $DRUSH make $PROFILE_NAME/drupal-org-core.make www
+
+  # Restore the sites directory.
+  if [ -d sites-backup ] || [ -L sites-backup ]; then
+    echo -e "${LBLUE}> Restore backup of the www/sites/default directory${RESTORE}"
+    rm -Rf www/sites/default
+    mv sites-backup www/sites/default
+    echo
+  fi
+
+  # Move the profile in place.
+  echo
+  echo -e "${LBLUE}> Create symbolic link to the $PROFILE_NAME profile${RESTORE}"
+  ln -s ../../$PROFILE_NAME www/profiles/$PROFILE_NAME
+)

@@ -1,0 +1,18 @@
+.*
+
+# Client
+client/node_modules
+client/bower_components
+client/config.json
+
+# Behat
+behat/bin
+behat/vendor
+behat/behat.local.yml
+behat/composer.lock
+
+# Drupal - we make sure to hardcode the copy to "skeleton".
+skeleton/modules/contrib
+skeleton/modules/development
+skeleton/themes/contrib
+skeleton/libraries

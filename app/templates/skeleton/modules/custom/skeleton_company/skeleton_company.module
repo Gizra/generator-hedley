@@ -1,0 +1,9 @@
+<?php
+/**
+ * @file
+ * Code for the Skeleton Company feature.
+ */
+
+include_once 'skeleton_company.features.inc';
+
+

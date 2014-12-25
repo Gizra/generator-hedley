@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * Populate dummy GarmentBox content.
+ */
+
+/**
+ * Implements hook_migrate_api().
+ */
+function skeleton_migrate_migrate_api() {
+  $migrations = array(
+    // Nodes.
+    'SkeletonCompaniesMigrate',
+    'SkeletonEventsMigrate',
+    // Users.
+    'SkeletonUsersMigrate',
+  );
+
+  $api['api'] = 2;
+  foreach ($migrations as $migration) {
+    $api['migrations'][$migration] = array('class_name' => $migration);
+  }
+
+  return $api;
+}

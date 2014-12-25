@@ -1,0 +1,15 @@
+name = "Skeleton migration"
+description = "Populate content."
+package = "Skeleton"
+core = 7.x
+dependencies[] = migrate
+dependencies[] = migrate_extras
+
+; Handlers
+files[] = handlers/SkeletonMigrateBase.php
+
+files[] = handlers/node/SkeletonCompaniesMigrate.php
+files[] = handlers/node/SkeletonEventsMigrate.php
+
+files[] = handlers/user/SkeletonUsersMigrate.php
+
