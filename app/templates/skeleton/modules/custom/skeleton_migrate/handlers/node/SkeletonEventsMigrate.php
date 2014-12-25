@@ -13,6 +13,7 @@ class SkeletonEventsMigrate extends \SkeletonMigrateBase {
   public $csvColumns = array(
     array('field_location', 'Location'),
     array(OG_AUDIENCE_FIELD, 'Company'),
+    array('uid', 'Author'),
   );
 
   public $dependencies = array(
@@ -29,8 +30,7 @@ class SkeletonEventsMigrate extends \SkeletonMigrateBase {
       ->sourceMigration('SkeletonCompaniesMigrate');
 
     $this
-      ->addFieldMapping('uid')
-      ->defaultValue('1');
+      ->addFieldMapping('uid', 'uid');
   }
 
   /**

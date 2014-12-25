@@ -30,6 +30,7 @@ class SkeletonUsersMigrate extends Migration {
 
     $this
       ->addFieldMapping('og_user_company', 'og_user_company')
+      ->separator('|')
       ->sourceMigration('SkeletonCompaniesMigrate');
 
     $this->addFieldMapping('name', 'name');
