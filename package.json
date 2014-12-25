@@ -1,6 +1,6 @@
 {
   "name": "generator-hedley",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Headless Drupal, Angular app, and Behat framework.",
   "license": "MIT",
   "main": "app/index.js",
@@ -20,7 +20,10 @@
     "app"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "Drupal",
+    "RESTful",
+    "Behat"
   ],
   "dependencies": {
     "chalk": "^0.5.0",
