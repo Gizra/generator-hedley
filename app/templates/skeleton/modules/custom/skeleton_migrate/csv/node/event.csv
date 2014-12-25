@@ -1,5 +1,5 @@
-Unique ID,Title,Company,Author
-event1,10,000 Latkes,50|50,company1,user1
+Unique ID,Title,Location,Company,Author
+event1,"10,000 Latkes",50|50,company1,user1
 event2,Aesthetic Bug Gloss,60|60,company1,user1
 event3,Cabbage Training,70|70,company1,user2
 event4,Cookie Pagent,20|20,company1,user3
