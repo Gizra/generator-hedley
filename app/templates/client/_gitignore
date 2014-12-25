@@ -5,3 +5,4 @@ dist
 bower_components
 config.json
 app/scripts/config.js
+sync_hedley.sh
