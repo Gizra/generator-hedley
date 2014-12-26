@@ -1,6 +1,75 @@
-language: node_js
-node_js:
-  - '0.10'
+language: php
+
+php:
+  - 5.3
+
+mysql:
+  database: drupal
+  username: root
+  encoding: utf8
+
 before_install:
-  - currentfolder=${PWD##*/}
-  - if [ "$currentfolder" != 'generator-hedley' ]; then cd .. && eval "mv $currentfolder generator-hedley" && cd generator-hedley; fi
+  - sudo apt-get update > /dev/null
+  - composer self-update
+
+  # Install grunt.
+  - npm install -g grunt-cli
+  - npm install -g bower
+
+install:
+  # install php packages required for running a web server from drush on php 5.3
+  - sudo apt-get install -y --force-yes php5-cgi php5-mysql
+
+  # install drush
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+  - composer global require drush/drush:6.*
+  - phpenv rehash
+
+  - npm install -g yo bower grunt-cli
+
+before_script:
+  # Start a web server on port 8080, run in the background; wait for
+  # initialization.
+  - drush @site runserver 127.0.0.1:8080 &
+  - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do true; done
+
+  # Initiate the generator to build using CLI.
+  - mkdir build
+  - cd build
+  - yo hedley --project-name=skeleton --github-repo=https://github.com/Foo/skeleton --db=skeleton --db-user=root --db-pass= --drupal-url=http://127.0.0.1
+
+  # Configure client.
+  - cd client
+  - cp config.travis.json config.json
+  - grunt serve > ~/grunt.log 2>&1 &
+  - cd ..
+
+  # Configure Behat.
+  - cd behat
+  - cp aliases.drushrc.php ~/.drush/
+  - cp behat.local.yml.travis behat.local.yml
+  - cd ..
+
+  # Create display.
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3 # give xvfb some time to start
+
+  # Run selenium.
+  - wget http://selenium-release.storage.googleapis.com/2.40/selenium-server-standalone-2.40.0.jar
+  - java -jar selenium-server-standalone-2.40.0.jar -p 4444 &
+  - sleep 5
+
+  # Run PhantomJs.
+  - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
+
+script:
+  # Test the Yeoman generator.
+  - npm test
+
+  # Run behat tests.
+  - cd build/behat
+  - ./bin/behat --tags=~@wip
+
+  # Print log ~/phantomjs.log
+  - cat ~/phantomjs.log
