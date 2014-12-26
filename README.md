@@ -8,9 +8,9 @@ Hedley is a [yeoman generator](http://yeoman.io/) that scaffolds a headless Drup
 
 ### Prerequisites
 
-* [Composer](https://getcomposer.org/doc/00-intro.md#globally) installed globally
+* Yo (``npm install -g yo``)
 * [Drush](https://github.com/drush-ops/drush)
-( Yo (``npm install -g yo``)
+* [Composer](https://getcomposer.org/doc/00-intro.md#globally) installed globally, for Behat dependencies to be setup
 
 ### Installation
 
