@@ -26,6 +26,7 @@ install:
   - phpenv rehash
 
   - npm install -g yo bower grunt-cli
+  - npm install
 
   # Test the Yeoman generator.
   - npm test
