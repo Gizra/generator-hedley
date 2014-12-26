@@ -180,7 +180,7 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   askForDbPass: function () {
-    if (this.options['db-pass']) {
+    if (this.options['db-pass'] !== undefined) {
       // Get the value from the CLI.
       this.dbPass = this.options['db-pass'];
       this.log('Setting database user password to: ' + this.dbPass);
