@@ -35,8 +35,9 @@ install:
   - npm link
 
 before_script:
-  - mkdir ../build
-  - cd ../build
+  - pwd
+  - mkdir $TRAVIS_BUILD_DIR/../build
+  - cd $TRAVIS_BUILD_DIR/../build
   # Initiate the generator to build using CLI. We use the --no-insight flag to
   # prevent yo from waiting for user input about sending anonymous usgae
   # statistics.
@@ -50,7 +51,7 @@ before_script:
 
   # Configure Behat.
   - cd behat
-  - cp ../../generator-hedley/travis/behat.local.yml.travis behat.local.yml
+  - cp $TRAVIS_BUILD_DIR/travis/behat.local.yml.travis behat.local.yml
 
   # Create display.
   - export DISPLAY=:99.0
@@ -59,7 +60,7 @@ before_script:
 
   # Start a web server on port 8080, run in the background; wait for
   # initialization.
-  - cp ../../generator-hedley/travis/aliases.drushrc.php ~/.drush/
+  - cp $TRAVIS_BUILD_DIR/generator-hedley/travis/aliases.drushrc.php ~/.drush/
   - drush @site runserver 127.0.0.1:8080 &
   - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do true; done
 
