@@ -35,7 +35,6 @@ install:
   - npm link
 
 before_script:
-  - pwd
   - mkdir $TRAVIS_BUILD_DIR/../build
   - cd $TRAVIS_BUILD_DIR/../build
   # Initiate the generator to build using CLI. We use the --no-insight flag to
@@ -43,17 +42,14 @@ before_script:
   # statistics.
   - yo hedley --no-insight --project-name=skeleton --github-repo=https://github.com/Foo/skeleton --db=skeleton --db-user=root --db-pass= --drupal-url=http://127.0.0.1
 
-  - pwd
-
   # Configure client.
   - cd client
   - cp config.travis.json config.json
   - grunt serve > ~/grunt.log 2>&1 &
   - cd ..
 
-  # Configure Behat.
-  - cd behat
-  - cp $TRAVIS_BUILD_DIR/travis/behat.local.yml.travis behat.local.yml
+  - cp $TRAVIS_BUILD_DIR/travis/aliases.drushrc.php ~/.drush/
+  - cp $TRAVIS_BUILD_DIR/travis/behat.local.yml.travis behat/behat.local.yml
 
   # Create display.
   - export DISPLAY=:99.0
@@ -62,8 +58,6 @@ before_script:
 
   # Start a web server on port 8080, run in the background; wait for
   # initialization.
-  - pwd
-  - cp $TRAVIS_BUILD_DIR/travis/aliases.drushrc.php ~/.drush/
   - drush @site runserver 127.0.0.1:8080 &
   - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do true; done
 
@@ -77,6 +71,7 @@ before_script:
 
 script:
   # Run behat tests.
+  - cd behat
   - ./bin/behat --tags=~@wip
 
   # Print log ~/phantomjs.log
