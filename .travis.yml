@@ -28,10 +28,12 @@ install:
   - npm install -g yo bower grunt-cli
 
 before_script:
-  # Initiate the generator to build using CLI.
   - mkdir build
   - cd build
-  - yo hedley --project-name=skeleton --github-repo=https://github.com/Foo/skeleton --db=skeleton --db-user=root --db-pass= --drupal-url=http://127.0.0.1
+  # Initiate the generator to build using CLI. We use the --no-insight flag to
+  # prevent yo from waiting for user input about sending anonymous usgae
+  # statistics.
+  - yo hedley --no-insight --project-name=skeleton --github-repo=https://github.com/Foo/skeleton --db=skeleton --db-user=root --db-pass= --drupal-url=http://127.0.0.1
 
   # Configure client.
   - cd client
