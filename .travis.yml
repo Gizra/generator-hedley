@@ -26,12 +26,16 @@ install:
   - phpenv rehash
 
   - npm install -g yo bower grunt-cli
+
+  # Test the Yeoman generator.
+  - npm test
+
   # Link the generator.
   - npm link
 
 before_script:
-  - mkdir build
-  - cd build
+  - mkdir ../build
+  - cd ../build
   # Initiate the generator to build using CLI. We use the --no-insight flag to
   # prevent yo from waiting for user input about sending anonymous usgae
   # statistics.
@@ -47,7 +51,6 @@ before_script:
   - cd behat
   - cp aliases.drushrc.php ~/.drush/
   - cp behat.local.yml.travis behat.local.yml
-  - cd ..
 
   # Create display.
   - export DISPLAY=:99.0
@@ -68,11 +71,7 @@ before_script:
   - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
 
 script:
-  # Test the Yeoman generator.
-  - npm test
-
   # Run behat tests.
-  - cd build/behat
   - ./bin/behat --tags=~@wip
 
   # Print log ~/phantomjs.log

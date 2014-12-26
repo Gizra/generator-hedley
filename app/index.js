@@ -180,6 +180,7 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   askForDbPass: function () {
+    // Allow passing an empty password.
     if (this.options['db-pass'] !== undefined) {
       // Get the value from the CLI.
       this.dbPass = this.options['db-pass'];
