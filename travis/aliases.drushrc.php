@@ -2,6 +2,6 @@
 
 $aliases['site'] = array(
   'uri' => 'http://127.0.0.1:8080',
-  'root' => '/home/travis/build/build/skeleton/www',
+  'root' => '/home/travis/build/repoName/www',
   'db-url' => 'mysql://root:@127.0.0.1/drupal',
 );
