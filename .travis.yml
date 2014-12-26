@@ -28,11 +28,6 @@ install:
   - npm install -g yo bower grunt-cli
 
 before_script:
-  # Start a web server on port 8080, run in the background; wait for
-  # initialization.
-  - drush @site runserver 127.0.0.1:8080 &
-  - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do true; done
-
   # Initiate the generator to build using CLI.
   - mkdir build
   - cd build
@@ -54,6 +49,11 @@ before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - sleep 3 # give xvfb some time to start
+
+  # Start a web server on port 8080, run in the background; wait for
+  # initialization.
+  - drush @site runserver 127.0.0.1:8080 &
+  - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do true; done
 
   # Run selenium.
   - wget http://selenium-release.storage.googleapis.com/2.40/selenium-server-standalone-2.40.0.jar
