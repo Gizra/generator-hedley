@@ -43,6 +43,8 @@ before_script:
   # statistics.
   - yo hedley --no-insight --project-name=skeleton --github-repo=https://github.com/Foo/skeleton --db=skeleton --db-user=root --db-pass= --drupal-url=http://127.0.0.1
 
+  - pwd
+
   # Configure client.
   - cd client
   - cp config.travis.json config.json
@@ -60,6 +62,7 @@ before_script:
 
   # Start a web server on port 8080, run in the background; wait for
   # initialization.
+  - pwd
   - cp $TRAVIS_BUILD_DIR/travis/aliases.drushrc.php ~/.drush/
   - drush @site runserver 127.0.0.1:8080 &
   - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do true; done
