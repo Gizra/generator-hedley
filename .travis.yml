@@ -26,6 +26,8 @@ install:
   - phpenv rehash
 
   - npm install -g yo bower grunt-cli
+  # Link the generator.
+  - npm link
 
 before_script:
   - mkdir build
