@@ -15,7 +15,7 @@ PROFILE_TITLE="Skeleton"
 
 
 # Modify the URL below to match your local domain the site will be accessible on.
-BASE_DOMAIN_URL="http://localhost/skeleton/www"
+BASE_DOMAIN_URL="BASE_DOMAIN_URL"
 
 
 # Modify the login details below to be the desired
