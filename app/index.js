@@ -237,22 +237,19 @@ module.exports = yeoman.generators.Base.extend({
         }
         else {
           // Not an image.
+          var repoName = self.githubRepo.replace('https://github.com/', '');
+
           var contents = self.fs.read(self.templatePath(fileName));
           var newContents = contents
             .replace(/skeleton/g, self.projectName)
-            .replace(/Skeleton/g, changeCase.pascalCase(self.projectName));
+            .replace(/Skeleton/g, changeCase.pascalCase(self.projectName))
+            .replace(/"BASE_DOMAIN_URL"/g, '"' + self.drupalUrl + '"')
+            .replace(/repoName/g, repoName);
 
           if (fileName === 'config.sh') {
             newContents = newContents
               .replace(/MYSQL_USERNAME=".*"/g, 'MYSQL_USERNAME="' + self.dbUser + '"')
-              .replace(/MYSQL_PASSWORD=".*"/g, 'MYSQL_PASSWORD="' + self.dbPass + '"')
-              .replace(/BASE_DOMAIN_URL=".*"/g, 'BASE_DOMAIN_URL="' + self.drupalUrl + '"');
-          }
-          else if (fileName === 'README.md' || fileName === 'client/Gruntfile.js') {
-            var repoName = self.githubRepo.replace('https://github.com/', '');
-
-            newContents = newContents
-              .replace(/repoName/g, repoName);
+              .replace(/MYSQL_PASSWORD=".*"/g, 'MYSQL_PASSWORD="' + self.dbPass + '"');
           }
 
           self.fs.write(newFileName, newContents);

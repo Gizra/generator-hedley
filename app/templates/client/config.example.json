@@ -1,8 +1,10 @@
 {
   "development": {
-    "backend": "http://localhost/<%= projectName %>/www"
+    "backend": "BASE_DOMAIN_URL",
+    "debugUiRouter": true
   },
   "production": {
-    "backend": "https://server.com"
+    "backend": "https://example.com",
+    "debugUiRouter": false
   }
 }
