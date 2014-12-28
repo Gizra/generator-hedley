@@ -12,7 +12,7 @@
 # The profile used to install the platform.
 PROFILE_NAME="skeleton"
 # The human name of the install profile
-PROFILE_TITLE="GarmentBox"
+PROFILE_TITLE="Skeleton"
 
 
 # Modify the URL below to match your local domain the site will be accessible on.

@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/repoName.svg)](https://travis-ci.org/repoName)
 
-# Drupal 7 - Install Profile GarmentBox
+# Drupal 7 - Install Profile Skeleton
 
 This is a starting base to create Drupal 7 websites using an install profile.
 
@@ -61,7 +61,7 @@ You can Reinstall the platform any type by running the install script.
 5. Create an empty sites/default/files directory
 6. Makes a symlink within the /www/profiles directory to the /skeleton
    directory.
-7. Run the Drupal installer (Drush) using the GarmentBox profile.
+7. Run the Drupal installer (Drush) using the Skeleton profile.
 
 #### Warning!
 
