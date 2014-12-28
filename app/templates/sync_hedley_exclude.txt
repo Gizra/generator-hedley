@@ -2,6 +2,7 @@
 
 # Client
 client/config.json
+client/config.example.json
 client/dist
 client/node_modules
 client/bower_components
@@ -13,6 +14,7 @@ behat/bin
 behat/vendor
 behat/behat.local.yml
 behat/composer.lock
+behat/aliases.drushrc.php
 
 # Drupal - we make sure to hardcode the copy to "skeleton".
 skeleton/modules/contrib
