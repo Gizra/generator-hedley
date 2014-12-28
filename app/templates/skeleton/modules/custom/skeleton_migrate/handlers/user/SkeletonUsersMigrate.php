@@ -59,18 +59,4 @@ class SkeletonUsersMigrate extends Migration {
     $this->source = new MigrateSourceCSV(drupal_get_path('module', 'skeleton_migrate') . '/csv/' . $this->entityType . '/user.csv', $this->csvColumns, array('header_rows' => 1));
     $this->destination = new MigrateDestinationUser();
   }
-
-
-  /**
-   * Fix an Entity reference related error when migrating multiple values.
-   */
-  public function prepare($entity, $row) {
-    $ids = array();
-    if (!empty($entity->og_user_node[LANGUAGE_NONE])) {
-      foreach ($entity->og_user_node[LANGUAGE_NONE] as $value) {
-        $ids[] = array('target_id' => $value['target_id']['destid1']);
-      }
-    }
-    $entity->og_user_node[LANGUAGE_NONE] = $ids;
-  }
 }
