@@ -75,10 +75,7 @@ projects[og_vocab][subdir] = "contrib"
 projects[og_vocab][version] = "1.2"
 
 projects[restful][subdir] = "contrib"
-projects[restful][download][type] = "git"
-projects[restful][download][url] = "https://github.com/RESTful-Drupal/restful.git"
-projects[restful][download][branch] = 340
-projects[restful][subdir] = "contrib"
+projects[restful][version] = "1.x-dev"
 
 projects[search_api][subdir] = "contrib"
 projects[search_api][version] = "1.12"
