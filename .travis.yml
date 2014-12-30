@@ -70,13 +70,13 @@ before_script:
   - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
 
 script:
-  # Run Behat tests.
-  - cd behat
-  - ./bin/behat --tags=~@wip
-
   # Run PhantomCSS tests.
-  - cd ../phantomcss
+  - cd phantomcss
   - casperjs test dashboard.js
+
+  # Run Behat tests.
+  - cd ../behat
+  - ./bin/behat --tags=~@wip
 
   # Print log ~/phantomjs.log
   - cat ~/phantomjs.log
