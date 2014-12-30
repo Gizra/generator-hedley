@@ -11,9 +11,7 @@ phantomcss.init({
 /*
   The test scenario
 */
-casper.start('http://localhost:9000/#/login', function() {
-  this.echo(this.getHTML());
-});
+casper.start('http://localhost:9000/#/login');
 
 casper.viewport(1024, 768);
 
@@ -28,6 +26,7 @@ casper.waitForSelector('.signin-body', function() {
 });
 
 casper.waitForUrl('http://localhost:9000/#/dashboard/1/events', function() {
+  this.echo(this.getHTML());
   this.echo('Verify authors list in dashboard');
   phantomcss.screenshot('.authors-list', 'authors-list');
 });
