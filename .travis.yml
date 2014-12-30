@@ -25,7 +25,7 @@ install:
   - composer global require drush/drush:6.*
   - phpenv rehash
 
-  - npm install -g yo bower grunt-cli
+  - npm install -g yo bower grunt-cli casperjs
   - npm install
 
   # Test the Yeoman generator.
@@ -70,9 +70,13 @@ before_script:
   - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
 
 script:
-  # Run behat tests.
+  # Run Behat tests.
   - cd behat
   - ./bin/behat --tags=~@wip
+
+  # Run PhantomCSS tests.
+  - cd ../phantomcss
+  - casperjs test dashboard.js
 
   # Print log ~/phantomjs.log
   - cat ~/phantomjs.log

@@ -253,7 +253,6 @@ module.exports = yeoman.generators.Base.extend({
           }
 
           self.fs.write(newFileName, newContents);
-
         }
 
       });
@@ -275,8 +274,11 @@ module.exports = yeoman.generators.Base.extend({
       this.log('bower install');
       this.bowerInstall(null, {cwd: 'client'});
 
-      this.log('npm install');
+      this.log('npm install (angular)');
       this.npmInstall(null, {cwd: 'client'});
+
+      this.log('npm install (phantomcss)');
+      this.npmInstall(null, {cwd: 'phantomcss'});
 
       this.log('Composer install');
       this.spawnCommand('composer', ['install'], {cwd: './behat'});
