@@ -1,15 +1,15 @@
 /*
-	Require and initialise PhantomCSS module
-	Paths are relative to CasperJs directory
+  Require and initialise PhantomCSS module
+  Paths are relative to CasperJs directory
 */
 var phantomcss = require('./node_modules/phantomcss/phantomcss.js');
 
 phantomcss.init({
-	libraryRoot: './node_modules/phantomcss'
+  libraryRoot: './node_modules/phantomcss'
 });
 
 /*
-	The test scenario
+  The test scenario
 */
 casper.start( 'http://localhost:9000/#/login' );
 
@@ -32,18 +32,18 @@ casper.waitForUrl('http://localhost:9000/#/dashboard/1/events', function() {
 
 
 casper.then( function now_check_the_screenshots(){
-	// compare screenshots
-	phantomcss.compareAll();
+  // compare screenshots
+  phantomcss.compareAll();
 });
 
 casper.then( function end_it(){
-	casper.test.done();
+  casper.test.done();
 });
 
 /*
 Casper runs tests
 */
 casper.run(function(){
-	console.log('\nTHE END.');
-	phantom.exit(phantomcss.getExitStatus());
+  console.log('\nTHE END.');
+  phantom.exit(phantomcss.getExitStatus());
 });
