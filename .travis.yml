@@ -66,14 +66,13 @@ before_script:
   - java -jar selenium-server-standalone-2.40.0.jar -p 4444 &
   - sleep 5
 
-  # Run PhantomJs.
-  - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
-
 script:
   # Run PhantomCSS tests.
   - cd phantomcss
   - casperjs test dashboard.js
 
+  # Run PhantomJs.
+  - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
   # Run Behat tests.
   - cd ../behat
   - ./bin/behat --tags=~@wip
