@@ -70,8 +70,6 @@ script:
   - cd phantomcss
   - casperjs test dashboard.js
 
-  - curl http://localhost:9000/\#/login
-
   # Run PhantomJs.
   - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
   # Run Behat tests.

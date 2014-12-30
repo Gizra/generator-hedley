@@ -11,7 +11,9 @@ phantomcss.init({
 /*
   The test scenario
 */
-casper.start( 'http://localhost:9000/#/login' );
+casper.start('http://localhost:9000/#/login', function() {
+  this.echo(this.getHTML());
+});
 
 casper.viewport(1024, 768);
 
