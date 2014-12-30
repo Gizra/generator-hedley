@@ -28,7 +28,7 @@ casper.waitForSelector('.signin-body', function() {
 casper.waitForUrl('http://localhost:9000/#/dashboard/1/events', function() {
   this.echo('Verify authors list in dashboard');
   phantomcss.screenshot('.authors-list', 'authors-list');
-});
+}, 'onTimeout', 10000);
 
 
 casper.then( function now_check_the_screenshots(){
