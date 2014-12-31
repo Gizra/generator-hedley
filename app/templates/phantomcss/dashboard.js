@@ -18,7 +18,9 @@ casper.viewport(1024, 768);
 casper.waitForSelector('.signin-body', function() {
   this.echo('Verify login form');
   phantomcss.screenshot('.signin-body', 'login-form');
+});
 
+casper.then(function() {
   this.fill('#login', {
     'username': 'demo',
     'password': '1234'
