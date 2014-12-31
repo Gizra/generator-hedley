@@ -13,6 +13,7 @@ phantomcss.init({
 */
 casper.start('http://localhost:9000/#/login', function() {
   phantomcss.screenshot('body', 'start');
+  this.echo(this.getHTML());
 });
 
 casper.viewport(1024, 768);
