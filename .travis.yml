@@ -16,6 +16,10 @@ before_install:
   - npm install -g grunt-cli
   - npm install -g bower
 
+  # Install Ruby and Compass
+  - sudo apt-get install ruby-full
+  - gem install compass
+
   # Configure imgur bash script to upload images on failure.
   - npm install -g jshon
   - chmod +x imgur
