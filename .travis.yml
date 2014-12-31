@@ -16,8 +16,9 @@ before_install:
   - npm install -g grunt-cli
   - npm install -g bower
 
-  # Install Ruby and Compass
-  - gem install compass --version 1.0.1
+  # Install Sass and Compass
+  - gem install sass
+  - gem install compass
 
   # Configure imgur bash script to upload images on failure.
   - npm install -g jshon
