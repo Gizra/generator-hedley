@@ -26,7 +26,7 @@ casper.waitForSelector('.signin-body', function() {
 });
 
 casper.waitForUrl('http://localhost:9000/#/dashboard/1/events', function() {
-  this.echo(this.getHtml());
+  this.debugPage();
   phantomcss.screenshot('.authors-list', 'authors-list-test');
 });
 
