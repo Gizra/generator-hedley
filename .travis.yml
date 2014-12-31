@@ -76,8 +76,8 @@ script:
   - casperjs test dashboard.js
 
   # Upload failed images to imgur
-  - bash $TRAVIS_BUILD_DIR/imgur ./failures/login-form_0.fail.png
-  - bash $TRAVIS_BUILD_DIR/imgur ./failures/authors-list_1.fail.png
+  - bash $TRAVIS_BUILD_DIR/imgur ./screenshots/login-form_0.png
+  - bash $TRAVIS_BUILD_DIR/imgur ./screenshots/authors-list_1.png
 
   # Run PhantomJs.
   - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &

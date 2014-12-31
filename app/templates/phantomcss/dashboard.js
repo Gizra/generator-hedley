@@ -17,7 +17,7 @@ casper.viewport(1024, 768);
 
 casper.waitForSelector('.signin-body', function() {
   this.echo('Verify login form');
-  phantomcss.screenshot('.signin-body', 'login-form');
+  phantomcss.screenshot('body', 'login-form');
 });
 
 casper.then(function() {
@@ -29,7 +29,7 @@ casper.then(function() {
 
 casper.waitForUrl('http://localhost:9000/#/dashboard/1/events', function() {
   this.echo('Verify authors list in dashboard');
-  phantomcss.screenshot('.authors-list', 'authors-list');
+  phantomcss.screenshot('body', 'authors-list');
 });
 
 casper.then( function now_check_the_screenshots(){
