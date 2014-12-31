@@ -77,7 +77,6 @@ script:
   # Run PhantomCSS tests.
   - cd phantomcss
   - casperjs test dashboard.js
-  - curl http://localhost:9000
 
   # Upload failed images to imgur
   - bash $TRAVIS_BUILD_DIR/imgur ./screenshots/start_0.png
