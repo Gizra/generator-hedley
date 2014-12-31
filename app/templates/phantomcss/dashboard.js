@@ -25,12 +25,17 @@ casper.waitForSelector('.signin-body', function() {
   }, true);
 });
 
-casper.waitForUrl('http://localhost:9000/#/dashboard/1/events');
+casper.waitForUrl('http://localhost:9000/#/dashboard/1/events', function() {
+  this.echo(this.getHtml());
+  phantomcss.screenshot('.authors-list', 'authors-list-test');
+});
 
-casper.then().waitForSelector('.authors-list', function() {
+
+casper.waitForSelector('.authors-list', function() {
   this.echo('Verify authors list in dashboard');
   phantomcss.screenshot('.authors-list', 'authors-list');
 });
+
 
 
 casper.then( function now_check_the_screenshots(){
