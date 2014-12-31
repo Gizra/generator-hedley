@@ -17,7 +17,7 @@ before_install:
   - npm install -g bower
 
   # Install Ruby and Compass
-  # - gem install compass
+  - gem install compass --version 1.0.1
 
   # Configure imgur bash script to upload images on failure.
   - npm install -g jshon
