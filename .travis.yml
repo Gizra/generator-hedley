@@ -16,7 +16,6 @@ before_install:
   - npm install -g grunt-cli
   - npm install -g bower
 
-  - ruby --version
   - rvm install ruby 2.0.0
   - ruby --version
 
