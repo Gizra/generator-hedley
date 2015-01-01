@@ -8,14 +8,7 @@ phantomcss.init({
   libraryRoot: './node_modules/phantomcss'
 });
 
-/*
-  The test scenario
-*/
-casper.start('http://localhost:9000/#/login', function() {
-  phantomcss.screenshot('body', 'start');
-  this.echo(this.getHTML());
-  this.debugPage();
-});
+casper.start('http://localhost:9000/#/login');
 
 casper.viewport(1024, 768);
 
