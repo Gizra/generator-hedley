@@ -22,6 +22,7 @@ before_install:
   # Configure imgur bash script to upload images on failure.
   - npm install -g jshon
   - chmod +x imgur
+  - chmod +x install
 
 install:
   # install php packages required for running a web server from drush on php 5.3
