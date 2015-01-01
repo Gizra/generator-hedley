@@ -8,7 +8,7 @@ phantomcss.init({
   libraryRoot: './node_modules/phantomcss',
   // Reduce the default tolerance, to allow for different fonts to be created
   // on different systems.
-  mismatchTolerance: 1
+  // mismatchTolerance: 1
 });
 
 casper.start('http://localhost:9000/#/login');
