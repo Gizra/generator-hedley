@@ -5,7 +5,10 @@
 var phantomcss = require('./node_modules/phantomcss/phantomcss.js');
 
 phantomcss.init({
-  libraryRoot: './node_modules/phantomcss'
+  libraryRoot: './node_modules/phantomcss',
+  // Reduce the default tolerance, to allow for different fonts to be created
+  // on different systems.
+  mismatchTolerance: 1
 });
 
 casper.start('http://localhost:9000/#/login');
