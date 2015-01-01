@@ -13,8 +13,13 @@ client/app/CNAME
 behat/bin
 behat/vendor
 behat/behat.local.yml
+behat/behat.local.yml.travis
 behat/composer.lock
 behat/aliases.drushrc.php
+
+# PhantomCSS
+phantomcss/node_modules
+phantomcss/failures
 
 # Drupal - we make sure to hardcode the copy to "skeleton".
 skeleton/modules/contrib
