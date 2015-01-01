@@ -46,6 +46,11 @@ before_script:
   - grunt serve > ~/grunt.log 2>&1 &
   - cd ..
 
+  # Install PhantomCSS
+  - cd phantomcss
+  - npm install
+  - cd ..
+
   # Install Behat
   - cd behat
   - cp aliases.drushrc.php ~/.drush/
