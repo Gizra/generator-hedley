@@ -1,7 +1,5 @@
-/*
-  Require and initialise PhantomCSS module
-  Paths are relative to CasperJs directory
-*/
+// Require and initialise PhantomCSS module. Paths are relative to CasperJs
+// directory.
 var phantomcss = require('./node_modules/phantomcss/phantomcss.js');
 
 phantomcss.init({
@@ -23,6 +21,7 @@ casper.waitForSelector('.signin-body', function() {
 });
 
 casper.then(function() {
+  // Login user.
   this.fill('#login', {
     'username': 'demo',
     'password': '1234'
@@ -35,7 +34,7 @@ casper.waitForUrl('http://localhost:9000/#/dashboard/1/events', function() {
 });
 
 casper.then( function now_check_the_screenshots(){
-  // compare screenshots
+  // Compare screenshots.
   phantomcss.compareAll();
 });
 
@@ -43,9 +42,7 @@ casper.then( function end_it(){
   casper.test.done();
 });
 
-/*
-Casper runs tests
-*/
+// Run tests.
 casper.run(function(){
   console.log('\nTHE END.');
   phantom.exit(phantomcss.getExitStatus());
