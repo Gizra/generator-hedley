@@ -1,6 +1,9 @@
-$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+// @todo: We can't import _bootstrap.scss, as for some reason it causes the
+// PhantomCSS tests to fail on Travis.
+
+// $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 // bower:scss
-@import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+// @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 
 @import 'spinner.scss';
 

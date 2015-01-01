@@ -16,6 +16,14 @@ before_install:
   - npm install -g grunt-cli
   - npm install -g bower
 
+  # Install Sass and Compass for Grunt to work.
+  - gem install compass
+
+  # Configure imgur bash script to upload images on failure.
+  - npm install -g jshon
+  - chmod +x imgur
+  - pwd
+
 install:
   # install php packages required for running a web server from drush on php 5.3
   - sudo apt-get install -y --force-yes php5-cgi php5-mysql
@@ -25,7 +33,7 @@ install:
   - composer global require drush/drush:6.*
   - phpenv rehash
 
-  - npm install -g yo bower grunt-cli
+  - npm install -g yo bower grunt-cli casperjs
   - npm install
 
   # Test the Yeoman generator.
@@ -51,28 +59,35 @@ before_script:
   - cp $TRAVIS_BUILD_DIR/travis/aliases.drushrc.php ~/.drush/
   - cp $TRAVIS_BUILD_DIR/travis/behat.local.yml.travis behat/behat.local.yml
 
-  # Create display.
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sleep 3 # give xvfb some time to start
-
   # Start a web server on port 8080, run in the background; wait for
   # initialization.
   - drush @site runserver 127.0.0.1:8080 &
   - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do true; done
+
+  # Create display.
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
 
   # Run selenium.
   - wget http://selenium-release.storage.googleapis.com/2.40/selenium-server-standalone-2.40.0.jar
   - java -jar selenium-server-standalone-2.40.0.jar -p 4444 &
   - sleep 5
 
+script:
+  # Run PhantomCSS tests.
+  - cd phantomcss
+  - casperjs test dashboard.js
+
+  # Upload failed images to imgur
+  # - bash $TRAVIS_BUILD_DIR/imgur ./failures/login-form_0.fail.png
+  # - bash $TRAVIS_BUILD_DIR/imgur ./failures/authors-list_1.fail.png
+
   # Run PhantomJs.
   - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
-
-script:
-  # Run behat tests.
-  - cd behat
+  # Run Behat tests.
+  - cd ../behat
   - ./bin/behat --tags=~@wip
 
-  # Print log ~/phantomjs.log
+  # Print logs.
+  - cat ~/grunt.log
   - cat ~/phantomjs.log
