@@ -12,9 +12,8 @@ before_install:
   - sudo apt-get update > /dev/null
   - composer self-update
 
-  # Install grunt.
-  - npm install -g grunt-cli
-  - npm install -g bower
+  # Install Bower, Grunt and CasperJs.
+  - npm install -g bower grunt-cli casperjs
 
   # Install Sass and Compass for Grunt to work.
   - gem install compass
