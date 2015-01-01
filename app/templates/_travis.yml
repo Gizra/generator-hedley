@@ -1,7 +1,7 @@
 language: php
 
 php:
-  - 5.3
+  - 5.5
 
 mysql:
   database: drupal
@@ -51,7 +51,7 @@ before_script:
   - cd behat
   - cp aliases.drushrc.php ~/.drush/
   - cp behat.local.yml.travis behat.local.yml
-  - composer install --prefer-source
+  - composer install
   - cd ..
 
   # Create display.
