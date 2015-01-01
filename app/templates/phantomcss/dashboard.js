@@ -8,10 +8,6 @@ phantomcss.init({
   libraryRoot: './node_modules/phantomcss'
 });
 
-casper.on('remote.message', function(message) {
-  this.echo('remote message caught: ' + message);
-});
-
 /*
   The test scenario
 */

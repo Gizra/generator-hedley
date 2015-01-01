@@ -16,6 +16,11 @@ before_install:
   - npm install -g grunt-cli
   - npm install -g bower
 
+  - rbenv install 1.9.3-p194
+  - rbenv rehash # for paranoia's sake
+  - rbenv global 1.9.3-p194
+  - gem env # to check that everything was pointing at 1.9 and not the system
+
   # Install Sass and Compass
   - gem install compass
 
@@ -53,7 +58,7 @@ before_script:
   # Configure client.
   - cd client
   - cp config.travis.json config.json
-  - grunt serve --verbose > ~/grunt.log 2>&1 &
+  - grunt serve > ~/grunt.log 2>&1 &
   - cd ..
 
   - cp $TRAVIS_BUILD_DIR/travis/aliases.drushrc.php ~/.drush/
