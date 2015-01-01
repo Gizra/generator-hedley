@@ -18,6 +18,7 @@ casper.on('remote.message', function(message) {
 casper.start('http://localhost:9000/#/login', function() {
   phantomcss.screenshot('body', 'start');
   this.echo(this.getHTML());
+  this.debugPage();
 });
 
 casper.viewport(1024, 768);
