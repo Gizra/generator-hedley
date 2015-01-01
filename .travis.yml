@@ -16,9 +16,6 @@ before_install:
   - npm install -g grunt-cli
   - npm install -g bower
 
-  - rvm install ruby 2.0.0
-  - ruby --version
-
   # Install Sass and Compass
   - gem install compass
 
