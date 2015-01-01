@@ -17,8 +17,7 @@ before_install:
   - npm install -g bower
 
   - ruby --version
-  - rvm install ruby
-  - rvm use ruby --default
+  - rvm install ruby 2.0.0
   - ruby --version
 
   # Install Sass and Compass
