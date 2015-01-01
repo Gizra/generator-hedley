@@ -5,9 +5,11 @@
 var phantomcss = require('./node_modules/phantomcss/phantomcss.js');
 
 phantomcss.init({
-  libraryRoot: './node_modules/phantomcss',
+  libraryRoot: './node_modules/phantomcss'
   // Reduce the default tolerance, to allow for different fonts to be created
   // on different systems.
+  // Note that screenshots were created on an Ubuntu system, thus they might
+  // fail when tested locally on other machines (e.g. Mac OSX)
   // mismatchTolerance: 1
 });
 
