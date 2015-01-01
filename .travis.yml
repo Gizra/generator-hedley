@@ -16,7 +16,7 @@ before_install:
   - npm install -g grunt-cli
   - npm install -g bower
 
-  # Install Sass and Compass
+  # Install Sass and Compass for Grunt to work.
   - gem install compass
 
   # Configure imgur bash script to upload images on failure.
@@ -79,9 +79,8 @@ script:
   - casperjs test dashboard.js
 
   # Upload failed images to imgur
-  - bash $TRAVIS_BUILD_DIR/imgur ./screenshots/start_0.png
-  - bash $TRAVIS_BUILD_DIR/imgur ./screenshots/login-form_1.png
-  - bash $TRAVIS_BUILD_DIR/imgur ./screenshots/authors-list_2.png
+  # - bash $TRAVIS_BUILD_DIR/imgur ./screenshots/login-form_1.png
+  # - bash $TRAVIS_BUILD_DIR/imgur ./screenshots/authors-list_2.png
 
   # Run PhantomJs.
   - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
