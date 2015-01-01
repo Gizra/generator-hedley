@@ -1,4 +1,6 @@
 {
+  "name": "Behat tests for Skeleton",
+  "description": "Functional testing for Skeleton installation profile.",
   "require": {
     "drupal/drupal-extension": "~3.0"
   },
