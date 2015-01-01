@@ -53,7 +53,7 @@ before_script:
   # Configure client.
   - cd client
   - cp config.travis.json config.json
-  - grunt serve > ~/grunt.log 2>&1 &
+  - grunt serve:dist > ~/grunt.log 2>&1 &
   - cd ..
 
   - cp $TRAVIS_BUILD_DIR/travis/aliases.drushrc.php ~/.drush/
