@@ -79,7 +79,11 @@
     <script src="bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="bower_components/stacktrace-js/stacktrace.js"></script>
+    <script src="bower_components/angular-loggly/logglyService.js"></script>
     <!-- endbower -->
+    <script type="text/javascript" src="bower_components/angular-loggly/loggly-jslogger/src/loggly.tracker.js"></script>
+
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
@@ -99,6 +103,9 @@
         <script src="scripts/controllers/account.js"></script>
         <script src="scripts/services/account.js"></script>
         <script src="scripts/controllers/homepage.js"></script>
+        <script src="scripts/services/stacktrace.js"></script>
+        <script src="scripts/services/errorlog.js"></script>
+        <script src="scripts/services/exceptionhandler.js"></script>
         <!-- endbuild -->
 </body>
 </html>

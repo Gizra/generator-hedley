@@ -17,6 +17,7 @@ angular
     'config',
     'leaflet-directive',
     'LocalStorageModule',
+    'loggly',
     'ui.router'
   ])
   .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
