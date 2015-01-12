@@ -13,13 +13,13 @@ angular
     'ngAnimate',
     'ngCookies',
     'ngSanitize',
-
     'config',
     'leaflet-directive',
     'LocalStorageModule',
-    'ui.router'
+    'ui.router',
+    'angular-loading-bar'
   ])
-  .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+  .config(function($stateProvider, $urlRouterProvider, $httpProvider, cfpLoadingBarProvider) {
 
     /**
      * Redirect a user to a 403 error page.
@@ -186,6 +186,10 @@ angular
         }
       };
     });
+
+    // Configuration of the loading bar.
+    cfpLoadingBarProvider.includeSpinner = false;
+    cfpLoadingBarProvider.latencyThreshold = 1000;
   })
   .run(function ($rootScope, $state, $stateParams, $log, Config) {
     // It's very handy to add references to $state and $stateParams to the
