@@ -28,7 +28,7 @@ ADMIN_EMAIL="admin@example.com"
 # Modify the MySQL settings below so they will match your own.
 MYSQL_USERNAME="root"
 MYSQL_PASSWORD="root"
-MYSQL_HOSTNAME="127.0.0.1"
+MYSQL_HOSTNAME="localhost"
 MYSQL_DB_NAME="skeleton"
 
 
