@@ -10,6 +10,7 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -21,7 +22,7 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
+    <loading-bar-text></loading-bar-text>
     <div ui-view></div>
 
     <div class="container">
@@ -79,6 +80,7 @@
     <script src="bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -96,6 +98,7 @@
         <script src="scripts/services/marker.js"></script>
         <script src="scripts/controllers/dashboard.js"></script>
         <script src="scripts/directives/spinner.js"></script>
+        <script src="scripts/directives/loadingbartext.js"></script>
         <script src="scripts/controllers/account.js"></script>
         <script src="scripts/services/account.js"></script>
         <script src="scripts/controllers/homepage.js"></script>

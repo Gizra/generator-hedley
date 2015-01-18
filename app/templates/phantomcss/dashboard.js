@@ -28,6 +28,14 @@ casper.then(function() {
   }, true);
 });
 
+casper.on('resource.received', function(resource) {
+  if (resource.url === 'http://localhost/skeleton/www/api/events?filter%5Bcompany%5D=1&sort=-updated') {
+    this.echo(resource.url);
+    this.echo('Verify loading bar');
+    phantomcss.screenshot('#loading-bar', 'loading-bar');
+  }
+});
+
 casper.waitForUrl('http://localhost:9000/#/dashboard/1/events', function() {
   this.echo('Verify authors list in dashboard');
   phantomcss.screenshot('.authors-list', 'authors-list');
