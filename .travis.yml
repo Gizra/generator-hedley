@@ -75,7 +75,6 @@ before_script:
 script:
   # Run PhantomCSS tests.
   - sleep 5 # give time to grunt serve finish to load
-  - cat ~/grunt.log
   - cd phantomcss
   - casperjs test dashboard.js
 
@@ -90,5 +89,5 @@ script:
   - ./bin/behat --tags=~@wip
 
   # Print logs.
-  # - cat ~/grunt.log
+  - cat ~/grunt.log
   - cat ~/phantomjs.log

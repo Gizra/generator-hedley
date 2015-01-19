@@ -16,10 +16,10 @@ angular.module('clientApp')
         $scope.isLoading = false;
 
         /**
-         * Determine if the text is showing.
+         * Indicate a loading is in process.
          *
-         * @param isLoading - Boolean
-         *  True show the text, false hide it.
+         * @param isLoading bool
+         *  True to show the loader.
          */
         function setLoading(isLoading) {
           $scope.isLoading = isLoading;
@@ -27,14 +27,16 @@ angular.module('clientApp')
 
         // Events to set the message when start the XHR request until is completed.
         $scope.$on('cfpLoadingBar:started', function() {
+          // Set loading progress bar upon HTTP request.
           setLoading(true);
         });
 
         $scope.$on('cfpLoadingBar:completed', function() {
           setLoading(false);
         });
+
       },
-      // Isolate scope.
+      // Isolate scope the directive, and avoid read or modify data from the parent scope.
       scope: {}
     };
   });
