@@ -74,7 +74,6 @@ before_script:
 
 script:
   # Run PhantomCSS tests.
-  - sleep 5 # give time to grunt serve finish to load
   - cd phantomcss
   - casperjs test dashboard.js
 
