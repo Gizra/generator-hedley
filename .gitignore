@@ -1,18 +1,4 @@
-# Generator files and folders.
-.idea/
 node_modules/
-skeleton/
-behat/
-client/
-scripts/
-phantomcss/
-www/
-config.sh
-default.config.sh
-install
-sync_hedley.example.sh
-sync_hedley_exclude.txt
-travis.config.sh
 
 
 # Prevent from ignored files to be copied back.

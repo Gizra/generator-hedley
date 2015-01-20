@@ -47,7 +47,6 @@ abstract class SkeletonMigrateBase extends Migration {
     $this->map = new MigrateSQLMap($this->machineName, $key, $destination_handler->getKeySchema($this->entityType));
 
     // Create a MigrateSource object.
-    //$path = variable_get('skeleton_migrate_directory', FALSE) ? variable_get('skeleton_migrate_directory') : drupal_get_path('module', 'skeleton_migrate');
     $sql_table = (isset($this->sqlTable)) ? '_raw_' . $this->sqlTable : '_raw_' . $this->bundle;
 
     $query = db_select($sql_table, 't')

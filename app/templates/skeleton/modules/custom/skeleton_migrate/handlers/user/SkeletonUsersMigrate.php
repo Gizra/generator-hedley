@@ -54,6 +54,10 @@ class SkeletonUsersMigrate extends Migration {
     );
     $destination_handler = new MigrateDestinationUser();
     $this->map = new MigrateSQLMap($this->machineName, $key, $destination_handler->getKeySchema());
+    $query = db_select('_raw_user', 't')
+      ->fields('t')
+      ->orderBy('id');
+    $this->source = new MigrateSourceSQL($query, $this->fields);
 
     // Create a MigrateSource object.
     $this->destination = new MigrateDestinationUser();

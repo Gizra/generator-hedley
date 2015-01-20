@@ -22,5 +22,7 @@ rsync -avz --exclude-from 'sync_hedley_exclude.txt' ./phantomcss $GENERATOR_FOLD
 # Drupal - we make sure to hardcode the copy to "skeleton".
 rsync -avz --exclude-from 'sync_hedley_exclude.txt' ./skeleton $GENERATOR_FOLDER/app/templates
 
-
+# Install scripts
+rsync -avz --exclude-from 'sync_hedley_exclude.txt' ./scripts $GENERATOR_FOLDER/app/templates
+rsync -avz --exclude-from 'sync_hedley_exclude.txt' install $GENERATOR_FOLDER/app/templates
 
