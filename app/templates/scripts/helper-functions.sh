@@ -224,13 +224,12 @@ function convert_csv_to_sql {
   echo -e "${LBLUE}> Converting csv migration files to sql tables${RESTORE}"
   cd $ROOT/www
   CSV2SQL=`drush | grep "csv2sql"`
-  INSTALL_PROFILE= `drush vget install_profile`
 
   if [ ! "$CSV2SQL" ]; then
     drush dl csv2sql
   fi
 
-  csv_files="profiles/$INSTALL_PROFILE/modules/custom/$INSTALL_PROFILE_migrate/csv/*/*.csv"
+  csv_files="profiles/skeleton/modules/custom/skeleton_migrate/csv/*/*.csv"
 
   for csv in $csv_files
   do
