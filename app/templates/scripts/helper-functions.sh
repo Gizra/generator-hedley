@@ -226,7 +226,7 @@ function convert_csv_to_sql {
   CSV2SQL=`drush | grep "csv2sql"`
 
   if [ ! "$CSV2SQL" ]; then
-    drush dl csv2sql
+    drush dl csv2sql --yes
   fi
 
   csv_files="profiles/skeleton/modules/custom/skeleton_migrate/csv/*/*.csv"
