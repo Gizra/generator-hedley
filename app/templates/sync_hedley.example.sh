@@ -23,3 +23,4 @@ rsync -avz --exclude-from 'sync_hedley_exclude.txt' ./phantomcss $GENERATOR_FOLD
 rsync -avz --exclude-from 'sync_hedley_exclude.txt' ./skeleton $GENERATOR_FOLDER/app/templates
 
 
+
