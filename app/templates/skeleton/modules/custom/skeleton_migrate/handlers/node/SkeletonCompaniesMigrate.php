@@ -45,7 +45,7 @@ class SkeletonCompaniesMigrate extends \SkeletonMigrateBase {
    * @todo: Move to value callback.
    */
   public function prepareRow($row) {
-    $row->field_company_logo = $row->id . '.jpg';
+    $row->field_company_logo = $row->unique_id . '.jpg';
     if (!file_exists($image_path = $this->getMigrateDirectory() . '/images/'. $row->field_company_logo)) {
       $this->displayMessage(format_string('Unable to find image: @image', array('@image' => $image_path)));
     }

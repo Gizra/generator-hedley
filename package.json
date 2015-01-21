@@ -1,6 +1,6 @@
 {
   "name": "generator-hedley",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Headless Drupal, Angular app, and Behat framework.",
   "license": "MIT",
   "main": "app/index.js",

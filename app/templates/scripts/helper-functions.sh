@@ -217,6 +217,25 @@ function enable_development_modules {
   echo
 }
 
+##
+# Convert csv migration files to sql tables.
+##
+function convert_csv_to_sql {
+  echo -e "${LBLUE}> Converting csv migration files to sql tables${RESTORE}"
+  cd $ROOT/www
+  CSV2SQL=`drush | grep "csv2sql"`
+
+  if [ ! "$CSV2SQL" ]; then
+    drush dl csv2sql --yes
+  fi
+
+  csv_files="profiles/skeleton/modules/custom/skeleton_migrate/csv/*/*.csv"
+
+  for csv in $csv_files
+  do
+    drush csv2sql $csv
+  done
+}
 
 ##
 # Do dummy content migration.

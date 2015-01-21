@@ -1,0 +1,34 @@
+.splash-screen {
+  position: fixed;
+  z-index: 1000;
+  font-size: 40px;
+  color: #26858d;
+  top: 40%;
+  left: 45%;
+}
+
+// Loading Bar
+#loading-bar {
+
+    .bar {
+      height: 5px;
+      background: #26858d;
+    }
+
+    .peg {
+      box-shadow: #29d 1px 0 6px 1px;
+    }
+
+}
+
+#loading-bar-spinner {
+  top: 25px;
+  left: 12px;
+
+    .spinner-icon {
+      width: 20px;
+      height: 20px;
+      border-top-color: #26858d;
+      border-left-color: #26858d;
+    }
+}
