@@ -34,12 +34,6 @@ module.exports = yeoman.generators.Base.extend({
       required: 'false'
     });
 
-    this.option('drupal-url', {
-      desc: 'The local Drupal URL',
-      type: String,
-      required: 'false'
-    });
-
     this.option('db-hostname', {
       desc: 'The database hostname',
       type: String,
