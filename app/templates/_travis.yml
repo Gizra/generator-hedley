@@ -67,10 +67,8 @@ before_script:
   - drush @site runserver 127.0.0.1:8080 &
   - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do true; done
 
-  # Run selenium.
-  - wget http://selenium-release.storage.googleapis.com/2.40/selenium-server-standalone-2.40.0.jar
-  - java -jar selenium-server-standalone-2.40.0.jar -p 4444 &
-  - sleep 5
+  # Wait for Grunt to finish loading.
+  - until $(curl --output /dev/null --silent --head --fail http://localhost:9000); do sleep 1; echo '.'; done
 
 script:
 
