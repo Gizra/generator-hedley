@@ -77,6 +77,8 @@ script:
   - cd phantomcss
   - casperjs test dashboard.js
 
+  - scan_phantomcss_fails.sh
+
   # Upload failed images to imgur
   # - bash $TRAVIS_BUILD_DIR/imgur ./failures/login-form_0.fail.png
   # - bash $TRAVIS_BUILD_DIR/imgur ./failures/authors-list_1.fail.png
