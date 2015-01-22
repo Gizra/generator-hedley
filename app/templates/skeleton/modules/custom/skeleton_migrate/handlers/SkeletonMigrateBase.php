@@ -18,17 +18,17 @@ abstract class SkeletonMigrateBase extends Migration {
     $this->description = t('Import @type - @bundle from SQL table', array('@type' => $this->entityType, '@bundle' => $this->bundle));
 
     $this->fields = !empty($this->fields) ? $this->fields : array();
-    $sql_fields[] = 'unique_id';
+    $sql_fields[] = '_unique_id';
 
     if ($this->entityType == 'node') {
-      $this->addFieldMapping('title', 'title');
+      $this->addFieldMapping('title', '_title');
       $class_name = 'MigrateDestinationNode';
-      $sql_fields[] = 'title';
+      $sql_fields[] = '_title';
     }
     elseif ($this->entityType == 'taxonomy_term') {
-      $this->addFieldMapping('name', 'name');
+      $this->addFieldMapping('name', '_name');
       $class_name = 'MigrateDestinationTerm';
-      $sql_fields[] = 'name';
+      $sql_fields[] = '_name';
     }
 
     // Rebuild the csv columns array.
@@ -36,7 +36,7 @@ abstract class SkeletonMigrateBase extends Migration {
 
     // Create a map object for tracking the relationships between source rows
     $key = array(
-      'unique_id' => array(
+      '_unique_id' => array(
         'type' => 'varchar',
         'length' => 255,
         'not null' => TRUE,
@@ -51,7 +51,7 @@ abstract class SkeletonMigrateBase extends Migration {
 
     $query = db_select($sql_table, 't')
       ->fields('t')
-      ->orderBy('id');
+      ->orderBy('__id');
     $this->source = new MigrateSourceSQL($query, $this->fields);
 
     $this->destination = new $class_name($this->bundle, array('text_format' => 'filtered_html'));
