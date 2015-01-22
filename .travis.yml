@@ -53,7 +53,6 @@ before_script:
   - cd client
   - cp config.travis.json config.json
   - grunt serve > ~/grunt.log 2>&1 &
-  - until $(curl --output /dev/null --silent --head --fail http://127.0.0.1:9000); do sleep 5; print '.'; done
   - cd ..
 
   - cp $TRAVIS_BUILD_DIR/travis/aliases.drushrc.php ~/.drush/
