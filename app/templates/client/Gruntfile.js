@@ -408,8 +408,13 @@ module.exports = function (grunt) {
         }
       },
       build: {
-        constants: {
-          Config: grunt.file.readJSON('config.json').production
+        constants: function() {
+          // Get constants and modify with the information anwser for the user.
+          var constants = grunt.file.readJSON('config.json').production;
+          constants.backend = grunt.config.get('config.distDrupalUrl');
+          return {
+            Config: constants
+          }
         },
         options: {
           dest: '<%= yeoman.dist %>/scripts/config.js'
@@ -421,13 +426,34 @@ module.exports = function (grunt) {
     buildcontrol: {
       dist: {
         options: {
-          remote: 'https://github.com/repoName.git',
+          remote: 'https://github.com/.git',
           branch: 'gh-pages',
           commit: true,
           push: true
         }
       }
+    },
+
+    // Prompt to ask productioon configuration.
+    prompt: {
+      build: {
+        options: {
+          questions: [
+            {
+              config: 'config.distDrupalUrl', // arbitrary name or config for any other grunt task
+              type: 'input', // list, checkbox, confirm, input, password
+              message: 'What is the production Drupal URL?', // Question to ask the user, function needs to return a string,
+              default: 'http://backend.skeleton.com/www', // default value if nothing is entered
+              validate: function(value) {
+                // simple not empty validation.
+                return !!value;
+              }
+            }
+          ]
+        }
+      }
     }
+
   });
 
 
@@ -462,6 +488,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'prompt:build',
     'ngconstant:build',
     'wiredep',
     'useminPrepare',

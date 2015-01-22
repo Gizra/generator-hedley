@@ -4,7 +4,7 @@
     "debugUiRouter": true
   },
   "production": {
-    "backend": "https://example.com",
+    "backend": "BASE_DOMAIN_URL",
     "debugUiRouter": false
   }
 }
