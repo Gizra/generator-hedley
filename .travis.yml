@@ -69,7 +69,7 @@ before_script:
   - sh -e /etc/init.d/xvfb start
 
   # Wait for Grunt to finish loading.
-  - until $(curl --output /dev/null --silent --head --fail http://127.0.0.1:9000); do sleep 5; done
+  - until $(curl --output /dev/null --silent --head --fail http://127.0.0.1:8080); do sleep 5; done
 
 script:
   # Run PhantomCSS tests.
