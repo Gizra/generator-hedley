@@ -71,7 +71,7 @@ before_script:
   - sleep 5
 
   # Wait for Grunt to finish loading.
-  - until $(curl --output /dev/null --silent --head --fail http://localhost:9000); do sleep 1; echo '.'; done
+  # - until $(curl --output /dev/null --silent --head --fail http://localhost:9000); do sleep 1; echo '.'; done
 
 script:
   # Run PhantomCSS tests.
