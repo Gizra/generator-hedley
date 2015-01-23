@@ -11,9 +11,9 @@ class SkeletonEventsMigrate extends \SkeletonMigrateBase {
   public $bundle = 'event';
 
   public $fields = array(
-    'location',
-    'company',
-    'author',
+    '_location',
+    '_company',
+    '_author',
   );
 
   public $dependencies = array(
@@ -27,11 +27,11 @@ class SkeletonEventsMigrate extends \SkeletonMigrateBase {
 
 
     $this
-      ->addFieldMapping(OG_AUDIENCE_FIELD, 'company')
+      ->addFieldMapping(OG_AUDIENCE_FIELD, '_company')
       ->sourceMigration('SkeletonCompaniesMigrate');
 
     $this
-      ->addFieldMapping('uid', 'author')
+      ->addFieldMapping('uid', '_author')
       ->sourceMigration('SkeletonUsersMigrate');
   }
 
@@ -41,11 +41,11 @@ class SkeletonEventsMigrate extends \SkeletonMigrateBase {
    * @todo: Move to value callback.
    */
   public function prepare($entity, $row) {
-    $row->location = explode('|', $row->location);
+    list($lat, $lng) = explode('|', $row->_location);
     $wrapper = entity_metadata_wrapper('node', $entity);
     $values = array(
-      'lat' => $row->location[0],
-      'lng' => $row->location[1],
+      'lat' => $lat,
+      'lng' => $lng,
     );
     $wrapper->field_location->set($values);
   }
