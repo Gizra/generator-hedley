@@ -66,17 +66,15 @@ before_script:
   # Create display.
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-  - wget http://selenium-release.storage.googleapis.com/2.40/selenium-server-standalone-2.40.0.jar
-  - java -jar selenium-server-standalone-2.40.0.jar -p 4444 &
-  - sleep 60
+  - sleep 5
 
   # Wait for Grunt to finish loading.
-  # - until $(curl --output /dev/null --silent --head --fail http://localhost:9000); do sleep 1; echo '.'; done
+  - until $(curl --output /dev/null --silent --head --fail http://localhost:9000); do sleep 1; echo '.'; done
 
 script:
   # Run PhantomCSS tests.
   - cd phantomcss
-  - casperjs test dashboard.js
+  # - casperjs test dashboard.js
 
   # Upload failed images to imgur
   # - bash $TRAVIS_BUILD_DIR/imgur ./failures/login-form_0.fail.png
