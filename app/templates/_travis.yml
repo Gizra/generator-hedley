@@ -90,4 +90,5 @@ script:
 
   # Print logs.
   - cat ~/grunt.log
+  - cat ~/phantomcss.log
   - cat ~/phantomjs.log
