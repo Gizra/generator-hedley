@@ -11,7 +11,14 @@ phantomcss.init({
   // mismatchTolerance: 1
 });
 
-casper.start('http://localhost:9000/#/login');
+var process = process || {};
+process.env = process.env || {};
+process.env.TRAVIS = process.env.TRAVIS || false;
+
+// Allow changing the base url based on Travis, or a local installation.
+var baseUrl = process.env.TRAVIS ? 'http://localhost:9000' : 'http://localhost:9000';
+
+casper.start(baseUrl);
 
 casper.viewport(1024, 768);
 
@@ -28,7 +35,7 @@ casper.then(function() {
   }, true);
 });
 
-casper.waitForUrl('http://localhost:9000/#/dashboard/1/events', function() {
+casper.waitForUrl('/#/dashboard/1/events', function() {
   this.echo('Verify authors list in dashboard');
   phantomcss.screenshot('.authors-list', 'authors-list');
 });
