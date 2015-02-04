@@ -22,6 +22,7 @@ before_install:
   - npm install -g jshon
   - chmod +x imgur
   - chmod +x install
+  - chmod +x phantomcss/scan_phantomcss_fails.sh
 
 install:
   # install php packages required for running a web server from drush on php 5.3
@@ -79,7 +80,7 @@ script:
   - casperjs test dashboard.js
 
   # Upload failed images to imgur
-  - sh scan_phantomcss_fails.sh > ~/phantomcss.log 2>&1 &
+  - ./scan_phantomcss_fails.sh > ~/phantomcss.log 2>&1 &
 
   # Run phantomJs.
   - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
