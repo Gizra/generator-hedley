@@ -79,7 +79,7 @@ script:
 
   # Upload failed images to imgur
   - chmod +x scan_phantomcss_fails.sh
-  - bash scan_phantomcss_fails.sh > ~/phantomcss.log 2>&1 &
+  - ./scan_phantomcss_fails.sh > ~/phantomcss.log 2>&1 &
 
   # Run PhantomJs.
   - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
