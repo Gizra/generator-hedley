@@ -77,11 +77,9 @@ script:
   # Run PhantomCSS tests.
   - cd phantomcss
   - casperjs test dashboard.js
-  - ls
-  - cd ..
-  - ls
 
   # Upload failed images to imgur
+  - sleep 5
   - bash scan_phantomcss_fails.sh > ~/phantomcss.log 2>&1 &
 
   # Run phantomJs.

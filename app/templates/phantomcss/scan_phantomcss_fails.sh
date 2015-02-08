@@ -1,6 +1,5 @@
 #!/bin/sh
-chmod -R 777 $TRAVIS_BUILD_DIR/phantomcss/failures
-DIRECTORY=$TRAVIS_BUILD_DIR/phantomcss/failures
+DIRECTORY=./failures
 
 if [ -d "$DIRECTORY" ]; then
   for i in $DIRECTORY/*
