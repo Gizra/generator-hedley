@@ -1,8 +1,8 @@
 #!/bin/sh
-DIRECTORY=$TRAVIS_BUILD_DIR/phantomcss/failures/*
+DIRECTORY=$TRAVIS_BUILD_DIR/phantomcss/failures
 
 if [ -d "$DIRECTORY" ]; then
-  for i in $DIRECTORY
+  for i in $DIRECTORY/*
     do
       bash $TRAVIS_BUILD_DIR/imgur $i
     done
