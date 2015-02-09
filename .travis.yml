@@ -78,8 +78,7 @@ script:
   - casperjs test dashboard.js
 
   # Upload failed images to imgur
-  - sleep 5
-  - bash scan_phantomcss_fails.sh > ~/phantomcss.log 2>&1 &
+  - bash scan_phantomcss_fails.sh
 
   # Run PhantomJs.
   - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
