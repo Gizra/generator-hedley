@@ -9,8 +9,8 @@
 angular.module('clientApp')
   .directive('loadingBarText', function () {
     return {
-      retrict: 'EA',
-      template: '<div class=\"splash-screen\" ng-show="isLoading">{{text}}</div>',
+      restrict: 'EA',
+      template: '<div class="splash-screen" ng-show="isLoading">{{text}}</div>',
       controller: function($scope) {
         $scope.text = 'loading...';
         $scope.isLoading = false;
