@@ -36,7 +36,7 @@ angular.module('clientApp')
         getData[cacheId] = $q.when(getData[cacheId] || cache[cacheId].data);
       }
 
-      // Otherwiose get data from the server.
+      // Otherwise get data from the server.
       getData[cacheId] = (getData[cacheId] || getDataFromBackend(companyId, userId));
 
       return getData[cacheId];
