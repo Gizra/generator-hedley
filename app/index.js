@@ -8,6 +8,7 @@ var process = require('process');
 var fs = require('fs-extra');
 var glob = require('glob');
 var replace = require('replace');
+var win32 = process.platform === 'win32';
 
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
@@ -207,8 +208,12 @@ module.exports = yeoman.generators.Base.extend({
   writing: {
     app: function() {
       var self = this;
-      var files = glob.sync(self.templatePath() + '/**/*');
-
+	  if(!win32){
+        var files = glob.sync(self.templatePath + '/**/*');
+	  } else {
+		var files = glob.sync(self.templatePath + '\**\*');
+	  }
+		
       files.forEach(function(file) {
         if (fs.lstatSync(file).isDirectory()) {
           // Don't try to copy a directory.
