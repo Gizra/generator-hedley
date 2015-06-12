@@ -10,7 +10,7 @@ mysql:
 
 before_install:
   - sudo apt-get update > /dev/null
-  - composer self-update 1.0.0-alpha9
+  - composer self-update
 
   # Install Bower, Grunt and CasperJs.
   - npm install -g bower grunt-cli casperjs

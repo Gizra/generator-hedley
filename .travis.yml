@@ -10,11 +10,10 @@ mysql:
 
 before_install:
   - sudo apt-get update > /dev/null
-  - composer self-update 1.0.0-alpha9
+  - composer self-update
 
   # Install grunt.
-  - npm install -g grunt-cli
-  - npm install -g bower
+  - npm install -g grunt-cli bower
 
   # Install Sass and Compass for Grunt to work.
   - gem install compass
@@ -60,8 +59,10 @@ before_script:
 
   # Start a web server on port 8080, run in the background; wait for
   # initialization.
-  - drush @site runserver 127.0.0.1:8080 &
+  - cd www
+  - drush runserver 127.0.0.1:8080 &
   - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do true; done
+  - cd ../
 
   # Create display.
   - export DISPLAY=:99.0
