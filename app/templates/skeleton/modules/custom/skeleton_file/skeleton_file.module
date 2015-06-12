@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * Implements hook_file_insert().
+ *
+ * When a public file is uploaded, add a random key to its name in order to
+ * make it hard to find.
+ */
+function skeleton_file_insert($file) {
+  // Only handle public files.
+  if (file_uri_scheme($file->uri) != 'public') {
+    return;
+  }
+
+  $filename = drupal_random_key() . '_' . $file->filename;
+  file_move($file, 'public://' . $filename);
+}
