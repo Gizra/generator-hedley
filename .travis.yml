@@ -12,9 +12,8 @@ before_install:
   - sudo apt-get update > /dev/null
   - composer self-update
 
-  # Install grunt.
-  - npm install -g grunt-cli
-  - npm install -g bower
+  # Install Grunt and Bower.
+  - npm install -g grunt-cli bower
 
   # Install Sass and Compass for Grunt to work.
   - gem install compass
@@ -23,7 +22,7 @@ install:
   # install php packages required for running a web server from drush on php 5.3
   - sudo apt-get install -y --force-yes php5-cgi php5-mysql
 
-  # install drush
+  # Install Drush.
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - composer global require drush/drush:6.*
   - phpenv rehash
@@ -67,7 +66,7 @@ before_script:
   - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
 
   # Wait for Grunt to finish loading.
-  - until $(curl --output /dev/null --silent --head --fail http://localhost:9000); do sleep 1; echo '.'; done
+  # - until $(curl --output /dev/null --silent --head --fail http://localhost:9000); do sleep 1; echo '.'; done
 
 script:
 
