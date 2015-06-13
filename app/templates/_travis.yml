@@ -10,17 +10,14 @@ mysql:
 
 before_install:
   - sudo apt-get update > /dev/null
-  - composer self-update 1.0.0-alpha9
+  - composer self-update
 
   # Install Bower, Grunt and CasperJs.
-  - npm install -g bower grunt-cli casperjs
+  - npm install -g bower grunt-cli
 
   # Install Sass and Compass for Grunt to work.
   - gem install compass
 
-  # Configure imgur bash script to upload images on failure.
-  - npm install -g jshon
-  - chmod +x imgur
   - chmod +x install
 
 install:
