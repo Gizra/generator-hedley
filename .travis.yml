@@ -75,5 +75,4 @@ script:
   - ./bin/behat --tags=~@wip
 
   # Print logs.
-  # - cat ~/grunt.log
-  # - cat ~/phantomjs.log
+  - cat ~/grunt.log
