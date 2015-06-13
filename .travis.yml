@@ -37,6 +37,13 @@ install:
   - npm link
 
 before_script:
+  # Create display.
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
+  # Run PhantomJs.
+  - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
+
   - mkdir $TRAVIS_BUILD_DIR/../build
   - cd $TRAVIS_BUILD_DIR/../build
   # Initiate the generator to build using CLI. We use the --no-insight flag to
@@ -58,13 +65,6 @@ before_script:
   - drush @site runserver 127.0.0.1:8080 &
   - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do true; done
 
-  # Create display.
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-
-  # Run PhantomJs.
-  - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
-
   # Wait for Grunt to finish loading.
   # - until $(curl --output /dev/null --silent --head --fail http://localhost:9000); do sleep 1; echo '.'; done
 
@@ -76,3 +76,4 @@ script:
 
   # Print logs.
   - cat ~/grunt.log
+  - cat ~/phantomjs.log
