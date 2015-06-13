@@ -10,7 +10,7 @@ mysql:
 
 before_install:
   - sudo apt-get update > /dev/null
-  - composer self-update 1.0.0-alpha9
+  - composer self-update
 
   # Install grunt.
   - npm install -g grunt-cli
@@ -18,10 +18,6 @@ before_install:
 
   # Install Sass and Compass for Grunt to work.
   - gem install compass
-
-  # Configure imgur bash script to upload images on failure.
-  - npm install -g jshon
-  - chmod +x imgur
 
 install:
   # install php packages required for running a web server from drush on php 5.3
@@ -67,25 +63,18 @@ before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
 
+  # Run PhantomJs.
+  - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
+
   # Wait for Grunt to finish loading.
   - until $(curl --output /dev/null --silent --head --fail http://localhost:9000); do sleep 1; echo '.'; done
 
 script:
-  # Run PhantomCSS tests.
-  - cd phantomcss
-  - casperjs test dashboard.js
 
-  # Upload failed images to imgur
-  - bash scan_phantomcss_fails.sh > ~/phantomcss.log 2>&1 &
-  # Print a list of images created on imgur.
-  - cat ~/phantomcss.log
-
-  # Run PhantomJs.
-  - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
   # Run Behat tests.
-  - cd ../behat
+  - cd ./behat
   - ./bin/behat --tags=~@wip
 
   # Print logs.
-  - cat ~/grunt.log
-  - cat ~/phantomjs.log
+  # - cat ~/grunt.log
+  # - cat ~/phantomjs.log
