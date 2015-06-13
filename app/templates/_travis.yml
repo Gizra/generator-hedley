@@ -10,17 +10,14 @@ mysql:
 
 before_install:
   - sudo apt-get update > /dev/null
-  - composer self-update 1.0.0-alpha9
+  - composer self-update
 
   # Install Bower, Grunt and CasperJs.
-  - npm install -g bower grunt-cli casperjs
+  - npm install -g bower grunt-cli
 
   # Install Sass and Compass for Grunt to work.
   - gem install compass
 
-  # Configure imgur bash script to upload images on failure.
-  - npm install -g jshon
-  - chmod +x imgur
   - chmod +x install
 
 install:
@@ -46,11 +43,6 @@ before_script:
   - grunt serve > ~/grunt.log 2>&1 &
   - cd ..
 
-  # Install PhantomCSS
-  - cd phantomcss
-  - npm install
-  - cd ..
-
   # Install Behat
   - cd behat
   - cp aliases.drushrc.php ~/.drush/
@@ -69,23 +61,12 @@ before_script:
   # Wait for Grunt to finish loading.
   - until $(curl --output /dev/null --silent --head --fail http://localhost:9000); do sleep 1; echo '.'; done
 
-script:
-
-  # Run PhantomCSS tests.
-  - cd phantomcss
-  - casperjs test dashboard.js
-
-  # Upload failed images to imgur
-  - bash scan_phantomcss_fails.sh > ~/phantomcss.log 2>&1 &
-  # Print a list of images created on imgur.
-  - cat ~/phantomcss.log
-
-
   # Run phantomJs.
   - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
 
+script:
   # Run behat tests.
-  - cd ../behat
+  - cd behat
   - ./bin/behat --tags=~@wip
 
   # Print logs.
