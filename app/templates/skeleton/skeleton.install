@@ -16,6 +16,7 @@ function skeleton_install() {
 
   // Set the default theme.
   variable_set('theme_default', 'bartik');
+  variable_set('admin_theme', 'seven');
 
   // Enable node view page override by Page manager module.
   variable_set('page_manager_node_view_disabled', FALSE);
@@ -198,4 +199,3 @@ function skeleton_standard_install() {
 
   node_access_rebuild(TRUE);
 }
-
