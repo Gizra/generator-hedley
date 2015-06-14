@@ -80,7 +80,7 @@ function skeleton_company_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_company_logo',
     'label' => 'Logo',
-    'required' => FALSE,
+    'required' => 0,
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
@@ -93,6 +93,7 @@ function skeleton_company_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'image',
       'settings' => array(
         'preview_image_style' => 'thumbnail',
