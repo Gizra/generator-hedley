@@ -7,8 +7,8 @@
 
 abstract class SkeletonMigrateBase extends Migration {
 
-  public function __construct() {
-    parent::__construct();
+  public function __construct($arguments) {
+    parent::__construct($arguments);
 
     // Make sure we can use it for node and term only.
     if (!in_array($this->entityType, array('node', 'taxonomy_term'))) {
