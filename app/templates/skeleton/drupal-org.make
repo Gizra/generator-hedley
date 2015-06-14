@@ -3,13 +3,13 @@ api = 2
 
 ; Modules
 projects[admin_menu][subdir] = "contrib"
-projects[admin_menu][version] = "3.0-rc4"
+projects[admin_menu][version] = "3.0-rc5"
 
 projects[admin_views][subdir] = "contrib"
-projects[admin_views][version] = "1.3"
+projects[admin_views][version] = "1.4"
 
 projects[ctools][subdir] = "contrib"
-projects[ctools][version] = "1.5"
+projects[ctools][version] = "1.7"
 
 projects[date][subdir] = "contrib"
 projects[date][version] = "2.8"
@@ -21,8 +21,7 @@ projects[email][subdir] = "contrib"
 projects[email][version] = "1.3"
 
 projects[entity][subdir] = "contrib"
-projects[entity][version] = "1.5"
-projects[entity][patch][] = "https://www.drupal.org/files/issues/2264079-entity-wrapper-access-single-entity-reference-2.patch"
+projects[entity][version] = "1.6"
 projects[entity][patch][] = "https://www.drupal.org/files/issues/2086225-entity-access-check-node-create-3.patch"
 
 projects[entitycache][subdir] = "contrib"
@@ -39,10 +38,10 @@ projects[facetapi][subdir] = "contrib"
 projects[facetapi][version] = "1.5"
 
 projects[features][subdir] = "contrib"
-projects[features][version] = "2.2"
+projects[features][version] = "2.5"
 
 projects[flag][subdir] = "contrib"
-projects[flag][version] = "3.5"
+projects[flag][version] = "3.6"
 
 projects[geolocation][subdir] = "contrib"
 projects[geolocation][version] = "1.6"
@@ -57,7 +56,7 @@ projects[mailsystem][version] = 2.34
 projects[mailsystem][subdir] = "contrib"
 
 projects[message][subdir] = "contrib"
-projects[message][version] = "1.9"
+projects[message][version] = "1.10"
 
 projects[message_notify][subdir] = "contrib"
 projects[message_notify][version] = "2.5"
@@ -66,7 +65,7 @@ projects[mimemail][version] = 1.0-beta3
 projects[mimemail][subdir] = "contrib"
 
 projects[module_filter][subdir] = "contrib"
-projects[module_filter][version] = 2.0-alpha2
+projects[module_filter][version] = 2.0
 
 projects[og][subdir] = "contrib"
 projects[og][version] = 2.x
@@ -90,10 +89,10 @@ projects[title][subdir] = "contrib"
 projects[title][version] = "1.0-alpha7"
 
 projects[token][subdir] = "contrib"
-projects[token][version] = "1.5"
+projects[token][version] = "1.6"
 
 projects[views][subdir] = "contrib"
-projects[views][version] = "3.8"
+projects[views][version] = "3.11"
 
 projects[views_bulk_operations][subdir] = "contrib"
 projects[views_bulk_operations][version] = "3.2"
@@ -103,7 +102,7 @@ projects[devel][subdir] = "development"
 projects[devel][version] = "1.5"
 
 projects[migrate][subdir] = "development"
-projects[migrate][version] = 2.5
+projects[migrate][version] = "2.7"
 
 projects[migrate_extras][subdir] = "development"
 projects[migrate_extras][version] = 2.5

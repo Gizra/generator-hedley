@@ -22,9 +22,8 @@ class SkeletonEventsMigrate extends \SkeletonMigrateBase {
   );
 
 
-  public function __construct() {
-    parent::__construct();
-
+  public function __construct($arguments) {
+    parent::__construct($arguments);
 
     $this
       ->addFieldMapping(OG_AUDIENCE_FIELD, '_company')

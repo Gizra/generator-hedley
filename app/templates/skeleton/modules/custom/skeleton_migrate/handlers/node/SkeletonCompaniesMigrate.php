@@ -10,8 +10,9 @@ class SkeletonCompaniesMigrate extends \SkeletonMigrateBase {
   public $entityType = 'node';
   public $bundle = 'company';
 
-  public function __construct() {
-    parent::__construct();
+  public function __construct($arguments) {
+    parent::__construct($arguments);
+
     $this
       ->addFieldMapping(OG_GROUP_FIELD)
       ->defaultValue(TRUE);
