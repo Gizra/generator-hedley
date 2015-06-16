@@ -5,3 +5,4 @@ node_modules/
 app/templates/client/app/scripts/config.js
 sync_hedley.sh
 app/templates/behat/bin/behat
+.idea/
