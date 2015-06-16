@@ -3,7 +3,7 @@ Feature: Features state
   there are no conflicts between features.
 
   @api
-  Scenario: Visit content pages with an authenticated user from another company.
+  Scenario: Visit the features page and check that there are no conflicts and no overridden features.
     Given I login with user "admin"
     When  I visit "admin/structure/features"
     Then  I should not see "Conflict"
