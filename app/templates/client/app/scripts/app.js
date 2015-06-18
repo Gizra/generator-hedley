@@ -62,6 +62,16 @@ angular
         templateUrl: 'views/forgot-password.html',
         controller: 'ForgotPasswordCtrl'
       })
+      .state('reset-password', {
+        url: '/reset-password/{accessToken:string}',
+        templateUrl: 'views/reset-password.html',
+        controller: 'ResetPasswordCtrl',
+        resolve: {
+          accessToken: function($stateParams) {
+            return $stateParams.accessToken;
+          }
+        }
+      })
       .state('dashboard', {
         abstract: true,
         url: '',

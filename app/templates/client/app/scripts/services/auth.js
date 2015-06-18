@@ -46,6 +46,24 @@ angular.module('clientApp')
     };
 
     /**
+     * Save new password for a user.
+     *
+     * @param uid
+     *  User id.
+     * @param password
+     *  A new password to set.
+     *
+     * @returns {*}
+     */
+    this.savePassword = function(uid, password) {
+      return $injector.get('$http')({
+        method: 'PATCH',
+        url: Config.backend + '/api/users/' + uid,
+        data: {password: password}
+      });
+    };
+
+    /**
      * Logout current user.
      *
      * Do whatever cleaning up is required.
