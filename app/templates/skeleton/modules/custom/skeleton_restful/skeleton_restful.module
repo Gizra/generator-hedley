@@ -19,3 +19,34 @@ function skeleton_restful_ctools_plugin_directory($module, $plugin) {
   }
 }
 
+/**
+ * Implements hook_entity_property_info_alter().
+ */
+function skeleton_restful_entity_property_info_alter(&$info) {
+  $info['user']['bundles']['user']['properties']['pass'] = array(
+    'label' => t('Password'),
+    'setter callback' => 'skeleton_restful_set_user_pass',
+    'schema field' => 'pass',
+  );
+
+  $info['user']['bundles']['user']['properties']['mail'] = array(
+    'label' => t('Username'),
+    'setter callback' => 'skeleton_restful_set_user_name',
+    'schema field' => 'mail',
+  );
+}
+
+/**
+ * Setter callback; Set user password.
+ */
+function skeleton_restful_set_user_pass($account, $name, $value) {
+  require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
+  $account->pass = user_hash_password($value);
+}
+
+/**
+ * Setter callback; Set user name and email.
+ */
+function skeleton_restful_set_user_name($account, $name, $value) {
+  $account->name = $value;
+}
