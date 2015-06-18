@@ -30,6 +30,22 @@ angular.module('clientApp')
     };
 
     /**
+     * If email is available then send to it an email with instructions.
+     *
+     * @param email
+     *  The email of the user.
+     *
+     * @returns {*}
+     */
+    this.resetPassword = function(email) {
+      return $injector.get('$http')({
+        method: 'POST',
+        url: Config.backend + '/api/reset-password',
+        data: {email: email}
+      });
+    };
+
+    /**
      * Logout current user.
      *
      * Do whatever cleaning up is required.

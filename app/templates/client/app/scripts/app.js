@@ -57,6 +57,11 @@ angular
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
+      .state('forgot-password', {
+        url: '/forgot-password',
+        templateUrl: 'views/forgot-password.html',
+        controller: 'ForgotPasswordCtrl'
+      })
       .state('dashboard', {
         abstract: true,
         url: '',
