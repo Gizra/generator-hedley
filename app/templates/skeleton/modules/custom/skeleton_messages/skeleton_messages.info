@@ -1,0 +1,12 @@
+name = Skeleton Messages
+core = 7.x
+package = Skeleton
+dependencies[] = ctools
+dependencies[] = entity
+dependencies[] = message
+dependencies[] = message_notify
+dependencies[] = strongarm
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[message_type][] = reset_password
+features[variable][] = field_bundle_settings_message__reset_password

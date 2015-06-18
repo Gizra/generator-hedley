@@ -1,0 +1,56 @@
+<?php
+/**
+ * @file
+ * Code for the Skeleton Messages feature.
+ */
+
+include_once 'skeleton_messages.features.inc';
+
+define('SKELETON_DEFAULT_CLIENT_DOMAIN', variable_get('skeleton_default_client_domain', 'http://localhost:9000/'));
+
+/**
+ * Implements hook_token_info().
+ */
+function skeleton_messages_token_info() {
+  $info = array();
+
+  $info['tokens']['skeleton']['reset-password-link'] = array(
+    'name' => t('Reset Password Link'),
+    'description' => t('Display the link for resetting a password.'),
+  );
+
+  $info['types']['skeleton'] = array(
+    'name' => t('Skeleton'),
+    'description' => t('Tokens related to Skeleton.'),
+  );
+
+  return $info;
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function skeleton_messages_tokens($type, $tokens, array $data = array(), array $options = array()) {
+
+  $replacements = array();
+  if ($type != 'skeleton') {
+    return $replacements;
+  }
+
+  foreach ($tokens as $name => $original) {
+    if ($name != 'reset-password-link') {
+      continue;
+    }
+
+    $message = reset($data);
+    $token = $message->arguments['@token'];
+
+    $options = array(
+      'fragment' => 'reset-password/' . $token,
+    );
+
+    $replacements[$original] = url(SKELETON_DEFAULT_CLIENT_DOMAIN, $options);
+  }
+
+  return $replacements;
+}

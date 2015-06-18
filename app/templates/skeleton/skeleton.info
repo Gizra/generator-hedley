@@ -50,3 +50,4 @@ dependencies[] = skeleton_company
 dependencies[] = skeleton_event
 dependencies[] = skeleton_file
 dependencies[] = skeleton_restful
+dependencies[] = skeleton_messages
