@@ -2,7 +2,7 @@
 
 $plugin = array(
   'label' => t('Update User Entity'),
-  'resource' => 'users',
+  'resource' => 'users-update',
   'name' => 'update__1_0',
   'entity_type' => 'user',
   'bundle' => 'user',

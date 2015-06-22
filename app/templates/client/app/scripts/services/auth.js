@@ -58,7 +58,7 @@ angular.module('clientApp')
     this.savePassword = function(uid, password) {
       return $injector.get('$http')({
         method: 'PATCH',
-        url: Config.backend + '/api/users/' + uid,
+        url: Config.backend + '/api/users-update/' + uid,
         data: {password: password}
       });
     };
