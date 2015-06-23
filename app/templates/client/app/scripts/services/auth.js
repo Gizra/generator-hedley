@@ -64,6 +64,34 @@ angular.module('clientApp')
     };
 
     /**
+     * Checks if email is available.
+     *
+     * @param email
+     * @returns {*}
+     */
+    this.emailAvailable = function(email) {
+      return $injector.get('$http')({
+        method: 'POST',
+        url: Config.backend + '/api/email-available',
+        data: {email: email}
+      });
+    };
+
+    /**
+     * Checks if username is available.
+     *
+     * @param username
+     * @returns {*}
+     */
+    this.usernameAvailable = function(username) {
+      return $injector.get('$http')({
+        method: 'POST',
+        url: Config.backend + '/api/username-available',
+        data: {username: username}
+      });
+    };
+
+    /**
      * Logout current user.
      *
      * Do whatever cleaning up is required.

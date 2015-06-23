@@ -8,7 +8,15 @@
 
     <div class="signin-body">
       <div class="container">
+
+        <div class="row vertical-space">
+          <div class="col-xs-6">
+            <a ui-sref="sign-up">Sing up</a>
+          </div>
+        </div>
+
         <div class="form-container">
+
           <form class="form-horizontal" id="login" ng-submit="login(user)">
             <fieldset>
               <div class="form-group">
@@ -36,9 +44,10 @@
 
               <div id="remember-me-wrapper" class="row">
                 <div class="col-xs-6">
-                <a ui-sref="forgot-password" id="login-forget-link" class="col-xs-6">Forgot your password?</a>
+                  <a ui-sref="forgot-password" id="login-forget-link">Forgot your password?</a>
                 </div>
               </div>
+
               <div class="divider divider-xl"></div>
 
               <div class="message error">

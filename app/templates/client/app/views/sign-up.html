@@ -1,0 +1,83 @@
+<div id="dashboard-sign-up">
+  <div class="page-sign-up">
+    <div class="sign-up-header">
+      <section class="logo text-center">
+        <h1>Skeleton</h1>
+      </section>
+    </div>
+
+    <div class="signin-body">
+      <div class="container">
+
+        <h4>Sign Up</h4>
+        <p>Please fill up your details.</p>
+
+        <div class="form-container">
+          <form class="form-horizontal" id="login" ng-submit="signUp(user)">
+
+            <div class="alert alert-danger fade in" ng-show="emailNotAvailable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <i class="fa fa-times-circle fa-fw fa-lg"></i>
+              There's already an account registered with this email.
+              <a ui-sref="forgot-password">Forgot password?</a>
+            </div>
+
+            <div class="alert alert-danger fade in" ng-show="usernameNotAvailable">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <i class="fa fa-times-circle fa-fw fa-lg"></i>
+              There's already an account registered with this username.
+              <a ui-sref="forgot-password">Forgot password?</a>
+            </div>
+
+            <div class="alert alert-success fade in" ng-show="signedUp">
+              <i class="fa fa-check-circle fa-fw fa-lg"></i>
+              A verification mail has been sent to {{ user.email }}, please follow the instructions.
+            </div>
+
+            <fieldset>
+              <div class="form-group">
+                <div class="input-group input-group-first">
+                <span class="input-group-addon">
+                    <span class="ti-email"></span>
+                </span>
+                  <input ng-disabled="signedUp" ng-model="user.username" name="username" type="text" class="form-control input-lg" placeholder="Username" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group input-group-first">
+                <span class="input-group-addon">
+                    <span class="ti-email"></span>
+                </span>
+                  <input ng-disabled="signedUp" ng-model="user.email" name="email" type="email" class="form-control input-lg" placeholder="Email" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                <span class="input-group-addon">
+                    <span class="ti-lock"></span>
+                </span>
+                  <input ng-disabled="signedUp" ng-model="user.password" name="password" type="password" class="form-control input-lg" placeholder="Password" required>
+                </div>
+              </div>
+
+              <div class="divider divider-xl"></div>
+              <div class="form-group">
+                <input ng-disabled="signedUp" type="submit" class="btn btn-primary btn-lg btn-block text-center" id="submit" value="Sign Up" />
+              </div>
+
+              <div class="row">
+                <div class="col-xs-6">
+                  <a ui-sref="login">Back to login</a>
+                </div>
+              </div>
+
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
