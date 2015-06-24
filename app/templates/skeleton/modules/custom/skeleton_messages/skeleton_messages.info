@@ -9,4 +9,6 @@ dependencies[] = strongarm
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[message_type][] = reset_password
+features[message_type][] = verify_email
 features[variable][] = field_bundle_settings_message__reset_password
+features[variable][] = field_bundle_settings_message__verify_email
