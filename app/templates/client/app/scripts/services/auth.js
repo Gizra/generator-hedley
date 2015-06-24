@@ -92,6 +92,20 @@ angular.module('clientApp')
     };
 
     /**
+     * Sign Up new user.
+     *
+     * @param data
+     * @returns {*}
+     */
+    this.signUp = function(data) {
+      return $injector.get('$http')({
+        method: 'POST',
+        url: Config.backend + '/api/users-update',
+        data: data
+      });
+    };
+
+    /**
      * Logout current user.
      *
      * Do whatever cleaning up is required.
