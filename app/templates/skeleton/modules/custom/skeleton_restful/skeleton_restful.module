@@ -30,9 +30,15 @@ function skeleton_restful_entity_property_info_alter(&$info) {
   );
 
   $info['user']['bundles']['user']['properties']['mail'] = array(
+    'label' => t('Email'),
+    'setter callback' => 'skeleton_restful_set_mail',
+    'schema field' => 'mail',
+  );
+
+  $info['user']['bundles']['user']['properties']['name'] = array(
     'label' => t('Username'),
     'setter callback' => 'skeleton_restful_set_user_name',
-    'schema field' => 'mail',
+    'schema field' => 'name',
   );
 }
 
@@ -45,8 +51,15 @@ function skeleton_restful_set_user_pass($account, $name, $value) {
 }
 
 /**
- * Setter callback; Set user name and email.
+ * Setter callback; Set user name.
  */
 function skeleton_restful_set_user_name($account, $name, $value) {
   $account->name = $value;
+}
+
+/**
+ * Setter callback; Set user mail.
+ */
+function skeleton_restful_set_mail($account, $name, $value) {
+  $account->mail = $value;
 }

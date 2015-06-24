@@ -21,6 +21,10 @@ class SkeletonUsersResource extends \SkeletonTokenNotifierResource {
       'property' => 'mail',
     );
 
+    $public_fields['username'] = array(
+      'property' => 'name',
+    );
+
     // Prevent from trying to set the user status on creation.
     if ($this->getMethod() != \RestfulBase::POST) {
       $public_fields['status'] = array(
