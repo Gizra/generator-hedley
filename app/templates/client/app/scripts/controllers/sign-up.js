@@ -14,12 +14,16 @@ angular.module('clientApp')
      * Send a password reset link.
      */
     $scope.signUp = function(user) {
+
+      // Reset the flags before each request.
+      $scope.emailNotAvailable = false;
+      $scope.usernameNotAvailable = false;
+
       Auth.usernameAvailable(user.username).then(function(response) {
         if (response.data.data.available) {
           Auth.emailAvailable(user.email).then(function(response) {
             if (response.data.data.available) {
               // Email is available.
-              $scope.emailNotAvailable = false;
               Auth.signUp(user).then(function() {
                 // User registered successfully.
                 $scope.signedUp = true;
