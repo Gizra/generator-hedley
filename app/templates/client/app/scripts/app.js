@@ -55,12 +55,27 @@ angular
       .state('login', {
         url: '/login',
         templateUrl: 'views/login.html',
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+        resolve: {
+          accessToken: function($stateParams) {
+            return null;
+          }
+        }
       })
       .state('sign-up', {
         url: '/sign-up',
         templateUrl: 'views/sign-up.html',
         controller: 'SignUpCtrl'
+      })
+      .state('verify-email', {
+        url: '/verify-email/{accessToken:string}',
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl',
+        resolve: {
+          accessToken: function($stateParams) {
+            return $stateParams.accessToken;
+          }
+        }
       })
       .state('forgot-password', {
         url: '/forgot-password',

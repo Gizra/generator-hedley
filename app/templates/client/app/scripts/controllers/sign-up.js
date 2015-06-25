@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc function
- * @name clientApp.controller:ForgotPasswordCtrl
+ * @name clientApp.controller:SignUpCtrl
  * @description
- * # ForgotPasswordCtrl
+ * # SignUpCtrl
  * Controller of the clientApp
  */
 angular.module('clientApp')

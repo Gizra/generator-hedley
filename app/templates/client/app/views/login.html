@@ -15,6 +15,11 @@
           </div>
         </div>
 
+        <div class="alert alert-success fade in" ng-show="emailVerified">
+          <i class="fa fa-check-circle fa-fw fa-lg"></i>
+          Your email has been verified successfully.
+        </div>
+
         <div class="form-container">
 
           <form class="form-horizontal" id="login" ng-submit="login(user)">
