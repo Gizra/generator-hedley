@@ -18,9 +18,8 @@ angular.module('clientApp')
           $scope.passwordResetSent = true;
         },
         function(response) {
-          // Too many requests.
-          if (response.status == 429) {
-            $scope.ErrorMsg = true;
+          if (response.status) {
+            $scope.ErrorMsg = response.statusText;
           }
         });
     };
