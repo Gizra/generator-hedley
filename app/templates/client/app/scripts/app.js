@@ -207,7 +207,7 @@ angular
 
         'response': function(result) {
           if (result.data.access_token) {
-            localStorageService.set('access_token', result.data.access_token);
+            Auth.setAccessToken(result.data.access_token);
           }
           return result;
         },

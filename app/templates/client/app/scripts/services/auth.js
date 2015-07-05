@@ -11,6 +11,15 @@ angular.module('clientApp')
   .service('Auth', function ($injector, $rootScope, Utils, localStorageService, Config) {
 
     /**
+     * An access token setter.
+     *
+     * @param accessToken
+     */
+    this.setAccessToken = function(accessToken) {
+      localStorageService.set('access_token', accessToken);
+    };
+
+    /**
      * Login by calling the Drupal REST server.
      *
      * @param user

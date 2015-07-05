@@ -8,7 +8,7 @@
  * Service in the clientApp.
  */
 angular.module('clientApp')
-  .service('Account', function ($q, $http, $timeout, Config, $rootScope, $log, localStorageService) {
+  .service('Account', function ($q, $http, $timeout, Config, $rootScope, Auth) {
 
     // A private cache key.
     var cache = {};
@@ -46,11 +46,11 @@ angular.module('clientApp')
     /**
      * Verify a user.
      *
-     * @param token
+     * @param accessToken
      * @returns {*}
      */
-    this.verifyEmail = function(token) {
-      localStorageService.set('access_token', token);
+    this.verifyEmail = function(accessToken) {
+      Auth.setAccessToken(accessToken);
 
       // After setting the access token in the local storage, try to get the
       // user account from the data, if succeed then change its status.
