@@ -58,7 +58,7 @@ function skeleton_setup_variables() {
     'restful_file_upload' => 1,
     // Files settings.
     'file_default_scheme' => 'public',
-    // Prevent from drupal to send an email to user after verification.
+    // Prevent from Drupal to send an email to user after verification.
     'user_mail_status_activated_notify' => FALSE,
   );
 

@@ -15,6 +15,7 @@ angular.module('clientApp')
       $state.go('login');
     }
 
+    // Determine if password was reset successfully.
     $scope.passwordSaved = false;
 
     /**
