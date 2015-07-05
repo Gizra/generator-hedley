@@ -6,8 +6,6 @@
 
 include_once 'skeleton_messages.features.inc';
 
-define('SKELETON_DEFAULT_CLIENT_DOMAIN', variable_get('skeleton_default_client_domain', 'http://localhost:9000/'));
-
 /**
  * Implements hook_token_info().
  */
@@ -50,7 +48,7 @@ function skeleton_messages_tokens($type, $tokens, array $data = array(), array $
     $options = array(
       'fragment' => $path . '/' . $token,
     );
-    $replacements[$original] = url(SKELETON_DEFAULT_CLIENT_DOMAIN, $options);
+    $replacements[$original] = url(variable_get('skeleton_default_client_domain', 'http://localhost:9000/'), $options);
   }
 
   return $replacements;
