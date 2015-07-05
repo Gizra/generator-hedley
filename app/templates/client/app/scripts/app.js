@@ -62,12 +62,12 @@ angular
           }
         }
       })
-      .state('sign-up', {
-        url: '/sign-up',
-        templateUrl: 'views/sign-up.html',
+      .state('signup', {
+        url: '/signup',
+        templateUrl: 'views/signup.html',
         controller: 'SignUpCtrl'
       })
-      .state('verify-email', {
+      .state('verifyEmail', {
         url: '/verify-email/{accessToken:string}',
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
@@ -77,12 +77,12 @@ angular
           }
         }
       })
-      .state('forgot-password', {
+      .state('forgotPassword', {
         url: '/forgot-password',
         templateUrl: 'views/forgot-password.html',
         controller: 'ForgotPasswordCtrl'
       })
-      .state('reset-password', {
+      .state('resetPassword', {
         url: '/reset-password/{accessToken:string}',
         templateUrl: 'views/reset-password.html',
         controller: 'ResetPasswordCtrl',

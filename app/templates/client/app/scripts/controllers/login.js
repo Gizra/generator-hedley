@@ -11,7 +11,7 @@ angular.module('clientApp')
   .controller('LoginCtrl', function ($scope, Auth, $state, Account, accessToken) {
 
     // Try to verify the email when access token is being passed.
-    if (accessToken) {
+    if ($state.current.name == 'verifyEmail' && accessToken) {
       Account.verifyEmail(accessToken).then(function () {
         $scope.emailVerified = true;
       });
