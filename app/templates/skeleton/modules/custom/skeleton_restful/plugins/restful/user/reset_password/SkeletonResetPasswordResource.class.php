@@ -22,10 +22,8 @@ class SkeletonResetPasswordResource extends \SkeletonTokenNotifierResource {
 
     $email = $this->request['email'];
 
-    $account = user_load_by_mail($email);
-
-    if (empty($account)) {
-      throw new \SkeletonRestfulEmptyResponse();
+    if (!$account = user_load_by_mail($email)) {
+      throw new \RestfulBadRequestException('Email does\'t exists.');
     }
 
     $this->sendToken('reset_password', $account);
