@@ -17,8 +17,6 @@ class SkeletonResetPasswordResource extends \SkeletonTokenNotifierResource {
 
   /**
    * Send "Reset Password" email.
-   *
-   * @return array
    */
   public function resetPassword() {
 
@@ -27,12 +25,12 @@ class SkeletonResetPasswordResource extends \SkeletonTokenNotifierResource {
     $account = user_load_by_mail($email);
 
     if (empty($account)) {
-      return array();
+      throw new \SkeletonRestfulEmptyResponse();
     }
 
     $this->sendToken('reset_password', $account);
 
-    return array();
+    throw new \SkeletonRestfulEmptyResponse();
   }
 
 }

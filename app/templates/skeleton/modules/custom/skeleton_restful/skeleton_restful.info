@@ -9,3 +9,4 @@ dependencies[] = skeleton_company
 files[] = plugins/restful/node/SkeletonEntityBaseNode.php
 files[] = plugins/restful/user/SkeletonTokenNotifierResource.class.php
 files[] = plugins/restful/user/SkeletonAvailableResource.class.php
+files[] = plugins/restful/SkeletonRestfulEmptyResponse.php
