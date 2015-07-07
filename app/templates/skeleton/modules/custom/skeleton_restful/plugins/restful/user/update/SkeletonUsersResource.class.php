@@ -14,7 +14,9 @@ class SkeletonUsersResource extends \SkeletonTokenNotifierResource {
 
     $public_fields['password'] = array(
       'property' => 'pass',
-      'callback' => array($this, 'hideField')
+      'access_callbacks' => array(
+        array($this, 'denyAccessOnGET'),
+      ),
     );
 
     $public_fields['email'] = array(
@@ -35,12 +37,10 @@ class SkeletonUsersResource extends \SkeletonTokenNotifierResource {
     return $public_fields;
   }
   /**
-   * Hide the field value.
-   *
-   * @return NULL
+   * Deny access when the request method is "GET".
    */
-  protected function hideField() {
-    return NULL;
+  protected function denyAccessOnGET() {
+    return $this->getMethod() == \REstfulInterface::GET ? \RestfulInterface::ACCESS_DENY : \RestfulInterface::ACCESS_ALLOW;
   }
 
   /**
