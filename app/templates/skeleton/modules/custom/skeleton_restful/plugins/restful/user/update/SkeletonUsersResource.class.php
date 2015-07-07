@@ -19,11 +19,11 @@ class SkeletonUsersResource extends \SkeletonTokenNotifierResource {
       ),
     );
 
-    $public_fields['email'] = array(
+    $public_fields['mail'] = array(
       'property' => 'mail',
     );
 
-    $public_fields['username'] = array(
+    $public_fields['name'] = array(
       'property' => 'name',
     );
 

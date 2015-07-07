@@ -73,30 +73,17 @@ angular.module('clientApp')
     };
 
     /**
-     * Checks if email is available.
+     * Checks users availability.
      *
-     * @param email
+     * @param user
      * @returns {*}
      */
-    this.emailAvailable = function(email) {
-      return $injector.get('$http')({
-        method: 'POST',
-        url: Config.backend + '/api/email-available',
-        data: {email: email}
-      });
-    };
+    this.usersAvailability = function(user) {
+      var params = 'name=' + user.name + '&mail=' + user.mail;
 
-    /**
-     * Checks if username is available.
-     *
-     * @param username
-     * @returns {*}
-     */
-    this.usernameAvailable = function(username) {
       return $injector.get('$http')({
-        method: 'POST',
-        url: Config.backend + '/api/username-available',
-        data: {username: username}
+        method: 'GET',
+        url: Config.backend + '/api/users-availability?' + params
       });
     };
 
