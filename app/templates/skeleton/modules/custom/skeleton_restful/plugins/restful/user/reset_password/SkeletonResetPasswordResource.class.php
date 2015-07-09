@@ -5,7 +5,7 @@
  * Contains SkeletonResetPasswordResource.
  */
 
-class SkeletonResetPasswordResource extends \SkeletonTokenNotifierResource {
+class SkeletonResetPasswordResource extends \RestfulEntityBaseUser {
   /**
    * Overrides \RestfulEntityBase::controllers.
    */
@@ -26,7 +26,7 @@ class SkeletonResetPasswordResource extends \SkeletonTokenNotifierResource {
       throw new \RestfulBadRequestException('Email does\'t exists.');
     }
 
-    $this->sendToken('reset_password', $account);
+    skeleton_send_token_to_user('reset_password', $account);
 
     throw new \SkeletonRestfulEmptyResponse();
   }
