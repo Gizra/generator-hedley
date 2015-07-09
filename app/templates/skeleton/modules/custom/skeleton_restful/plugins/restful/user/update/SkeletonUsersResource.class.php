@@ -44,19 +44,6 @@ class SkeletonUsersResource extends \SkeletonTokenNotifierResource {
   }
 
   /**
-   * Sending verification email.
-   */
-  public function createEntity() {
-    $entity = parent::createEntity();
-
-    $account = reset($entity);
-    $this->sendToken('verify_email', user_load($account['id']));
-
-    return $entity;
-  }
-
-
-  /**
    * Checks if the token is valid for this user.
    * We need to verify it because this resource is not authenticated require.
    *

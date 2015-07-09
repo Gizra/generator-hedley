@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * Implements hook_user_insert().
+ */
+function skeleton_general_user_insert(&$edit, $account, $category) {
+  skeleton_send_token_to_user('verify_email', user_load($account->uid));
+}
+
+/**
+ * Create a token and send it to the user.
+ *
+ * @param $message_type
+ *  The type of the message to send.
+ * @param $account
+ *  The user account.
+ */
+function skeleton_send_token_to_user($message_type, $account) {
+  $controller = new RestfulTokenAuthController('restful_token_auth');
+  $token = $controller->generateAccessToken($account->uid);
+
+  // Sending Email with instructions to the user.
+  skeleton_notify_user($message_type, $account, $token->token);
+}
+
+/**
+ * Send an email to the user with the token.
+ *
+ * @param $message_type
+ *  The type of the message.
+ * @param $account
+ *  The account of the user to notify.
+ * @param $token
+ *  The token of the user.
+ */
+function skeleton_notify_user($message_type, $account, $token) {
+  $message = message_create($message_type, array('arguments' => array('@token' => $token)), $account);
+  $wrapper = entity_metadata_wrapper('message', $message);
+  message_notify_send_message($wrapper->value(), array('mail' => $account->mail));
+}

@@ -46,6 +46,7 @@ dependencies[] = views
 dependencies[] = views_bulk_operations
 
 ; Skeleton
+dependencies[] = skeleton_general
 dependencies[] = skeleton_company
 dependencies[] = skeleton_event
 dependencies[] = skeleton_file
