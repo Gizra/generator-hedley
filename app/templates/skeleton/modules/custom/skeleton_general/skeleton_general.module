@@ -4,7 +4,10 @@
  * Implements hook_user_insert().
  */
 function skeleton_general_user_insert(&$edit, $account, $category) {
-  skeleton_send_token_to_user('verify_email', user_load($account->uid));
+  // Check the site settings if we should send a verification email.
+  if (variable_get('user_email_verification', TRUE)) {
+    skeleton_send_token_to_user('verify_email', user_load($account->uid));
+  }
 }
 
 /**
