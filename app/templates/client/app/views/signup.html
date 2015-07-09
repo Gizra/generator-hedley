@@ -29,6 +29,12 @@
               <a ui-sref="forgotPassword">Forgot password?</a>
             </div>
 
+            <div class="alert alert-danger fade in" ng-show="signupError">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <i class="fa fa-times-circle fa-fw fa-lg"></i>
+              {{ signupError }}
+            </div>
+
             <div class="alert alert-success fade in" ng-show="signedUp">
               <i class="fa fa-check-circle fa-fw fa-lg"></i>
               A verification mail has been sent to {{ user.mail }}, please follow the instructions.

@@ -18,6 +18,8 @@ angular.module('clientApp')
      * Send a password reset link.
      */
     $scope.signUp = function(user) {
+      // Clear the error before each request.
+      $scope.signupError = undefined;
 
       Auth.usersAvailability(user).then(function(response) {
         $scope.usernameAvailable = response.data.data.available.name;
@@ -27,6 +29,9 @@ angular.module('clientApp')
           Auth.signUp(user).then(function() {
             // User registered successfully.
             $scope.signedUp = true;
+          }, function (response) {
+            // Error trying to register the user.
+            $scope.signupError = response.data.detail;
           });
         }
       });
