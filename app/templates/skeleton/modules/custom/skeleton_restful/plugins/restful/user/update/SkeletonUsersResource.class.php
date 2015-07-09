@@ -5,7 +5,7 @@
  * Contains SkeletonUsersResource.
  */
 
-class SkeletonUsersResource extends \SkeletonTokenNotifierResource {
+class SkeletonUsersResource extends \RestfulEntityBaseUser {
   /**
    * Overrides RestfulEntityBaseUser::publicFieldsInfo().
    */
