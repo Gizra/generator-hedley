@@ -31,13 +31,13 @@ function skeleton_restful_entity_property_info_alter(&$info) {
 
   $info['user']['bundles']['user']['properties']['mail'] = array(
     'label' => t('Email'),
-    'setter callback' => 'skeleton_restful_set_mail',
+    'setter callback' => 'entity_property_verbatim_set',
     'schema field' => 'mail',
   );
 
   $info['user']['bundles']['user']['properties']['name'] = array(
     'label' => t('Username'),
-    'setter callback' => 'skeleton_restful_set_user_name',
+    'setter callback' => 'entity_property_verbatim_set',
     'schema field' => 'name',
   );
 }
@@ -48,18 +48,4 @@ function skeleton_restful_entity_property_info_alter(&$info) {
 function skeleton_restful_set_user_pass($account, $name, $value) {
   require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
   $account->pass = user_hash_password($value);
-}
-
-/**
- * Setter callback; Set user name.
- */
-function skeleton_restful_set_user_name($account, $name, $value) {
-  $account->name = $value;
-}
-
-/**
- * Setter callback; Set user mail.
- */
-function skeleton_restful_set_mail($account, $name, $value) {
-  $account->mail = $value;
 }
