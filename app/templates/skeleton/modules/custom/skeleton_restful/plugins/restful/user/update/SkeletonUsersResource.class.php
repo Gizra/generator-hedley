@@ -66,7 +66,7 @@ class SkeletonUsersResource extends \RestfulEntityBaseUser {
       return $this->checkPatchAccess();
     }
     if ($this->getMethod() == \RestfulBase::POST) {
-      return $this->registrationAccess();
+      return $this->visitorsRegistrationAccess();
     }
     return parent::checkEntityAccess($op, $entity_type, $entity);
   }
@@ -84,17 +84,18 @@ class SkeletonUsersResource extends \RestfulEntityBaseUser {
       return $this->checkPatchAccess();
     }
     if ($this->getMethod() == \RestfulBase::POST) {
-      return $this->registrationAccess();
+      return $this->visitorsRegistrationAccess();
     }
     return parent::checkPropertyAccess($op, $public_field_name, $property_wrapper, $wrapper);
   }
 
   /**
-   * Checking the site settings if a visitor allow to register.
+   * Determine if user registration is allowed for visitors by checking the
+   * site settings.
    *
    * @return bool
    */
-  public function registrationAccess() {
+  public function visitorsRegistrationAccess() {
     return variable_get('user_register', USER_REGISTER_ADMINISTRATORS_ONLY) != USER_REGISTER_ADMINISTRATORS_ONLY;
   }
 }
