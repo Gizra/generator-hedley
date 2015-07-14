@@ -57,7 +57,7 @@ angular
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         resolve: {
-          accessToken: function($stateParams) {
+          accessToken: function() {
             return null;
           }
         }
