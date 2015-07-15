@@ -39,7 +39,7 @@ angular.module('clientApp')
     };
 
     /**
-     * If email is available then send to it an email with instructions.
+     * Trigger a `reset password` action on the server for this email.
      *
      * @param email
      *  The email of the user.
@@ -67,7 +67,7 @@ angular.module('clientApp')
     this.savePassword = function(uid, password) {
       return $injector.get('$http')({
         method: 'PATCH',
-        url: Config.backend + '/api/users-update/' + uid,
+        url: Config.backend + '/api/v1.1/users/' + uid,
         data: {password: password}
       });
     };
@@ -96,7 +96,7 @@ angular.module('clientApp')
     this.signUp = function(data) {
       return $injector.get('$http')({
         method: 'POST',
-        url: Config.backend + '/api/users-update',
+        url: Config.backend + '/api/v1.1/users',
         data: data
       });
     };

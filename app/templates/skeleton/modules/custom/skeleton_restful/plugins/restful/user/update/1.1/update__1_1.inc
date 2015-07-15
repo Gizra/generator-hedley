@@ -2,12 +2,14 @@
 
 $plugin = array(
   'label' => t('Update User Entity'),
-  'resource' => 'users-update',
-  'name' => 'update__1_0',
+  'resource' => 'users',
+  'name' => 'update__1_1',
   'entity_type' => 'user',
   'bundle' => 'user',
   'description' => t('Users creation endpoint.'),
   'class' => 'SkeletonUsersResource',
+  // Set the minor version.
+  'minor_version' => 1,
   'rate_limit' => array(
     // The 'request' event is the basic event. You can declare your own events.
     'request' => array(

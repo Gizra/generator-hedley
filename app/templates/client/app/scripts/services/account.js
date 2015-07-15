@@ -57,7 +57,7 @@ angular.module('clientApp')
       return getDataFromBackend().then(function(user) {
         return $http({
           method: 'PATCH',
-          url: Config.backend + '/api/users-update/' + user.id,
+          url: Config.backend + '/api/v1.1/users/' + user.id,
           data: {status: 1}
         });
       });

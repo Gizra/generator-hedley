@@ -16,16 +16,15 @@ class SkeletonUsersAvailabilityResource extends \RestfulBase implements RestfulD
   );
 
   /**
-   * Return the properties that should be public.
+   * `RestfulBase` enforce to declare this function.
    *
    * @throws \RestfulEntityViewMode
    *
    * @return array
+   *  An empty array.
    */
   public function publicFieldsInfo() {
-    return array(
-      'status' => array(),
-    );
+    return array();
   }
 
   /**
