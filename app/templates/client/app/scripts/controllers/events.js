@@ -8,7 +8,7 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('EventsCtrl', function ($scope, events, authors, mapConfig, $state, $stateParams, $log) {
+  .controller('EventsCtrl', function ($scope, events, authors, mapConfig, $state, $stateParams, channelManager, $log) {
 
     // Initialize values.
     $scope.events = events;
@@ -43,6 +43,16 @@ angular.module('clientApp')
     if ($stateParams.userId) {
       selectedAuthorId($stateParams.userId);
     }
+
+    // Get list of chanels.
+    var channels = channelManager.getChannels();
+
+    angular.forEach(channels, function(channel) {
+      channel.bind('new-event', function(data) {
+        // Put new item in the begginning of the list.
+        $scope.events.unshift(data[0]);
+      });
+    });
 
     // Select marker in the Map.
     $scope.$on('leafletDirectiveMarker.click', function(event, args) {

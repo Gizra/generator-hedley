@@ -26,35 +26,35 @@ angular.module('clientApp')
     };
 
     /**
-     * Get repository channel.
+     * Get Company channel.
      *
-     * @param userId
-     *  User id.
+     * @param companyId
+     *  Company id.
      *
      * @returns {*}
-     *  Return user's channel.
+     *  Return company's channel.
      */
-    this.getChannel =  function (userId) {
-      return (userId in channels) ? channels[userId] : null;
+    this.getChannel =  function (companyId) {
+      return (companyId in channels) ? channels[companyId] : null;
     };
 
     /**
-     * Add new user's chanel.
+     * Add new company's chanel.
      *
-     * @param userId
+     * @param companyId
      *  User id.
      *
      * @returns {*}
-     *  Return new user's channel.
+     *  Return new company's channel.
      */
-    this.addChannel = function (userId) {
-      if (!!channels['uid' + userId]) {
+    this.addChannel = function (companyId) {
+      if (!!channels[companyId]) {
         // Already subscribed to channel.
         return;
       }
       var pusher = $pusher(this.getClient());
-      channels['uid' + userId] = pusher.subscribe('private-uid-' + userId);
-      return channels['uid' + userId];
+      channels[companyId] = pusher.subscribe('private-company-' + companyId);
+      return channels[companyId];
     };
 
     this.getClient = function() {

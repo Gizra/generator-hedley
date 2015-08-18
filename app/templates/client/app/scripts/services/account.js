@@ -37,7 +37,7 @@ angular.module('clientApp')
         transformResponse: prepareResponse
       }).success(function(response) {
         setCache(response[0]);
-        setUserChannel(response[0].id);
+        setChannels(response[0].companies);
         deferred.resolve(response[0]);
       });
 
@@ -104,11 +104,18 @@ angular.module('clientApp')
      * @param int userId
      *   The user id.
      */
-    var setUserChannel = function(userId) {
-      channelManager.addChannel(userId);
-    };
+    var setChannels = function(companies) {
+      if (!companies) {
+        // User doesn't have repositories yet.
+        return;
+      }
 
-    $rootScope.$on('clearCache', function() {
-      cache = {};
-    });
+      companies.forEach(function (companyId) {
+        if (!companyId) {
+          // repoId is null.
+          return;
+        }
+        channelManager.addChannel(companyId);
+      });
+    };
   });

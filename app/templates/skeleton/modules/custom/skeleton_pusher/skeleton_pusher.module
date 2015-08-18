@@ -8,6 +8,8 @@
 /**
  * Trigger a Pusher event.
  *
+ * @param $company_id
+ *  Company ID.
  * @param $event_name
  *  Event name.
  * @param array $data
@@ -18,11 +20,9 @@
  *
  * @return bool
  */
-function skeleton_pusher_trigger_event($event_name, $data = array()) {
-  global $user;
-  $account = user_load($user->uid);
+function skeleton_pusher_trigger_event($company_id, $event_name, $data = array()) {
   $pusher = skeleton_pusher_get_pusher();
-  return $pusher->trigger('private-uid-' . $account->uid, $event_name, $data);
+  return $pusher->trigger('private-company-' . $company_id, $event_name, $data);
 }
 
 /**
