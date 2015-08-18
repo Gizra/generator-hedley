@@ -52,6 +52,13 @@ angular.module('clientApp')
     };
 
     /**
+     * Returns access token.
+     */
+    this.getAccessToken = function() {
+      return localStorageService.get('access_token');
+    };
+
+    /**
      * Authentication failed, set state to login.
      */
     this.authFailed = function() {

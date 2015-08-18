@@ -16,6 +16,7 @@ angular
     'config',
     'leaflet-directive',
     'LocalStorageModule',
+    'pusher-angular',
     'ui.router',
     'angular-loading-bar'
   ])

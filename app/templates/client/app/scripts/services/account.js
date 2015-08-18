@@ -8,7 +8,7 @@
  * Service in the clientApp.
  */
 angular.module('clientApp')
-  .service('Account', function ($q, $http, $timeout, Config, $rootScope, $log) {
+  .service('Account', function ($q, $http, $timeout, Config, $rootScope, channelManager, $log) {
 
     // A private cache key.
     var cache = {};
@@ -37,6 +37,7 @@ angular.module('clientApp')
         transformResponse: prepareResponse
       }).success(function(response) {
         setCache(response[0]);
+        setUserChannel(response[0].id);
         deferred.resolve(response[0]);
       });
 
@@ -97,4 +98,17 @@ angular.module('clientApp')
       cache = {};
     });
 
+    /**
+     * Subscribe user to user's Pusher channel.
+     *
+     * @param int userId
+     *   The user id.
+     */
+    var setUserChannel = function(userId) {
+      channelManager.addChannel(userId);
+    };
+
+    $rootScope.$on('clearCache', function() {
+      cache = {};
+    });
   });

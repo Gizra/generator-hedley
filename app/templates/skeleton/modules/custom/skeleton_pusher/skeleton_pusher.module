@@ -8,8 +8,6 @@
 /**
  * Trigger a Pusher event.
  *
- * @param $nid
- *  Node ID.
  * @param $event_name
  *  Event name.
  * @param array $data
@@ -20,9 +18,11 @@
  *
  * @return bool
  */
-function skeleton_pusher_trigger_event($nid, $event_name, $data = array()) {
-  $pusher = shoov_pusher_get_pusher();
-  return $pusher->trigger('node-' . $nid, $event_name, $data);
+function skeleton_pusher_trigger_event($event_name, $data = array()) {
+  global $user;
+  $account = user_load($user->uid);
+  $pusher = skeleton_pusher_get_pusher();
+  return $pusher->trigger('private-uid-' . $account->uid, $event_name, $data);
 }
 
 /**
