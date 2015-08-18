@@ -19,6 +19,7 @@ dependencies[] = file
 ; Contrib modules
 dependencies[] = admin_menu_toolbar
 dependencies[] = admin_views
+dependencies[] = composer_manager
 dependencies[] = ctools
 dependencies[] = date
 dependencies[] = entity
@@ -49,4 +50,5 @@ dependencies[] = views_bulk_operations
 dependencies[] = skeleton_company
 dependencies[] = skeleton_event
 dependencies[] = skeleton_file
+dependencies[] = skeleton_pusher
 dependencies[] = skeleton_restful
