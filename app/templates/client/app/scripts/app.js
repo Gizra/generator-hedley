@@ -57,8 +57,8 @@ angular
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         resolve: {
-          accessToken: function() {
-            return null;
+          emailVerified: function() {
+            return false;
           }
         }
       })
@@ -72,8 +72,9 @@ angular
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         resolve: {
-          accessToken: function($stateParams) {
-            return $stateParams.accessToken;
+          emailVerified: function($stateParams, Auth, Account) {
+            Auth.setAccessToken($stateParams.accessToken);
+            return Account.verifyEmail();
           }
         }
       })

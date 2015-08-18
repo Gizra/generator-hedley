@@ -46,14 +46,12 @@ angular.module('clientApp')
     /**
      * Verify a user.
      *
-     * @param accessToken
      * @returns {*}
      */
-    this.verifyEmail = function(accessToken) {
-      Auth.setAccessToken(accessToken);
-
-      // After setting the access token in the local storage, try to get the
-      // user account from the data, if succeed then change its status.
+    this.verifyEmail = function() {
+      // After setting the access token in the local storage (in the state
+      // resolve), try to get the user account from the data, if succeed then
+      // change its status.
       return getDataFromBackend().then(function(user) {
         return $http({
           method: 'PATCH',

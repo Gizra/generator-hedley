@@ -8,14 +8,9 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('LoginCtrl', function ($scope, Auth, $state, Account, accessToken) {
+  .controller('LoginCtrl', function ($scope, Auth, $state, emailVerified) {
 
-    // Try to verify the email when access token is being passed.
-    if ($state.current.name == 'verifyEmail' && accessToken) {
-      Account.verifyEmail(accessToken).then(function () {
-        $scope.emailVerified = true;
-      });
-    }
+    $scope.emailVerified = emailVerified;
 
     // Will be FALSE during login GET period - will cause the login button to be
     // disabled.
