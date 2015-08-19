@@ -87,9 +87,10 @@ angular
         url: '/reset-password/{accessToken:string}',
         templateUrl: 'views/reset-password.html',
         controller: 'ResetPasswordCtrl',
+        onEnter: page403,
         resolve: {
-          accessToken: function($stateParams) {
-            return $stateParams.accessToken;
+          accessToken: function($stateParams, Auth) {
+            Auth.setAccessToken($stateParams.accessToken);
           }
         }
       })

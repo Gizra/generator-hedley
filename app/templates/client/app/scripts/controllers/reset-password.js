@@ -8,12 +8,7 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('ResetPasswordCtrl', function ($scope, Auth, $state, $location, Account, accessToken) {
-
-    // If 'access-token' is not provided redirect to login.
-    if (!accessToken) {
-      $state.go('login');
-    }
+  .controller('ResetPasswordCtrl', function ($scope, Auth, Account) {
 
     // Determine if password was reset successfully.
     $scope.passwordSaved = false;
@@ -26,8 +21,6 @@ angular.module('clientApp')
      *  The new password.
      */
     $scope.saveNewPassword = function(password) {
-      Auth.setAccessToken(accessToken);
-
       Account.get().then(function(user) {
         Auth.savePassword(user.id, password).then(function() {
           $scope.passwordSaved = true;
