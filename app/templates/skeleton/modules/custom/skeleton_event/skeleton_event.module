@@ -10,15 +10,15 @@ include_once 'skeleton_event.features.inc';
  * Implement hook_node_insert().
  */
 function skeleton_event_node_insert($node) {
+  if ($node->type != 'event') {
+    return;
+  }
   $wrapper = entity_metadata_wrapper('node', $node);
-  $company_id = $wrapper->og_group_ref->value(array('identifier' => TRUE));
+  $company_id = $wrapper->{OG_AUDIENCE_FIELD}->value(array('identifier' => TRUE));
 
-//  $account = user_load($node->uid);
-  $handler = restful_get_restful_handler('events');
-//  $handler->setAccount($account);
-  $result = $handler->get($node->nid);
-
-  $data = array($result[0]);
+  $data = array(
+    'userId' => $node->uid,
+  );
 
   skeleton_pusher_trigger_event($company_id, 'new-event', $data);
 }

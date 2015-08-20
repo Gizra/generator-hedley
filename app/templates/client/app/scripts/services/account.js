@@ -110,12 +110,12 @@ angular.module('clientApp')
         return;
       }
 
-      companies.forEach(function (companyId) {
-        if (!companyId) {
+      companies.forEach(function (company) {
+        if (!company.id) {
           // repoId is null.
           return;
         }
-        channelManager.addChannel(companyId);
+        channelManager.addChannel(company.id);
       });
     };
   });

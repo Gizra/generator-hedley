@@ -8,7 +8,7 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('EventsCtrl', function ($scope, events, authors, mapConfig, $state, $stateParams, channelManager, $log) {
+  .controller('EventsCtrl', function ($scope, events, authors, mapConfig, Events, $state, $stateParams, channelManager, $log) {
 
     // Initialize values.
     $scope.events = events;
@@ -46,11 +46,15 @@ angular.module('clientApp')
 
     // Get list of chanels.
     var channels = channelManager.getChannels();
-
-    angular.forEach(channels, function(channel) {
+    angular.forEach(channels, function(channel, companyId) {
+      // Listen to event.
       channel.bind('new-event', function(data) {
-        // Put new item in the begginning of the list.
-        $scope.events.unshift(data[0]);
+        Events.get(companyId, data.userId).then(function(value) {
+          // Update events list of the company.
+          $scope.events = angular.extend($scope.events, value);
+          // Update user's events count.
+          $scope.authors[data.userId].count = Object.keys(value).length;
+        });
       });
     });
 
