@@ -187,6 +187,18 @@ function install_drupal_profile {
   cd $ROOT
 }
 
+##
+# Composer install.
+##
+function composer_install {
+  echo -e "${LBLUE}> Composer install${RESTORE}"
+
+  cd $ROOT/www/sites/default/files/composer
+  composer install
+  echo
+
+  cd $ROOT
+}
 
 ##
 # Create (if not exists) and set the proper file permissions

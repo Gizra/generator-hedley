@@ -142,6 +142,9 @@ delete_sites_default_content
 # Install the installation profile.
 install_drupal_profile
 
+# Composer install
+composer_install
+
 # Setup the files directory.
 create_sites_default_files_directory
 
