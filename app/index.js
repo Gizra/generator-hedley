@@ -57,6 +57,24 @@ module.exports = yeoman.generators.Base.extend({
       type: String,
       required: 'false'
     });
+
+    this.option('pusher-key', {
+      desc: 'The pusher key',
+      type: String,
+      required: 'false'
+    });
+
+    this.option('pusher-secret', {
+      desc: 'The pusher secret',
+      type: String,
+      required: 'false'
+    });
+
+    this.option('pusher-id', {
+      desc: 'The pusher app ID',
+      type: String,
+      required: 'false'
+    });
   },
 
   askForProjectName: function () {
@@ -204,6 +222,81 @@ module.exports = yeoman.generators.Base.extend({
     }.bind(this));
   },
 
+  askForPusherKey: function () {
+    // Allow passing an empty password.
+    if (this.options['pusher-key'] !== undefined) {
+      // Get the value from the CLI.
+      this.pusherKey = this.options['pusher-key'];
+      this.log('Setting pusher key: ' + this.pusherKey);
+      return;
+    }
+
+    var done = this.async();
+
+    var prompts = [{
+      name: 'pusherKey',
+      message: 'What is the Pusher key?',
+      // Empty by default, as otherwise it might not be able to set to blank.
+      default: ''
+    }];
+
+    this.prompt(prompts, function (props) {
+      this.pusherKey = props.pusherKey;
+
+      done();
+    }.bind(this));
+  },
+
+  askForPusherSecret: function () {
+    // Allow passing an empty password.
+    if (this.options['pusher-secret'] !== undefined) {
+      // Get the value from the CLI.
+      this.pusherSecret = this.options['pusher-secret'];
+      this.log('Setting pusher secret: ' + this.pusherSecret);
+      return;
+    }
+
+    var done = this.async();
+
+    var prompts = [{
+      name: 'pusherSecret',
+      message: 'What is the Pusher Secret?',
+      // Empty by default, as otherwise it might not be able to set to blank.
+      default: ''
+    }];
+
+    this.prompt(prompts, function (props) {
+      this.pusherSecret = props.pusherSecret;
+
+      done();
+    }.bind(this));
+  },
+
+  askForPusherId: function () {
+    // Allow passing an empty password.
+    if (this.options['pusher-id'] !== undefined) {
+      // Get the value from the CLI.
+      this.pusherId = this.options['pusher-id'];
+      this.log('Setting pusher app ID: ' + this.pusherId);
+      return;
+    }
+
+    var done = this.async();
+
+    var prompts = [{
+      name: 'pusherId',
+      message: 'What is the Pusher App ID?',
+      // Empty by default, as otherwise it might not be able to set to blank.
+      default: ''
+    }];
+
+    this.prompt(prompts, function (props) {
+      this.pusherId = props.pusherId;
+
+      done();
+    }.bind(this));
+  },
+
   writing: {
     app: function() {
       var self = this;
@@ -249,7 +342,10 @@ module.exports = yeoman.generators.Base.extend({
           if (fileName === 'config.sh') {
             newContents = newContents
               .replace(/MYSQL_USERNAME=".*"/g, 'MYSQL_USERNAME="' + self.dbUser + '"')
-              .replace(/MYSQL_PASSWORD=".*"/g, 'MYSQL_PASSWORD="' + self.dbPass + '"');
+              .replace(/MYSQL_PASSWORD=".*"/g, 'MYSQL_PASSWORD="' + self.dbPass + '"')
+              .replace(/<your-app-key>/g, self.pusherKey)
+              .replace(/<your-app-secret>/g, self.pusherSecret)
+              .replace(/<your-app-id>/g, self.pusherId);
           }
 
           self.fs.write(newFileName, newContents);

@@ -68,21 +68,21 @@ MYSQL_DB_NAME="skeleton"
 ##
 
 # Post install script.
-#function post_install {
-#  chmod 777 www/sites/default/settings.php
-#
-#  # Pusher integration.
-#  echo "\$conf['skeleton_pusher_app_key'] = '<your-app-key>';"  >> www/sites/default/settings.php
-#  echo "\$conf['skeleton_pusher_app_secret'] = '<your-app-secret>';"  >> www/sites/default/settings.php
-#  echo "\$conf['skeleton_pusher_app_id'] = '<your-app-id>';"  >> www/sites/default/settings.php
-#}
+function post_install {
+  chmod 777 www/sites/default/settings.php
+
+  # Pusher integration.
+  echo "\$conf['skeleton_pusher_app_key'] = '<your-app-key>';"  >> www/sites/default/settings.php
+  echo "\$conf['skeleton_pusher_app_secret'] = '<your-app-secret>';"  >> www/sites/default/settings.php
+  echo "\$conf['skeleton_pusher_app_id'] = '<your-app-id>';"  >> www/sites/default/settings.php
+}
 
 # Post upgrade script.
-#function post_upgrade {
-#  post_install
-#}
+function post_upgrade {
+  post_install
+}
 
 # Post reset script.
-#function post_reset {
-#  post_install
-#}
+function post_reset {
+  post_install
+}
