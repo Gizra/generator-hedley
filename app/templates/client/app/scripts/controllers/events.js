@@ -51,7 +51,7 @@ angular.module('clientApp')
       channel.bind('new-event', function(data) {
         Events.get(companyId, data.userId).then(function(value) {
           // Update events list of the company.
-          $scope.events = angular.extend($scope.events, value);
+          angular.extend($scope.events, value);
           // Update user's events count.
           $scope.authors[data.userId].count = Object.keys(value).length;
         });

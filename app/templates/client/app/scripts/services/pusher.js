@@ -12,7 +12,6 @@ angular.module('clientApp')
 
     var channels = {};
 
-
     this.pusher = null;
 
     /**
@@ -29,7 +28,7 @@ angular.module('clientApp')
      * Get Company channel.
      *
      * @param companyId
-     *  Company id.
+     *  Company ID.
      *
      * @returns {*}
      *  Return company's channel.
@@ -42,7 +41,7 @@ angular.module('clientApp')
      * Add new company's chanel.
      *
      * @param companyId
-     *  User id.
+     *  Company ID.
      *
      * @returns {*}
      *  Return new company's channel.
@@ -57,10 +56,22 @@ angular.module('clientApp')
       return channels[companyId];
     };
 
+    /**
+     * Get the Pusher object.
+     *
+     * @returns {*}
+     *  Returns existing object or creates a new one.
+     */
     this.getClient = function() {
       return this.pusher ? this.pusher : this.createNewPusher();
     };
 
+    /**
+     * Create a new Pusher object.
+     *
+     * @returns {*}
+     *  Return the Pusher object.
+     */
     this.createNewPusher = function() {
       var pusherConf = {
         authEndpoint: Config.backend + '/api/v1.0/pusher_auth',

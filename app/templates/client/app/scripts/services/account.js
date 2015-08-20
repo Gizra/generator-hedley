@@ -99,10 +99,10 @@ angular.module('clientApp')
     });
 
     /**
-     * Subscribe user to user's Pusher channel.
+     * Subscribe user to companies channeles.
      *
-     * @param int userId
-     *   The user id.
+     * @param array companies
+     *   The user's companies list.
      */
     var setChannels = function(companies) {
       if (!companies) {
