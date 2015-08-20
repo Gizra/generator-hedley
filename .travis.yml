@@ -67,7 +67,7 @@ before_script:
   # Start a web server on port 8080, run in the background; wait for
   # initialization.
   - drush @site runserver 127.0.0.1:8080 &
-  - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do true; done
+  - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; sleep 1; curl -I http://127.0.0.1:8080 ; do true; done
 
   # Wait for Grunt to finish loading.
   - until $(curl --output /dev/null --silent --head --fail http://localhost:9000); do sleep 1; echo '.'; done
