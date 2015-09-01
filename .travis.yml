@@ -20,7 +20,7 @@ before_install:
   - composer self-update
 
   # Install Grunt and Bower.
-  - npm install -g grunt-cli bower
+  - npm install -g yo bower grunt-cli casperjs
 
   # Install Sass and Compass for Grunt to work.
   - gem install compass
@@ -31,7 +31,6 @@ install:
   - composer global require drush/drush:6.*
   - phpenv rehash
 
-  - npm install -g yo bower grunt-cli casperjs
   - npm install
 
   # Test the Yeoman generator.
@@ -44,6 +43,7 @@ before_script:
   # Create display.
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
+  - sleep 3 # give xvfb some time to start
 
   # Run PhantomJs.
   - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
@@ -69,10 +69,10 @@ before_script:
   - drush @site runserver 127.0.0.1:8080 &
   - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; sleep 1; curl -I http://127.0.0.1:8080 ; do true; done
 
+script:
+
   # Wait for Grunt to finish loading.
   - until $(curl --output /dev/null --silent --head --fail http://localhost:9000); do sleep 1; echo '.'; done
-
-script:
 
   # Run Behat tests.
   - cd ./behat
