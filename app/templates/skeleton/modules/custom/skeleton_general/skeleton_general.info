@@ -1,0 +1,4 @@
+name = Skeleton General
+core = 7.x
+package = Skeleton
+features[features_api][] = api:2

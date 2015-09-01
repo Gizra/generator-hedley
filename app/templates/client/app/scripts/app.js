@@ -55,7 +55,44 @@ angular
       .state('login', {
         url: '/login',
         templateUrl: 'views/login.html',
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+        resolve: {
+          emailVerified: function() {
+            return false;
+          }
+        }
+      })
+      .state('signup', {
+        url: '/signup',
+        templateUrl: 'views/signup.html',
+        controller: 'SignUpCtrl'
+      })
+      .state('verifyEmail', {
+        url: '/verify-email/{accessToken:string}',
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl',
+        resolve: {
+          emailVerified: function($stateParams, Auth, Account) {
+            Auth.setAccessToken($stateParams.accessToken);
+            return Account.verifyEmail();
+          }
+        }
+      })
+      .state('forgotPassword', {
+        url: '/forgot-password',
+        templateUrl: 'views/forgot-password.html',
+        controller: 'ForgotPasswordCtrl'
+      })
+      .state('resetPassword', {
+        url: '/reset-password/{accessToken:string}',
+        templateUrl: 'views/reset-password.html',
+        controller: 'ResetPasswordCtrl',
+        onEnter: page403,
+        resolve: {
+          accessToken: function($stateParams, Auth) {
+            Auth.setAccessToken($stateParams.accessToken);
+          }
+        }
       })
       .state('dashboard', {
         abstract: true,
@@ -172,7 +209,7 @@ angular
 
         'response': function(result) {
           if (result.data.access_token) {
-            localStorageService.set('access_token', result.data.access_token);
+            Auth.setAccessToken(result.data.access_token);
           }
           return result;
         },

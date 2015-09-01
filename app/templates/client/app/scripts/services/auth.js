@@ -11,6 +11,15 @@ angular.module('clientApp')
   .service('Auth', function ($injector, $rootScope, Utils, localStorageService, Config) {
 
     /**
+     * An access token setter.
+     *
+     * @param accessToken
+     */
+    this.setAccessToken = function(accessToken) {
+      localStorageService.set('access_token', accessToken);
+    };
+
+    /**
      * Login by calling the Drupal REST server.
      *
      * @param user
@@ -26,6 +35,69 @@ angular.module('clientApp')
         headers: {
           'Authorization': 'Basic ' + Utils.Base64.encode(user.username + ':' + user.password)
         }
+      });
+    };
+
+    /**
+     * Trigger a `reset password` action on the server for this email.
+     *
+     * @param email
+     *  The email of the user.
+     *
+     * @returns {*}
+     */
+    this.resetPassword = function(email) {
+      return $injector.get('$http')({
+        method: 'POST',
+        url: Config.backend + '/api/reset-password',
+        data: {email: email}
+      });
+    };
+
+    /**
+     * Save new password for a user.
+     *
+     * @param uid
+     *  User id.
+     * @param password
+     *  A new password to set.
+     *
+     * @returns {*}
+     */
+    this.savePassword = function(uid, password) {
+      return $injector.get('$http')({
+        method: 'PATCH',
+        url: Config.backend + '/api/v1.1/users/' + uid,
+        data: {password: password}
+      });
+    };
+
+    /**
+     * Checks users availability.
+     *
+     * @param user
+     * @returns {*}
+     */
+    this.usersAvailability = function(user) {
+      var params = 'name=' + user.name + '&mail=' + user.mail;
+
+      return $injector.get('$http')({
+        method: 'GET',
+        url: Config.backend + '/api/users-availability?' + params
+      });
+    };
+
+    /**
+     * Sign Up new user.
+     *
+     * @param data
+     * @returns {*}
+     */
+    this.signUp = function(data) {
+      return $injector.get('$http')({
+        method: 'POST',
+        url: Config.backend + '/api/v1.1/users',
+        data: data
       });
     };
 

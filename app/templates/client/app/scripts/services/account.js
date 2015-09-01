@@ -8,7 +8,7 @@
  * Service in the clientApp.
  */
 angular.module('clientApp')
-  .service('Account', function ($q, $http, $timeout, Config, $rootScope, $log) {
+  .service('Account', function ($q, $http, $timeout, Config, $rootScope, Auth) {
 
     // A private cache key.
     var cache = {};
@@ -42,6 +42,24 @@ angular.module('clientApp')
 
       return deferred.promise;
     }
+
+    /**
+     * Verify a user.
+     *
+     * @returns {*}
+     */
+    this.verifyEmail = function() {
+      // After setting the access token in the local storage (in the state
+      // resolve), try to get the user account from the data, if succeed then
+      // change its status.
+      return getDataFromBackend().then(function(user) {
+        return $http({
+          method: 'PATCH',
+          url: Config.backend + '/api/v1.1/users/' + user.id,
+          data: {status: 1}
+        });
+      });
+    };
 
     /**
      * Save meters in cache, and broadcast en event to inform that the meters data changed.

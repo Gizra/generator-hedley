@@ -8,7 +8,20 @@
 
     <div class="signin-body">
       <div class="container">
+
+        <div class="row vertical-space">
+          <div class="col-xs-6">
+            <a ui-sref="signup">Sing up</a>
+          </div>
+        </div>
+
+        <div class="alert alert-success fade in" ng-show="emailVerified">
+          <i class="fa fa-check-circle fa-fw fa-lg"></i>
+          Your email has been verified successfully.
+        </div>
+
         <div class="form-container">
+
           <form class="form-horizontal" id="login" ng-submit="login(user)">
             <fieldset>
               <div class="form-group">
@@ -32,6 +45,12 @@
               <div class="divider divider-xl"></div>
               <div class="form-group">
                 <input ng-disabled="!loginButtonEnabled" type="submit" class="btn btn-primary btn-lg btn-block text-center" id="submit" value="Log in" />
+              </div>
+
+              <div id="remember-me-wrapper" class="row">
+                <div class="col-xs-6">
+                  <a ui-sref="forgotPassword" id="login-forget-link">Forgot your password?</a>
+                </div>
               </div>
 
               <div class="divider divider-xl"></div>
