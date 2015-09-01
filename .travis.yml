@@ -40,13 +40,6 @@ install:
   - npm link
 
 before_script:
-  # Create display.
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sleep 3 # give xvfb some time to start
-
-  # Run PhantomJs.
-  - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
 
   - mkdir $TRAVIS_BUILD_DIR/../build
   - cd $TRAVIS_BUILD_DIR/../build
@@ -57,6 +50,7 @@ before_script:
 
   # Configure client.
   - cd client
+  - bower install
   - cp config.travis.json config.json
   - grunt serve > ~/grunt.log 2>&1 &
   - cd ..
@@ -70,9 +64,16 @@ before_script:
   - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; sleep 1; curl -I http://127.0.0.1:8080 ; do true; done
 
 script:
+  # Create display.
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3 # give xvfb some time to start
 
   # Wait for Grunt to finish loading.
   - until $(curl --output /dev/null --silent --head --fail http://localhost:9000); do sleep 1; echo '.'; done
+
+  # Run PhantomJs.
+  - phantomjs --webdriver=4444 > ~/phantomjs.log 2>&1 &
 
   # Run Behat tests.
   - cd ./behat
