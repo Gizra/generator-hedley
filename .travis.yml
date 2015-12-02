@@ -24,7 +24,7 @@ install:
 
   # Install Drush.
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - composer global require drush/drush:6.*
+  - composer global require drush/drush:7.1.0
   - phpenv rehash
 
   - npm install -g yo bower grunt-cli casperjs
@@ -62,7 +62,7 @@ before_script:
 
   # Start a web server on port 8080, run in the background; wait for
   # initialization.
-  - drush @site runserver 127.0.0.1:8080 &
+  - php -S 127.0.0.1:8080 &
   - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do true; done
 
   # Wait for Grunt to finish loading.
