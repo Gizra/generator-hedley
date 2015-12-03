@@ -24,7 +24,7 @@ install:
 
   # Install Drush.
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - composer global require drush/drush:7.1.0
+  - composer global require drush/drush:7.0
   - phpenv rehash
 
   - npm install -g yo bower grunt-cli casperjs
