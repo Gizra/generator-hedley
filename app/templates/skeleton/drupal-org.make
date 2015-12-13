@@ -100,6 +100,8 @@ projects[views_bulk_operations][version] = "3.2"
 ; Themes
 projects[bootstrap][subdir] = "contrib"
 projects[bootstrap][version] = "3.0"
+
+; Explicitly declared because it's sometimes downloaded into modules folder
 projects[bootstrap][type] = "theme"
 
 ; Development
