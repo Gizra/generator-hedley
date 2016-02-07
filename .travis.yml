@@ -66,7 +66,7 @@ before_script:
   - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do true; done
 
   # Wait for Grunt to finish loading.
-  - until $(curl http://localhost:9000); do sleep 1; echo '.'; done
+  - until $(curl --output /dev/null --silent --head --fail http://localhost:9000); do sleep 1; echo '.'; done
 
 script:
 
