@@ -57,3 +57,4 @@ www
 
 # Local Configuration
 config.sh
+prepare_db_for_dev.sh
