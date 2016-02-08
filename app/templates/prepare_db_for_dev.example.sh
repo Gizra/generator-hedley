@@ -44,7 +44,15 @@ if module_is_enable "search_api"; then
 fi
 
 echo
-echo -e "${LBLUE} > Removing emails from all users.${RESTORE}"
+echo -e "${LBLUE} > Removing Pantheon Apache Solr settings.${RESTORE}"
+# Disabling pantheon modules.
+drush sqlq "UPDATE system SET status = 0 WHERE name LIKE '%pantheon%'"
+# Removing this variable prevent a fatal error since Pantheon set this variable
+# but we don't have this class locally.
+drush vdel apachesolr_service_class --yes
+
+echo
+echo -e "${LBLUE} > Modifying users emails.${RESTORE}"
 drush sqlq "UPDATE users SET mail = concat(mail, '.test')"
 
 echo
