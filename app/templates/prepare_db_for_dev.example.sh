@@ -53,7 +53,7 @@ drush vdel apachesolr_service_class --yes
 
 echo
 echo -e "${LBLUE} > Modifying users emails.${RESTORE}"
-drush sqlq "UPDATE users SET mail = concat(mail, '.test')"
+drush sqlq "UPDATE users SET mail = concat(mail, '.test') WHERE uid > 0"
 
 echo
 echo -e "${LBLUE} > Enabling the devel module.${RESTORE}"
