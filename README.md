@@ -8,16 +8,16 @@ Hedley is a [yeoman generator](http://yeoman.io/) that scaffolds a headless Drup
 
 ### Prerequisites
 
-* Yo (``npm install -g yo``)
 * [Drush](https://github.com/drush-ops/drush)
 * [Composer](https://getcomposer.org/doc/00-intro.md#globally) installed globally, for Behat dependencies to be setup
+* Yo (Install together with generator-hedley so yodoctor can fix any [requirement issues](https://github.com/Gizra/generator-hedley/issues/84))
 
 ### Installation
 
-To install generator-hedley from npm, run:
+To install yo and generator-hedley from npm, run:
 
 ```bash
-npm install -g generator-hedley
+npm install -g yo generator-hedley
 ```
 
 Finally, initiate the generator:
