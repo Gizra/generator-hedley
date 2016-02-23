@@ -1,0 +1,8 @@
+api_version: 1
+
+workflows:
+  clone_database:
+    after:
+      - type: webphp
+        description: Sanitize the db
+        script: scripts/db_sanitization.php
