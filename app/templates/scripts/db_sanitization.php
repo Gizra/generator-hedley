@@ -7,5 +7,5 @@ if (defined('PANTHEON_ENVIRONMENT') && (PANTHEON_ENVIRONMENT !== 'live')) {
   require_once DRUPAL_ROOT . '/includes/bootstrap.inc';
   drupal_bootstrap(DRUPAL_BOOTSTRAP_DATABASE);
   // From http://crackingdrupal.com/blog/greggles/creating-sanitized-drupal-database-dump#comment-164
-  db_query("UPDATE users SET mail = CONCAT(name, '@test'), init = CONCAT(name, '@test'), pass = MD5(CONCAT('1234', name));");
+  db_query("UPDATE users SET mail = CONCAT(name, '@test'), init = CONCAT(name, '@test');");
 }
