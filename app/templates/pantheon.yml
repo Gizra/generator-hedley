@@ -6,3 +6,8 @@ workflows:
       - type: webphp
         description: Sanitize the db
         script: scripts/db_sanitization.php
+  sync_code:
+    after:
+      - type: webphp
+        description: Revert all features after pushing code
+        script: scripts/revert_all_features.php
