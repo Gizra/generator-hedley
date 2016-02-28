@@ -99,7 +99,7 @@ projects[views_bulk_operations][version] = "3.3"
 
 ; Themes
 projects[bootstrap][subdir] = "contrib"
-projects[bootstrap][version] = "3.x-dev"
+projects[bootstrap][version] = "3.x"
 projects[bootstrap][type] = "theme"
 
 ; Development
