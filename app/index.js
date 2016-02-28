@@ -194,7 +194,7 @@ module.exports = yeoman.generators.Base.extend({
       name: 'dbPass',
       message: 'What is the Database password?',
       // Empty by default, as otherwise it might not be able to set to blank.
-      default: ''
+      default: 'root'
     }];
 
     this.prompt(prompts, function (props) {
