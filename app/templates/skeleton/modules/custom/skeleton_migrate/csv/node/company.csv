@@ -1,4 +1,5 @@
 Unique ID,Title
+company0,XSS ATTACK NODE <script>alert('xss – Company – Title');</script>
 company1,Lexihouse
 company2,Voltex
 company3,Santechi
