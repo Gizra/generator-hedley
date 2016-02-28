@@ -1,5 +1,4 @@
 Unique ID,Title,Location,Company,Author
-event0,"XSS ATTACK NODE <script>alert('xss – Event – Title');</script>",0|0,company0,user2
 event1,"10,000 Latkes",50|50,company1,user1
 event2,Aesthetic Bug Gloss,60|60,company1,user1
 event3,Cabbage Training,70|70,company1,user2
@@ -10,3 +9,4 @@ event7,Go for the Juggler,55|70,company2,user3
 event8,Glow Your Own,70|40,company2,user3
 event9,Jesus Drone,60|20,company3,user3
 event10,Kinder Rock,25|25,company4,user4
+event11,"XSS ATTACK NODE <script>alert('xss – Event – Title');</script>",0|0,company0,user2
