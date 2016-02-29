@@ -5,9 +5,9 @@ workflows:
     after:
       - type: webphp
         description: Sanitize the db
-        script: scripts/db_sanitization.php
+        script: scripts/pantheon/db_sanitization.php
   sync_code:
     after:
       - type: webphp
         description: Revert all features after pushing code
-        script: scripts/revert_all_features.php
+        script: scripts/pantheon/revert_all_features.php
