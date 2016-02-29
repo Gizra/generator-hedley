@@ -1,5 +1,5 @@
 Unique ID,Company,Username,Password,Email
 user1,company1|company2|company3,demo,1234,user1@example.com
-user2,company1|company2,Mickey,1234,user2@example.com
+user2,company1|company2|company5,Mickey,1234,user2@example.com
 user3,company2|company3,Noonster,1234,user3@example.com
 user4,company1|company4,ErikFu,1234,user4@example.com
