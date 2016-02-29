@@ -33,6 +33,15 @@ You can scaffold a new app with no user interaction, for example:
 yo hedley --skip-install --project-name=skeleton --github-repo=https://github.com/Foo/skeleton --db=skeleton --db-user=root --db-pass=root --drupal-url=http://localhost/skeleton/www
 ```
 
+## Pantheon's Could Integration
+
+Integrated into hedley an automated scripts for "Pantheon’s Cloud Integration", The scripts are initiated through `pantheon.yml` and do the following:
+
+* Sanitization for the DEV database when cloned from TEST or LIVE environments (Basically replaces all domains in user's emails to `@test`).
+* Revert all features, The [features](https://www.drupal.org/project/features) will be reverted on each deploy to the DEV.
+ 
+You can add or remove operations by editing `pantheon.yml` file in the root of the project.
+
 ## Contribute
 
 In order to develop ``generator-hedley`` and provide pull requests the following steps should be taken:
