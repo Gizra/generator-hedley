@@ -72,6 +72,12 @@ drush vset preprocess_js 0
 drush vset preprocess_css 0
 
 echo
+echo -e "${LBLUE} > Set the file system.${RESTORE}"
+drush vset file_public_path "sites/default/files"
+drush vset file_private_path ""
+drush vset file_temporary_path "/tmp"
+
+echo
 echo -e "${LBLUE} > Disabling logs HTTP API (Loggly).${RESTORE}"
 drush vset logs_http_enabled 0
 
