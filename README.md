@@ -20,6 +20,12 @@ To install generator-hedley from npm, run:
 npm install -g generator-hedley
 ```
 
+As we generate not only a Web app but also add behat and other scripts make sure to create a project directory.
+
+```bash
+mkdir my-hedley-project
+```
+
 Finally, initiate the generator:
 
 ```bash
