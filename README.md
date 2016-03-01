@@ -24,6 +24,7 @@ As we generate not only a Web app but also add behat and other scripts make sure
 
 ```bash
 mkdir my-hedley-project
+cd my-hedley-project
 ```
 
 Finally, initiate the generator:
