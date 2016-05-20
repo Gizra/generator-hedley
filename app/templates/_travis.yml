@@ -26,8 +26,9 @@ install:
 
   # install drush
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - composer global require drush/drush:6.*
+  - composer global require drush/drush:7.0
   - phpenv rehash
+
 
 before_script:
 
@@ -51,8 +52,10 @@ before_script:
   - cd ..
 
   # start a web server on port 8080, run in the background; wait for initialization
-  - drush @site runserver 127.0.0.1:8080 &
+  - cd www
+  - php -S 127.0.0.1:8080 &
   - until netstat -an 2>/dev/null | grep '8080.*LISTEN'; do true; done
+  - cd ../
 
   # Create display.
   - export DISPLAY=:99.0
