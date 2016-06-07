@@ -1,6 +1,10 @@
 language: php
 
 env:
+  # Creating 3 different environments:
+  #  1. Testing the project itself including behat.
+  #  2. Reviewing the code by the Drupal standards.
+  #  3. Reviewing the code by the Drupal best practices.
   - INSTALL_PROJECT=1
     CODE_REVIEW=0
   - INSTALL_PROJECT=0
