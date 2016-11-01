@@ -1,0 +1,51 @@
+<?php
+/**
+ * @file
+ * Code for the Pusher API integration.
+ */
+
+
+/**
+ * Trigger a Pusher event.
+ *
+ * @param $company_id
+ *  Company ID.
+ * @param $event_name
+ *  Event name.
+ * @param array $data
+ *  Parameters that should be sent.
+ *
+ * @throws \PusherException
+ * @throws \RestfulServerConfigurationException
+ *
+ * @return bool
+ */
+function skeleton_pusher_trigger_event($company_id, $event_name, $data = array()) {
+  $pusher = skeleton_pusher_get_pusher();
+  return $pusher->trigger('private-company-' . $company_id, $event_name, $data);
+}
+
+/**
+ * Get a Pusher instance.
+ *
+ * @return \Pusher
+ *   The Pusher object.
+ *
+ * @throws \RestfulServerConfigurationException
+ */
+function skeleton_pusher_get_pusher() {
+  $pusher = &drupal_static(__FUNCTION__);
+  if ($pusher) {
+    return $pusher;
+  }
+
+  $app_key = variable_get('skeleton_pusher_app_key');
+  $app_secret = variable_get('skeleton_pusher_app_secret');
+  $app_id = variable_get('skeleton_pusher_app_id');
+
+  if (empty($app_key) || empty($app_secret) || empty($app_id)) {
+    throw new \RestfulServerConfigurationException('Pusher app is not configured properly.');
+  }
+
+  return new Pusher($app_key, $app_secret, $app_id);
+}

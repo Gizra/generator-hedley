@@ -8,7 +8,7 @@
  * Service in the clientApp.
  */
 angular.module('clientApp')
-  .service('Account', function ($q, $http, $timeout, Config, $rootScope, $log) {
+  .service('Account', function ($q, $http, $timeout, Config, $rootScope, channelManager, $log) {
 
     // A private cache key.
     var cache = {};
@@ -37,6 +37,7 @@ angular.module('clientApp')
         transformResponse: prepareResponse
       }).success(function(response) {
         setCache(response[0]);
+        setChannels(response[0].companies);
         deferred.resolve(response[0]);
       });
 
@@ -97,4 +98,24 @@ angular.module('clientApp')
       cache = {};
     });
 
+    /**
+     * Subscribe user to companies channeles.
+     *
+     * @param array companies
+     *   The user's companies list.
+     */
+    var setChannels = function(companies) {
+      if (!companies) {
+        // User doesn't have repositories yet.
+        return;
+      }
+
+      companies.forEach(function (company) {
+        if (!company.id) {
+          // repoId is null.
+          return;
+        }
+        channelManager.addChannel(company.id);
+      });
+    };
   });

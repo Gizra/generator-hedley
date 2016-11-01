@@ -68,10 +68,21 @@ MYSQL_DB_NAME="drupal"
 ##
 
 # Post install script.
-# function post_install {}
+function post_install {
+  chmod 777 www/sites/default/settings.php
+
+  # Pusher integration.
+  echo "\$conf['skeleton_pusher_app_key'] = '';"  >> www/sites/default/settings.php
+  echo "\$conf['skeleton_pusher_app_secret'] = '';"  >> www/sites/default/settings.php
+  echo "\$conf['skeleton_pusher_app_id'] = '';"  >> www/sites/default/settings.php
+}
 
 # Post upgrade script.
-# function post_upgrade {}
+function post_upgrade {
+  post_install
+}
 
 # Post reset script.
-# function post_reset {}
+function post_reset {
+  post_install
+}

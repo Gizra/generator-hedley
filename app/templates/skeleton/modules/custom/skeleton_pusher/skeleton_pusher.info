@@ -1,0 +1,4 @@
+name = Skeleton Pusher
+core = 7.x
+package = Skeleton
+dependencies[] = composer_manager
