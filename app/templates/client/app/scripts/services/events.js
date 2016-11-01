@@ -16,6 +16,9 @@ angular.module('clientApp')
     // Update event broadcast name.
     var broadcastUpdateEventName = 'SkeletonEventsChange';
 
+    // Cache promises.
+    var getData = {};
+
 
     /**
      * Return the promise with the events list, from cache or the server.
@@ -27,11 +30,16 @@ angular.module('clientApp')
      */
     this.get = function(companyId, userId) {
       var cacheId = companyId + ':' + userId;
-      if (cache && cache[cacheId]) {
-        return $q.when(cache[cacheId].data);
+
+      // Get cache promise or data.
+      if (getData[cacheId] || cache[cacheId]) {
+        getData[cacheId] = $q.when(getData[cacheId] || cache[cacheId].data);
       }
 
-      return getDataFromBackend(companyId, userId);
+      // Otherwise get data from the server.
+      getData[cacheId] = (getData[cacheId] || getDataFromBackend(companyId, userId));
+
+      return getData[cacheId];
     };
 
     /**
