@@ -1,0 +1,18 @@
+web:
+  build: .
+  volumes:
+      - .:/var/html/www/skeleton
+  working_dir: /var/html/www/skeleton
+  ports:
+   - "8080:80"
+  links:
+   - db
+db:
+  image: mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: mysql
+    MYSQL_DATABASE: drupal
+    MYSQL_PORT: 3306
+    MYSQL_USER: drupal
+    MYSQL_PASSWORD: drupal
+    MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
