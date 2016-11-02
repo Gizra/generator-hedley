@@ -57,6 +57,13 @@ angular
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
+      .state('logout', {
+        url: '/logout',
+        templateUrl: 'views/login.html',
+        controller: function(Auth) {
+          Auth.logout();
+        }
+      })
       .state('dashboard', {
         abstract: true,
         url: '',
