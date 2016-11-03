@@ -97,6 +97,13 @@ projects[views][version] = "3.13"
 projects[views_bulk_operations][subdir] = "contrib"
 projects[views_bulk_operations][version] = "3.3"
 
+; Themes
+projects[bootstrap][subdir] = "contrib"
+projects[bootstrap][type] = git
+projects[bootstrap][revision] = 6abdabb
+projects[bootstrap][branch] = 7.x-3.x
+projects[bootstrap][type] = "theme"
+
 ; Development
 projects[devel][subdir] = "development"
 projects[devel][version] = "1.5"

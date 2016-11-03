@@ -12,10 +12,10 @@ function skeleton_install() {
   ini_set('auto_detect_line_endings', TRUE);
 
   // Enable our themes.
-  theme_enable(array('bartik', 'seven'));
+  theme_enable(array('seven', 'bootstrap'));
 
   // Set the default theme.
-  variable_set('theme_default', 'bartik');
+  variable_set('theme_default', 'bootstrap');
   variable_set('admin_theme', 'seven');
 
   // Enable node view page override by Page manager module.
