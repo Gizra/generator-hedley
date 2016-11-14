@@ -34,7 +34,7 @@ module.exports = function (grunt) {
         tasks: ['wiredep']
       },
       js: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+        files: ['<%= yeoman.app %>/scripts/{,*/}*.js', '<%= yeoman.app %>/dev-scripts/{,*/}*.js'],
         tasks: ['newer:jshint:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -162,6 +162,12 @@ module.exports = function (grunt) {
 
     // Automatically inject Bower components into the app
     wiredep: {
+      dev: {
+        devDependencies: true,
+        src: ['<%= yeoman.app %>/index.html'],
+        ignorePath:  /\.\.\//,
+        exclude: ['bower_components/show-js-error/dist/show-js-error.js']
+      },
       app: {
         src: ['<%= yeoman.app %>/index.html'],
         ignorePath:  /\.\.\//
@@ -441,6 +447,18 @@ module.exports = function (grunt) {
           push: true
         }
       }
+    },
+
+    includeSource: {
+      options: {
+        basePath: 'app',
+        baseUrl: '/'
+      },
+      server: {
+        files: {
+          '<%= yeoman.app %>/index.html': '<%= yeoman.app %>/index.html'
+        }
+      }
     }
   });
 
@@ -453,7 +471,8 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'ngconstant:server',
-      'wiredep',
+      'wiredep:dev',
+      'includeSource:server',
       'concurrent:server',
       'autoprefixer',
       'connect:livereload',

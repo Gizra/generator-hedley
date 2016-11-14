@@ -19,7 +19,7 @@ angular
     'ui.router',
     'angular-loading-bar'
   ])
-  .config(function($stateProvider, $urlRouterProvider, $httpProvider, cfpLoadingBarProvider) {
+  .config(function($stateProvider, $urlRouterProvider, $httpProvider, cfpLoadingBarProvider, $provide) {
 
     /**
      * Redirect a user to a 403 error page.
@@ -190,6 +190,15 @@ angular
     // Configuration of the loading bar.
     cfpLoadingBarProvider.includeSpinner = false;
     cfpLoadingBarProvider.latencyThreshold = 1000;
+
+    // Catch angular errors and show them in popup.
+    $provide.decorator("$exceptionHandler", function($delegate, $injector){
+      if (typeof showJSError !== 'undefined') {
+        return function(exception, cause){
+          showJSError.show(exception);
+        };
+      }
+    });
   })
   .run(function ($rootScope, $state, $stateParams, $log, Config) {
     // It's very handy to add references to $state and $stateParams to the

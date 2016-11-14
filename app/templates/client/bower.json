@@ -19,7 +19,8 @@
     "angular-scenario": "~1.3.0",
     "angular": "~1.4.0",
     "json3": "~3.3.2",
-    "es5-shim": "~4.1.6"
+    "es5-shim": "~4.1.6",
+    "show-js-error" : "1.2.0"
   },
   "appPath": "app",
   "resolutions": {
