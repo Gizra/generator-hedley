@@ -34,6 +34,9 @@ install:
   # install drush
   - $TRAVIS_BUILD_DIR/scripts/travis/install_drush.sh
 
+  # install coder
+  - $TRAVIS_BUILD_DIR/scripts/travis/install_coder.sh
+
   # Install Behat
   - $TRAVIS_BUILD_DIR/scripts/travis/install_behat.sh
 
@@ -55,7 +58,7 @@ script:
   - $TRAVIS_BUILD_DIR/scripts/travis/run_behat.sh
 
   # Run Code Style validation.
-  - $TRAVIS_BUILD_DIR/ci/bin/run_coder.sh
+  - $TRAVIS_BUILD_DIR/scripts/travis/run_coder.sh
 
 after_script:
   # Print logs.
