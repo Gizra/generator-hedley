@@ -12,6 +12,9 @@ before_install:
   - sudo apt-get update > /dev/null
   - composer self-update
 
+  # Update node.js
+  - npm install -g npm
+
   # Install Grunt and Bower.
   - npm install -g grunt-cli bower
 
