@@ -1,0 +1,115 @@
+{
+  "name": "Gizra/generator-hedley",
+  "description": "Scaffold a headless Drupal backend, Angular app client, and Behat tests",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packagist.drupal-composer.org"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "drupal/entity",
+        "type": "drupal-module",
+        "version": "1.6",
+        "dist": {
+          "url": "https://git.drupal.org/project/entity.git",
+          "type": "git"
+        },
+        "extra": {
+          "patch": [
+            "https://www.drupal.org/files/issues/2086225-entity-access-check-node-create-3.patch"
+          ]
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "drupal/entityreference",
+        "type": "drupal-module",
+        "version": "1.1",
+        "dist": {
+          "url": "https://git.drupal.org/project/entityreference.git",
+          "type": "git"
+        },
+        "extra": {
+          "patch": [
+            "https://www.drupal.org/files/issues/migrate_multiple_entity_reference-2394725-4.patch"
+          ]
+        }
+      }
+    }
+  ],
+  "require": {
+    "jpstacey/composer-patcher": "*",
+    "composer/installers": "~1.0",
+    "derhasi/composer-preserve-paths": "0.1.*",
+    "drupal/drupal": "7.*",
+
+    "drupal/admin_menu": "7.3.0-rc5",
+    "drupal/admin_views": "7.1.5",
+    "drupal/ctools": "7.1.9",
+    "drupal/date": "7.2.9",
+    "drupal/diff": "7.3.2",
+    "drupal/email": "7.1.3",
+    "drupal/entity": "7.1.6",
+    "drupal/entitycache": "7.1.2",
+    "drupal/entityreference": "7.1.1",
+    "drupal/entity_validator": "7.1.*@dev",
+    "drupal/facetapi": "7.1.5",
+    "drupal/features": "7.2.7",
+    "drupal/flag": "7.3.7",
+    "drupal/geolocation": "7.1.6",
+    "drupal/jquery_update": "7.2.4",
+    "drupal/libraries": "7.2.2",
+    "drupal/mailsystem": "7.2.34",
+    "drupal/message": "7.1.11",
+    "drupal/message_notify": "7.2.5",
+    "drupal/mimemail": "7.1.0-beta3",
+    "drupal/module_filter": "7.2.0",
+    "drupal/og": "7.2.*@dev",
+    "drupal/og_vocab": "7.1.2",
+    "drupal/restful": "7.1.*@dev",
+    "drupal/search_api": "7.1.12",
+    "drupal/search_api_solr": "7.1.5",
+    "drupal/strongarm": "7.2.0",
+    "drupal/title": "7.1.0-alpha7",
+    "drupal/token": "7.1.6",
+    "drupal/views": "7.3.13",
+    "drupal/views_bulk_operations": "7.3.3",
+
+    "drupal/devel": "7.1.5",
+    "drupal/migrate": "7.2.8",
+    "drupal/migrate_extras": "7.2.5",
+
+    "drupal/bootstrap": "7.3.5"
+  },
+  "conflict": {
+    "drupal/core": "8.*"
+  },
+  "scripts": {
+
+  },
+  "config": {
+    "vendor-dir": "vendor"
+  },
+  "extra": {
+    "installer-paths": {
+      "www/": ["type:drupal-core"],
+      "profiles/hedly/modules/contrib/{$name}/": ["type:drupal-module"],
+      "profiles/hedly/themes/contrib/{$name}/": ["type:drupal-theme"],
+      "profiles/hedly/libraries/{$name}/": ["type:drupal-library"],
+      "profiles/hedly/drush/{$name}/": ["type:drupal-drush"],
+      "profiles/{$name}/": ["type:drupal-profile"]
+    },
+    "preserve-paths": [
+      "profiles/hedley/modules/contrib",
+      "profiles/hedly/themes/contrib",
+      "profiles/hedly/libraries",
+      "profiles/hedly/drush",
+      "www/sites/default/settings.php",
+      "www/sites/default/files"
+    ]
+  }
+}
