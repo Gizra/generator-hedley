@@ -1,0 +1,4 @@
+var _Gizra$elm_spa_exmple$Config_Model$Model = F2(
+	function (a, b) {
+		return {backendUrl: a, name: b};
+	});

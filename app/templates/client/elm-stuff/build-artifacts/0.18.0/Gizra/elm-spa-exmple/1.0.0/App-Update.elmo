@@ -1,0 +1,123 @@
+var _Gizra$elm_spa_exmple$App_Update$setActivePageAccess = F2(
+	function (user, page) {
+		var _p0 = user;
+		if (_p0.ctor === 'Success') {
+			return _elm_lang$core$Native_Utils.eq(page, _Gizra$elm_spa_exmple$App_Model$Login) ? _Gizra$elm_spa_exmple$App_Model$AccessDenied : page;
+		} else {
+			return _elm_lang$core$Native_Utils.eq(page, _Gizra$elm_spa_exmple$App_Model$MyAccount) ? _Gizra$elm_spa_exmple$App_Model$AccessDenied : page;
+		}
+	});
+var _Gizra$elm_spa_exmple$App_Update$init = function (flags) {
+	var _p1 = function () {
+		var _p2 = A2(_elm_lang$core$Dict$get, flags.hostname, _Gizra$elm_spa_exmple$Config$configs);
+		if (_p2.ctor === 'Just') {
+			var _p3 = _p2._0;
+			var cmd = _elm_lang$core$String$isEmpty(flags.accessToken) ? _elm_lang$core$Platform_Cmd$none : A2(
+				_elm_lang$core$Platform_Cmd$map,
+				_Gizra$elm_spa_exmple$App_Model$PageLogin,
+				A2(_Gizra$elm_spa_exmple$Pages_Login_Update$fetchUserFromBackend, _p3.backendUrl, flags.accessToken));
+			return {
+				ctor: '_Tuple2',
+				_0: _krisajenkins$remotedata$RemoteData$Success(_p3),
+				_1: cmd
+			};
+		} else {
+			return {
+				ctor: '_Tuple2',
+				_0: _krisajenkins$remotedata$RemoteData$Failure('No config found'),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+		}
+	}();
+	var config = _p1._0;
+	var cmds = _p1._1;
+	return A2(
+		_elm_lang$core$Platform_Cmd_ops['!'],
+		_elm_lang$core$Native_Utils.update(
+			_Gizra$elm_spa_exmple$App_Model$emptyModel,
+			{accessToken: flags.accessToken, config: config}),
+		{
+			ctor: '::',
+			_0: cmds,
+			_1: {ctor: '[]'}
+		});
+};
+var _Gizra$elm_spa_exmple$App_Update$accessTokenPort = _elm_lang$core$Native_Platform.outgoingPort(
+	'accessTokenPort',
+	function (v) {
+		return v;
+	});
+var _Gizra$elm_spa_exmple$App_Update$update = F2(
+	function (msg, model) {
+		var backendUrl = function () {
+			var _p4 = model.config;
+			if (_p4.ctor === 'Success') {
+				return _p4._0.backendUrl;
+			} else {
+				return '';
+			}
+		}();
+		var _p5 = msg;
+		switch (_p5.ctor) {
+			case 'Logout':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						_Gizra$elm_spa_exmple$App_Model$emptyModel,
+						{accessToken: '', config: model.config}),
+					_1: _Gizra$elm_spa_exmple$App_Update$accessTokenPort('')
+				};
+			case 'PageLogin':
+				var _p6 = A3(_Gizra$elm_spa_exmple$Pages_Login_Update$update, backendUrl, _p5._0, model.pageLogin);
+				var val = _p6._0;
+				var cmds = _p6._1;
+				var webDataUser = _p6._2._0;
+				var accessToken = _p6._2._1;
+				var modelUpdated = _elm_lang$core$Native_Utils.update(
+					model,
+					{pageLogin: val, accessToken: accessToken, user: webDataUser});
+				var _p7 = function () {
+					var _p8 = webDataUser;
+					if (_p8.ctor === 'Success') {
+						return A2(
+							_Gizra$elm_spa_exmple$App_Update$update,
+							_Gizra$elm_spa_exmple$App_Model$SetActivePage(_Gizra$elm_spa_exmple$App_Model$MyAccount),
+							modelUpdated);
+					} else {
+						return A2(
+							_elm_lang$core$Platform_Cmd_ops['!'],
+							modelUpdated,
+							{ctor: '[]'});
+					}
+				}();
+				var modelWithRedirect = _p7._0;
+				var setActivePageCmds = _p7._1;
+				return {
+					ctor: '_Tuple2',
+					_0: modelWithRedirect,
+					_1: _elm_lang$core$Platform_Cmd$batch(
+						{
+							ctor: '::',
+							_0: A2(_elm_lang$core$Platform_Cmd$map, _Gizra$elm_spa_exmple$App_Model$PageLogin, cmds),
+							_1: {
+								ctor: '::',
+								_0: _Gizra$elm_spa_exmple$App_Update$accessTokenPort(accessToken),
+								_1: {
+									ctor: '::',
+									_0: setActivePageCmds,
+									_1: {ctor: '[]'}
+								}
+							}
+						})
+				};
+			default:
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							activePage: A2(_Gizra$elm_spa_exmple$App_Update$setActivePageAccess, model.user, _p5._0)
+						}),
+					{ctor: '[]'});
+		}
+	});

@@ -1,0 +1,264 @@
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap$video = F2(
+	function (ratio, url) {
+		var ratioClass = function () {
+			var _p0 = ratio;
+			if (_p0.ctor === 'SixteenByNine') {
+				return 'embed-responsive-16by9';
+			} else {
+				return 'embed-responsive-4by3';
+			}
+		}();
+		return A2(
+			_elm_lang$html$Html$div,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$h1,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('About'),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('embed-responsive'),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$iframe,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('embed-responsive-item'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$src(url),
+										_1: {ctor: '[]'}
+									}
+								},
+								{ctor: '[]'}),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap$badge = _elm_lang$html$Html$span(
+	{
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$class('badge'),
+		_1: {ctor: '[]'}
+	});
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap$well = _elm_lang$html$Html$div(
+	{
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$class('well'),
+		_1: {ctor: '[]'}
+	});
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap$jumbotron = _elm_lang$html$Html$div(
+	{
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$class('jumbotron'),
+		_1: {ctor: '[]'}
+	});
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap$clearfix = A2(
+	_elm_lang$html$Html$div,
+	{
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$class('clearfix'),
+		_1: {ctor: '[]'}
+	},
+	{ctor: '[]'});
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap$empty = A2(
+	_elm_lang$html$Html$span,
+	{ctor: '[]'},
+	{ctor: '[]'});
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap$formGroup = _elm_lang$html$Html$div(
+	{
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$class('form-group'),
+		_1: {ctor: '[]'}
+	});
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap$row = _elm_lang$html$Html$div(
+	{
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$class('row'),
+		_1: {ctor: '[]'}
+	});
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap$twoColumns = F2(
+	function (left, right) {
+		return _krisajenkins$elm_exts$Exts_Html_Bootstrap$row(
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('col-xs-6'),
+						_1: {ctor: '[]'}
+					},
+					left),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('col-xs-6'),
+							_1: {ctor: '[]'}
+						},
+						right),
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap$containerFluid = _elm_lang$html$Html$div(
+	{
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$class('container-fluid'),
+		_1: {ctor: '[]'}
+	});
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap$container = _elm_lang$html$Html$div(
+	{
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$class('container'),
+		_1: {ctor: '[]'}
+	});
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap$stylesheet = A3(
+	_elm_lang$html$Html$node,
+	'link',
+	{
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$rel('stylesheet'),
+		_1: {
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$href('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'),
+			_1: {ctor: '[]'}
+		}
+	},
+	{ctor: '[]'});
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap$FourByThree = {ctor: 'FourByThree'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap$SixteenByNine = {ctor: 'SixteenByNine'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap$Left = {ctor: 'Left'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap$Bottom = {ctor: 'Bottom'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap$Right = {ctor: 'Right'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap$Top = {ctor: 'Top'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap$popover = F5(
+	function (direction, isShown, styles, title, body) {
+		return A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$classList(
+					{
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'popover fade', _1: true},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'in', _1: isShown},
+							_1: {
+								ctor: '::',
+								_0: {
+									ctor: '_Tuple2',
+									_0: 'top',
+									_1: _elm_lang$core$Native_Utils.eq(direction, _krisajenkins$elm_exts$Exts_Html_Bootstrap$Top)
+								},
+								_1: {
+									ctor: '::',
+									_0: {
+										ctor: '_Tuple2',
+										_0: 'right',
+										_1: _elm_lang$core$Native_Utils.eq(direction, _krisajenkins$elm_exts$Exts_Html_Bootstrap$Right)
+									},
+									_1: {
+										ctor: '::',
+										_0: {
+											ctor: '_Tuple2',
+											_0: 'bottom',
+											_1: _elm_lang$core$Native_Utils.eq(direction, _krisajenkins$elm_exts$Exts_Html_Bootstrap$Bottom)
+										},
+										_1: {
+											ctor: '::',
+											_0: {
+												ctor: '_Tuple2',
+												_0: 'left',
+												_1: _elm_lang$core$Native_Utils.eq(direction, _krisajenkins$elm_exts$Exts_Html_Bootstrap$Left)
+											},
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$style(
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							styles,
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'display', _1: 'block'},
+								_1: {ctor: '[]'}
+							})),
+					_1: {ctor: '[]'}
+				}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('arrow'),
+						_1: {ctor: '[]'}
+					},
+					{ctor: '[]'}),
+				_1: {
+					ctor: '::',
+					_0: function () {
+						var _p1 = title;
+						if (_p1.ctor === 'Just') {
+							return A2(
+								_elm_lang$html$Html$h3,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('popover-title'),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text(_p1._0),
+									_1: {ctor: '[]'}
+								});
+						} else {
+							return _krisajenkins$elm_exts$Exts_Html_Bootstrap$empty;
+						}
+					}(),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$div,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('popover-content'),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: body,
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}
+				}
+			});
+	});

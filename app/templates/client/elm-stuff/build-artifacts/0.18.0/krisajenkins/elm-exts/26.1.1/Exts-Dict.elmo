@@ -1,0 +1,84 @@
+var _krisajenkins$elm_exts$Exts_Dict$updateDict = F3(
+	function (f, key, dict) {
+		var _p0 = A2(_elm_lang$core$Dict$get, key, dict);
+		if (_p0.ctor === 'Nothing') {
+			return {ctor: '_Tuple2', _0: dict, _1: _elm_lang$core$Platform_Cmd$none};
+		} else {
+			var _p1 = f(_p0._0);
+			var newSubmodel = _p1._0;
+			var subcmd = _p1._1;
+			return {
+				ctor: '_Tuple2',
+				_0: A3(_elm_lang$core$Dict$insert, key, newSubmodel, dict),
+				_1: subcmd
+			};
+		}
+	});
+var _krisajenkins$elm_exts$Exts_Dict$foldToList = F2(
+	function (f, dict) {
+		return A3(
+			_elm_lang$core$Dict$foldr,
+			F2(
+				function (k, v) {
+					return F2(
+						function (x, y) {
+							return {ctor: '::', _0: x, _1: y};
+						})(
+						A2(f, k, v));
+				}),
+			{ctor: '[]'},
+			dict);
+	});
+var _krisajenkins$elm_exts$Exts_Dict$getWithDefault = F2(
+	function (def, key) {
+		return function (_p2) {
+			return A2(
+				_elm_lang$core$Maybe$withDefault,
+				def,
+				A2(_elm_lang$core$Dict$get, key, _p2));
+		};
+	});
+var _krisajenkins$elm_exts$Exts_Dict$frequency = function () {
+	var updater = function (m) {
+		var _p3 = m;
+		if (_p3.ctor === 'Nothing') {
+			return _elm_lang$core$Maybe$Just(1);
+		} else {
+			return _elm_lang$core$Maybe$Just(_p3._0 + 1);
+		}
+	};
+	var reducer = function (x) {
+		return A2(_elm_lang$core$Dict$update, x, updater);
+	};
+	return A2(_elm_lang$core$List$foldl, reducer, _elm_lang$core$Dict$empty);
+}();
+var _krisajenkins$elm_exts$Exts_Dict$groupBy = function (f) {
+	var reducer = F3(
+		function (g, x, d) {
+			var key = g(x);
+			var newValue = {
+				ctor: '::',
+				_0: x,
+				_1: A2(
+					_elm_lang$core$Maybe$withDefault,
+					{ctor: '[]'},
+					A2(_elm_lang$core$Dict$get, key, d))
+			};
+			return A3(_elm_lang$core$Dict$insert, key, newValue, d);
+		});
+	return A2(
+		_elm_lang$core$List$foldl,
+		reducer(f),
+		_elm_lang$core$Dict$empty);
+};
+var _krisajenkins$elm_exts$Exts_Dict$indexBy = function (f) {
+	return A2(
+		_elm_lang$core$List$foldl,
+		function (x) {
+			return A2(
+				_elm_lang$core$Dict$insert,
+				f(x),
+				x);
+		},
+		_elm_lang$core$Dict$empty);
+};

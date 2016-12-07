@@ -1,0 +1,22 @@
+{
+  "name": "erl",
+  "version": "1.0.0",
+  "description": "A URL parsing library for ELM",
+  "main": "elm.js",
+  "scripts": {
+    "test": "elm-test tests/Main.elm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sporto/erl.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sporto/erl/issues"
+  },
+  "homepage": "https://github.com/sporto/erl#readme",
+  "dependencies": {
+    "elm-test": "^0.18.0"
+  }
+}

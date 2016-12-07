@@ -1,0 +1,145 @@
+var _krisajenkins$elm_exts$Exts_List$minimumBy = F2(
+	function (toComparable, list) {
+		var _p0 = list;
+		if (_p0.ctor === '::') {
+			return _elm_lang$core$Maybe$Just(
+				A3(
+					_elm_lang$core$List$foldl,
+					_krisajenkins$elm_exts$Exts_Basics$minBy(toComparable),
+					_p0._0,
+					_p0._1));
+		} else {
+			return _elm_lang$core$Maybe$Nothing;
+		}
+	});
+var _krisajenkins$elm_exts$Exts_List$maximumBy = F2(
+	function (toComparable, list) {
+		var _p1 = list;
+		if (_p1.ctor === '::') {
+			return _elm_lang$core$Maybe$Just(
+				A3(
+					_elm_lang$core$List$foldl,
+					_krisajenkins$elm_exts$Exts_Basics$maxBy(toComparable),
+					_p1._0,
+					_p1._1));
+		} else {
+			return _elm_lang$core$Maybe$Nothing;
+		}
+	});
+var _krisajenkins$elm_exts$Exts_List$exactlyOne = function (xs) {
+	var _p2 = xs;
+	if (_p2.ctor === '[]') {
+		return _elm_lang$core$Result$Err('Expected a list with one item. Got an empty list.');
+	} else {
+		if (_p2._1.ctor === '[]') {
+			return _elm_lang$core$Result$Ok(_p2._0);
+		} else {
+			return _elm_lang$core$Result$Err(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'Expected a list with one item. Got ',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_elm_lang$core$Basics$toString(
+							_elm_lang$core$List$length(_p2._1)),
+						' items.')));
+		}
+	}
+};
+var _krisajenkins$elm_exts$Exts_List$unique = function () {
+	var f = F2(
+		function (x, _p3) {
+			var _p4 = _p3;
+			var _p6 = _p4._0;
+			var _p5 = _p4._1;
+			return A2(_elm_lang$core$Set$member, x, _p6) ? {ctor: '_Tuple2', _0: _p6, _1: _p5} : {
+				ctor: '_Tuple2',
+				_0: A2(_elm_lang$core$Set$insert, x, _p6),
+				_1: {ctor: '::', _0: x, _1: _p5}
+			};
+		});
+	return function (_p7) {
+		return _elm_lang$core$List$reverse(
+			_elm_lang$core$Tuple$second(
+				A3(
+					_elm_lang$core$List$foldl,
+					f,
+					{
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Set$empty,
+						_1: {ctor: '[]'}
+					},
+					_p7)));
+	};
+}();
+var _krisajenkins$elm_exts$Exts_List$rest = function (_p8) {
+	return A2(
+		_elm_lang$core$Maybe$withDefault,
+		{ctor: '[]'},
+		_elm_lang$core$List$tail(_p8));
+};
+var _krisajenkins$elm_exts$Exts_List$firstMatch = function (predicate) {
+	return A2(
+		_elm_lang$core$List$foldl,
+		F2(
+			function (item, acc) {
+				var _p9 = acc;
+				if (_p9.ctor === 'Just') {
+					return acc;
+				} else {
+					return predicate(item) ? _elm_lang$core$Maybe$Just(item) : _elm_lang$core$Maybe$Nothing;
+				}
+			}),
+		_elm_lang$core$Maybe$Nothing);
+};
+var _krisajenkins$elm_exts$Exts_List$singleton = function (x) {
+	return {
+		ctor: '::',
+		_0: x,
+		_1: {ctor: '[]'}
+	};
+};
+var _krisajenkins$elm_exts$Exts_List$maybeSingleton = function (_p10) {
+	return A2(
+		_elm_lang$core$Maybe$withDefault,
+		{ctor: '[]'},
+		A2(_elm_lang$core$Maybe$map, _krisajenkins$elm_exts$Exts_List$singleton, _p10));
+};
+var _krisajenkins$elm_exts$Exts_List$mergeBy = F3(
+	function (f, xs, ys) {
+		var reducer = F2(
+			function (v, acc) {
+				return A3(
+					_elm_lang$core$Dict$insert,
+					f(v),
+					v,
+					acc);
+			});
+		return _elm_lang$core$Dict$values(
+			A3(
+				_elm_lang$core$List$foldl,
+				reducer,
+				_elm_lang$core$Dict$empty,
+				A2(_elm_lang$core$Basics_ops['++'], xs, ys)));
+	});
+var _krisajenkins$elm_exts$Exts_List$chunkInternal = F3(
+	function (n, xs, accum) {
+		return _elm_lang$core$List$isEmpty(xs) ? _elm_lang$trampoline$Trampoline$done(
+			_elm_lang$core$Array$toList(accum)) : _elm_lang$trampoline$Trampoline$jump(
+			function (_p11) {
+				var _p12 = _p11;
+				return A3(
+					_krisajenkins$elm_exts$Exts_List$chunkInternal,
+					n,
+					A2(_elm_lang$core$List$drop, n, xs),
+					A2(
+						_elm_lang$core$Array$push,
+						A2(_elm_lang$core$List$take, n, xs),
+						accum));
+			});
+	});
+var _krisajenkins$elm_exts$Exts_List$chunk = F2(
+	function (n, xs) {
+		return (_elm_lang$core$Native_Utils.cmp(n, 1) < 0) ? _krisajenkins$elm_exts$Exts_List$singleton(xs) : _elm_lang$trampoline$Trampoline$evaluate(
+			A3(_krisajenkins$elm_exts$Exts_List$chunkInternal, n, xs, _elm_lang$core$Array$empty));
+	});

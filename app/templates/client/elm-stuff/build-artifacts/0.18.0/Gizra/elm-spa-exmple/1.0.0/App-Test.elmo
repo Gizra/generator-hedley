@@ -1,0 +1,120 @@
+var _Gizra$elm_spa_exmple$App_Test$getPageAsAuthenticated = function (page) {
+	var dummyUser = {id: 100, name: 'Foo', avatarUrl: 'https://example.com'};
+	var model = _elm_lang$core$Native_Utils.update(
+		_Gizra$elm_spa_exmple$App_Model$emptyModel,
+		{
+			user: _krisajenkins$remotedata$RemoteData$Success(dummyUser)
+		});
+	return function (_) {
+		return _.activePage;
+	}(
+		_elm_lang$core$Tuple$first(
+			A2(
+				_Gizra$elm_spa_exmple$App_Update$update,
+				_Gizra$elm_spa_exmple$App_Model$SetActivePage(page),
+				model)));
+};
+var _Gizra$elm_spa_exmple$App_Test$getPageAsAnonymous = function (page) {
+	return function (_) {
+		return _.activePage;
+	}(
+		_elm_lang$core$Tuple$first(
+			A2(
+				_Gizra$elm_spa_exmple$App_Update$update,
+				_Gizra$elm_spa_exmple$App_Model$SetActivePage(page),
+				_Gizra$elm_spa_exmple$App_Model$emptyModel)));
+};
+var _Gizra$elm_spa_exmple$App_Test$setActivePageTest = A2(
+	_elm_community$elm_test$Test$describe,
+	'SetActivePage msg',
+	{
+		ctor: '::',
+		_0: A2(
+			_elm_community$elm_test$Test$test,
+			'set new active page',
+			function (_p0) {
+				var _p1 = _p0;
+				var _p2 = A2(
+					_elm_lang$core$Debug$log,
+					'foo',
+					{
+						ctor: '_Tuple3',
+						_0: true,
+						_1: 'me',
+						_2: {
+							ctor: '::',
+							_0: 'last',
+							_1: {
+								ctor: '::',
+								_0: 'one',
+								_1: {ctor: '[]'}
+							}
+						}
+					});
+				return A2(
+					_elm_community$elm_test$Expect$equal,
+					_Gizra$elm_spa_exmple$App_Model$PageNotFound,
+					_Gizra$elm_spa_exmple$App_Test$getPageAsAnonymous(_Gizra$elm_spa_exmple$App_Model$PageNotFound));
+			}),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_elm_community$elm_test$Test$test,
+				'set Login page for anonymous user',
+				function (_p3) {
+					var _p4 = _p3;
+					return A2(
+						_elm_community$elm_test$Expect$equal,
+						_Gizra$elm_spa_exmple$App_Model$Login,
+						_Gizra$elm_spa_exmple$App_Test$getPageAsAnonymous(_Gizra$elm_spa_exmple$App_Model$Login));
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_community$elm_test$Test$test,
+					'set My account page for anonymous user',
+					function (_p5) {
+						var _p6 = _p5;
+						return A2(
+							_elm_community$elm_test$Expect$equal,
+							_Gizra$elm_spa_exmple$App_Model$AccessDenied,
+							_Gizra$elm_spa_exmple$App_Test$getPageAsAnonymous(_Gizra$elm_spa_exmple$App_Model$MyAccount));
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_community$elm_test$Test$test,
+						'set Login page for authenticated user',
+						function (_p7) {
+							var _p8 = _p7;
+							return A2(
+								_elm_community$elm_test$Expect$equal,
+								_Gizra$elm_spa_exmple$App_Model$AccessDenied,
+								_Gizra$elm_spa_exmple$App_Test$getPageAsAuthenticated(_Gizra$elm_spa_exmple$App_Model$Login));
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_community$elm_test$Test$test,
+							'set My account page for authenticated user',
+							function (_p9) {
+								var _p10 = _p9;
+								return A2(
+									_elm_community$elm_test$Expect$equal,
+									_Gizra$elm_spa_exmple$App_Model$MyAccount,
+									_Gizra$elm_spa_exmple$App_Test$getPageAsAuthenticated(_Gizra$elm_spa_exmple$App_Model$MyAccount));
+							}),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		}
+	});
+var _Gizra$elm_spa_exmple$App_Test$all = A2(
+	_elm_community$elm_test$Test$describe,
+	'App tests',
+	{
+		ctor: '::',
+		_0: _Gizra$elm_spa_exmple$App_Test$setActivePageTest,
+		_1: {ctor: '[]'}
+	});

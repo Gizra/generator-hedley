@@ -1,0 +1,34 @@
+var _krisajenkins$elm_exts$Exts_Json_Encode$tuple2 = F3(
+	function (encodeKey, encodeValue, _p0) {
+		var _p1 = _p0;
+		return _elm_lang$core$Json_Encode$list(
+			{
+				ctor: '::',
+				_0: encodeKey(_p1._0),
+				_1: {
+					ctor: '::',
+					_0: encodeValue(_p1._1),
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _krisajenkins$elm_exts$Exts_Json_Encode$dict = F2(
+	function (encodeKey, encodeValue) {
+		return function (_p2) {
+			return _elm_lang$core$Json_Encode$list(
+				A2(
+					_elm_lang$core$List$map,
+					A2(_krisajenkins$elm_exts$Exts_Json_Encode$tuple2, encodeKey, encodeValue),
+					_elm_lang$core$Dict$toList(_p2)));
+		};
+	});
+var _krisajenkins$elm_exts$Exts_Json_Encode$set = function (encodeElement) {
+	return function (_p3) {
+		return _elm_lang$core$Json_Encode$list(
+			A2(
+				_elm_lang$core$List$map,
+				encodeElement,
+				_elm_lang$core$List$sort(
+					_elm_lang$core$Set$toList(_p3))));
+	};
+};

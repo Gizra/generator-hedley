@@ -1,8 +1,4 @@
+elm-stuff
 node_modules
+serve
 dist
-.tmp
-.sass-cache
-bower_components
-config.json
-app/scripts/config.js
-sync_hedley.sh

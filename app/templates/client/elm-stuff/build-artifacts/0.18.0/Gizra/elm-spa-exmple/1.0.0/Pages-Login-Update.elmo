@@ -1,0 +1,115 @@
+var _Gizra$elm_spa_exmple$Pages_Login_Update$fetchUserFromBackend = F2(
+	function (backendUrl, accessToken) {
+		return A3(
+			_Gizra$elm_spa_exmple$Utils_WebData$sendWithHandler,
+			_Gizra$elm_spa_exmple$Pages_Login_Decoder$decodeUser,
+			_Gizra$elm_spa_exmple$Pages_Login_Model$HandleFetchedUser(accessToken),
+			A2(
+				_lukewestby$elm_http_builder$HttpBuilder$withQueryParams,
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'access_token', _1: accessToken},
+					_1: {ctor: '[]'}
+				},
+				_lukewestby$elm_http_builder$HttpBuilder$get(
+					A2(_elm_lang$core$Basics_ops['++'], backendUrl, '/api/me'))));
+	});
+var _Gizra$elm_spa_exmple$Pages_Login_Update$fetchAccessTokenFromBackend = F2(
+	function (backendUrl, loginForm) {
+		var credentials = _Gizra$elm_spa_exmple$Pages_Login_Decoder$encodeCredentials(
+			{ctor: '_Tuple2', _0: loginForm.name, _1: loginForm.pass});
+		return A3(
+			_Gizra$elm_spa_exmple$Utils_WebData$sendWithHandler,
+			_Gizra$elm_spa_exmple$Pages_Login_Decoder$decodeAccessToken,
+			_Gizra$elm_spa_exmple$Pages_Login_Model$HandleFetchedAccessToken,
+			A3(
+				_lukewestby$elm_http_builder$HttpBuilder$withHeader,
+				'Authorization',
+				A2(_elm_lang$core$Basics_ops['++'], 'Basic ', credentials),
+				_lukewestby$elm_http_builder$HttpBuilder$get(
+					A2(_elm_lang$core$Basics_ops['++'], backendUrl, '/api/login-token'))));
+	});
+var _Gizra$elm_spa_exmple$Pages_Login_Update$update = F3(
+	function (backendUrl, msg, model) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
+			case 'HandleFetchedAccessToken':
+				if (_p0._0.ctor === 'Ok') {
+					var _p1 = _p0._0._0;
+					return {
+						ctor: '_Tuple3',
+						_0: model,
+						_1: A2(_Gizra$elm_spa_exmple$Pages_Login_Update$fetchUserFromBackend, backendUrl, _p1),
+						_2: {ctor: '_Tuple2', _0: _krisajenkins$remotedata$RemoteData$Loading, _1: _p1}
+					};
+				} else {
+					return {
+						ctor: '_Tuple3',
+						_0: model,
+						_1: _elm_lang$core$Platform_Cmd$none,
+						_2: {
+							ctor: '_Tuple2',
+							_0: _krisajenkins$remotedata$RemoteData$Failure(_p0._0._0),
+							_1: ''
+						}
+					};
+				}
+			case 'HandleFetchedUser':
+				if (_p0._1.ctor === 'Ok') {
+					return {
+						ctor: '_Tuple3',
+						_0: model,
+						_1: _elm_lang$core$Platform_Cmd$none,
+						_2: {
+							ctor: '_Tuple2',
+							_0: _krisajenkins$remotedata$RemoteData$Success(_p0._1._0),
+							_1: _p0._0
+						}
+					};
+				} else {
+					return {
+						ctor: '_Tuple3',
+						_0: model,
+						_1: _elm_lang$core$Platform_Cmd$none,
+						_2: {
+							ctor: '_Tuple2',
+							_0: _krisajenkins$remotedata$RemoteData$Failure(_p0._1._0),
+							_1: _p0._0
+						}
+					};
+				}
+			case 'SetName':
+				var loginForm = model.loginForm;
+				var loginForm_ = _elm_lang$core$Native_Utils.update(
+					loginForm,
+					{name: _p0._0});
+				return {
+					ctor: '_Tuple3',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{loginForm: loginForm_}),
+					_1: _elm_lang$core$Platform_Cmd$none,
+					_2: {ctor: '_Tuple2', _0: _krisajenkins$remotedata$RemoteData$NotAsked, _1: ''}
+				};
+			case 'SetPassword':
+				var loginForm = model.loginForm;
+				var loginForm_ = _elm_lang$core$Native_Utils.update(
+					loginForm,
+					{pass: _p0._0});
+				return {
+					ctor: '_Tuple3',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{loginForm: loginForm_}),
+					_1: _elm_lang$core$Platform_Cmd$none,
+					_2: {ctor: '_Tuple2', _0: _krisajenkins$remotedata$RemoteData$NotAsked, _1: ''}
+				};
+			default:
+				return {
+					ctor: '_Tuple3',
+					_0: model,
+					_1: A2(_Gizra$elm_spa_exmple$Pages_Login_Update$fetchAccessTokenFromBackend, backendUrl, model.loginForm),
+					_2: {ctor: '_Tuple2', _0: _krisajenkins$remotedata$RemoteData$Loading, _1: ''}
+				};
+		}
+	});

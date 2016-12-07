@@ -1,0 +1,20 @@
+var _krisajenkins$elm_exts$Exts_Set$toggle = F2(
+	function (key, set) {
+		return A2(_elm_lang$core$Set$member, key, set) ? A2(_elm_lang$core$Set$remove, key, set) : A2(_elm_lang$core$Set$insert, key, set);
+	});
+var _krisajenkins$elm_exts$Exts_Set$uniqueItems = function (accessor) {
+	return function (_p0) {
+		return _elm_lang$core$Set$fromList(
+			A2(_elm_lang$core$List$filterMap, accessor, _p0));
+	};
+};
+var _krisajenkins$elm_exts$Exts_Set$select = F2(
+	function (f, keys) {
+		return _elm_lang$core$List$filter(
+			function (x) {
+				return A2(
+					_elm_lang$core$Set$member,
+					f(x),
+					keys);
+			});
+	});

@@ -1,0 +1,17 @@
+var _Gizra$elm_spa_exmple$Main$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$none;
+};
+var _Gizra$elm_spa_exmple$Main$main = _elm_lang$html$Html$programWithFlags(
+	{init: _Gizra$elm_spa_exmple$App_Update$init, update: _Gizra$elm_spa_exmple$App_Update$update, view: _Gizra$elm_spa_exmple$App_View$view, subscriptions: _Gizra$elm_spa_exmple$Main$subscriptions})(
+	A2(
+		_elm_lang$core$Json_Decode$andThen,
+		function (accessToken) {
+			return A2(
+				_elm_lang$core$Json_Decode$andThen,
+				function (hostname) {
+					return _elm_lang$core$Json_Decode$succeed(
+						{accessToken: accessToken, hostname: hostname});
+				},
+				A2(_elm_lang$core$Json_Decode$field, 'hostname', _elm_lang$core$Json_Decode$string));
+		},
+		A2(_elm_lang$core$Json_Decode$field, 'accessToken', _elm_lang$core$Json_Decode$string)));

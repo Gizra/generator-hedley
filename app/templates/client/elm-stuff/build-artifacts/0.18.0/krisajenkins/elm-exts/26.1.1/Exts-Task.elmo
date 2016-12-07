@@ -1,0 +1,8 @@
+var _krisajenkins$elm_exts$Exts_Task$asCmd = _elm_lang$core$Task$attempt(_elm_lang$core$Basics$identity);
+var _krisajenkins$elm_exts$Exts_Task$delay = F2(
+	function (time, task) {
+		return A2(
+			_elm_lang$core$Task$andThen,
+			_elm_lang$core$Basics$always(task),
+			_elm_lang$core$Process$sleep(time));
+	});

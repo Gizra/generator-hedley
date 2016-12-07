@@ -1,0 +1,24 @@
+var _krisajenkins$elm_exts$Exts_Html_Attributes$styleList = function () {
+	var withActive = function (_p0) {
+		var _p1 = _p0;
+		return _p1._2 ? _elm_lang$core$Maybe$Just(
+			{ctor: '_Tuple2', _0: _p1._0, _1: _p1._1}) : _elm_lang$core$Maybe$Nothing;
+	};
+	return function (_p2) {
+		return _elm_lang$html$Html_Attributes$style(
+			A2(_elm_lang$core$List$filterMap, withActive, _p2));
+	};
+}();
+var _krisajenkins$elm_exts$Exts_Html_Attributes$defaultValue = _elm_lang$html$Html_Attributes$property('defaultValue');
+var _krisajenkins$elm_exts$Exts_Html_Attributes$defaultString = function (_p3) {
+	return _krisajenkins$elm_exts$Exts_Html_Attributes$defaultValue(
+		_elm_lang$core$Json_Encode$string(_p3));
+};
+var _krisajenkins$elm_exts$Exts_Html_Attributes$defaultInt = function (_p4) {
+	return _krisajenkins$elm_exts$Exts_Html_Attributes$defaultValue(
+		_elm_lang$core$Json_Encode$int(_p4));
+};
+var _krisajenkins$elm_exts$Exts_Html_Attributes$defaultFloat = function (_p5) {
+	return _krisajenkins$elm_exts$Exts_Html_Attributes$defaultValue(
+		_elm_lang$core$Json_Encode$float(_p5));
+};

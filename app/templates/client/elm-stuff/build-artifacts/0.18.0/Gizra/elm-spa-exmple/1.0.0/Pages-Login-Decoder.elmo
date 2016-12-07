@@ -1,0 +1,46 @@
+var _Gizra$elm_spa_exmple$Pages_Login_Decoder$encodeCredentials = function (_p0) {
+	var _p1 = _p0;
+	var base64 = _truqu$elm_base64$Base64$encode(
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			_p1._0,
+			A2(_elm_lang$core$Basics_ops['++'], ':', _p1._1)));
+	var _p2 = base64;
+	if (_p2.ctor === 'Ok') {
+		return _p2._0;
+	} else {
+		return '';
+	}
+};
+var _Gizra$elm_spa_exmple$Pages_Login_Decoder$decodeError = A2(
+	_elm_lang$core$Json_Decode$at,
+	{
+		ctor: '::',
+		_0: 'data',
+		_1: {
+			ctor: '::',
+			_0: 'error',
+			_1: {ctor: '[]'}
+		}
+	},
+	_elm_lang$core$Json_Decode$string);
+var _Gizra$elm_spa_exmple$Pages_Login_Decoder$decodeAccessToken = A2(
+	_elm_lang$core$Json_Decode$at,
+	{
+		ctor: '::',
+		_0: 'access_token',
+		_1: {ctor: '[]'}
+	},
+	_elm_lang$core$Json_Decode$string);
+var _Gizra$elm_spa_exmple$Pages_Login_Decoder$decodeUser = A2(
+	_elm_lang$core$Json_Decode$at,
+	{
+		ctor: '::',
+		_0: 'data',
+		_1: {
+			ctor: '::',
+			_0: '0',
+			_1: {ctor: '[]'}
+		}
+	},
+	_Gizra$elm_spa_exmple$User_Decoder$decodeUser);

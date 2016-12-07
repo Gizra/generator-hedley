@@ -1,0 +1,20 @@
+var _krisajenkins$elm_exts$Exts_Function_ops = _krisajenkins$elm_exts$Exts_Function_ops || {};
+_krisajenkins$elm_exts$Exts_Function_ops['<<<'] = F3(
+	function (f, g, env) {
+		return function (_p0) {
+			return A2(
+				f,
+				env,
+				A2(g, env, _p0));
+		};
+	});
+var _krisajenkins$elm_exts$Exts_Function_ops = _krisajenkins$elm_exts$Exts_Function_ops || {};
+_krisajenkins$elm_exts$Exts_Function_ops['>>>'] = F3(
+	function (f, g, env) {
+		return function (_p1) {
+			return A2(
+				g,
+				env,
+				A2(f, env, _p1));
+		};
+	});

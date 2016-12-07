@@ -1,0 +1,14 @@
+var _Gizra$elm_spa_exmple$User_Decoder$decodeUser = A4(
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$optional,
+	'avatar_url',
+	_elm_lang$core$Json_Decode$string,
+	'https://github.com/foo.png?s=90',
+	A3(
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+		'label',
+		_elm_lang$core$Json_Decode$string,
+		A3(
+			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+			'id',
+			_Gizra$elm_spa_exmple$Utils_Json$decodeInt,
+			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_Gizra$elm_spa_exmple$User_Model$User))));

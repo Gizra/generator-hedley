@@ -1,0 +1,159 @@
+var _elm_community$elm_test$Test_Runner$formatLabels = F3(
+	function (formatDescription, formatTest, labels) {
+		var _p1 = A2(
+			_elm_lang$core$List$filter,
+			function (_p0) {
+				return !_elm_lang$core$String$isEmpty(_p0);
+			},
+			labels);
+		if (_p1.ctor === '[]') {
+			return {ctor: '[]'};
+		} else {
+			return _elm_lang$core$List$reverse(
+				A2(
+					F2(
+						function (x, y) {
+							return {ctor: '::', _0: x, _1: y};
+						}),
+					formatTest(_p1._0),
+					A2(_elm_lang$core$List$map, formatDescription, _p1._1)));
+		}
+	});
+var _elm_community$elm_test$Test_Runner$run = function (_p2) {
+	var _p3 = _p2;
+	return _p3._0(
+		{ctor: '_Tuple0'});
+};
+var _elm_community$elm_test$Test_Runner$Thunk = function (a) {
+	return {ctor: 'Thunk', _0: a};
+};
+var _elm_community$elm_test$Test_Runner$Batch = function (a) {
+	return {ctor: 'Batch', _0: a};
+};
+var _elm_community$elm_test$Test_Runner$Labeled = F2(
+	function (a, b) {
+		return {ctor: 'Labeled', _0: a, _1: b};
+	});
+var _elm_community$elm_test$Test_Runner$Runnable = function (a) {
+	return {ctor: 'Runnable', _0: a};
+};
+var _elm_community$elm_test$Test_Runner$distributeSeeds = F3(
+	function (runs, test, _p4) {
+		var _p5 = _p4;
+		var _p13 = _p5._0;
+		var _p12 = _p5._1;
+		var _p6 = test;
+		switch (_p6.ctor) {
+			case 'Test':
+				var _p7 = A2(_mgold$elm_random_pcg$Random_Pcg$step, _mgold$elm_random_pcg$Random_Pcg$independentSeed, _p13);
+				var seed = _p7._0;
+				var nextSeed = _p7._1;
+				return {
+					ctor: '_Tuple2',
+					_0: nextSeed,
+					_1: A2(
+						_elm_lang$core$Basics_ops['++'],
+						_p12,
+						{
+							ctor: '::',
+							_0: _elm_community$elm_test$Test_Runner$Runnable(
+								_elm_community$elm_test$Test_Runner$Thunk(
+									function (_p8) {
+										var _p9 = _p8;
+										return A2(_p6._0, seed, runs);
+									})),
+							_1: {ctor: '[]'}
+						})
+				};
+			case 'Labeled':
+				var _p10 = A3(
+					_elm_community$elm_test$Test_Runner$distributeSeeds,
+					runs,
+					_p6._1,
+					{
+						ctor: '_Tuple2',
+						_0: _p13,
+						_1: {ctor: '[]'}
+					});
+				var nextSeed = _p10._0;
+				var nextRunners = _p10._1;
+				var finalRunners = A2(
+					_elm_lang$core$List$map,
+					_elm_community$elm_test$Test_Runner$Labeled(_p6._0),
+					nextRunners);
+				return {
+					ctor: '_Tuple2',
+					_0: nextSeed,
+					_1: A2(_elm_lang$core$Basics_ops['++'], _p12, finalRunners)
+				};
+			default:
+				var _p11 = A3(
+					_elm_lang$core$List$foldl,
+					_elm_community$elm_test$Test_Runner$distributeSeeds(runs),
+					{
+						ctor: '_Tuple2',
+						_0: _p13,
+						_1: {ctor: '[]'}
+					},
+					_p6._0);
+				var nextSeed = _p11._0;
+				var nextRunners = _p11._1;
+				return {
+					ctor: '_Tuple2',
+					_0: nextSeed,
+					_1: {
+						ctor: '::',
+						_0: _elm_community$elm_test$Test_Runner$Batch(
+							A2(_elm_lang$core$Basics_ops['++'], _p12, nextRunners)),
+						_1: {ctor: '[]'}
+					}
+				};
+		}
+	});
+var _elm_community$elm_test$Test_Runner$fromTest = F3(
+	function (runs, seed, test) {
+		if (_elm_lang$core$Native_Utils.cmp(runs, 1) < 0) {
+			return _elm_community$elm_test$Test_Runner$Runnable(
+				_elm_community$elm_test$Test_Runner$Thunk(
+					function (_p14) {
+						var _p15 = _p14;
+						return {
+							ctor: '::',
+							_0: _elm_community$elm_test$Expect$fail(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									'Test runner run count must be at least 1, not ',
+									_elm_lang$core$Basics$toString(runs))),
+							_1: {ctor: '[]'}
+						};
+					}));
+		} else {
+			var _p16 = test;
+			switch (_p16.ctor) {
+				case 'Test':
+					return _elm_community$elm_test$Test_Runner$Runnable(
+						_elm_community$elm_test$Test_Runner$Thunk(
+							function (_p17) {
+								var _p18 = _p17;
+								return A2(_p16._0, seed, runs);
+							}));
+				case 'Labeled':
+					return A2(
+						_elm_community$elm_test$Test_Runner$Labeled,
+						_p16._0,
+						A3(_elm_community$elm_test$Test_Runner$fromTest, runs, seed, _p16._1));
+				default:
+					return _elm_community$elm_test$Test_Runner$Batch(
+						_elm_lang$core$Tuple$second(
+							A3(
+								_elm_lang$core$List$foldl,
+								_elm_community$elm_test$Test_Runner$distributeSeeds(runs),
+								{
+									ctor: '_Tuple2',
+									_0: seed,
+									_1: {ctor: '[]'}
+								},
+								_p16._0)));
+			}
+		}
+	});

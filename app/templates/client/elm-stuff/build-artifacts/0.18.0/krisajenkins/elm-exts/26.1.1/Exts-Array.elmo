@@ -1,0 +1,46 @@
+var _krisajenkins$elm_exts$Exts_Array$singleton = function (x) {
+	return A2(_elm_lang$core$Array$push, x, _elm_lang$core$Array$empty);
+};
+var _krisajenkins$elm_exts$Exts_Array$unzip = function () {
+	var reducer = F2(
+		function (_p1, _p0) {
+			var _p2 = _p1;
+			var _p3 = _p0;
+			return {
+				ctor: '_Tuple2',
+				_0: A2(_elm_lang$core$Array$push, _p2._0, _p3._0),
+				_1: A2(_elm_lang$core$Array$push, _p2._1, _p3._1)
+			};
+		});
+	return A2(
+		_elm_lang$core$Array$foldl,
+		reducer,
+		{ctor: '_Tuple2', _0: _elm_lang$core$Array$empty, _1: _elm_lang$core$Array$empty});
+}();
+var _krisajenkins$elm_exts$Exts_Array$delete = F2(
+	function (n, xs) {
+		if (_elm_lang$core$Native_Utils.cmp(n, 0) < 0) {
+			return xs;
+		} else {
+			var after = A3(
+				_elm_lang$core$Array$slice,
+				n + 1,
+				_elm_lang$core$Array$length(xs),
+				xs);
+			var before = A3(_elm_lang$core$Array$slice, 0, n, xs);
+			return A2(_elm_lang$core$Array$append, before, after);
+		}
+	});
+var _krisajenkins$elm_exts$Exts_Array$update = F3(
+	function (n, f, xs) {
+		var _p4 = A2(_elm_lang$core$Array$get, n, xs);
+		if (_p4.ctor === 'Nothing') {
+			return xs;
+		} else {
+			return A3(
+				_elm_lang$core$Array$set,
+				n,
+				f(_p4._0),
+				xs);
+		}
+	});

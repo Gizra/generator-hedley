@@ -1,0 +1,8 @@
+var _rtfeldman$node_test_runner$Test_Reporter_Result$TestResult = F3(
+	function (a, b, c) {
+		return {labels: a, expectations: b, duration: c};
+	});
+var _rtfeldman$node_test_runner$Test_Reporter_Result$Failure = F2(
+	function (a, b) {
+		return {given: a, message: b};
+	});

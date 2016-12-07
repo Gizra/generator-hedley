@@ -1,0 +1,9 @@
+var _elm_community$json_extra$Json_Encode_Extra$maybe = F2(
+	function (encoder, value) {
+		var _p0 = value;
+		if (_p0.ctor === 'Nothing') {
+			return _elm_lang$core$Json_Encode$null;
+		} else {
+			return encoder(_p0._0);
+		}
+	});

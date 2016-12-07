@@ -1,0 +1,43 @@
+var _elm_community$elm_test$Fuzz_Internal$unpackGenTree = function (_p0) {
+	var _p1 = _p0;
+	var _p2 = _p1._0(false);
+	if (_p2.ctor === 'Shrink') {
+		return _p2._0;
+	} else {
+		return A2(
+			_elm_lang$core$Native_Utils.crash(
+				'Fuzz.Internal',
+				{
+					start: {line: 58, column: 13},
+					end: {line: 58, column: 24}
+				}),
+			'This shouldn\'t happen: Fuzz.Internal.unpackGenTree',
+			_p2);
+	}
+};
+var _elm_community$elm_test$Fuzz_Internal$unpackGenVal = function (_p3) {
+	var _p4 = _p3;
+	var _p5 = _p4._0(true);
+	if (_p5.ctor === 'Gen') {
+		return _p5._0;
+	} else {
+		return A2(
+			_elm_lang$core$Native_Utils.crash(
+				'Fuzz.Internal',
+				{
+					start: {line: 48, column: 13},
+					end: {line: 48, column: 24}
+				}),
+			'This shouldn\'t happen: Fuzz.Internal.unpackGenVal',
+			_p5);
+	}
+};
+var _elm_community$elm_test$Fuzz_Internal$Fuzzer = function (a) {
+	return {ctor: 'Fuzzer', _0: a};
+};
+var _elm_community$elm_test$Fuzz_Internal$Shrink = function (a) {
+	return {ctor: 'Shrink', _0: a};
+};
+var _elm_community$elm_test$Fuzz_Internal$Gen = function (a) {
+	return {ctor: 'Gen', _0: a};
+};

@@ -1,0 +1,30 @@
+var _krisajenkins$elm_exts$Exts_Html_Events$emptyIsNothing = function (s) {
+	return _elm_lang$core$Native_Utils.eq(s, '') ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(s);
+};
+var _krisajenkins$elm_exts$Exts_Html_Events$maybeTargetValue = A2(_elm_lang$core$Json_Decode$map, _krisajenkins$elm_exts$Exts_Html_Events$emptyIsNothing, _elm_lang$html$Html_Events$targetValue);
+var _krisajenkins$elm_exts$Exts_Html_Events$onSelect = function (f) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'change',
+		A2(_elm_lang$core$Json_Decode$map, f, _krisajenkins$elm_exts$Exts_Html_Events$maybeTargetValue));
+};
+var _krisajenkins$elm_exts$Exts_Html_Events$keyCodeIs = F2(
+	function (expected, actual) {
+		return _elm_lang$core$Native_Utils.eq(expected, actual) ? _elm_lang$core$Result$Ok(
+			{ctor: '_Tuple0'}) : _elm_lang$core$Result$Err('Not the right key code');
+	});
+var _krisajenkins$elm_exts$Exts_Html_Events$enterKey = _krisajenkins$elm_exts$Exts_Html_Events$keyCodeIs(13);
+var _krisajenkins$elm_exts$Exts_Html_Events$onEnter = function (message) {
+	return A3(
+		_elm_lang$html$Html_Events$onWithOptions,
+		'keydown',
+		{preventDefault: true, stopPropagation: false},
+		A2(
+			_elm_lang$core$Json_Decode$andThen,
+			_elm_lang$core$Basics$always(
+				_elm_lang$core$Json_Decode$succeed(message)),
+			A2(
+				_elm_lang$core$Json_Decode$andThen,
+				_krisajenkins$elm_exts$Exts_Json_Decode$parseWith(_krisajenkins$elm_exts$Exts_Html_Events$enterKey),
+				_elm_lang$html$Html_Events$keyCode)));
+};

@@ -1,0 +1,16 @@
+{
+    "version": "1.0.5",
+    "summary": "Base64 encoding and decoding",
+    "repository": "https://github.com/truqu/elm-base64.git",
+    "license": "MIT",
+    "source-directories": [
+        "src"
+    ],
+    "exposed-modules": [
+        "Base64"
+    ],
+    "dependencies": {
+        "elm-lang/core": "5.0.0 <= v < 6.0.0"
+    },
+    "elm-version": "0.18.0 <= v < 0.19.0"
+}

@@ -1,0 +1,178 @@
+var _Gizra$elm_spa_exmple$Pages_Login_View$view = F2(
+	function (user, model) {
+		var error = function () {
+			var _p0 = user;
+			if (_p0.ctor === 'Failure') {
+				return A2(
+					_elm_lang$html$Html$div,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('ui error'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _Gizra$elm_spa_exmple$Utils_WebData$viewError(_p0._0),
+						_1: {ctor: '[]'}
+					});
+			} else {
+				return A2(
+					_elm_lang$html$Html$div,
+					{ctor: '[]'},
+					{ctor: '[]'});
+			}
+		}();
+		var _p1 = function () {
+			var _p2 = user;
+			switch (_p2.ctor) {
+				case 'Loading':
+					return {ctor: '_Tuple2', _0: true, _1: false};
+				case 'Failure':
+					return {ctor: '_Tuple2', _0: false, _1: true};
+				default:
+					return {ctor: '_Tuple2', _0: false, _1: false};
+			}
+		}();
+		var isLoading = _p1._0;
+		var isError = _p1._1;
+		var inputClasses = _elm_lang$html$Html_Attributes$classList(
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'ui action input', _1: true},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'error', _1: isError},
+					_1: {ctor: '[]'}
+				}
+			});
+		var spinner = A2(
+			_elm_lang$html$Html$i,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class('notched circle loading icon'),
+				_1: {ctor: '[]'}
+			},
+			{ctor: '[]'});
+		return A2(
+			_elm_lang$html$Html$form,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Events$onSubmit(_Gizra$elm_spa_exmple$Pages_Login_Model$TryLogin),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$action('javascript:void(0);'),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('ui stacked segment'),
+						_1: {ctor: '[]'}
+					}
+				}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{
+						ctor: '::',
+						_0: inputClasses,
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$input,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$type_('text'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$placeholder('Name'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Events$onInput(_Gizra$elm_spa_exmple$Pages_Login_Model$SetName),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$value(model.loginForm.name),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							},
+							{ctor: '[]'}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$input,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$type_('password'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$placeholder('Password'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Events$onInput(_Gizra$elm_spa_exmple$Pages_Login_Model$SetPassword),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$value(model.loginForm.pass),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								},
+								{ctor: '[]'}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$button,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$disabled(isLoading),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$class('ui primary button'),
+											_1: {ctor: '[]'}
+										}
+									},
+									{
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$span,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$hidden(!isLoading),
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: spinner,
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$span,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$hidden(isLoading),
+													_1: {ctor: '[]'}
+												},
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html$text('Login'),
+													_1: {ctor: '[]'}
+												}),
+											_1: {ctor: '[]'}
+										}
+									}),
+								_1: {ctor: '[]'}
+							}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: error,
+					_1: {ctor: '[]'}
+				}
+			});
+	});

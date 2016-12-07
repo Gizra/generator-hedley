@@ -1,0 +1,19 @@
+var _krisajenkins$elm_exts$Exts_Basics$compareBy = F3(
+	function (f, a, b) {
+		return A2(
+			_elm_lang$core$Basics$compare,
+			f(a),
+			f(b));
+	});
+var _krisajenkins$elm_exts$Exts_Basics$maxBy = F3(
+	function (toComparable, x, y) {
+		return _elm_lang$core$Native_Utils.eq(
+			A3(_krisajenkins$elm_exts$Exts_Basics$compareBy, toComparable, x, y),
+			_elm_lang$core$Basics$LT) ? y : x;
+	});
+var _krisajenkins$elm_exts$Exts_Basics$minBy = F3(
+	function (toComparable, x, y) {
+		return _elm_lang$core$Native_Utils.eq(
+			A3(_krisajenkins$elm_exts$Exts_Basics$compareBy, toComparable, x, y),
+			_elm_lang$core$Basics$LT) ? x : y;
+	});

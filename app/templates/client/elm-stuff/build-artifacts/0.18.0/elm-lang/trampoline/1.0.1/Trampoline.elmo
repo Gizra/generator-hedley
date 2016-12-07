@@ -1,0 +1,22 @@
+var _elm_lang$trampoline$Trampoline$evaluate = function (trampoline) {
+	evaluate:
+	while (true) {
+		var _p0 = trampoline;
+		if (_p0.ctor === 'Done') {
+			return _p0._0;
+		} else {
+			var _v1 = _p0._0(
+				{ctor: '_Tuple0'});
+			trampoline = _v1;
+			continue evaluate;
+		}
+	}
+};
+var _elm_lang$trampoline$Trampoline$Jump = function (a) {
+	return {ctor: 'Jump', _0: a};
+};
+var _elm_lang$trampoline$Trampoline$jump = _elm_lang$trampoline$Trampoline$Jump;
+var _elm_lang$trampoline$Trampoline$Done = function (a) {
+	return {ctor: 'Done', _0: a};
+};
+var _elm_lang$trampoline$Trampoline$done = _elm_lang$trampoline$Trampoline$Done;

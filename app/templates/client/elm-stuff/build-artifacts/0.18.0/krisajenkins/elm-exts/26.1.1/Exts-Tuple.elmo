@@ -1,0 +1,72 @@
+var _krisajenkins$elm_exts$Exts_Tuple$onSecond = F2(
+	function (f, _p0) {
+		var _p1 = _p0;
+		var _p2 = _p1._0;
+		return {
+			ctor: '_Tuple2',
+			_0: _p2,
+			_1: A2(f, _p2, _p1._1)
+		};
+	});
+var _krisajenkins$elm_exts$Exts_Tuple$onFirst = F2(
+	function (f, _p3) {
+		var _p4 = _p3;
+		var _p5 = _p4._1;
+		return {
+			ctor: '_Tuple2',
+			_0: A2(f, _p4._0, _p5),
+			_1: _p5
+		};
+	});
+var _krisajenkins$elm_exts$Exts_Tuple$fork = F3(
+	function (fX, fY, v) {
+		return {
+			ctor: '_Tuple2',
+			_0: fX(v),
+			_1: fY(v)
+		};
+	});
+var _krisajenkins$elm_exts$Exts_Tuple$pair = F3(
+	function (f1, f2, _p6) {
+		var _p7 = _p6;
+		return {
+			ctor: '_Tuple2',
+			_0: f1(_p7._0),
+			_1: f2(_p7._1)
+		};
+	});
+var _krisajenkins$elm_exts$Exts_Tuple$both = F2(
+	function (f, _p8) {
+		var _p9 = _p8;
+		return {
+			ctor: '_Tuple2',
+			_0: f(_p9._0),
+			_1: f(_p9._1)
+		};
+	});
+var _krisajenkins$elm_exts$Exts_Tuple$mapSecond = F2(
+	function (f, _p10) {
+		var _p11 = _p10;
+		return {
+			ctor: '_Tuple2',
+			_0: _p11._0,
+			_1: f(_p11._1)
+		};
+	});
+var _krisajenkins$elm_exts$Exts_Tuple$mapFirst = F2(
+	function (f, _p12) {
+		var _p13 = _p12;
+		return {
+			ctor: '_Tuple2',
+			_0: f(_p13._0),
+			_1: _p13._1
+		};
+	});
+var _krisajenkins$elm_exts$Exts_Tuple$indexedPair = F2(
+	function (f, x) {
+		return {
+			ctor: '_Tuple2',
+			_0: f(x),
+			_1: x
+		};
+	});
