@@ -1,0 +1,28 @@
+var _Gizra$elm_spa_exmple$Pages_Login_Model$LoginForm = F2(
+	function (a, b) {
+		return {name: a, pass: b};
+	});
+var _Gizra$elm_spa_exmple$Pages_Login_Model$emptyModel = {
+	loginForm: A2(_Gizra$elm_spa_exmple$Pages_Login_Model$LoginForm, 'demo', '1234')
+};
+var _Gizra$elm_spa_exmple$Pages_Login_Model$Model = function (a) {
+	return {loginForm: a};
+};
+var _Gizra$elm_spa_exmple$Pages_Login_Model$Error = function (a) {
+	return {ctor: 'Error', _0: a};
+};
+var _Gizra$elm_spa_exmple$Pages_Login_Model$None = {ctor: 'None'};
+var _Gizra$elm_spa_exmple$Pages_Login_Model$TryLogin = {ctor: 'TryLogin'};
+var _Gizra$elm_spa_exmple$Pages_Login_Model$SetPassword = function (a) {
+	return {ctor: 'SetPassword', _0: a};
+};
+var _Gizra$elm_spa_exmple$Pages_Login_Model$SetName = function (a) {
+	return {ctor: 'SetName', _0: a};
+};
+var _Gizra$elm_spa_exmple$Pages_Login_Model$HandleFetchedUser = F2(
+	function (a, b) {
+		return {ctor: 'HandleFetchedUser', _0: a, _1: b};
+	});
+var _Gizra$elm_spa_exmple$Pages_Login_Model$HandleFetchedAccessToken = function (a) {
+	return {ctor: 'HandleFetchedAccessToken', _0: a};
+};

@@ -1,0 +1,83 @@
+var _krisajenkins$elm_exts$Exts_Delta$empty = {
+	entering: {ctor: '[]'},
+	continuing: {ctor: '[]'},
+	leaving: {ctor: '[]'}
+};
+var _krisajenkins$elm_exts$Exts_Delta$listContains = function (x) {
+	return _elm_lang$core$List$any(
+		F2(
+			function (x, y) {
+				return _elm_lang$core$Native_Utils.eq(x, y);
+			})(x));
+};
+var _krisajenkins$elm_exts$Exts_Delta$intersect = F2(
+	function (xs, ys) {
+		return A2(
+			_elm_lang$core$List$filter,
+			function (x) {
+				return A2(_krisajenkins$elm_exts$Exts_Delta$listContains, x, ys);
+			},
+			xs);
+	});
+var _krisajenkins$elm_exts$Exts_Delta$filter = F2(
+	function (p, xs) {
+		filter:
+		while (true) {
+			var _p0 = xs;
+			if (_p0.ctor === '[]') {
+				return {ctor: '[]'};
+			} else {
+				var _p2 = _p0._1;
+				var _p1 = _p0._0;
+				if (p(_p1)) {
+					return {
+						ctor: '::',
+						_0: _p1,
+						_1: A2(_krisajenkins$elm_exts$Exts_Delta$filter, p, _p2)
+					};
+				} else {
+					var _v1 = p,
+						_v2 = _p2;
+					p = _v1;
+					xs = _v2;
+					continue filter;
+				}
+			}
+		}
+	});
+var _krisajenkins$elm_exts$Exts_Delta$remove = function (p) {
+	return _krisajenkins$elm_exts$Exts_Delta$filter(
+		function (_p3) {
+			return !p(_p3);
+		});
+};
+var _krisajenkins$elm_exts$Exts_Delta$diff = F2(
+	function (xs, ys) {
+		return A2(
+			_krisajenkins$elm_exts$Exts_Delta$remove,
+			function (x) {
+				return A2(_krisajenkins$elm_exts$Exts_Delta$listContains, x, ys);
+			},
+			xs);
+	});
+var _krisajenkins$elm_exts$Exts_Delta$union = F2(
+	function (xs, ys) {
+		return A2(
+			_elm_lang$core$List$append,
+			xs,
+			A2(_krisajenkins$elm_exts$Exts_Delta$diff, ys, xs));
+	});
+var _krisajenkins$elm_exts$Exts_Delta$generation = F2(
+	function (xs, ds) {
+		var actives = A2(_krisajenkins$elm_exts$Exts_Delta$union, ds.entering, ds.continuing);
+		var newEntries = A2(_krisajenkins$elm_exts$Exts_Delta$diff, xs, actives);
+		var newLeavers = A2(_krisajenkins$elm_exts$Exts_Delta$diff, actives, xs);
+		var newContinuers = A2(_krisajenkins$elm_exts$Exts_Delta$intersect, xs, actives);
+		return _elm_lang$core$Native_Utils.update(
+			_krisajenkins$elm_exts$Exts_Delta$empty,
+			{entering: newEntries, continuing: newContinuers, leaving: newLeavers});
+	});
+var _krisajenkins$elm_exts$Exts_Delta$Delta = F3(
+	function (a, b, c) {
+		return {entering: a, continuing: b, leaving: c};
+	});

@@ -1,0 +1,60 @@
+var _krisajenkins$elm_exts$Exts_Html$nbsp = ' ';
+var _krisajenkins$elm_exts$Exts_Html$matchText = F3(
+	function (attributes, search, string) {
+		var sliceSegments = F2(
+			function (_p1, _p0) {
+				var _p2 = _p1;
+				var _p3 = _p0;
+				return A2(
+					_elm_lang$html$Html$span,
+					_p2._1 ? attributes : {ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(
+							A3(_elm_lang$core$String$slice, _p2._0, _p3._0, string)),
+						_1: {ctor: '[]'}
+					});
+			});
+		var matchStringEnd = {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$String$length(string),
+				_1: false
+			},
+			_1: {ctor: '[]'}
+		};
+		var matchStringStart = {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 0, _1: false},
+			_1: {ctor: '[]'}
+		};
+		var matchBoundaries = function (place) {
+			return {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: place.index, _1: true},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: place.index + _elm_lang$core$String$length(place.match),
+						_1: false
+					},
+					_1: {ctor: '[]'}
+				}
+			};
+		};
+		var matches = A3(_elm_lang$core$Regex$find, _elm_lang$core$Regex$All, search, string);
+		var allSegmentBoundaries = A2(
+			_elm_lang$core$Basics_ops['++'],
+			matchStringStart,
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				A2(_elm_lang$core$List$concatMap, matchBoundaries, matches),
+				matchStringEnd));
+		return A3(
+			_elm_lang$core$List$map2,
+			sliceSegments,
+			allSegmentBoundaries,
+			_krisajenkins$elm_exts$Exts_List$rest(allSegmentBoundaries));
+	});

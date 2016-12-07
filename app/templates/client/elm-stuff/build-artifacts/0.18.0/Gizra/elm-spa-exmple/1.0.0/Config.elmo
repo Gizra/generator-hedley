@@ -1,0 +1,12 @@
+var _Gizra$elm_spa_exmple$Config$production = {backendUrl: 'https://live-hedley-elm.pantheonsite.io', name: 'gh-pages'};
+var _Gizra$elm_spa_exmple$Config$local = {backendUrl: 'https://live-hedley-elm.pantheonsite.io', name: 'local'};
+var _Gizra$elm_spa_exmple$Config$configs = _elm_lang$core$Dict$fromList(
+	{
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'localhost', _1: _Gizra$elm_spa_exmple$Config$local},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'example', _1: _Gizra$elm_spa_exmple$Config$production},
+			_1: {ctor: '[]'}
+		}
+	});

@@ -1,0 +1,14 @@
+var _elm_community$elm_test$Test_Expectation$Fail = F2(
+	function (a, b) {
+		return {ctor: 'Fail', _0: a, _1: b};
+	});
+var _elm_community$elm_test$Test_Expectation$withGiven = F2(
+	function (given, outcome) {
+		var _p0 = outcome;
+		if (_p0.ctor === 'Fail') {
+			return A2(_elm_community$elm_test$Test_Expectation$Fail, given, _p0._1);
+		} else {
+			return outcome;
+		}
+	});
+var _elm_community$elm_test$Test_Expectation$Pass = {ctor: 'Pass'};

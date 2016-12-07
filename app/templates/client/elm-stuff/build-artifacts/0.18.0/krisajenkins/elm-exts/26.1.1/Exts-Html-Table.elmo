@@ -1,0 +1,105 @@
+var _krisajenkins$elm_exts$Exts_Html_Table$valueGroup = F2(
+	function (fs, x) {
+		return A2(
+			_elm_lang$html$Html$div,
+			{ctor: '[]'},
+			A2(
+				_elm_lang$core$List$map,
+				function (f) {
+					return A2(
+						_elm_lang$html$Html$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: f(x),
+							_1: {ctor: '[]'}
+						});
+				},
+				fs));
+	});
+var _krisajenkins$elm_exts$Exts_Html_Table$titleGroup = function (strings) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		A2(
+			_elm_lang$core$List$map,
+			function (s) {
+				return A2(
+					_elm_lang$html$Html$div,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(s),
+						_1: {ctor: '[]'}
+					});
+			},
+			strings));
+};
+var _krisajenkins$elm_exts$Exts_Html_Table$simpleTableRow = F2(
+	function (tableDef, item) {
+		return A2(
+			_elm_lang$html$Html$tr,
+			{ctor: '[]'},
+			A2(
+				_elm_lang$core$List$map,
+				function (_p0) {
+					var _p1 = _p0;
+					return A2(
+						_elm_lang$html$Html$td,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _p1._1(item),
+							_1: {ctor: '[]'}
+						});
+				},
+				tableDef));
+	});
+var _krisajenkins$elm_exts$Exts_Html_Table$simpleTable = F2(
+	function (tableDef, items) {
+		return A2(
+			_elm_lang$html$Html$table,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class('table table-bordered table-hover'),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$thead,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$tr,
+							{ctor: '[]'},
+							A2(
+								_elm_lang$core$List$map,
+								function (_p2) {
+									var _p3 = _p2;
+									return A2(
+										_elm_lang$html$Html$th,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: _p3._0,
+											_1: {ctor: '[]'}
+										});
+								},
+								tableDef)),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$tbody,
+						{ctor: '[]'},
+						A2(
+							_elm_lang$core$List$map,
+							_krisajenkins$elm_exts$Exts_Html_Table$simpleTableRow(tableDef),
+							items)),
+					_1: {ctor: '[]'}
+				}
+			});
+	});

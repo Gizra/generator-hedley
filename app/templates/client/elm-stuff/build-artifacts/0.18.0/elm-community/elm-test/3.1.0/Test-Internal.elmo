@@ -1,0 +1,134 @@
+var _elm_community$elm_test$Test_Internal$isFail = F2(
+	function (x, y) {
+		return !_elm_lang$core$Native_Utils.eq(x, y);
+	})(_elm_community$elm_test$Test_Expectation$Pass);
+var _elm_community$elm_test$Test_Internal$formatExpectation = function (_p0) {
+	var _p1 = _p0;
+	return A2(_elm_community$elm_test$Test_Expectation$withGiven, _p1._0, _p1._1);
+};
+var _elm_community$elm_test$Test_Internal$shrinkAndAdd = F4(
+	function (rootTree, getExpectation, rootsExpectation, dict) {
+		var shrink = F2(
+			function (oldExpectation, _p2) {
+				shrink:
+				while (true) {
+					var _p3 = _p2;
+					var _p6 = _p3._0;
+					var _p4 = _elm_community$lazy_list$Lazy_List$headAndTail(_p3._1);
+					if (_p4.ctor === 'Just') {
+						var _p5 = getExpectation(_p4._0._0._0);
+						if (_p5.ctor === 'Pass') {
+							var _v4 = oldExpectation,
+								_v5 = A2(_elm_community$elm_test$RoseTree$Rose, _p6, _p4._0._1);
+							oldExpectation = _v4;
+							_p2 = _v5;
+							continue shrink;
+						} else {
+							var _v6 = _p5,
+								_v7 = _p4._0._0;
+							oldExpectation = _v6;
+							_p2 = _v7;
+							continue shrink;
+						}
+					} else {
+						return {ctor: '_Tuple2', _0: _p6, _1: oldExpectation};
+					}
+				}
+			});
+		var _p7 = A2(shrink, rootsExpectation, rootTree);
+		var result = _p7._0;
+		var finalExpectation = _p7._1;
+		return A3(
+			_elm_lang$core$Dict$insert,
+			_elm_lang$core$Basics$toString(result),
+			finalExpectation,
+			dict);
+	});
+var _elm_community$elm_test$Test_Internal$Batch = function (a) {
+	return {ctor: 'Batch', _0: a};
+};
+var _elm_community$elm_test$Test_Internal$Labeled = F2(
+	function (a, b) {
+		return {ctor: 'Labeled', _0: a, _1: b};
+	});
+var _elm_community$elm_test$Test_Internal$filterHelp = F3(
+	function (lastCheckPassed, isKeepable, test) {
+		var _p8 = test;
+		switch (_p8.ctor) {
+			case 'Test':
+				return lastCheckPassed ? test : _elm_community$elm_test$Test_Internal$Batch(
+					{ctor: '[]'});
+			case 'Labeled':
+				var _p9 = _p8._0;
+				return A2(
+					_elm_community$elm_test$Test_Internal$Labeled,
+					_p9,
+					A3(
+						_elm_community$elm_test$Test_Internal$filterHelp,
+						isKeepable(_p9),
+						isKeepable,
+						_p8._1));
+			default:
+				return _elm_community$elm_test$Test_Internal$Batch(
+					A2(
+						_elm_lang$core$List$map,
+						A2(_elm_community$elm_test$Test_Internal$filterHelp, lastCheckPassed, isKeepable),
+						_p8._0));
+		}
+	});
+var _elm_community$elm_test$Test_Internal$filter = _elm_community$elm_test$Test_Internal$filterHelp(false);
+var _elm_community$elm_test$Test_Internal$Test = function (a) {
+	return {ctor: 'Test', _0: a};
+};
+var _elm_community$elm_test$Test_Internal$fuzzTest = F3(
+	function (fuzzer, desc, getExpectation) {
+		var getFailures = F3(
+			function (failures, currentSeed, remainingRuns) {
+				getFailures:
+				while (true) {
+					var genVal = _elm_community$elm_test$Fuzz_Internal$unpackGenVal(fuzzer);
+					var _p10 = A2(_mgold$elm_random_pcg$Random_Pcg$step, genVal, currentSeed);
+					var value = _p10._0;
+					var nextSeed = _p10._1;
+					var newFailures = function () {
+						var _p11 = getExpectation(value);
+						if (_p11.ctor === 'Pass') {
+							return failures;
+						} else {
+							var genTree = _elm_community$elm_test$Fuzz_Internal$unpackGenTree(fuzzer);
+							var _p12 = A2(_mgold$elm_random_pcg$Random_Pcg$step, genTree, currentSeed);
+							var rosetree = _p12._0;
+							var nextSeedAgain = _p12._1;
+							return A4(_elm_community$elm_test$Test_Internal$shrinkAndAdd, rosetree, getExpectation, _p11, failures);
+						}
+					}();
+					if (_elm_lang$core$Native_Utils.eq(remainingRuns, 1)) {
+						return newFailures;
+					} else {
+						var _v10 = newFailures,
+							_v11 = nextSeed,
+							_v12 = remainingRuns - 1;
+						failures = _v10;
+						currentSeed = _v11;
+						remainingRuns = _v12;
+						continue getFailures;
+					}
+				}
+			});
+		var run = F2(
+			function (seed, runs) {
+				var failures = A3(getFailures, _elm_lang$core$Dict$empty, seed, runs);
+				return _elm_lang$core$Dict$isEmpty(failures) ? {
+					ctor: '::',
+					_0: _elm_community$elm_test$Test_Expectation$Pass,
+					_1: {ctor: '[]'}
+				} : A2(
+					_elm_lang$core$List$map,
+					_elm_community$elm_test$Test_Internal$formatExpectation,
+					_elm_lang$core$Dict$toList(failures));
+			});
+		return A2(
+			_elm_community$elm_test$Test_Internal$Labeled,
+			desc,
+			_elm_community$elm_test$Test_Internal$Test(run));
+	});

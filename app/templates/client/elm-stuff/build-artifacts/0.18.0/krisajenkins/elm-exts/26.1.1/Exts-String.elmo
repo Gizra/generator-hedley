@@ -1,0 +1,7 @@
+var _krisajenkins$elm_exts$Exts_String$removePrefix = F2(
+	function (prefix, s) {
+		return A2(_elm_lang$core$String$startsWith, prefix, s) ? A2(
+			_elm_lang$core$String$dropLeft,
+			_elm_lang$core$String$length(prefix),
+			s) : s;
+	});

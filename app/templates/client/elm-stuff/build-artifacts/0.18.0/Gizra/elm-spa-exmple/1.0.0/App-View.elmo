@@ -1,0 +1,361 @@
+var _Gizra$elm_spa_exmple$App_View$classByPage = F2(
+	function (page, activePage) {
+		return _elm_lang$html$Html_Attributes$classList(
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'item', _1: true},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 'active',
+						_1: _elm_lang$core$Native_Utils.eq(page, activePage)
+					},
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _Gizra$elm_spa_exmple$App_View$viewFooter = A2(
+	_elm_lang$html$Html$div,
+	{
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$class('ui inverted vertical footer segment form-page'),
+		_1: {ctor: '[]'}
+	},
+	{
+		ctor: '::',
+		_0: A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class('ui container'),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$a,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$href('http://gizra.com'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$target('_blank'),
+							_1: {ctor: '[]'}
+						}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('Gizra'),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$span,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(' // '),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$a,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$href('https://github.com/Gizra/elm-spa-example'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$target('_blank'),
+									_1: {ctor: '[]'}
+								}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('Github'),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}
+				}
+			}),
+		_1: {ctor: '[]'}
+	});
+var _Gizra$elm_spa_exmple$App_View$viewMainContent = function (model) {
+	var _p0 = model.activePage;
+	switch (_p0.ctor) {
+		case 'AccessDenied':
+			return A2(
+				_elm_lang$html$Html$div,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('Access denied'),
+					_1: {ctor: '[]'}
+				});
+		case 'Login':
+			return A2(
+				_elm_lang$html$Html$map,
+				_Gizra$elm_spa_exmple$App_Model$PageLogin,
+				A2(_Gizra$elm_spa_exmple$Pages_Login_View$view, model.user, model.pageLogin));
+		case 'MyAccount':
+			return _Gizra$elm_spa_exmple$Pages_MyAccount_View$view(model.user);
+		default:
+			return _Gizra$elm_spa_exmple$Pages_PageNotFound_View$view;
+	}
+};
+var _Gizra$elm_spa_exmple$App_View$viewAvatar = function (user) {
+	var _p1 = user;
+	if (_p1.ctor === 'Success') {
+		return A2(
+			_elm_lang$html$Html$a,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Events$onClick(
+					_Gizra$elm_spa_exmple$App_Model$SetActivePage(_Gizra$elm_spa_exmple$App_Model$MyAccount)),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('ui item'),
+					_1: {ctor: '[]'}
+				}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$img,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('ui avatar image'),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$src(_p1._0.avatarUrl),
+							_1: {ctor: '[]'}
+						}
+					},
+					{ctor: '[]'}),
+				_1: {ctor: '[]'}
+			});
+	} else {
+		return A2(
+			_elm_lang$html$Html$div,
+			{ctor: '[]'},
+			{ctor: '[]'});
+	}
+};
+var _Gizra$elm_spa_exmple$App_View$viewPageNotFoundItem = function (activePage) {
+	return A2(
+		_elm_lang$html$Html$a,
+		{
+			ctor: '::',
+			_0: A2(_Gizra$elm_spa_exmple$App_View$classByPage, _Gizra$elm_spa_exmple$App_Model$PageNotFound, activePage),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$html$Html_Events$onClick(
+					_Gizra$elm_spa_exmple$App_Model$SetActivePage(_Gizra$elm_spa_exmple$App_Model$PageNotFound)),
+				_1: {ctor: '[]'}
+			}
+		},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text('404 page'),
+			_1: {ctor: '[]'}
+		});
+};
+var _Gizra$elm_spa_exmple$App_View$navbarAuthenticated = function (model) {
+	return {
+		ctor: '::',
+		_0: A2(
+			_elm_lang$html$Html$a,
+			{
+				ctor: '::',
+				_0: A2(_Gizra$elm_spa_exmple$App_View$classByPage, _Gizra$elm_spa_exmple$App_Model$MyAccount, model.activePage),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Events$onClick(
+						_Gizra$elm_spa_exmple$App_Model$SetActivePage(_Gizra$elm_spa_exmple$App_Model$MyAccount)),
+					_1: {ctor: '[]'}
+				}
+			},
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html$text('My Account'),
+				_1: {ctor: '[]'}
+			}),
+		_1: {
+			ctor: '::',
+			_0: _Gizra$elm_spa_exmple$App_View$viewPageNotFoundItem(model.activePage),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('right menu'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _Gizra$elm_spa_exmple$App_View$viewAvatar(model.user),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$a,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('ui item'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Events$onClick(_Gizra$elm_spa_exmple$App_Model$Logout),
+										_1: {ctor: '[]'}
+									}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('Logout'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {ctor: '[]'}
+			}
+		}
+	};
+};
+var _Gizra$elm_spa_exmple$App_View$navbarAnonymous = function (model) {
+	return {
+		ctor: '::',
+		_0: A2(
+			_elm_lang$html$Html$a,
+			{
+				ctor: '::',
+				_0: A2(_Gizra$elm_spa_exmple$App_View$classByPage, _Gizra$elm_spa_exmple$App_Model$Login, model.activePage),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Events$onClick(
+						_Gizra$elm_spa_exmple$App_Model$SetActivePage(_Gizra$elm_spa_exmple$App_Model$Login)),
+					_1: {ctor: '[]'}
+				}
+			},
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html$text('Login'),
+				_1: {ctor: '[]'}
+			}),
+		_1: {
+			ctor: '::',
+			_0: _Gizra$elm_spa_exmple$App_View$viewPageNotFoundItem(model.activePage),
+			_1: {ctor: '[]'}
+		}
+	};
+};
+var _Gizra$elm_spa_exmple$App_View$viewHeader = function (model) {
+	var navbar = function () {
+		var _p2 = model.user;
+		if (_p2.ctor === 'Success') {
+			return _Gizra$elm_spa_exmple$App_View$navbarAuthenticated;
+		} else {
+			return _Gizra$elm_spa_exmple$App_View$navbarAnonymous;
+		}
+	}();
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('ui secondary pointing menu'),
+			_1: {ctor: '[]'}
+		},
+		navbar(model));
+};
+var _Gizra$elm_spa_exmple$App_View$view = function (model) {
+	var _p3 = model.config;
+	if (_p3.ctor === 'Failure') {
+		return _Gizra$elm_spa_exmple$Config_View$view;
+	} else {
+		return A2(
+			_elm_lang$html$Html$div,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('ui container main'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _Gizra$elm_spa_exmple$App_View$viewHeader(model),
+						_1: {
+							ctor: '::',
+							_0: _Gizra$elm_spa_exmple$App_View$viewMainContent(model),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$pre,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$class('ui padded secondary segment'),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$div,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text(
+													A2(
+														_elm_lang$core$Basics_ops['++'],
+														'activePage: ',
+														_elm_lang$core$Basics$toString(model.activePage))),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$div,
+												{ctor: '[]'},
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html$text(
+														A2(
+															_elm_lang$core$Basics_ops['++'],
+															'pageLogin: ',
+															_elm_lang$core$Basics$toString(model.pageLogin))),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$div,
+													{ctor: '[]'},
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html$text(
+															A2(
+																_elm_lang$core$Basics_ops['++'],
+																'user: ',
+																_elm_lang$core$Basics$toString(model.user))),
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											}
+										}
+									}),
+								_1: {ctor: '[]'}
+							}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: _Gizra$elm_spa_exmple$App_View$viewFooter,
+					_1: {ctor: '[]'}
+				}
+			});
+	}
+};

@@ -1,0 +1,14 @@
+html {
+  height: 100%;
+}
+
+body > div {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  /* flex: 1; would be enough but it looks bad in IE */
+  flex: 1 0 auto;
+}

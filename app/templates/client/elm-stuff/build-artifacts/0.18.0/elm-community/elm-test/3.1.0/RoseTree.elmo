@@ -1,0 +1,44 @@
+var _elm_community$elm_test$RoseTree$children = function (_p0) {
+	var _p1 = _p0;
+	return _p1._1;
+};
+var _elm_community$elm_test$RoseTree$root = function (_p2) {
+	var _p3 = _p2;
+	return _p3._0;
+};
+var _elm_community$elm_test$RoseTree$Rose = F2(
+	function (a, b) {
+		return {ctor: 'Rose', _0: a, _1: b};
+	});
+var _elm_community$elm_test$RoseTree$singleton = function (a) {
+	return A2(_elm_community$elm_test$RoseTree$Rose, a, _elm_community$lazy_list$Lazy_List$empty);
+};
+var _elm_community$elm_test$RoseTree$addChild = F2(
+	function (child, _p4) {
+		var _p5 = _p4;
+		return A2(
+			_elm_community$elm_test$RoseTree$Rose,
+			_p5._0,
+			A2(_elm_community$lazy_list$Lazy_List_ops[':::'], child, _p5._1));
+	});
+var _elm_community$elm_test$RoseTree$map = F2(
+	function (f, _p6) {
+		var _p7 = _p6;
+		return A2(
+			_elm_community$elm_test$RoseTree$Rose,
+			f(_p7._0),
+			A2(
+				_elm_community$lazy_list$Lazy_List$map,
+				_elm_community$elm_test$RoseTree$map(f),
+				_p7._1));
+	});
+var _elm_community$elm_test$RoseTree$flatten = function (_p8) {
+	var _p9 = _p8;
+	return A2(
+		_elm_community$elm_test$RoseTree$Rose,
+		_p9._0._0,
+		A2(
+			_elm_community$lazy_list$Lazy_List_ops['+++'],
+			_p9._0._1,
+			A2(_elm_community$lazy_list$Lazy_List$map, _elm_community$elm_test$RoseTree$flatten, _p9._1)));
+};

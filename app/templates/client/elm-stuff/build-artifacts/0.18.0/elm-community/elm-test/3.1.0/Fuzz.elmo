@@ -1,0 +1,1124 @@
+var _elm_community$elm_test$Fuzz$okOrCrash = function (result) {
+	var _p0 = result;
+	if (_p0.ctor === 'Ok') {
+		return _p0._0;
+	} else {
+		return _elm_lang$core$Native_Utils.crashCase(
+			'Fuzz',
+			{
+				start: {line: 797, column: 5},
+				end: {line: 802, column: 28}
+			},
+			_p0)(_p0._0);
+	}
+};
+var _elm_community$elm_test$Fuzz$frequency = function (list) {
+	return _elm_lang$core$List$isEmpty(list) ? _elm_lang$core$Result$Err('You must provide at least one frequency pair.') : (A2(
+		_elm_lang$core$List$any,
+		function (_p2) {
+			var _p3 = _p2;
+			return _elm_lang$core$Native_Utils.cmp(_p3._0, 0) < 0;
+		},
+		list) ? _elm_lang$core$Result$Err('No frequency weights can be less than 0.') : ((_elm_lang$core$Native_Utils.cmp(
+		_elm_lang$core$List$sum(
+			A2(_elm_lang$core$List$map, _elm_lang$core$Tuple$first, list)),
+		0) < 1) ? _elm_lang$core$Result$Err('Frequency weights must sum to more than 0.') : _elm_lang$core$Result$Ok(
+		_elm_community$elm_test$Fuzz_Internal$Fuzzer(
+			function (noShrink) {
+				return noShrink ? _elm_community$elm_test$Fuzz_Internal$Gen(
+					_mgold$elm_random_pcg$Random_Pcg$frequency(
+						A2(
+							_elm_lang$core$List$map,
+							function (_p4) {
+								var _p5 = _p4;
+								return {
+									ctor: '_Tuple2',
+									_0: _p5._0,
+									_1: _elm_community$elm_test$Fuzz_Internal$unpackGenVal(_p5._1)
+								};
+							},
+							list))) : _elm_community$elm_test$Fuzz_Internal$Shrink(
+					_mgold$elm_random_pcg$Random_Pcg$frequency(
+						A2(
+							_elm_lang$core$List$map,
+							function (_p6) {
+								var _p7 = _p6;
+								return {
+									ctor: '_Tuple2',
+									_0: _p7._0,
+									_1: _elm_community$elm_test$Fuzz_Internal$unpackGenTree(_p7._1)
+								};
+							},
+							list)));
+			}))));
+};
+var _elm_community$elm_test$Fuzz$frequencyOrCrash = function (_p8) {
+	return _elm_community$elm_test$Fuzz$okOrCrash(
+		_elm_community$elm_test$Fuzz$frequency(_p8));
+};
+var _elm_community$elm_test$Fuzz$unwindLazyList = function (lazyListOfGenerators) {
+	var _p9 = _elm_community$lazy_list$Lazy_List$headAndTail(lazyListOfGenerators);
+	if (_p9.ctor === 'Nothing') {
+		return _mgold$elm_random_pcg$Random_Pcg$constant(_elm_community$lazy_list$Lazy_List$empty);
+	} else {
+		return A3(
+			_mgold$elm_random_pcg$Random_Pcg$map2,
+			_elm_community$lazy_list$Lazy_List$cons,
+			_p9._0._0,
+			_elm_community$elm_test$Fuzz$unwindLazyList(_p9._0._1));
+	}
+};
+var _elm_community$elm_test$Fuzz$unwindRoseTree = function (_p10) {
+	var _p11 = _p10;
+	var _p13 = _p11._0;
+	var _p12 = _elm_community$lazy_list$Lazy_List$headAndTail(_p11._1);
+	if (_p12.ctor === 'Nothing') {
+		return A2(_mgold$elm_random_pcg$Random_Pcg$map, _elm_community$elm_test$RoseTree$singleton, _p13);
+	} else {
+		return A5(
+			_mgold$elm_random_pcg$Random_Pcg$map4,
+			F4(
+				function (a, b, c, d) {
+					return A2(
+						_elm_community$elm_test$RoseTree$Rose,
+						a,
+						A2(
+							_elm_community$lazy_list$Lazy_List$cons,
+							A2(_elm_community$elm_test$RoseTree$Rose, b, c),
+							d));
+				}),
+			_p13,
+			_p12._0._0._0,
+			_elm_community$elm_test$Fuzz$unwindLazyList(
+				A2(_elm_community$lazy_list$Lazy_List$map, _elm_community$elm_test$Fuzz$unwindRoseTree, _p12._0._0._1)),
+			_elm_community$elm_test$Fuzz$unwindLazyList(
+				A2(_elm_community$lazy_list$Lazy_List$map, _elm_community$elm_test$Fuzz$unwindRoseTree, _p12._0._1)));
+	}
+};
+var _elm_community$elm_test$Fuzz$andThenRoseTrees = F2(
+	function (transform, genTree) {
+		return A2(
+			_mgold$elm_random_pcg$Random_Pcg$andThen,
+			function (_p14) {
+				var _p15 = _p14;
+				var genOtherChildren = A2(
+					_mgold$elm_random_pcg$Random_Pcg$map,
+					_elm_community$lazy_list$Lazy_List$map(_elm_community$elm_test$RoseTree$flatten),
+					_elm_community$elm_test$Fuzz$unwindLazyList(
+						A2(
+							_elm_community$lazy_list$Lazy_List$map,
+							function (rt) {
+								return _elm_community$elm_test$Fuzz$unwindRoseTree(
+									A2(
+										_elm_community$elm_test$RoseTree$map,
+										function (_p16) {
+											return _elm_community$elm_test$Fuzz_Internal$unpackGenTree(
+												transform(_p16));
+										},
+										rt));
+							},
+							_p15._1)));
+				return A3(
+					_mgold$elm_random_pcg$Random_Pcg$map2,
+					F2(
+						function (_p17, otherChildren) {
+							var _p18 = _p17;
+							return A2(
+								_elm_community$elm_test$RoseTree$Rose,
+								_p18._0,
+								A2(_elm_community$lazy_list$Lazy_List$append, _p18._1, otherChildren));
+						}),
+					_elm_community$elm_test$Fuzz_Internal$unpackGenTree(
+						transform(_p15._0)),
+					genOtherChildren);
+			},
+			genTree);
+	});
+var _elm_community$elm_test$Fuzz$andThen = F2(
+	function (transform, _p19) {
+		var _p20 = _p19;
+		return _elm_community$elm_test$Fuzz_Internal$Fuzzer(
+			function (noShrink) {
+				var _p21 = _p20._0(noShrink);
+				if (_p21.ctor === 'Gen') {
+					return _elm_community$elm_test$Fuzz_Internal$Gen(
+						A2(
+							_mgold$elm_random_pcg$Random_Pcg$andThen,
+							function (_p22) {
+								return _elm_community$elm_test$Fuzz_Internal$unpackGenVal(
+									transform(_p22));
+							},
+							_p21._0));
+				} else {
+					return _elm_community$elm_test$Fuzz_Internal$Shrink(
+						A2(_elm_community$elm_test$Fuzz$andThenRoseTrees, transform, _p21._0));
+				}
+			});
+	});
+var _elm_community$elm_test$Fuzz$map = F2(
+	function (transform, _p23) {
+		var _p24 = _p23;
+		return _elm_community$elm_test$Fuzz_Internal$Fuzzer(
+			function (noShrink) {
+				var _p25 = _p24._0(noShrink);
+				if (_p25.ctor === 'Gen') {
+					return _elm_community$elm_test$Fuzz_Internal$Gen(
+						A2(_mgold$elm_random_pcg$Random_Pcg$map, transform, _p25._0));
+				} else {
+					return _elm_community$elm_test$Fuzz_Internal$Shrink(
+						A2(
+							_mgold$elm_random_pcg$Random_Pcg$map,
+							_elm_community$elm_test$RoseTree$map(transform),
+							_p25._0));
+				}
+			});
+	});
+var _elm_community$elm_test$Fuzz$constant = function (x) {
+	return _elm_community$elm_test$Fuzz_Internal$Fuzzer(
+		function (noShrink) {
+			return noShrink ? _elm_community$elm_test$Fuzz_Internal$Gen(
+				_mgold$elm_random_pcg$Random_Pcg$constant(x)) : _elm_community$elm_test$Fuzz_Internal$Shrink(
+				_mgold$elm_random_pcg$Random_Pcg$constant(
+					_elm_community$elm_test$RoseTree$singleton(x)));
+		});
+};
+var _elm_community$elm_test$Fuzz$tupleShrinkHelp5 = F5(
+	function (rose1, rose2, rose3, rose4, rose5) {
+		var shrink5 = A2(
+			_elm_community$lazy_list$Lazy_List$map,
+			function (subtree) {
+				return A5(_elm_community$elm_test$Fuzz$tupleShrinkHelp5, rose1, rose2, rose3, rose4, subtree);
+			},
+			_elm_community$elm_test$RoseTree$children(rose5));
+		var shrink4 = A2(
+			_elm_community$lazy_list$Lazy_List$map,
+			function (subtree) {
+				return A5(_elm_community$elm_test$Fuzz$tupleShrinkHelp5, rose1, rose2, rose3, subtree, rose5);
+			},
+			_elm_community$elm_test$RoseTree$children(rose4));
+		var shrink3 = A2(
+			_elm_community$lazy_list$Lazy_List$map,
+			function (subtree) {
+				return A5(_elm_community$elm_test$Fuzz$tupleShrinkHelp5, rose1, rose2, subtree, rose4, rose5);
+			},
+			_elm_community$elm_test$RoseTree$children(rose3));
+		var shrink2 = A2(
+			_elm_community$lazy_list$Lazy_List$map,
+			function (subtree) {
+				return A5(_elm_community$elm_test$Fuzz$tupleShrinkHelp5, rose1, subtree, rose3, rose4, rose5);
+			},
+			_elm_community$elm_test$RoseTree$children(rose2));
+		var shrink1 = A2(
+			_elm_community$lazy_list$Lazy_List$map,
+			function (subtree) {
+				return A5(_elm_community$elm_test$Fuzz$tupleShrinkHelp5, subtree, rose2, rose3, rose4, rose5);
+			},
+			_elm_community$elm_test$RoseTree$children(rose1));
+		var root = {
+			ctor: '_Tuple5',
+			_0: _elm_community$elm_test$RoseTree$root(rose1),
+			_1: _elm_community$elm_test$RoseTree$root(rose2),
+			_2: _elm_community$elm_test$RoseTree$root(rose3),
+			_3: _elm_community$elm_test$RoseTree$root(rose4),
+			_4: _elm_community$elm_test$RoseTree$root(rose5)
+		};
+		return A2(
+			_elm_community$elm_test$RoseTree$Rose,
+			root,
+			A2(
+				_elm_community$lazy_list$Lazy_List$append,
+				shrink1,
+				A2(
+					_elm_community$lazy_list$Lazy_List$append,
+					shrink2,
+					A2(
+						_elm_community$lazy_list$Lazy_List$append,
+						shrink3,
+						A2(_elm_community$lazy_list$Lazy_List$append, shrink4, shrink5)))));
+	});
+var _elm_community$elm_test$Fuzz$tuple5 = function (_p26) {
+	var _p27 = _p26;
+	return _elm_community$elm_test$Fuzz_Internal$Fuzzer(
+		function (noShrink) {
+			var _p28 = {
+				ctor: '_Tuple5',
+				_0: _p27._0._0(noShrink),
+				_1: _p27._1._0(noShrink),
+				_2: _p27._2._0(noShrink),
+				_3: _p27._3._0(noShrink),
+				_4: _p27._4._0(noShrink)
+			};
+			_v14_2:
+			do {
+				if (_p28.ctor === '_Tuple5') {
+					if (_p28._0.ctor === 'Gen') {
+						if ((((_p28._1.ctor === 'Gen') && (_p28._2.ctor === 'Gen')) && (_p28._3.ctor === 'Gen')) && (_p28._4.ctor === 'Gen')) {
+							return _elm_community$elm_test$Fuzz_Internal$Gen(
+								A6(
+									_mgold$elm_random_pcg$Random_Pcg$map5,
+									F5(
+										function (v0, v1, v2, v3, v4) {
+											return {ctor: '_Tuple5', _0: v0, _1: v1, _2: v2, _3: v3, _4: v4};
+										}),
+									_p28._0._0,
+									_p28._1._0,
+									_p28._2._0,
+									_p28._3._0,
+									_p28._4._0));
+						} else {
+							break _v14_2;
+						}
+					} else {
+						if ((((_p28._1.ctor === 'Shrink') && (_p28._2.ctor === 'Shrink')) && (_p28._3.ctor === 'Shrink')) && (_p28._4.ctor === 'Shrink')) {
+							return _elm_community$elm_test$Fuzz_Internal$Shrink(
+								A6(_mgold$elm_random_pcg$Random_Pcg$map5, _elm_community$elm_test$Fuzz$tupleShrinkHelp5, _p28._0._0, _p28._1._0, _p28._2._0, _p28._3._0, _p28._4._0));
+						} else {
+							break _v14_2;
+						}
+					}
+				} else {
+					break _v14_2;
+				}
+			} while(false);
+			return A2(
+				_elm_lang$core$Native_Utils.crash(
+					'Fuzz',
+					{
+						start: {line: 573, column: 21},
+						end: {line: 573, column: 32}
+					}),
+				'This shouldn\'t happen: Fuzz.tuple5',
+				_p28);
+		});
+};
+var _elm_community$elm_test$Fuzz$map5 = F6(
+	function (transform, fuzzA, fuzzB, fuzzC, fuzzD, fuzzE) {
+		return A2(
+			_elm_community$elm_test$Fuzz$map,
+			function (_p29) {
+				var _p30 = _p29;
+				return A5(transform, _p30._0, _p30._1, _p30._2, _p30._3, _p30._4);
+			},
+			_elm_community$elm_test$Fuzz$tuple5(
+				{ctor: '_Tuple5', _0: fuzzA, _1: fuzzB, _2: fuzzC, _3: fuzzD, _4: fuzzE}));
+	});
+var _elm_community$elm_test$Fuzz$tupleShrinkHelp4 = F4(
+	function (rose1, rose2, rose3, rose4) {
+		var shrink4 = A2(
+			_elm_community$lazy_list$Lazy_List$map,
+			function (subtree) {
+				return A4(_elm_community$elm_test$Fuzz$tupleShrinkHelp4, rose1, rose2, rose3, subtree);
+			},
+			_elm_community$elm_test$RoseTree$children(rose4));
+		var shrink3 = A2(
+			_elm_community$lazy_list$Lazy_List$map,
+			function (subtree) {
+				return A4(_elm_community$elm_test$Fuzz$tupleShrinkHelp4, rose1, rose2, subtree, rose4);
+			},
+			_elm_community$elm_test$RoseTree$children(rose3));
+		var shrink2 = A2(
+			_elm_community$lazy_list$Lazy_List$map,
+			function (subtree) {
+				return A4(_elm_community$elm_test$Fuzz$tupleShrinkHelp4, rose1, subtree, rose3, rose4);
+			},
+			_elm_community$elm_test$RoseTree$children(rose2));
+		var shrink1 = A2(
+			_elm_community$lazy_list$Lazy_List$map,
+			function (subtree) {
+				return A4(_elm_community$elm_test$Fuzz$tupleShrinkHelp4, subtree, rose2, rose3, rose4);
+			},
+			_elm_community$elm_test$RoseTree$children(rose1));
+		var root = {
+			ctor: '_Tuple4',
+			_0: _elm_community$elm_test$RoseTree$root(rose1),
+			_1: _elm_community$elm_test$RoseTree$root(rose2),
+			_2: _elm_community$elm_test$RoseTree$root(rose3),
+			_3: _elm_community$elm_test$RoseTree$root(rose4)
+		};
+		return A2(
+			_elm_community$elm_test$RoseTree$Rose,
+			root,
+			A2(
+				_elm_community$lazy_list$Lazy_List$append,
+				shrink1,
+				A2(
+					_elm_community$lazy_list$Lazy_List$append,
+					shrink2,
+					A2(_elm_community$lazy_list$Lazy_List$append, shrink3, shrink4))));
+	});
+var _elm_community$elm_test$Fuzz$tuple4 = function (_p31) {
+	var _p32 = _p31;
+	return _elm_community$elm_test$Fuzz_Internal$Fuzzer(
+		function (noShrink) {
+			var _p33 = {
+				ctor: '_Tuple4',
+				_0: _p32._0._0(noShrink),
+				_1: _p32._1._0(noShrink),
+				_2: _p32._2._0(noShrink),
+				_3: _p32._3._0(noShrink)
+			};
+			_v17_2:
+			do {
+				if (_p33.ctor === '_Tuple4') {
+					if (_p33._0.ctor === 'Gen') {
+						if (((_p33._1.ctor === 'Gen') && (_p33._2.ctor === 'Gen')) && (_p33._3.ctor === 'Gen')) {
+							return _elm_community$elm_test$Fuzz_Internal$Gen(
+								A5(
+									_mgold$elm_random_pcg$Random_Pcg$map4,
+									F4(
+										function (v0, v1, v2, v3) {
+											return {ctor: '_Tuple4', _0: v0, _1: v1, _2: v2, _3: v3};
+										}),
+									_p33._0._0,
+									_p33._1._0,
+									_p33._2._0,
+									_p33._3._0));
+						} else {
+							break _v17_2;
+						}
+					} else {
+						if (((_p33._1.ctor === 'Shrink') && (_p33._2.ctor === 'Shrink')) && (_p33._3.ctor === 'Shrink')) {
+							return _elm_community$elm_test$Fuzz_Internal$Shrink(
+								A5(_mgold$elm_random_pcg$Random_Pcg$map4, _elm_community$elm_test$Fuzz$tupleShrinkHelp4, _p33._0._0, _p33._1._0, _p33._2._0, _p33._3._0));
+						} else {
+							break _v17_2;
+						}
+					}
+				} else {
+					break _v17_2;
+				}
+			} while(false);
+			return A2(
+				_elm_lang$core$Native_Utils.crash(
+					'Fuzz',
+					{
+						start: {line: 530, column: 21},
+						end: {line: 530, column: 32}
+					}),
+				'This shouldn\'t happen: Fuzz.tuple4',
+				_p33);
+		});
+};
+var _elm_community$elm_test$Fuzz$map4 = F5(
+	function (transform, fuzzA, fuzzB, fuzzC, fuzzD) {
+		return A2(
+			_elm_community$elm_test$Fuzz$map,
+			function (_p34) {
+				var _p35 = _p34;
+				return A4(transform, _p35._0, _p35._1, _p35._2, _p35._3);
+			},
+			_elm_community$elm_test$Fuzz$tuple4(
+				{ctor: '_Tuple4', _0: fuzzA, _1: fuzzB, _2: fuzzC, _3: fuzzD}));
+	});
+var _elm_community$elm_test$Fuzz$tupleShrinkHelp3 = F3(
+	function (_p38, _p37, _p36) {
+		var _p39 = _p38;
+		var _p44 = _p39;
+		var _p40 = _p37;
+		var _p43 = _p40;
+		var _p41 = _p36;
+		var _p42 = _p41;
+		var shrink3 = A2(
+			_elm_community$lazy_list$Lazy_List$map,
+			function (subtree) {
+				return A3(_elm_community$elm_test$Fuzz$tupleShrinkHelp3, _p44, _p43, subtree);
+			},
+			_p41._1);
+		var shrink2 = A2(
+			_elm_community$lazy_list$Lazy_List$map,
+			function (subtree) {
+				return A3(_elm_community$elm_test$Fuzz$tupleShrinkHelp3, _p44, subtree, _p42);
+			},
+			_p40._1);
+		var shrink1 = A2(
+			_elm_community$lazy_list$Lazy_List$map,
+			function (subtree) {
+				return A3(_elm_community$elm_test$Fuzz$tupleShrinkHelp3, subtree, _p43, _p42);
+			},
+			_p39._1);
+		var root = {ctor: '_Tuple3', _0: _p39._0, _1: _p40._0, _2: _p41._0};
+		return A2(
+			_elm_community$elm_test$RoseTree$Rose,
+			root,
+			A2(
+				_elm_community$lazy_list$Lazy_List$append,
+				shrink1,
+				A2(_elm_community$lazy_list$Lazy_List$append, shrink2, shrink3)));
+	});
+var _elm_community$elm_test$Fuzz$tuple3 = function (_p45) {
+	var _p46 = _p45;
+	return _elm_community$elm_test$Fuzz_Internal$Fuzzer(
+		function (noShrink) {
+			var _p47 = {
+				ctor: '_Tuple3',
+				_0: _p46._0._0(noShrink),
+				_1: _p46._1._0(noShrink),
+				_2: _p46._2._0(noShrink)
+			};
+			_v23_2:
+			do {
+				if (_p47.ctor === '_Tuple3') {
+					if (_p47._0.ctor === 'Gen') {
+						if ((_p47._1.ctor === 'Gen') && (_p47._2.ctor === 'Gen')) {
+							return _elm_community$elm_test$Fuzz_Internal$Gen(
+								A4(
+									_mgold$elm_random_pcg$Random_Pcg$map3,
+									F3(
+										function (v0, v1, v2) {
+											return {ctor: '_Tuple3', _0: v0, _1: v1, _2: v2};
+										}),
+									_p47._0._0,
+									_p47._1._0,
+									_p47._2._0));
+						} else {
+							break _v23_2;
+						}
+					} else {
+						if ((_p47._1.ctor === 'Shrink') && (_p47._2.ctor === 'Shrink')) {
+							return _elm_community$elm_test$Fuzz_Internal$Shrink(
+								A4(_mgold$elm_random_pcg$Random_Pcg$map3, _elm_community$elm_test$Fuzz$tupleShrinkHelp3, _p47._0._0, _p47._1._0, _p47._2._0));
+						} else {
+							break _v23_2;
+						}
+					}
+				} else {
+					break _v23_2;
+				}
+			} while(false);
+			return A2(
+				_elm_lang$core$Native_Utils.crash(
+					'Fuzz',
+					{
+						start: {line: 491, column: 21},
+						end: {line: 491, column: 32}
+					}),
+				'This shouldn\'t happen: Fuzz.tuple3',
+				_p47);
+		});
+};
+var _elm_community$elm_test$Fuzz$map3 = F4(
+	function (transform, fuzzA, fuzzB, fuzzC) {
+		return A2(
+			_elm_community$elm_test$Fuzz$map,
+			function (_p48) {
+				var _p49 = _p48;
+				return A3(transform, _p49._0, _p49._1, _p49._2);
+			},
+			_elm_community$elm_test$Fuzz$tuple3(
+				{ctor: '_Tuple3', _0: fuzzA, _1: fuzzB, _2: fuzzC}));
+	});
+var _elm_community$elm_test$Fuzz$tupleShrinkHelp = F2(
+	function (_p51, _p50) {
+		var _p52 = _p51;
+		var _p53 = _p50;
+		var shrink2 = A2(
+			_elm_community$lazy_list$Lazy_List$map,
+			function (subtree) {
+				return A2(_elm_community$elm_test$Fuzz$tupleShrinkHelp, _p52, subtree);
+			},
+			_p53._1);
+		var shrink1 = A2(
+			_elm_community$lazy_list$Lazy_List$map,
+			function (subtree) {
+				return A2(_elm_community$elm_test$Fuzz$tupleShrinkHelp, subtree, _p53);
+			},
+			_p52._1);
+		var root = {ctor: '_Tuple2', _0: _p52._0, _1: _p53._0};
+		return A2(
+			_elm_community$elm_test$RoseTree$Rose,
+			root,
+			A2(_elm_community$lazy_list$Lazy_List$append, shrink1, shrink2));
+	});
+var _elm_community$elm_test$Fuzz$tuple = function (_p54) {
+	var _p55 = _p54;
+	return _elm_community$elm_test$Fuzz_Internal$Fuzzer(
+		function (noShrink) {
+			var _p56 = {
+				ctor: '_Tuple2',
+				_0: _p55._0._0(noShrink),
+				_1: _p55._1._0(noShrink)
+			};
+			_v28_2:
+			do {
+				if (_p56.ctor === '_Tuple2') {
+					if (_p56._0.ctor === 'Gen') {
+						if (_p56._1.ctor === 'Gen') {
+							return _elm_community$elm_test$Fuzz_Internal$Gen(
+								A3(
+									_mgold$elm_random_pcg$Random_Pcg$map2,
+									F2(
+										function (v0, v1) {
+											return {ctor: '_Tuple2', _0: v0, _1: v1};
+										}),
+									_p56._0._0,
+									_p56._1._0));
+						} else {
+							break _v28_2;
+						}
+					} else {
+						if (_p56._1.ctor === 'Shrink') {
+							return _elm_community$elm_test$Fuzz_Internal$Shrink(
+								A3(_mgold$elm_random_pcg$Random_Pcg$map2, _elm_community$elm_test$Fuzz$tupleShrinkHelp, _p56._0._0, _p56._1._0));
+						} else {
+							break _v28_2;
+						}
+					}
+				} else {
+					break _v28_2;
+				}
+			} while(false);
+			return A2(
+				_elm_lang$core$Native_Utils.crash(
+					'Fuzz',
+					{
+						start: {line: 449, column: 21},
+						end: {line: 449, column: 32}
+					}),
+				'This shouldn\'t happen: Fuzz.tuple',
+				_p56);
+		});
+};
+var _elm_community$elm_test$Fuzz$map2 = F3(
+	function (transform, fuzzA, fuzzB) {
+		return A2(
+			_elm_community$elm_test$Fuzz$map,
+			function (_p57) {
+				var _p58 = _p57;
+				return A2(transform, _p58._0, _p58._1);
+			},
+			_elm_community$elm_test$Fuzz$tuple(
+				{ctor: '_Tuple2', _0: fuzzA, _1: fuzzB}));
+	});
+var _elm_community$elm_test$Fuzz$andMap = _elm_community$elm_test$Fuzz$map2(
+	F2(
+		function (x, y) {
+			return y(x);
+		}));
+var _elm_community$elm_test$Fuzz$listShrinkHelp = function (listOfTrees) {
+	var shorter = F3(
+		function (windowSize, aList, recursing) {
+			if ((_elm_lang$core$Native_Utils.cmp(
+				windowSize,
+				_elm_lang$core$List$length(aList)) > 0) || (_elm_lang$core$Native_Utils.eq(
+				windowSize,
+				_elm_lang$core$List$length(aList)) && (!recursing))) {
+				return _elm_community$lazy_list$Lazy_List$empty;
+			} else {
+				var _p59 = aList;
+				if (_p59.ctor === '[]') {
+					return _elm_community$lazy_list$Lazy_List$empty;
+				} else {
+					return A2(
+						_elm_community$lazy_list$Lazy_List$cons,
+						A2(_elm_lang$core$List$take, windowSize, aList),
+						A3(shorter, windowSize, _p59._1, true));
+				}
+			}
+		});
+	var shrinkOne = F2(
+		function (prefix, list) {
+			var _p60 = list;
+			if (_p60.ctor === '[]') {
+				return _elm_community$lazy_list$Lazy_List$empty;
+			} else {
+				return A2(
+					_elm_community$lazy_list$Lazy_List$map,
+					function (childTree) {
+						return _elm_community$elm_test$Fuzz$listShrinkHelp(
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								prefix,
+								{ctor: '::', _0: childTree, _1: _p60._1}));
+					},
+					_p60._0._1);
+			}
+		});
+	var root = A2(_elm_lang$core$List$map, _elm_community$elm_test$RoseTree$root, listOfTrees);
+	var n = _elm_lang$core$List$length(listOfTrees);
+	var shrunkenVals = A2(
+		_elm_community$lazy_list$Lazy_List$andThen,
+		function (i) {
+			return A2(
+				shrinkOne,
+				A2(_elm_lang$core$List$take, i, listOfTrees),
+				A2(_elm_lang$core$List$drop, i, listOfTrees));
+		},
+		A2(
+			_elm_community$lazy_list$Lazy_List$take,
+			n,
+			A2(
+				_elm_community$lazy_list$Lazy_List$map,
+				function (i) {
+					return i - 1;
+				},
+				_elm_community$lazy_list$Lazy_List$numbers)));
+	var shortened = A2(
+		_elm_community$lazy_list$Lazy_List$map,
+		_elm_community$elm_test$Fuzz$listShrinkHelp,
+		A2(
+			_elm_community$lazy_list$Lazy_List$andThen,
+			function (len) {
+				return A3(shorter, len, listOfTrees, false);
+			},
+			(_elm_lang$core$Native_Utils.cmp(n, 6) > 0) ? A2(
+				_elm_community$lazy_list$Lazy_List$takeWhile,
+				function (x) {
+					return _elm_lang$core$Native_Utils.cmp(x, 0) > 0;
+				},
+				A2(
+					_elm_community$lazy_list$Lazy_List$iterate,
+					function (n) {
+						return (n / 2) | 0;
+					},
+					n)) : _elm_community$lazy_list$Lazy_List$fromList(
+				A2(_elm_lang$core$List$range, 1, n))));
+	return A2(
+		_elm_community$elm_test$RoseTree$Rose,
+		root,
+		A2(
+			_elm_community$lazy_list$Lazy_List$cons,
+			_elm_community$elm_test$RoseTree$singleton(
+				{ctor: '[]'}),
+			A2(_elm_community$lazy_list$Lazy_List$append, shortened, shrunkenVals)));
+};
+var _elm_community$elm_test$Fuzz$list = function (_p61) {
+	var _p62 = _p61;
+	var genLength = _mgold$elm_random_pcg$Random_Pcg$frequency(
+		{
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 1,
+				_1: _mgold$elm_random_pcg$Random_Pcg$constant(0)
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 1,
+					_1: _mgold$elm_random_pcg$Random_Pcg$constant(1)
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 3,
+						_1: A2(_mgold$elm_random_pcg$Random_Pcg$int, 2, 10)
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: 2,
+							_1: A2(_mgold$elm_random_pcg$Random_Pcg$int, 10, 100)
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 0.5,
+								_1: A2(_mgold$elm_random_pcg$Random_Pcg$int, 100, 400)
+							},
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		});
+	return _elm_community$elm_test$Fuzz_Internal$Fuzzer(
+		function (noShrink) {
+			var _p63 = _p62._0(noShrink);
+			if (_p63.ctor === 'Gen') {
+				return _elm_community$elm_test$Fuzz_Internal$Gen(
+					A2(
+						_mgold$elm_random_pcg$Random_Pcg$andThen,
+						function (i) {
+							return A2(_mgold$elm_random_pcg$Random_Pcg$list, i, _p63._0);
+						},
+						genLength));
+			} else {
+				return _elm_community$elm_test$Fuzz_Internal$Shrink(
+					A2(
+						_mgold$elm_random_pcg$Random_Pcg$map,
+						_elm_community$elm_test$Fuzz$listShrinkHelp,
+						A2(
+							_mgold$elm_random_pcg$Random_Pcg$andThen,
+							function (i) {
+								return A2(_mgold$elm_random_pcg$Random_Pcg$list, i, _p63._0);
+							},
+							genLength)));
+			}
+		});
+};
+var _elm_community$elm_test$Fuzz$array = function (fuzzer) {
+	return A2(
+		_elm_community$elm_test$Fuzz$map,
+		_elm_lang$core$Array$fromList,
+		_elm_community$elm_test$Fuzz$list(fuzzer));
+};
+var _elm_community$elm_test$Fuzz$result = F2(
+	function (_p65, _p64) {
+		var _p66 = _p65;
+		var _p67 = _p64;
+		return _elm_community$elm_test$Fuzz_Internal$Fuzzer(
+			function (noShrink) {
+				var _p68 = {
+					ctor: '_Tuple2',
+					_0: _p66._0(noShrink),
+					_1: _p67._0(noShrink)
+				};
+				_v36_2:
+				do {
+					if (_p68.ctor === '_Tuple2') {
+						if (_p68._0.ctor === 'Gen') {
+							if (_p68._1.ctor === 'Gen') {
+								return _elm_community$elm_test$Fuzz_Internal$Gen(
+									A4(
+										_mgold$elm_random_pcg$Random_Pcg$map3,
+										F3(
+											function (useError, err, val) {
+												return useError ? _elm_lang$core$Result$Err(err) : _elm_lang$core$Result$Ok(val);
+											}),
+										_mgold$elm_random_pcg$Random_Pcg$oneIn(4),
+										_p68._0._0,
+										_p68._1._0));
+							} else {
+								break _v36_2;
+							}
+						} else {
+							if (_p68._1.ctor === 'Shrink') {
+								return _elm_community$elm_test$Fuzz_Internal$Shrink(
+									A4(
+										_mgold$elm_random_pcg$Random_Pcg$map3,
+										F3(
+											function (useError, errorTree, valueTree) {
+												return useError ? A2(_elm_community$elm_test$RoseTree$map, _elm_lang$core$Result$Err, errorTree) : A2(_elm_community$elm_test$RoseTree$map, _elm_lang$core$Result$Ok, valueTree);
+											}),
+										_mgold$elm_random_pcg$Random_Pcg$oneIn(4),
+										_p68._0._0,
+										_p68._1._0));
+							} else {
+								break _v36_2;
+							}
+						}
+					} else {
+						break _v36_2;
+					}
+				} while(false);
+				return A2(
+					_elm_lang$core$Native_Utils.crash(
+						'Fuzz',
+						{
+							start: {line: 335, column: 21},
+							end: {line: 335, column: 32}
+						}),
+					'This shouldn\'t happen: Fuzz.result',
+					_p68);
+			});
+	});
+var _elm_community$elm_test$Fuzz$maybe = function (_p69) {
+	var _p70 = _p69;
+	return _elm_community$elm_test$Fuzz_Internal$Fuzzer(
+		function (noShrink) {
+			var _p71 = _p70._0(noShrink);
+			if (_p71.ctor === 'Gen') {
+				return _elm_community$elm_test$Fuzz_Internal$Gen(
+					A3(
+						_mgold$elm_random_pcg$Random_Pcg$map2,
+						F2(
+							function (useNothing, val) {
+								return useNothing ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(val);
+							}),
+						_mgold$elm_random_pcg$Random_Pcg$oneIn(4),
+						_p71._0));
+			} else {
+				return _elm_community$elm_test$Fuzz_Internal$Shrink(
+					A3(
+						_mgold$elm_random_pcg$Random_Pcg$map2,
+						F2(
+							function (useNothing, tree) {
+								return useNothing ? _elm_community$elm_test$RoseTree$singleton(_elm_lang$core$Maybe$Nothing) : A2(
+									_elm_community$elm_test$RoseTree$addChild,
+									_elm_community$elm_test$RoseTree$singleton(_elm_lang$core$Maybe$Nothing),
+									A2(_elm_community$elm_test$RoseTree$map, _elm_lang$core$Maybe$Just, tree));
+							}),
+						_mgold$elm_random_pcg$Random_Pcg$oneIn(4),
+						_p71._0));
+			}
+		});
+};
+var _elm_community$elm_test$Fuzz$charGenerator = A2(
+	_mgold$elm_random_pcg$Random_Pcg$map,
+	_elm_lang$core$Char$fromCode,
+	A2(_mgold$elm_random_pcg$Random_Pcg$int, 32, 126));
+var _elm_community$elm_test$Fuzz$unit = _elm_community$elm_test$Fuzz_Internal$Fuzzer(
+	function (noShrink) {
+		return noShrink ? _elm_community$elm_test$Fuzz_Internal$Gen(
+			_mgold$elm_random_pcg$Random_Pcg$constant(
+				{ctor: '_Tuple0'})) : _elm_community$elm_test$Fuzz_Internal$Shrink(
+			_mgold$elm_random_pcg$Random_Pcg$constant(
+				_elm_community$elm_test$RoseTree$singleton(
+					{ctor: '_Tuple0'})));
+	});
+var _elm_community$elm_test$Fuzz$custom = F2(
+	function (generator, shrinker) {
+		var shrinkTree = function (a) {
+			return A2(
+				_elm_community$elm_test$RoseTree$Rose,
+				a,
+				A2(
+					_elm_community$lazy_list$Lazy_List$map,
+					shrinkTree,
+					shrinker(a)));
+		};
+		return _elm_community$elm_test$Fuzz_Internal$Fuzzer(
+			function (noShrink) {
+				return noShrink ? _elm_community$elm_test$Fuzz_Internal$Gen(generator) : _elm_community$elm_test$Fuzz_Internal$Shrink(
+					A2(_mgold$elm_random_pcg$Random_Pcg$map, shrinkTree, generator));
+			});
+	});
+var _elm_community$elm_test$Fuzz$bool = A2(_elm_community$elm_test$Fuzz$custom, _mgold$elm_random_pcg$Random_Pcg$bool, _elm_community$shrink$Shrink$bool);
+var _elm_community$elm_test$Fuzz$order = function () {
+	var intToOrder = function (i) {
+		return _elm_lang$core$Native_Utils.eq(i, 0) ? _elm_lang$core$Basics$LT : (_elm_lang$core$Native_Utils.eq(i, 1) ? _elm_lang$core$Basics$EQ : _elm_lang$core$Basics$GT);
+	};
+	return A2(
+		_elm_community$elm_test$Fuzz$custom,
+		A2(
+			_mgold$elm_random_pcg$Random_Pcg$map,
+			intToOrder,
+			A2(_mgold$elm_random_pcg$Random_Pcg$int, 0, 2)),
+		_elm_community$shrink$Shrink$order);
+}();
+var _elm_community$elm_test$Fuzz$int = function () {
+	var generator = _mgold$elm_random_pcg$Random_Pcg$frequency(
+		{
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 3,
+				_1: A2(_mgold$elm_random_pcg$Random_Pcg$int, -50, 50)
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 0.2,
+					_1: _mgold$elm_random_pcg$Random_Pcg$constant(0)
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 1,
+						_1: A2(_mgold$elm_random_pcg$Random_Pcg$int, 0, _mgold$elm_random_pcg$Random_Pcg$maxInt - _mgold$elm_random_pcg$Random_Pcg$minInt)
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: 1,
+							_1: A2(_mgold$elm_random_pcg$Random_Pcg$int, _mgold$elm_random_pcg$Random_Pcg$minInt - _mgold$elm_random_pcg$Random_Pcg$maxInt, 0)
+						},
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+	return A2(_elm_community$elm_test$Fuzz$custom, generator, _elm_community$shrink$Shrink$int);
+}();
+var _elm_community$elm_test$Fuzz$intRange = F2(
+	function (lo, hi) {
+		return A2(
+			_elm_community$elm_test$Fuzz$custom,
+			_mgold$elm_random_pcg$Random_Pcg$frequency(
+				{
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 8,
+						_1: A2(_mgold$elm_random_pcg$Random_Pcg$int, lo, hi)
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: 1,
+							_1: _mgold$elm_random_pcg$Random_Pcg$constant(lo)
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 1,
+								_1: _mgold$elm_random_pcg$Random_Pcg$constant(hi)
+							},
+							_1: {ctor: '[]'}
+						}
+					}
+				}),
+			A2(
+				_elm_community$shrink$Shrink$keepIf,
+				function (i) {
+					return (_elm_lang$core$Native_Utils.cmp(i, lo) > -1) && (_elm_lang$core$Native_Utils.cmp(i, hi) < 1);
+				},
+				_elm_community$shrink$Shrink$int));
+	});
+var _elm_community$elm_test$Fuzz$float = function () {
+	var generator = _mgold$elm_random_pcg$Random_Pcg$frequency(
+		{
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 3,
+				_1: A2(_mgold$elm_random_pcg$Random_Pcg$float, -50, 50)
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 0.5,
+					_1: _mgold$elm_random_pcg$Random_Pcg$constant(0)
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 1,
+						_1: A2(_mgold$elm_random_pcg$Random_Pcg$float, -1, 1)
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: 1,
+							_1: A2(
+								_mgold$elm_random_pcg$Random_Pcg$float,
+								0,
+								_elm_lang$core$Basics$toFloat(_mgold$elm_random_pcg$Random_Pcg$maxInt - _mgold$elm_random_pcg$Random_Pcg$minInt))
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 1,
+								_1: A2(
+									_mgold$elm_random_pcg$Random_Pcg$float,
+									_elm_lang$core$Basics$toFloat(_mgold$elm_random_pcg$Random_Pcg$minInt - _mgold$elm_random_pcg$Random_Pcg$maxInt),
+									0)
+							},
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		});
+	return A2(_elm_community$elm_test$Fuzz$custom, generator, _elm_community$shrink$Shrink$float);
+}();
+var _elm_community$elm_test$Fuzz$floatRange = F2(
+	function (lo, hi) {
+		return A2(
+			_elm_community$elm_test$Fuzz$custom,
+			_mgold$elm_random_pcg$Random_Pcg$frequency(
+				{
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 8,
+						_1: A2(_mgold$elm_random_pcg$Random_Pcg$float, lo, hi)
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: 1,
+							_1: _mgold$elm_random_pcg$Random_Pcg$constant(lo)
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 1,
+								_1: _mgold$elm_random_pcg$Random_Pcg$constant(hi)
+							},
+							_1: {ctor: '[]'}
+						}
+					}
+				}),
+			A2(
+				_elm_community$shrink$Shrink$keepIf,
+				function (i) {
+					return (_elm_lang$core$Native_Utils.cmp(i, lo) > -1) && (_elm_lang$core$Native_Utils.cmp(i, hi) < 1);
+				},
+				_elm_community$shrink$Shrink$float));
+	});
+var _elm_community$elm_test$Fuzz$percentage = function () {
+	var generator = _mgold$elm_random_pcg$Random_Pcg$frequency(
+		{
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 8,
+				_1: A2(_mgold$elm_random_pcg$Random_Pcg$float, 0, 1)
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 1,
+					_1: _mgold$elm_random_pcg$Random_Pcg$constant(0)
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 1,
+						_1: _mgold$elm_random_pcg$Random_Pcg$constant(1)
+					},
+					_1: {ctor: '[]'}
+				}
+			}
+		});
+	return A2(_elm_community$elm_test$Fuzz$custom, generator, _elm_community$shrink$Shrink$float);
+}();
+var _elm_community$elm_test$Fuzz$char = A2(_elm_community$elm_test$Fuzz$custom, _elm_community$elm_test$Fuzz$charGenerator, _elm_community$shrink$Shrink$character);
+var _elm_community$elm_test$Fuzz$string = function () {
+	var generator = A2(
+		_mgold$elm_random_pcg$Random_Pcg$andThen,
+		_elm_community$elm_test$Util$lengthString(_elm_community$elm_test$Fuzz$charGenerator),
+		_mgold$elm_random_pcg$Random_Pcg$frequency(
+			{
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 3,
+					_1: A2(_mgold$elm_random_pcg$Random_Pcg$int, 1, 10)
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 0.2,
+						_1: _mgold$elm_random_pcg$Random_Pcg$constant(0)
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: 1,
+							_1: A2(_mgold$elm_random_pcg$Random_Pcg$int, 11, 50)
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 1,
+								_1: A2(_mgold$elm_random_pcg$Random_Pcg$int, 50, 1000)
+							},
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}));
+	return A2(_elm_community$elm_test$Fuzz$custom, generator, _elm_community$shrink$Shrink$string);
+}();

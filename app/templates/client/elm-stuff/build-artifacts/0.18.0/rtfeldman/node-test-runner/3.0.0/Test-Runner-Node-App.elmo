@@ -1,0 +1,288 @@
+var _rtfeldman$node_test_runner$Test_Runner_Node_App$decodeReport = function (decoder) {
+	return A2(
+		_elm_lang$core$Json_Decode$andThen,
+		function (str) {
+			var _p0 = str;
+			switch (_p0) {
+				case 'json':
+					return _elm_lang$core$Json_Decode$succeed(_rtfeldman$node_test_runner$Test_Reporter_Reporter$JsonReport);
+				case 'chalk':
+					return _elm_lang$core$Json_Decode$succeed(_rtfeldman$node_test_runner$Test_Reporter_Reporter$ChalkReport);
+				default:
+					return _elm_lang$core$Json_Decode$fail(
+						A2(_elm_lang$core$Basics_ops['++'], 'Invalid --report argument: ', str));
+			}
+		},
+		decoder);
+};
+var _rtfeldman$node_test_runner$Test_Runner_Node_App$intFromString = A2(
+	_elm_lang$core$Json_Decode$andThen,
+	function (str) {
+		var _p1 = _elm_lang$core$String$toInt(str);
+		if (_p1.ctor === 'Ok') {
+			return _elm_lang$core$Json_Decode$succeed(_p1._0);
+		} else {
+			return _elm_lang$core$Json_Decode$fail(_p1._0);
+		}
+	},
+	_elm_lang$core$Json_Decode$string);
+var _rtfeldman$node_test_runner$Test_Runner_Node_App$decodeInitArgs = function (args) {
+	return A2(
+		_elm_lang$core$Json_Decode$decodeValue,
+		_elm_lang$core$Json_Decode$oneOf(
+			{
+				ctor: '::',
+				_0: _elm_lang$core$Json_Decode$null(
+					{ctor: '_Tuple2', _0: _elm_lang$core$Maybe$Nothing, _1: _rtfeldman$node_test_runner$Test_Reporter_Reporter$ChalkReport}),
+				_1: {
+					ctor: '::',
+					_0: A3(
+						_elm_lang$core$Json_Decode$map2,
+						F2(
+							function (v0, v1) {
+								return {ctor: '_Tuple2', _0: v0, _1: v1};
+							}),
+						A2(
+							_elm_lang$core$Json_Decode$field,
+							'seed',
+							_elm_lang$core$Json_Decode$nullable(_rtfeldman$node_test_runner$Test_Runner_Node_App$intFromString)),
+						A2(
+							_elm_lang$core$Json_Decode$field,
+							'report',
+							_rtfeldman$node_test_runner$Test_Runner_Node_App$decodeReport(_elm_lang$core$Json_Decode$string))),
+					_1: {ctor: '[]'}
+				}
+			}),
+		args);
+};
+var _rtfeldman$node_test_runner$Test_Runner_Node_App$toThunksHelp = F2(
+	function (labels, runner) {
+		toThunksHelp:
+		while (true) {
+			var _p2 = runner;
+			switch (_p2.ctor) {
+				case 'Runnable':
+					return {
+						ctor: '::',
+						_0: function (_p3) {
+							var _p4 = _p3;
+							return {
+								ctor: '_Tuple2',
+								_0: labels,
+								_1: _elm_community$elm_test$Test_Runner$run(_p2._0)
+							};
+						},
+						_1: {ctor: '[]'}
+					};
+				case 'Labeled':
+					var _v4 = {ctor: '::', _0: _p2._0, _1: labels},
+						_v5 = _p2._1;
+					labels = _v4;
+					runner = _v5;
+					continue toThunksHelp;
+				default:
+					return A2(
+						_elm_lang$core$List$concatMap,
+						_rtfeldman$node_test_runner$Test_Runner_Node_App$toThunksHelp(labels),
+						_p2._0);
+			}
+		}
+	});
+var _rtfeldman$node_test_runner$Test_Runner_Node_App$toThunks = _rtfeldman$node_test_runner$Test_Runner_Node_App$toThunksHelp(
+	{ctor: '[]'});
+var _rtfeldman$node_test_runner$Test_Runner_Node_App$fromNever = function (a) {
+	fromNever:
+	while (true) {
+		var _v6 = a;
+		a = _v6;
+		continue fromNever;
+	}
+};
+var _rtfeldman$node_test_runner$Test_Runner_Node_App$timeToNumericSeed = function (time) {
+	return _elm_lang$core$Tuple$first(
+		A2(
+			_mgold$elm_random_pcg$Random_Pcg$step,
+			A2(_mgold$elm_random_pcg$Random_Pcg$int, 100, _mgold$elm_random_pcg$Random_Pcg$maxInt),
+			_mgold$elm_random_pcg$Random_Pcg$initialSeed(
+				_elm_lang$core$Basics$floor(time))));
+};
+var _rtfeldman$node_test_runner$Test_Runner_Node_App$InitArgs = F4(
+	function (a, b, c, d) {
+		return {initialSeed: a, startTime: b, thunks: c, report: d};
+	});
+var _rtfeldman$node_test_runner$Test_Runner_Node_App$RunnerOptions = F2(
+	function (a, b) {
+		return {seed: a, runs: b};
+	});
+var _rtfeldman$node_test_runner$Test_Runner_Node_App$AppOptions = F3(
+	function (a, b, c) {
+		return {init: a, update: b, subscriptions: c};
+	});
+var _rtfeldman$node_test_runner$Test_Runner_Node_App$SubMsg = function (a) {
+	return {ctor: 'SubMsg', _0: a};
+};
+var _rtfeldman$node_test_runner$Test_Runner_Node_App$subscriptions = F2(
+	function (subs, model) {
+		var _p5 = model;
+		if (_p5.ctor === 'Uninitialized') {
+			return _elm_lang$core$Platform_Sub$none;
+		} else {
+			return A2(
+				_elm_lang$core$Platform_Sub$map,
+				_rtfeldman$node_test_runner$Test_Runner_Node_App$SubMsg,
+				subs(_p5._1));
+		}
+	});
+var _rtfeldman$node_test_runner$Test_Runner_Node_App$Init = function (a) {
+	return {ctor: 'Init', _0: a};
+};
+var _rtfeldman$node_test_runner$Test_Runner_Node_App$Uninitialized = F2(
+	function (a, b) {
+		return {ctor: 'Uninitialized', _0: a, _1: b};
+	});
+var _rtfeldman$node_test_runner$Test_Runner_Node_App$Initialized = F2(
+	function (a, b) {
+		return {ctor: 'Initialized', _0: a, _1: b};
+	});
+var _rtfeldman$node_test_runner$Test_Runner_Node_App$initOrUpdate = F2(
+	function (msg, maybeModel) {
+		var _p6 = maybeModel;
+		if (_p6.ctor === 'Uninitialized') {
+			var _p7 = msg;
+			if (_p7.ctor === 'Init') {
+				var _p10 = _p7._0;
+				var numericSeed = function () {
+					var _p8 = _p6._1.maybeInitialSeed;
+					if (_p8.ctor === 'Just') {
+						return _p8._0;
+					} else {
+						return _rtfeldman$node_test_runner$Test_Runner_Node_App$timeToNumericSeed(_p10);
+					}
+				}();
+				var seed = _mgold$elm_random_pcg$Random_Pcg$initialSeed(numericSeed);
+				var thunks = _rtfeldman$node_test_runner$Test_Runner_Node_App$toThunks(
+					A3(_elm_community$elm_test$Test_Runner$fromTest, _p6._1.runs, seed, _p6._1.test));
+				var _p9 = _p6._1.init(
+					{initialSeed: numericSeed, startTime: _p10, thunks: thunks, report: _p6._1.report});
+				var subModel = _p9._0;
+				var subCmd = _p9._1;
+				return {
+					ctor: '_Tuple2',
+					_0: A2(_rtfeldman$node_test_runner$Test_Runner_Node_App$Initialized, _p6._0, subModel),
+					_1: A2(_elm_lang$core$Platform_Cmd$map, _rtfeldman$node_test_runner$Test_Runner_Node_App$SubMsg, subCmd)
+				};
+			} else {
+				return _elm_lang$core$Native_Utils.crashCase(
+					'Test.Runner.Node.App',
+					{
+						start: {line: 65, column: 13},
+						end: {line: 95, column: 70}
+					},
+					_p7)('Attempted to run a SubMsg pre-Init!');
+			}
+		} else {
+			var _p15 = _p6._0;
+			var _p12 = msg;
+			if (_p12.ctor === 'SubMsg') {
+				var _p13 = A2(_p15, _p12._0, _p6._1);
+				var newModel = _p13._0;
+				var cmd = _p13._1;
+				return {
+					ctor: '_Tuple2',
+					_0: A2(_rtfeldman$node_test_runner$Test_Runner_Node_App$Initialized, _p15, newModel),
+					_1: A2(_elm_lang$core$Platform_Cmd$map, _rtfeldman$node_test_runner$Test_Runner_Node_App$SubMsg, cmd)
+				};
+			} else {
+				return _elm_lang$core$Native_Utils.crashCase(
+					'Test.Runner.Node.App',
+					{
+						start: {line: 98, column: 13},
+						end: {line: 107, column: 59}
+					},
+					_p12)('Attempted to init twice!');
+			}
+		}
+	});
+var _rtfeldman$node_test_runner$Test_Runner_Node_App$run = F3(
+	function (_p16, appOpts, test) {
+		var _p17 = _p16;
+		var _p22 = _p17.seed;
+		var init = function (args) {
+			var initArgs = function () {
+				var _p18 = {
+					ctor: '_Tuple2',
+					_0: _rtfeldman$node_test_runner$Test_Runner_Node_App$decodeInitArgs(args),
+					_1: _p22
+				};
+				if (_p18._0.ctor === 'Err') {
+					return _elm_lang$core$Native_Utils.crashCase(
+						'Test.Runner.Node.App',
+						{
+							start: {line: 212, column: 21},
+							end: {line: 237, column: 48}
+						},
+						_p18)(
+						A2(_elm_lang$core$Basics_ops['++'], 'Invalid --seed argument: ', _p18._0._0));
+				} else {
+					if (_p18._0._0._0.ctor === 'Just') {
+						if (_p18._1.ctor === 'Just') {
+							var _p21 = _p18._1._0;
+							var _p20 = _p18._0._0._0._0;
+							return _elm_lang$core$Native_Utils.eq(_p20, _p21) ? {ctor: '_Tuple2', _0: _p22, _1: _p18._0._0._1} : _elm_lang$core$Native_Utils.crash(
+								'Test.Runner.Node.App',
+								{
+									start: {line: 225, column: 33},
+									end: {line: 225, column: 44}
+								})(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									'Received both a --seed flag (',
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										_elm_lang$core$Basics$toString(_p20),
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											') and a runner option seed (',
+											A2(
+												_elm_lang$core$Basics_ops['++'],
+												_elm_lang$core$Basics$toString(_p21),
+												'). Which initial seed did you mean to use?')))));
+						} else {
+							return {
+								ctor: '_Tuple2',
+								_0: _elm_lang$core$Maybe$Just(_p18._0._0._0._0),
+								_1: _p18._0._0._1
+							};
+						}
+					} else {
+						if (_p18._1.ctor === 'Just') {
+							return {ctor: '_Tuple2', _0: _p22, _1: _p18._0._0._1};
+						} else {
+							return {ctor: '_Tuple2', _0: _elm_lang$core$Maybe$Nothing, _1: _p18._0._0._1};
+						}
+					}
+				}
+			}();
+			var cmd = A2(_elm_lang$core$Task$perform, _rtfeldman$node_test_runner$Test_Runner_Node_App$Init, _elm_lang$core$Time$now);
+			return {
+				ctor: '_Tuple2',
+				_0: A2(
+					_rtfeldman$node_test_runner$Test_Runner_Node_App$Uninitialized,
+					appOpts.update,
+					{
+						maybeInitialSeed: _elm_lang$core$Tuple$first(initArgs),
+						report: _elm_lang$core$Tuple$second(initArgs),
+						runs: _p17.runs,
+						test: test,
+						init: appOpts.init
+					}),
+				_1: cmd
+			};
+		};
+		return _elm_lang$core$Platform$programWithFlags(
+			{
+				init: init,
+				update: _rtfeldman$node_test_runner$Test_Runner_Node_App$initOrUpdate,
+				subscriptions: _rtfeldman$node_test_runner$Test_Runner_Node_App$subscriptions(appOpts.subscriptions)
+			});
+	});

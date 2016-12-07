@@ -1,0 +1,17 @@
+# top-most EditorConfig file
+root = true
+
+[*]
+indent_style = space
+indent_size = 2
+
+[*.elm]
+indent_style = space
+indent_size = 4
+
+[*.yml]
+indent_style = space
+indent_size = 2
+
+[Makefile]
+indent_style = tab

@@ -1,0 +1,822 @@
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$glyphiconClass = function (icon) {
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		'glyphicon-',
+		function () {
+			var _p0 = icon;
+			switch (_p0.ctor) {
+				case 'Asterisk':
+					return 'asterisk';
+				case 'Plus':
+					return 'plus';
+				case 'Euro':
+					return 'euro';
+				case 'Eur':
+					return 'eur';
+				case 'Minus':
+					return 'minus';
+				case 'Cloud':
+					return 'cloud';
+				case 'Envelope':
+					return 'envelope';
+				case 'Pencil':
+					return 'pencil';
+				case 'Glass':
+					return 'glass';
+				case 'Music':
+					return 'music';
+				case 'Search':
+					return 'search';
+				case 'Heart':
+					return 'heart';
+				case 'Star':
+					return 'star';
+				case 'StarEmpty':
+					return 'star-empty';
+				case 'User':
+					return 'user';
+				case 'Film':
+					return 'film';
+				case 'ThLarge':
+					return 'th-large';
+				case 'Th':
+					return 'th';
+				case 'ThList':
+					return 'th-list';
+				case 'Ok':
+					return 'ok';
+				case 'Remove':
+					return 'remove';
+				case 'ZoomIn':
+					return 'zoom-in';
+				case 'ZoomOut':
+					return 'zoom-out';
+				case 'Off':
+					return 'off';
+				case 'Signal':
+					return 'signal';
+				case 'Cog':
+					return 'cog';
+				case 'Trash':
+					return 'trash';
+				case 'Home':
+					return 'home';
+				case 'File':
+					return 'file';
+				case 'Time':
+					return 'time';
+				case 'Road':
+					return 'road';
+				case 'DownloadAlt':
+					return 'download-alt';
+				case 'Download':
+					return 'download';
+				case 'Upload':
+					return 'upload';
+				case 'Inbox':
+					return 'inbox';
+				case 'PlayCircle':
+					return 'play-circle';
+				case 'Repeat':
+					return 'repeat';
+				case 'Refresh':
+					return 'refresh';
+				case 'ListAlt':
+					return 'list-alt';
+				case 'Lock':
+					return 'lock';
+				case 'Flag':
+					return 'flag';
+				case 'Headphones':
+					return 'headphones';
+				case 'VolumeOff':
+					return 'volume-off';
+				case 'VolumeDown':
+					return 'volume-down';
+				case 'VolumeUp':
+					return 'volume-up';
+				case 'Qrcode':
+					return 'qrcode';
+				case 'Barcode':
+					return 'barcode';
+				case 'Tag':
+					return 'tag';
+				case 'Tags':
+					return 'tags';
+				case 'Book':
+					return 'book';
+				case 'Bookmark':
+					return 'bookmark';
+				case 'Print':
+					return 'print';
+				case 'Camera':
+					return 'camera';
+				case 'Font':
+					return 'font';
+				case 'Bold':
+					return 'bold';
+				case 'Italic':
+					return 'italic';
+				case 'TextHeight':
+					return 'text-height';
+				case 'TextWidth':
+					return 'text-width';
+				case 'AlignLeft':
+					return 'align-left';
+				case 'AlignCenter':
+					return 'align-center';
+				case 'AlignRight':
+					return 'align-right';
+				case 'AlignJustify':
+					return 'align-justify';
+				case 'List':
+					return 'list';
+				case 'IndentLeft':
+					return 'indent-left';
+				case 'IndentRight':
+					return 'indent-right';
+				case 'FacetimeVideo':
+					return 'facetime-video';
+				case 'Picture':
+					return 'picture';
+				case 'MapMarker':
+					return 'map-marker';
+				case 'Adjust':
+					return 'adjust';
+				case 'Tint':
+					return 'tint';
+				case 'Edit':
+					return 'edit';
+				case 'Share':
+					return 'share';
+				case 'Check':
+					return 'check';
+				case 'Move':
+					return 'move';
+				case 'StepBackward':
+					return 'step-backward';
+				case 'FastBackward':
+					return 'fast-backward';
+				case 'Backward':
+					return 'backward';
+				case 'Play':
+					return 'play';
+				case 'Pause':
+					return 'pause';
+				case 'Stop':
+					return 'stop';
+				case 'Forward':
+					return 'forward';
+				case 'FastForward':
+					return 'fast-forward';
+				case 'StepForward':
+					return 'step-forward';
+				case 'Eject':
+					return 'eject';
+				case 'ChevronLeft':
+					return 'chevron-left';
+				case 'ChevronRight':
+					return 'chevron-right';
+				case 'PlusSign':
+					return 'plus-sign';
+				case 'MinusSign':
+					return 'minus-sign';
+				case 'RemoveSign':
+					return 'remove-sign';
+				case 'OkSign':
+					return 'ok-sign';
+				case 'QuestionSign':
+					return 'question-sign';
+				case 'InfoSign':
+					return 'info-sign';
+				case 'Screenshot':
+					return 'screenshot';
+				case 'RemoveCircle':
+					return 'remove-circle';
+				case 'OkCircle':
+					return 'ok-circle';
+				case 'BanCircle':
+					return 'ban-circle';
+				case 'ArrowLeft':
+					return 'arrow-left';
+				case 'ArrowRight':
+					return 'arrow-right';
+				case 'ArrowUp':
+					return 'arrow-up';
+				case 'ArrowDown':
+					return 'arrow-down';
+				case 'ShareAlt':
+					return 'share-alt';
+				case 'ResizeFull':
+					return 'resize-full';
+				case 'ResizeSmall':
+					return 'resize-small';
+				case 'ExclamationSign':
+					return 'exclamation-sign';
+				case 'Gift':
+					return 'gift';
+				case 'Leaf':
+					return 'leaf';
+				case 'Fire':
+					return 'fire';
+				case 'EyeOpen':
+					return 'eye-open';
+				case 'EyeClose':
+					return 'eye-close';
+				case 'WarningSign':
+					return 'warning-sign';
+				case 'Plane':
+					return 'plane';
+				case 'Calendar':
+					return 'calendar';
+				case 'Random':
+					return 'random';
+				case 'Comment':
+					return 'comment';
+				case 'Magnet':
+					return 'magnet';
+				case 'ChevronUp':
+					return 'chevron-up';
+				case 'ChevronDown':
+					return 'chevron-down';
+				case 'Retweet':
+					return 'retweet';
+				case 'ShoppingCart':
+					return 'shopping-cart';
+				case 'FolderClose':
+					return 'folder-close';
+				case 'FolderOpen':
+					return 'folder-open';
+				case 'ResizeVertical':
+					return 'resize-vertical';
+				case 'ResizeHorizontal':
+					return 'resize-horizontal';
+				case 'Hdd':
+					return 'hdd';
+				case 'Bullhorn':
+					return 'bullhorn';
+				case 'Bell':
+					return 'bell';
+				case 'Certificate':
+					return 'certificate';
+				case 'ThumbsUp':
+					return 'thumbs-up';
+				case 'ThumbsDown':
+					return 'thumbs-down';
+				case 'HandRight':
+					return 'hand-right';
+				case 'HandLeft':
+					return 'hand-left';
+				case 'HandUp':
+					return 'hand-up';
+				case 'HandDown':
+					return 'hand-down';
+				case 'CircleArrowRight':
+					return 'circle-arrow-right';
+				case 'CircleArrowLeft':
+					return 'circle-arrow-left';
+				case 'CircleArrowUp':
+					return 'circle-arrow-up';
+				case 'CircleArrowDown':
+					return 'circle-arrow-down';
+				case 'Globe':
+					return 'globe';
+				case 'Wrench':
+					return 'wrench';
+				case 'Tasks':
+					return 'tasks';
+				case 'Filter':
+					return 'filter';
+				case 'Briefcase':
+					return 'briefcase';
+				case 'Fullscreen':
+					return 'fullscreen';
+				case 'Dashboard':
+					return 'dashboard';
+				case 'Paperclip':
+					return 'paperclip';
+				case 'HeartEmpty':
+					return 'heart-empty';
+				case 'Link':
+					return 'link';
+				case 'Phone':
+					return 'phone';
+				case 'Pushpin':
+					return 'pushpin';
+				case 'Usd':
+					return 'usd';
+				case 'Gbp':
+					return 'gbp';
+				case 'Sort':
+					return 'sort';
+				case 'SortByAlphabet':
+					return 'sort-by-alphabet';
+				case 'SortByAlphabetAlt':
+					return 'sort-by-alphabet-alt';
+				case 'SortByOrder':
+					return 'sort-by-order';
+				case 'SortByOrderAlt':
+					return 'sort-by-order-alt';
+				case 'SortByAttributes':
+					return 'sort-by-attributes';
+				case 'SortByAttributesAlt':
+					return 'sort-by-attributes-alt';
+				case 'Unchecked':
+					return 'unchecked';
+				case 'Expand':
+					return 'expand';
+				case 'CollapseDown':
+					return 'collapse-down';
+				case 'CollapseUp':
+					return 'collapse-up';
+				case 'LogIn':
+					return 'log-in';
+				case 'Flash':
+					return 'flash';
+				case 'LogOut':
+					return 'log-out';
+				case 'NewWindow':
+					return 'new-window';
+				case 'Record':
+					return 'record';
+				case 'Save':
+					return 'save';
+				case 'Open':
+					return 'open';
+				case 'Saved':
+					return 'saved';
+				case 'Import':
+					return 'import';
+				case 'Export':
+					return 'export';
+				case 'Send':
+					return 'send';
+				case 'FloppyDisk':
+					return 'floppy-disk';
+				case 'FloppySaved':
+					return 'floppy-saved';
+				case 'FloppyRemove':
+					return 'floppy-remove';
+				case 'FloppySave':
+					return 'floppy-save';
+				case 'FloppyOpen':
+					return 'floppy-open';
+				case 'CreditCard':
+					return 'credit-card';
+				case 'Transfer':
+					return 'transfer';
+				case 'Cutlery':
+					return 'cutlery';
+				case 'Header':
+					return 'header';
+				case 'Compressed':
+					return 'compressed';
+				case 'Earphone':
+					return 'earphone';
+				case 'PhoneAlt':
+					return 'phone-alt';
+				case 'Tower':
+					return 'tower';
+				case 'Stats':
+					return 'stats';
+				case 'SdVideo':
+					return 'sd-video';
+				case 'HdVideo':
+					return 'hd-video';
+				case 'Subtitles':
+					return 'subtitles';
+				case 'SoundStereo':
+					return 'sound-stereo';
+				case 'SoundDolby':
+					return 'sound-dolby';
+				case 'Sound51':
+					return 'sound-5-1';
+				case 'Sound61':
+					return 'sound-6-1';
+				case 'Sound71':
+					return 'sound-7-1';
+				case 'CopyrightMark':
+					return 'copyright-mark';
+				case 'RegistrationMark':
+					return 'registration-mark';
+				case 'CloudDownload':
+					return 'cloud-download';
+				case 'CloudUpload':
+					return 'cloud-upload';
+				case 'TreeConifer':
+					return 'tree-conifer';
+				case 'TreeDeciduous':
+					return 'tree-deciduous';
+				case 'Cd':
+					return 'cd';
+				case 'SaveFile':
+					return 'save-file';
+				case 'OpenFile':
+					return 'open-file';
+				case 'LevelUp':
+					return 'level-up';
+				case 'Copy':
+					return 'copy';
+				case 'Paste':
+					return 'paste';
+				case 'Alert':
+					return 'alert';
+				case 'Equalizer':
+					return 'equalizer';
+				case 'King':
+					return 'king';
+				case 'Queen':
+					return 'queen';
+				case 'Pawn':
+					return 'pawn';
+				case 'Bishop':
+					return 'bishop';
+				case 'Knight':
+					return 'knight';
+				case 'BabyFormula':
+					return 'baby-formula';
+				case 'Tent':
+					return 'tent';
+				case 'Blackboard':
+					return 'blackboard';
+				case 'Bed':
+					return 'bed';
+				case 'Apple':
+					return 'apple';
+				case 'Erase':
+					return 'erase';
+				case 'Hourglass':
+					return 'hourglass';
+				case 'Lamp':
+					return 'lamp';
+				case 'Duplicate':
+					return 'duplicate';
+				case 'PiggyBank':
+					return 'piggy-bank';
+				case 'Scissors':
+					return 'scissors';
+				case 'Bitcoin':
+					return 'bitcoin';
+				case 'Btc':
+					return 'btc';
+				case 'Xbt':
+					return 'xbt';
+				case 'Yen':
+					return 'yen';
+				case 'Jpy':
+					return 'jpy';
+				case 'Ruble':
+					return 'ruble';
+				case 'Rub':
+					return 'rub';
+				case 'Scale':
+					return 'scale';
+				case 'IceLolly':
+					return 'ice-lolly';
+				case 'IceLollyTasted':
+					return 'ice-lolly-tasted';
+				case 'Education':
+					return 'education';
+				case 'OptionHorizontal':
+					return 'option-horizontal';
+				case 'OptionVertical':
+					return 'option-vertical';
+				case 'MenuHamburger':
+					return 'menu-hamburger';
+				case 'ModalWindow':
+					return 'modal-window';
+				case 'Oil':
+					return 'oil';
+				case 'Grain':
+					return 'grain';
+				case 'Sunglasses':
+					return 'sunglasses';
+				case 'TextSize':
+					return 'text-size';
+				case 'TextColor':
+					return 'text-color';
+				case 'TextBackground':
+					return 'text-background';
+				case 'ObjectAlignTop':
+					return 'object-align-top';
+				case 'ObjectAlignBottom':
+					return 'object-align-bottom';
+				case 'ObjectAlignHorizontal':
+					return 'object-align-horizontal';
+				case 'ObjectAlignLeft':
+					return 'object-align-left';
+				case 'ObjectAlignVertical':
+					return 'object-align-vertical';
+				case 'ObjectAlignRight':
+					return 'object-align-right';
+				case 'TriangleRight':
+					return 'triangle-right';
+				case 'TriangleLeft':
+					return 'triangle-left';
+				case 'TriangleBottom':
+					return 'triangle-bottom';
+				case 'TriangleTop':
+					return 'triangle-top';
+				case 'Console':
+					return 'console';
+				case 'Superscript':
+					return 'superscript';
+				case 'Subscript':
+					return 'subscript';
+				case 'MenuLeft':
+					return 'menu-left';
+				case 'MenuRight':
+					return 'menu-right';
+				case 'MenuDown':
+					return 'menu-down';
+				default:
+					return 'menu-up';
+			}
+		}());
+};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$glyphicon = function (icon) {
+	return A2(
+		_elm_lang$html$Html$span,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$classList(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'glyphicon', _1: true},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$glyphiconClass(icon),
+							_1: true
+						},
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {ctor: '[]'}
+		},
+		{ctor: '[]'});
+};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$MenuUp = {ctor: 'MenuUp'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$MenuDown = {ctor: 'MenuDown'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$MenuRight = {ctor: 'MenuRight'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$MenuLeft = {ctor: 'MenuLeft'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Subscript = {ctor: 'Subscript'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Superscript = {ctor: 'Superscript'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Console = {ctor: 'Console'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$TriangleTop = {ctor: 'TriangleTop'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$TriangleBottom = {ctor: 'TriangleBottom'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$TriangleLeft = {ctor: 'TriangleLeft'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$TriangleRight = {ctor: 'TriangleRight'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ObjectAlignRight = {ctor: 'ObjectAlignRight'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ObjectAlignVertical = {ctor: 'ObjectAlignVertical'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ObjectAlignLeft = {ctor: 'ObjectAlignLeft'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ObjectAlignHorizontal = {ctor: 'ObjectAlignHorizontal'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ObjectAlignBottom = {ctor: 'ObjectAlignBottom'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ObjectAlignTop = {ctor: 'ObjectAlignTop'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$TextBackground = {ctor: 'TextBackground'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$TextColor = {ctor: 'TextColor'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$TextSize = {ctor: 'TextSize'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Sunglasses = {ctor: 'Sunglasses'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Grain = {ctor: 'Grain'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Oil = {ctor: 'Oil'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ModalWindow = {ctor: 'ModalWindow'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$MenuHamburger = {ctor: 'MenuHamburger'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$OptionVertical = {ctor: 'OptionVertical'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$OptionHorizontal = {ctor: 'OptionHorizontal'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Education = {ctor: 'Education'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$IceLollyTasted = {ctor: 'IceLollyTasted'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$IceLolly = {ctor: 'IceLolly'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Scale = {ctor: 'Scale'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Rub = {ctor: 'Rub'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Ruble = {ctor: 'Ruble'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Jpy = {ctor: 'Jpy'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Yen = {ctor: 'Yen'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Xbt = {ctor: 'Xbt'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Btc = {ctor: 'Btc'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Bitcoin = {ctor: 'Bitcoin'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Scissors = {ctor: 'Scissors'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$PiggyBank = {ctor: 'PiggyBank'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Duplicate = {ctor: 'Duplicate'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Lamp = {ctor: 'Lamp'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Hourglass = {ctor: 'Hourglass'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Erase = {ctor: 'Erase'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Apple = {ctor: 'Apple'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Bed = {ctor: 'Bed'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Blackboard = {ctor: 'Blackboard'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Tent = {ctor: 'Tent'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$BabyFormula = {ctor: 'BabyFormula'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Knight = {ctor: 'Knight'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Bishop = {ctor: 'Bishop'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Pawn = {ctor: 'Pawn'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Queen = {ctor: 'Queen'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$King = {ctor: 'King'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Equalizer = {ctor: 'Equalizer'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Alert = {ctor: 'Alert'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Paste = {ctor: 'Paste'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Copy = {ctor: 'Copy'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$LevelUp = {ctor: 'LevelUp'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$OpenFile = {ctor: 'OpenFile'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$SaveFile = {ctor: 'SaveFile'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Cd = {ctor: 'Cd'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$TreeDeciduous = {ctor: 'TreeDeciduous'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$TreeConifer = {ctor: 'TreeConifer'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$CloudUpload = {ctor: 'CloudUpload'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$CloudDownload = {ctor: 'CloudDownload'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$RegistrationMark = {ctor: 'RegistrationMark'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$CopyrightMark = {ctor: 'CopyrightMark'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Sound71 = {ctor: 'Sound71'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Sound61 = {ctor: 'Sound61'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Sound51 = {ctor: 'Sound51'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$SoundDolby = {ctor: 'SoundDolby'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$SoundStereo = {ctor: 'SoundStereo'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Subtitles = {ctor: 'Subtitles'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$HdVideo = {ctor: 'HdVideo'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$SdVideo = {ctor: 'SdVideo'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Stats = {ctor: 'Stats'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Tower = {ctor: 'Tower'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$PhoneAlt = {ctor: 'PhoneAlt'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Earphone = {ctor: 'Earphone'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Compressed = {ctor: 'Compressed'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Header = {ctor: 'Header'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Cutlery = {ctor: 'Cutlery'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Transfer = {ctor: 'Transfer'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$CreditCard = {ctor: 'CreditCard'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$FloppyOpen = {ctor: 'FloppyOpen'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$FloppySave = {ctor: 'FloppySave'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$FloppyRemove = {ctor: 'FloppyRemove'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$FloppySaved = {ctor: 'FloppySaved'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$FloppyDisk = {ctor: 'FloppyDisk'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Send = {ctor: 'Send'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Export = {ctor: 'Export'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Import = {ctor: 'Import'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Saved = {ctor: 'Saved'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Open = {ctor: 'Open'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Save = {ctor: 'Save'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Record = {ctor: 'Record'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$NewWindow = {ctor: 'NewWindow'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$LogOut = {ctor: 'LogOut'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Flash = {ctor: 'Flash'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$LogIn = {ctor: 'LogIn'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$CollapseUp = {ctor: 'CollapseUp'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$CollapseDown = {ctor: 'CollapseDown'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Expand = {ctor: 'Expand'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Unchecked = {ctor: 'Unchecked'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$SortByAttributesAlt = {ctor: 'SortByAttributesAlt'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$SortByAttributes = {ctor: 'SortByAttributes'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$SortByOrderAlt = {ctor: 'SortByOrderAlt'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$SortByOrder = {ctor: 'SortByOrder'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$SortByAlphabetAlt = {ctor: 'SortByAlphabetAlt'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$SortByAlphabet = {ctor: 'SortByAlphabet'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Sort = {ctor: 'Sort'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Gbp = {ctor: 'Gbp'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Usd = {ctor: 'Usd'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Pushpin = {ctor: 'Pushpin'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Phone = {ctor: 'Phone'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Link = {ctor: 'Link'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$HeartEmpty = {ctor: 'HeartEmpty'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Paperclip = {ctor: 'Paperclip'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Dashboard = {ctor: 'Dashboard'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Fullscreen = {ctor: 'Fullscreen'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Briefcase = {ctor: 'Briefcase'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Filter = {ctor: 'Filter'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Tasks = {ctor: 'Tasks'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Wrench = {ctor: 'Wrench'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Globe = {ctor: 'Globe'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$CircleArrowDown = {ctor: 'CircleArrowDown'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$CircleArrowUp = {ctor: 'CircleArrowUp'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$CircleArrowLeft = {ctor: 'CircleArrowLeft'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$CircleArrowRight = {ctor: 'CircleArrowRight'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$HandDown = {ctor: 'HandDown'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$HandUp = {ctor: 'HandUp'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$HandLeft = {ctor: 'HandLeft'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$HandRight = {ctor: 'HandRight'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ThumbsDown = {ctor: 'ThumbsDown'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ThumbsUp = {ctor: 'ThumbsUp'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Certificate = {ctor: 'Certificate'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Bell = {ctor: 'Bell'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Bullhorn = {ctor: 'Bullhorn'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Hdd = {ctor: 'Hdd'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ResizeHorizontal = {ctor: 'ResizeHorizontal'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ResizeVertical = {ctor: 'ResizeVertical'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$FolderOpen = {ctor: 'FolderOpen'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$FolderClose = {ctor: 'FolderClose'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ShoppingCart = {ctor: 'ShoppingCart'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Retweet = {ctor: 'Retweet'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ChevronDown = {ctor: 'ChevronDown'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ChevronUp = {ctor: 'ChevronUp'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Magnet = {ctor: 'Magnet'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Comment = {ctor: 'Comment'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Random = {ctor: 'Random'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Calendar = {ctor: 'Calendar'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Plane = {ctor: 'Plane'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$WarningSign = {ctor: 'WarningSign'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$EyeClose = {ctor: 'EyeClose'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$EyeOpen = {ctor: 'EyeOpen'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Fire = {ctor: 'Fire'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Leaf = {ctor: 'Leaf'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Gift = {ctor: 'Gift'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ExclamationSign = {ctor: 'ExclamationSign'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ResizeSmall = {ctor: 'ResizeSmall'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ResizeFull = {ctor: 'ResizeFull'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ShareAlt = {ctor: 'ShareAlt'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ArrowDown = {ctor: 'ArrowDown'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ArrowUp = {ctor: 'ArrowUp'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ArrowRight = {ctor: 'ArrowRight'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ArrowLeft = {ctor: 'ArrowLeft'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$BanCircle = {ctor: 'BanCircle'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$OkCircle = {ctor: 'OkCircle'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$RemoveCircle = {ctor: 'RemoveCircle'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Screenshot = {ctor: 'Screenshot'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$InfoSign = {ctor: 'InfoSign'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$QuestionSign = {ctor: 'QuestionSign'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$OkSign = {ctor: 'OkSign'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$RemoveSign = {ctor: 'RemoveSign'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$MinusSign = {ctor: 'MinusSign'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$PlusSign = {ctor: 'PlusSign'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ChevronRight = {ctor: 'ChevronRight'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ChevronLeft = {ctor: 'ChevronLeft'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Eject = {ctor: 'Eject'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$StepForward = {ctor: 'StepForward'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$FastForward = {ctor: 'FastForward'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Forward = {ctor: 'Forward'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Stop = {ctor: 'Stop'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Pause = {ctor: 'Pause'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Play = {ctor: 'Play'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Backward = {ctor: 'Backward'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$FastBackward = {ctor: 'FastBackward'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$StepBackward = {ctor: 'StepBackward'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Move = {ctor: 'Move'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Check = {ctor: 'Check'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Share = {ctor: 'Share'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Edit = {ctor: 'Edit'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Tint = {ctor: 'Tint'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Adjust = {ctor: 'Adjust'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$MapMarker = {ctor: 'MapMarker'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Picture = {ctor: 'Picture'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$FacetimeVideo = {ctor: 'FacetimeVideo'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$IndentRight = {ctor: 'IndentRight'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$IndentLeft = {ctor: 'IndentLeft'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$List = {ctor: 'List'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$AlignJustify = {ctor: 'AlignJustify'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$AlignRight = {ctor: 'AlignRight'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$AlignCenter = {ctor: 'AlignCenter'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$AlignLeft = {ctor: 'AlignLeft'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$TextWidth = {ctor: 'TextWidth'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$TextHeight = {ctor: 'TextHeight'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Italic = {ctor: 'Italic'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Bold = {ctor: 'Bold'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Font = {ctor: 'Font'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Camera = {ctor: 'Camera'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Print = {ctor: 'Print'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Bookmark = {ctor: 'Bookmark'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Book = {ctor: 'Book'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Tags = {ctor: 'Tags'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Tag = {ctor: 'Tag'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Barcode = {ctor: 'Barcode'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Qrcode = {ctor: 'Qrcode'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$VolumeUp = {ctor: 'VolumeUp'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$VolumeDown = {ctor: 'VolumeDown'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$VolumeOff = {ctor: 'VolumeOff'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Headphones = {ctor: 'Headphones'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Flag = {ctor: 'Flag'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Lock = {ctor: 'Lock'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ListAlt = {ctor: 'ListAlt'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Refresh = {ctor: 'Refresh'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Repeat = {ctor: 'Repeat'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$PlayCircle = {ctor: 'PlayCircle'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Inbox = {ctor: 'Inbox'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Upload = {ctor: 'Upload'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Download = {ctor: 'Download'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$DownloadAlt = {ctor: 'DownloadAlt'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Road = {ctor: 'Road'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Time = {ctor: 'Time'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$File = {ctor: 'File'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Home = {ctor: 'Home'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Trash = {ctor: 'Trash'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Cog = {ctor: 'Cog'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Signal = {ctor: 'Signal'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Off = {ctor: 'Off'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ZoomOut = {ctor: 'ZoomOut'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ZoomIn = {ctor: 'ZoomIn'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Remove = {ctor: 'Remove'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Ok = {ctor: 'Ok'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ThList = {ctor: 'ThList'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Th = {ctor: 'Th'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$ThLarge = {ctor: 'ThLarge'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Film = {ctor: 'Film'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$User = {ctor: 'User'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$StarEmpty = {ctor: 'StarEmpty'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Star = {ctor: 'Star'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Heart = {ctor: 'Heart'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Search = {ctor: 'Search'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Music = {ctor: 'Music'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Glass = {ctor: 'Glass'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Pencil = {ctor: 'Pencil'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Envelope = {ctor: 'Envelope'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Cloud = {ctor: 'Cloud'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Minus = {ctor: 'Minus'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Eur = {ctor: 'Eur'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Euro = {ctor: 'Euro'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Plus = {ctor: 'Plus'};
+var _krisajenkins$elm_exts$Exts_Html_Bootstrap_Glyphicons$Asterisk = {ctor: 'Asterisk'};

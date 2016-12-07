@@ -1,0 +1,230 @@
+var _rtfeldman$node_test_runner$Test_Reporter_Chalk$chalkWith = function (chalks) {
+	return _elm_lang$core$Json_Encode$list(
+		A2(_elm_lang$core$List$map, _rtfeldman$node_test_runner$Chalk$encode, chalks));
+};
+var _rtfeldman$node_test_runner$Test_Reporter_Chalk$labelsToChalk = A2(
+	_elm_community$elm_test$Test_Runner$formatLabels,
+	A2(
+		_rtfeldman$node_test_runner$Chalk$withColorChar,
+		_elm_lang$core$Native_Utils.chr('↓'),
+		'dim'),
+	A2(
+		_rtfeldman$node_test_runner$Chalk$withColorChar,
+		_elm_lang$core$Native_Utils.chr('✗'),
+		'red'));
+var _rtfeldman$node_test_runner$Test_Reporter_Chalk$pluralize = F3(
+	function (singular, plural, count) {
+		var suffix = _elm_lang$core$Native_Utils.eq(count, 1) ? singular : plural;
+		return A2(
+			_elm_lang$core$String$join,
+			' ',
+			{
+				ctor: '::',
+				_0: _elm_lang$core$Basics$toString(count),
+				_1: {
+					ctor: '::',
+					_0: suffix,
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _rtfeldman$node_test_runner$Test_Reporter_Chalk$reportBegin = function (_p0) {
+	var _p1 = _p0;
+	return _rtfeldman$node_test_runner$Test_Reporter_Chalk$chalkWith(
+		{
+			ctor: '::',
+			_0: {
+				styles: {ctor: '[]'},
+				text: A2(
+					_elm_lang$core$Basics_ops['++'],
+					'\nelm-test\n--------\n\nRunning ',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						A3(_rtfeldman$node_test_runner$Test_Reporter_Chalk$pluralize, 'test', 'tests', _p1.testCount),
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'. To reproduce these results, run: elm-test --seed ',
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								_elm_lang$core$Basics$toString(_p1.initialSeed),
+								'\n'))))
+			},
+			_1: {ctor: '[]'}
+		});
+};
+var _rtfeldman$node_test_runner$Test_Reporter_Chalk$indent = function (str) {
+	return A2(
+		_elm_lang$core$String$join,
+		'\n',
+		A2(
+			_elm_lang$core$List$map,
+			F2(
+				function (x, y) {
+					return A2(_elm_lang$core$Basics_ops['++'], x, y);
+				})('    '),
+			A2(_elm_lang$core$String$split, '\n', str)));
+};
+var _rtfeldman$node_test_runner$Test_Reporter_Chalk$failureToChalk = function (_p2) {
+	var _p3 = _p2;
+	var _p4 = _p3.given;
+	var messageChalk = {
+		styles: {ctor: '[]'},
+		text: A2(
+			_elm_lang$core$Basics_ops['++'],
+			'\n',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_rtfeldman$node_test_runner$Test_Reporter_Chalk$indent(_p3.message),
+				'\n\n'))
+	};
+	return _elm_lang$core$String$isEmpty(_p4) ? {
+		ctor: '::',
+		_0: messageChalk,
+		_1: {ctor: '[]'}
+	} : {
+		ctor: '::',
+		_0: {
+			styles: {
+				ctor: '::',
+				_0: 'dim',
+				_1: {ctor: '[]'}
+			},
+			text: A2(
+				_elm_lang$core$Basics_ops['++'],
+				'\nGiven ',
+				A2(_elm_lang$core$Basics_ops['++'], _p4, '\n'))
+		},
+		_1: {
+			ctor: '::',
+			_0: messageChalk,
+			_1: {ctor: '[]'}
+		}
+	};
+};
+var _rtfeldman$node_test_runner$Test_Reporter_Chalk$failuresToChalk = F2(
+	function (labels, failures) {
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			_rtfeldman$node_test_runner$Test_Reporter_Chalk$labelsToChalk(labels),
+			A2(_elm_lang$core$List$concatMap, _rtfeldman$node_test_runner$Test_Reporter_Chalk$failureToChalk, failures));
+	});
+var _rtfeldman$node_test_runner$Test_Reporter_Chalk$reportComplete = function (_p5) {
+	var _p6 = _p5;
+	var _p7 = A2(_elm_lang$core$List$filterMap, _elm_community$elm_test$Expect$getFailure, _p6.expectations);
+	if (_p7.ctor === '[]') {
+		return _elm_lang$core$Maybe$Nothing;
+	} else {
+		return _elm_lang$core$Maybe$Just(
+			_rtfeldman$node_test_runner$Test_Reporter_Chalk$chalkWith(
+				A2(_rtfeldman$node_test_runner$Test_Reporter_Chalk$failuresToChalk, _p6.labels, _p7)));
+	}
+};
+var _rtfeldman$node_test_runner$Test_Reporter_Chalk$formatDuration = function (time) {
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		_elm_lang$core$Basics$toString(time),
+		' ms');
+};
+var _rtfeldman$node_test_runner$Test_Reporter_Chalk$reportSummary = F2(
+	function (duration, results) {
+		var stat = F2(
+			function (label, value) {
+				return {
+					ctor: '::',
+					_0: {
+						styles: {
+							ctor: '::',
+							_0: 'dim',
+							_1: {ctor: '[]'}
+						},
+						text: label
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							styles: {ctor: '[]'},
+							text: A2(_elm_lang$core$Basics_ops['++'], value, '\n')
+						},
+						_1: {ctor: '[]'}
+					}
+				};
+			});
+		var failed = _elm_lang$core$List$length(
+			A2(
+				_elm_lang$core$List$filter,
+				function (_p8) {
+					return A2(
+						_elm_lang$core$List$all,
+						F2(
+							function (x, y) {
+								return !_elm_lang$core$Native_Utils.eq(x, y);
+							})(_elm_community$elm_test$Expect$pass),
+						function (_) {
+							return _.expectations;
+						}(_p8));
+				},
+				results));
+		var headline = (_elm_lang$core$Native_Utils.cmp(failed, 0) > 0) ? {
+			ctor: '::',
+			_0: {
+				styles: {
+					ctor: '::',
+					_0: 'underline',
+					_1: {
+						ctor: '::',
+						_0: 'red',
+						_1: {ctor: '[]'}
+					}
+				},
+				text: '\nTEST RUN FAILED\n\n'
+			},
+			_1: {ctor: '[]'}
+		} : {
+			ctor: '::',
+			_0: {
+				styles: {
+					ctor: '::',
+					_0: 'underline',
+					_1: {
+						ctor: '::',
+						_0: 'green',
+						_1: {ctor: '[]'}
+					}
+				},
+				text: '\nTEST RUN PASSED\n\n'
+			},
+			_1: {ctor: '[]'}
+		};
+		var passed = _elm_lang$core$List$length(results) - failed;
+		return _elm_lang$core$Json_Encode$list(
+			A2(
+				_elm_lang$core$List$map,
+				_rtfeldman$node_test_runner$Chalk$encode,
+				_elm_lang$core$List$concat(
+					{
+						ctor: '::',
+						_0: headline,
+						_1: {
+							ctor: '::',
+							_0: A2(
+								stat,
+								'Duration: ',
+								_rtfeldman$node_test_runner$Test_Reporter_Chalk$formatDuration(duration)),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									stat,
+									'Passed:   ',
+									_elm_lang$core$Basics$toString(passed)),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										stat,
+										'Failed:   ',
+										_elm_lang$core$Basics$toString(failed)),
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					})));
+	});

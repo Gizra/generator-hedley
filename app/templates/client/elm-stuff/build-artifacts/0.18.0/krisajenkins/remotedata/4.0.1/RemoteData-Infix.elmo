@@ -1,0 +1,4 @@
+var _krisajenkins$remotedata$RemoteData_Infix_ops = _krisajenkins$remotedata$RemoteData_Infix_ops || {};
+_krisajenkins$remotedata$RemoteData_Infix_ops['<*>'] = _elm_lang$core$Basics$flip(_krisajenkins$remotedata$RemoteData$andMap);
+var _krisajenkins$remotedata$RemoteData_Infix_ops = _krisajenkins$remotedata$RemoteData_Infix_ops || {};
+_krisajenkins$remotedata$RemoteData_Infix_ops['<$>'] = _krisajenkins$remotedata$RemoteData$map;

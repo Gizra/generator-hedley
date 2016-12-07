@@ -1,0 +1,14 @@
+var _rtfeldman$node_test_runner$Test_Reporter_Reporter$TestReporter = F4(
+	function (a, b, c, d) {
+		return {format: a, reportBegin: b, reportComplete: c, reportSummary: d};
+	});
+var _rtfeldman$node_test_runner$Test_Reporter_Reporter$createReporter = function (report) {
+	var _p0 = report;
+	if (_p0.ctor === 'JsonReport') {
+		return A4(_rtfeldman$node_test_runner$Test_Reporter_Reporter$TestReporter, 'JSON', _rtfeldman$node_test_runner$Test_Reporter_Json$reportBegin, _rtfeldman$node_test_runner$Test_Reporter_Json$reportComplete, _rtfeldman$node_test_runner$Test_Reporter_Json$reportSummary);
+	} else {
+		return A4(_rtfeldman$node_test_runner$Test_Reporter_Reporter$TestReporter, 'CHALK', _rtfeldman$node_test_runner$Test_Reporter_Chalk$reportBegin, _rtfeldman$node_test_runner$Test_Reporter_Chalk$reportComplete, _rtfeldman$node_test_runner$Test_Reporter_Chalk$reportSummary);
+	}
+};
+var _rtfeldman$node_test_runner$Test_Reporter_Reporter$JsonReport = {ctor: 'JsonReport'};
+var _rtfeldman$node_test_runner$Test_Reporter_Reporter$ChalkReport = {ctor: 'ChalkReport'};

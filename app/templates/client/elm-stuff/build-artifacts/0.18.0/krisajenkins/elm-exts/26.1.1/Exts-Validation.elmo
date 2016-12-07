@@ -1,0 +1,45 @@
+var _krisajenkins$elm_exts$Exts_Validation$emailRegex = _elm_lang$core$Regex$caseInsensitive(
+	_elm_lang$core$Regex$regex('^\\S+@\\S+\\.\\S+$'));
+var _krisajenkins$elm_exts$Exts_Validation$matches = F3(
+	function (expression, err, str) {
+		var _p0 = str;
+		if (_p0.ctor === 'Nothing') {
+			return _elm_lang$core$Result$Err(err);
+		} else {
+			var _p1 = _p0._0;
+			return A2(_elm_lang$core$Regex$contains, expression, _p1) ? _elm_lang$core$Result$Ok(_p1) : _elm_lang$core$Result$Err(err);
+		}
+	});
+var _krisajenkins$elm_exts$Exts_Validation$email = _krisajenkins$elm_exts$Exts_Validation$matches(_krisajenkins$elm_exts$Exts_Validation$emailRegex);
+var _krisajenkins$elm_exts$Exts_Validation$notBlank = F2(
+	function (err, str) {
+		var _p2 = str;
+		if (_p2.ctor === 'Nothing') {
+			return _elm_lang$core$Result$Err(err);
+		} else {
+			if (_p2._0 === '') {
+				return _elm_lang$core$Result$Err(err);
+			} else {
+				return _elm_lang$core$Result$Ok(_p2._0);
+			}
+		}
+	});
+var _krisajenkins$elm_exts$Exts_Validation$required = function (err) {
+	return function (_p3) {
+		return A2(
+			_elm_lang$core$Maybe$withDefault,
+			_elm_lang$core$Result$Err(err),
+			A2(_elm_lang$core$Maybe$map, _elm_lang$core$Result$Ok, _p3));
+	};
+};
+var _krisajenkins$elm_exts$Exts_Validation$apply = F2(
+	function (f, aResult) {
+		return A2(
+			_elm_lang$core$Result$andThen,
+			function (continuation) {
+				return A2(_elm_lang$core$Result$map, continuation, aResult);
+			},
+			f);
+	});
+var _krisajenkins$elm_exts$Exts_Validation_ops = _krisajenkins$elm_exts$Exts_Validation_ops || {};
+_krisajenkins$elm_exts$Exts_Validation_ops['|:'] = _krisajenkins$elm_exts$Exts_Validation$apply;

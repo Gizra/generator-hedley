@@ -1,0 +1,4 @@
+var _krisajenkins$elm_exts$Exts_Int$floorBy = F2(
+	function (factor, n) {
+		return _elm_lang$core$Native_Utils.eq(factor, 0) ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(factor * ((n / factor) | 0));
+	});

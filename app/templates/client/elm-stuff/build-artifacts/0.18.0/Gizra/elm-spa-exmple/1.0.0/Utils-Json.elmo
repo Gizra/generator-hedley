@@ -1,0 +1,21 @@
+var _Gizra$elm_spa_exmple$Utils_Json$decodeError = A2(_elm_lang$core$Json_Decode$field, 'title', _elm_lang$core$Json_Decode$string);
+var _Gizra$elm_spa_exmple$Utils_Json$decodeInt = _elm_lang$core$Json_Decode$oneOf(
+	{
+		ctor: '::',
+		_0: _elm_lang$core$Json_Decode$int,
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_elm_lang$core$Json_Decode$andThen,
+				function (val) {
+					var _p0 = _elm_lang$core$String$toInt(val);
+					if (_p0.ctor === 'Ok') {
+						return _elm_lang$core$Json_Decode$succeed(_p0._0);
+					} else {
+						return _elm_lang$core$Json_Decode$fail('Cannot convert string to integer');
+					}
+				},
+				_elm_lang$core$Json_Decode$string),
+			_1: {ctor: '[]'}
+		}
+	});

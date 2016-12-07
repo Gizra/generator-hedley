@@ -1,0 +1,192 @@
+var _lukewestby$elm_http_builder$HttpBuilder$replace = F2(
+	function (old, $new) {
+		return function (_p0) {
+			return A2(
+				_elm_lang$core$String$join,
+				$new,
+				A2(_elm_lang$core$String$split, old, _p0));
+		};
+	});
+var _lukewestby$elm_http_builder$HttpBuilder$queryEscape = function (_p1) {
+	return A3(
+		_lukewestby$elm_http_builder$HttpBuilder$replace,
+		'%20',
+		'+',
+		_elm_lang$http$Http$encodeUri(_p1));
+};
+var _lukewestby$elm_http_builder$HttpBuilder$queryPair = function (_p2) {
+	var _p3 = _p2;
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		_lukewestby$elm_http_builder$HttpBuilder$queryEscape(_p3._0),
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			'=',
+			_lukewestby$elm_http_builder$HttpBuilder$queryEscape(_p3._1)));
+};
+var _lukewestby$elm_http_builder$HttpBuilder$joinUrlEncoded = function (args) {
+	return A2(
+		_elm_lang$core$String$join,
+		'&',
+		A2(_elm_lang$core$List$map, _lukewestby$elm_http_builder$HttpBuilder$queryPair, args));
+};
+var _lukewestby$elm_http_builder$HttpBuilder$toRequest = function (_p4) {
+	var _p5 = _p4;
+	var _p6 = _p5._0;
+	var encodedParams = _lukewestby$elm_http_builder$HttpBuilder$joinUrlEncoded(_p6.queryParams);
+	var fullUrl = _elm_lang$core$String$isEmpty(encodedParams) ? _p6.url : A2(
+		_elm_lang$core$Basics_ops['++'],
+		_p6.url,
+		A2(_elm_lang$core$Basics_ops['++'], '?', encodedParams));
+	return _elm_lang$http$Http$request(
+		{method: _p6.method, url: fullUrl, headers: _p6.headers, body: _p6.body, expect: _p6.expect, timeout: _p6.timeout, withCredentials: _p6.withCredentials});
+};
+var _lukewestby$elm_http_builder$HttpBuilder$send = F2(
+	function (tagger, builder) {
+		return A2(
+			_elm_lang$http$Http$send,
+			tagger,
+			_lukewestby$elm_http_builder$HttpBuilder$toRequest(builder));
+	});
+var _lukewestby$elm_http_builder$HttpBuilder$RequestDetails = F8(
+	function (a, b, c, d, e, f, g, h) {
+		return {method: a, headers: b, url: c, body: d, expect: e, timeout: f, withCredentials: g, queryParams: h};
+	});
+var _lukewestby$elm_http_builder$HttpBuilder$RequestBuilder = function (a) {
+	return {ctor: 'RequestBuilder', _0: a};
+};
+var _lukewestby$elm_http_builder$HttpBuilder$requestWithMethodAndUrl = F2(
+	function (method, url) {
+		return _lukewestby$elm_http_builder$HttpBuilder$RequestBuilder(
+			{
+				method: method,
+				url: url,
+				headers: _elm_lang$core$Native_List.fromArray(
+					[]),
+				body: _elm_lang$http$Http$emptyBody,
+				expect: _elm_lang$http$Http$expectStringResponse(
+					function (_p7) {
+						return _elm_lang$core$Result$Ok(
+							{ctor: '_Tuple0'});
+					}),
+				timeout: _elm_lang$core$Maybe$Nothing,
+				withCredentials: false,
+				queryParams: _elm_lang$core$Native_List.fromArray(
+					[])
+			});
+	});
+var _lukewestby$elm_http_builder$HttpBuilder$get = _lukewestby$elm_http_builder$HttpBuilder$requestWithMethodAndUrl('GET');
+var _lukewestby$elm_http_builder$HttpBuilder$post = _lukewestby$elm_http_builder$HttpBuilder$requestWithMethodAndUrl('POST');
+var _lukewestby$elm_http_builder$HttpBuilder$put = _lukewestby$elm_http_builder$HttpBuilder$requestWithMethodAndUrl('PUT');
+var _lukewestby$elm_http_builder$HttpBuilder$patch = _lukewestby$elm_http_builder$HttpBuilder$requestWithMethodAndUrl('PATCH');
+var _lukewestby$elm_http_builder$HttpBuilder$delete = _lukewestby$elm_http_builder$HttpBuilder$requestWithMethodAndUrl('DELETE');
+var _lukewestby$elm_http_builder$HttpBuilder$options = _lukewestby$elm_http_builder$HttpBuilder$requestWithMethodAndUrl('OPTIONS');
+var _lukewestby$elm_http_builder$HttpBuilder$trace = _lukewestby$elm_http_builder$HttpBuilder$requestWithMethodAndUrl('TRACE');
+var _lukewestby$elm_http_builder$HttpBuilder$head = _lukewestby$elm_http_builder$HttpBuilder$requestWithMethodAndUrl('HEAD');
+var _lukewestby$elm_http_builder$HttpBuilder$map = F2(
+	function (fn, _p8) {
+		var _p9 = _p8;
+		return _lukewestby$elm_http_builder$HttpBuilder$RequestBuilder(
+			fn(_p9._0));
+	});
+var _lukewestby$elm_http_builder$HttpBuilder$withHeader = F2(
+	function (key, value) {
+		return _lukewestby$elm_http_builder$HttpBuilder$map(
+			function (details) {
+				return _elm_lang$core$Native_Utils.update(
+					details,
+					{
+						headers: A2(
+							_elm_lang$core$List_ops['::'],
+							A2(_elm_lang$http$Http$header, key, value),
+							details.headers)
+					});
+			});
+	});
+var _lukewestby$elm_http_builder$HttpBuilder$withHeaders = function (headerPairs) {
+	return _lukewestby$elm_http_builder$HttpBuilder$map(
+		function (details) {
+			return _elm_lang$core$Native_Utils.update(
+				details,
+				{
+					headers: A2(
+						_elm_lang$core$Basics_ops['++'],
+						A2(
+							_elm_lang$core$List$map,
+							_elm_lang$core$Basics$uncurry(_elm_lang$http$Http$header),
+							headerPairs),
+						details.headers)
+				});
+		});
+};
+var _lukewestby$elm_http_builder$HttpBuilder$withBody = function (body) {
+	return _lukewestby$elm_http_builder$HttpBuilder$map(
+		function (details) {
+			return _elm_lang$core$Native_Utils.update(
+				details,
+				{body: body});
+		});
+};
+var _lukewestby$elm_http_builder$HttpBuilder$withStringBody = F2(
+	function (contentType, value) {
+		return _lukewestby$elm_http_builder$HttpBuilder$withBody(
+			A2(_elm_lang$http$Http$stringBody, contentType, value));
+	});
+var _lukewestby$elm_http_builder$HttpBuilder$withUrlEncodedBody = function (_p10) {
+	return A2(
+		_lukewestby$elm_http_builder$HttpBuilder$withStringBody,
+		'application/x-www-form-urlencoded',
+		_lukewestby$elm_http_builder$HttpBuilder$joinUrlEncoded(_p10));
+};
+var _lukewestby$elm_http_builder$HttpBuilder$withJsonBody = function (value) {
+	return _lukewestby$elm_http_builder$HttpBuilder$withBody(
+		_elm_lang$http$Http$jsonBody(value));
+};
+var _lukewestby$elm_http_builder$HttpBuilder$withMultipartStringBody = function (partPairs) {
+	return _lukewestby$elm_http_builder$HttpBuilder$map(
+		function (details) {
+			return _elm_lang$core$Native_Utils.update(
+				details,
+				{
+					body: _elm_lang$http$Http$multipartBody(
+						A2(
+							_elm_lang$core$List$map,
+							_elm_lang$core$Basics$uncurry(_elm_lang$http$Http$stringPart),
+							partPairs))
+				});
+		});
+};
+var _lukewestby$elm_http_builder$HttpBuilder$withTimeout = function (timeout) {
+	return _lukewestby$elm_http_builder$HttpBuilder$map(
+		function (details) {
+			return _elm_lang$core$Native_Utils.update(
+				details,
+				{
+					timeout: _elm_lang$core$Maybe$Just(timeout)
+				});
+		});
+};
+var _lukewestby$elm_http_builder$HttpBuilder$withCredentials = _lukewestby$elm_http_builder$HttpBuilder$map(
+	function (details) {
+		return _elm_lang$core$Native_Utils.update(
+			details,
+			{withCredentials: true});
+	});
+var _lukewestby$elm_http_builder$HttpBuilder$withExpect = function (expect) {
+	return _lukewestby$elm_http_builder$HttpBuilder$map(
+		function (details) {
+			return _elm_lang$core$Native_Utils.update(
+				details,
+				{expect: expect});
+		});
+};
+var _lukewestby$elm_http_builder$HttpBuilder$withQueryParams = function (queryParams) {
+	return _lukewestby$elm_http_builder$HttpBuilder$map(
+		function (details) {
+			return _elm_lang$core$Native_Utils.update(
+				details,
+				{
+					queryParams: A2(_elm_lang$core$Basics_ops['++'], details.queryParams, queryParams)
+				});
+		});
+};

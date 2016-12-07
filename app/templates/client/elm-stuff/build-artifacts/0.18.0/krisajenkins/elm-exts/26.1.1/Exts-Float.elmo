@@ -1,0 +1,7 @@
+var _krisajenkins$elm_exts$Exts_Float$roundTo = F2(
+	function (places, value) {
+		var factor = _elm_lang$core$Basics$toFloat(
+			Math.pow(10, places));
+		return _elm_lang$core$Basics$toFloat(
+			_elm_lang$core$Basics$round(value * factor)) / factor;
+	});

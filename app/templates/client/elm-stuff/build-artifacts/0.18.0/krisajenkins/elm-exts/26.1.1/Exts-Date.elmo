@@ -1,0 +1,128 @@
+var _krisajenkins$elm_exts$Exts_Date$monthNumber = function (date) {
+	var _p0 = _elm_lang$core$Date$month(date);
+	switch (_p0.ctor) {
+		case 'Jan':
+			return 1;
+		case 'Feb':
+			return 2;
+		case 'Mar':
+			return 3;
+		case 'Apr':
+			return 4;
+		case 'May':
+			return 5;
+		case 'Jun':
+			return 6;
+		case 'Jul':
+			return 7;
+		case 'Aug':
+			return 8;
+		case 'Sep':
+			return 9;
+		case 'Oct':
+			return 10;
+		case 'Nov':
+			return 11;
+		default:
+			return 12;
+	}
+};
+var _krisajenkins$elm_exts$Exts_Date$toRFC3339 = function (date) {
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		_elm_lang$core$Basics$toString(
+			_elm_lang$core$Date$year(date)),
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			'-',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				A3(
+					_elm_lang$core$String$padLeft,
+					2,
+					_elm_lang$core$Native_Utils.chr('0'),
+					_elm_lang$core$Basics$toString(
+						_krisajenkins$elm_exts$Exts_Date$monthNumber(date))),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'-',
+					A3(
+						_elm_lang$core$String$padLeft,
+						2,
+						_elm_lang$core$Native_Utils.chr('0'),
+						_elm_lang$core$Basics$toString(
+							_elm_lang$core$Date$day(date)))))));
+};
+var _krisajenkins$elm_exts$Exts_Date$toISOString = function (d) {
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		A3(
+			_elm_lang$core$String$padLeft,
+			2,
+			_elm_lang$core$Native_Utils.chr('0'),
+			_elm_lang$core$Basics$toString(
+				_elm_lang$core$Date$year(d))),
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			'-',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_elm_lang$core$Basics$toString(
+					_krisajenkins$elm_exts$Exts_Date$monthNumber(d)),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'-',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						A3(
+							_elm_lang$core$String$padLeft,
+							2,
+							_elm_lang$core$Native_Utils.chr('0'),
+							_elm_lang$core$Basics$toString(
+								_elm_lang$core$Date$day(d))),
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'T',
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								A3(
+									_elm_lang$core$String$padLeft,
+									2,
+									_elm_lang$core$Native_Utils.chr('0'),
+									_elm_lang$core$Basics$toString(
+										_elm_lang$core$Date$hour(d))),
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									':',
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										A3(
+											_elm_lang$core$String$padLeft,
+											2,
+											_elm_lang$core$Native_Utils.chr('0'),
+											_elm_lang$core$Basics$toString(
+												_elm_lang$core$Date$minute(d))),
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											':',
+											A2(
+												_elm_lang$core$Basics_ops['++'],
+												A3(
+													_elm_lang$core$String$padLeft,
+													2,
+													_elm_lang$core$Native_Utils.chr('0'),
+													_elm_lang$core$Basics$toString(
+														_elm_lang$core$Date$second(d))),
+												A2(
+													_elm_lang$core$Basics_ops['++'],
+													'.',
+													A2(
+														_elm_lang$core$Basics_ops['++'],
+														A3(
+															_elm_lang$core$String$padLeft,
+															3,
+															_elm_lang$core$Native_Utils.chr('0'),
+															_elm_lang$core$Basics$toString(
+																_elm_lang$core$Date$millisecond(d))),
+														'Z')))))))))))));
+};

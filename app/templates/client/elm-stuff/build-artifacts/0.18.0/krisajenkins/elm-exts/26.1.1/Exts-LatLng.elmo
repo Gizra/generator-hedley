@@ -1,0 +1,27 @@
+var _krisajenkins$elm_exts$Exts_LatLng$bearingTo = F2(
+	function (a, b) {
+		var dlon = _elm_lang$core$Basics$degrees(b.longitude) - _elm_lang$core$Basics$degrees(a.longitude);
+		var y = _elm_lang$core$Basics$sin(dlon) * _elm_lang$core$Basics$cos(
+			_elm_lang$core$Basics$degrees(b.latitude));
+		var x = (_elm_lang$core$Basics$cos(
+			_elm_lang$core$Basics$degrees(a.latitude)) * _elm_lang$core$Basics$sin(
+			_elm_lang$core$Basics$degrees(b.latitude))) - ((_elm_lang$core$Basics$sin(
+			_elm_lang$core$Basics$degrees(a.latitude)) * _elm_lang$core$Basics$cos(
+			_elm_lang$core$Basics$degrees(b.latitude))) * _elm_lang$core$Basics$cos(dlon));
+		var bearing = A2(_elm_lang$core$Basics$atan2, y, x) * (180 / _elm_lang$core$Basics$pi);
+		return bearing;
+	});
+var _krisajenkins$elm_exts$Exts_LatLng$distanceBetween = F2(
+	function (a, b) {
+		var dlng = _elm_lang$core$Basics$degrees(b.longitude - a.longitude);
+		var dlat = _elm_lang$core$Basics$degrees(b.latitude - a.latitude);
+		var v1 = (_elm_lang$core$Basics$sin(dlat / 2) * _elm_lang$core$Basics$sin(dlat / 2)) + (((_elm_lang$core$Basics$cos(
+			_elm_lang$core$Basics$degrees(a.latitude)) * _elm_lang$core$Basics$cos(
+			_elm_lang$core$Basics$degrees(b.latitude))) * _elm_lang$core$Basics$sin(dlng / 2)) * _elm_lang$core$Basics$sin(dlng / 2));
+		var v2 = 2 * A2(
+			_elm_lang$core$Basics$atan2,
+			_elm_lang$core$Basics$sqrt(v1),
+			_elm_lang$core$Basics$sqrt(1 - v1));
+		var earthRadius = 6371;
+		return earthRadius * v2;
+	});

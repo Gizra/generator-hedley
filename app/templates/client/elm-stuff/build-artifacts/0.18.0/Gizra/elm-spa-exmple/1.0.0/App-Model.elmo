@@ -1,0 +1,20 @@
+var _Gizra$elm_spa_exmple$App_Model$Model = F5(
+	function (a, b, c, d, e) {
+		return {accessToken: a, activePage: b, config: c, pageLogin: d, user: e};
+	});
+var _Gizra$elm_spa_exmple$App_Model$Flags = F2(
+	function (a, b) {
+		return {accessToken: a, hostname: b};
+	});
+var _Gizra$elm_spa_exmple$App_Model$PageNotFound = {ctor: 'PageNotFound'};
+var _Gizra$elm_spa_exmple$App_Model$MyAccount = {ctor: 'MyAccount'};
+var _Gizra$elm_spa_exmple$App_Model$Login = {ctor: 'Login'};
+var _Gizra$elm_spa_exmple$App_Model$emptyModel = {accessToken: '', activePage: _Gizra$elm_spa_exmple$App_Model$Login, config: _krisajenkins$remotedata$RemoteData$NotAsked, pageLogin: _Gizra$elm_spa_exmple$Pages_Login_Model$emptyModel, user: _krisajenkins$remotedata$RemoteData$NotAsked};
+var _Gizra$elm_spa_exmple$App_Model$AccessDenied = {ctor: 'AccessDenied'};
+var _Gizra$elm_spa_exmple$App_Model$SetActivePage = function (a) {
+	return {ctor: 'SetActivePage', _0: a};
+};
+var _Gizra$elm_spa_exmple$App_Model$PageLogin = function (a) {
+	return {ctor: 'PageLogin', _0: a};
+};
+var _Gizra$elm_spa_exmple$App_Model$Logout = {ctor: 'Logout'};

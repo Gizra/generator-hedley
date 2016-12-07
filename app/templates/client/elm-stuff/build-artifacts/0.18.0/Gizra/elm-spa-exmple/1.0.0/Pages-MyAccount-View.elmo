@@ -1,0 +1,81 @@
+var _Gizra$elm_spa_exmple$Pages_MyAccount_View$view = function (user) {
+	var _p0 = function () {
+		var _p1 = user;
+		if (_p1.ctor === 'Success') {
+			var _p2 = _p1._0;
+			return {
+				ctor: '_Tuple2',
+				_0: _p2.name,
+				_1: A2(
+					_elm_lang$html$Html$img,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$src(_p2.avatarUrl),
+						_1: {ctor: '[]'}
+					},
+					{ctor: '[]'})
+			};
+		} else {
+			return {
+				ctor: '_Tuple2',
+				_0: '',
+				_1: A2(
+					_elm_lang$html$Html$div,
+					{ctor: '[]'},
+					{ctor: '[]'})
+			};
+		}
+	}();
+	var name = _p0._0;
+	var avatar = _p0._1;
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('ui centered card'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('image'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: avatar,
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('content'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$div,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('header'),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text(
+									A2(_elm_lang$core$Basics_ops['++'], 'Welcome ', name)),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			}
+		});
+};

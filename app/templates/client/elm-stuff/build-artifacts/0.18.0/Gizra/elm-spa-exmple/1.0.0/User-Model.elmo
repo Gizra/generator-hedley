@@ -1,0 +1,4 @@
+var _Gizra$elm_spa_exmple$User_Model$User = F3(
+	function (a, b, c) {
+		return {id: a, name: b, avatarUrl: c};
+	});
