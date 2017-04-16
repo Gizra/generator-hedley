@@ -34,8 +34,8 @@ module.exports = yeoman.generators.Base.extend({
       required: 'false'
     });
 
-    this.option('drupal-url', {
-      desc: 'The local Drupal URL',
+    this.option('db-hostname', {
+      desc: 'The database hostname',
       type: String,
       required: 'false'
     });
@@ -128,6 +128,29 @@ module.exports = yeoman.generators.Base.extend({
 
     this.prompt(prompts, function (props) {
       this.drupalUrl = props.drupalUrl;
+
+      done();
+    }.bind(this));
+  },
+
+  askForDbHostname: function () {
+    if (this.options['db-hostname']) {
+      // Get the value from the CLI.
+      this.dbHostname = this.options['db-hostname'];
+      this.log('Setting database hostname server name to: ' + this.dbHostname);
+      return;
+    }
+
+    var done = this.async();
+
+    var prompts = [{
+      name: 'dbHostname',
+      message: 'What is the Database hostname server?',
+      default: 'localhost'
+    }];
+
+    this.prompt(prompts, function (props) {
+      this.dbHostname = props.dbHostname;
 
       done();
     }.bind(this));
@@ -248,6 +271,7 @@ module.exports = yeoman.generators.Base.extend({
 
           if (fileName === 'config.sh') {
             newContents = newContents
+              .replace(/MYSQL_HOSTNAME=".*"/g, 'MYSQL_HOSTNAME="' + self.dbHostname + '"')
               .replace(/MYSQL_USERNAME=".*"/g, 'MYSQL_USERNAME="' + self.dbUser + '"')
               .replace(/MYSQL_PASSWORD=".*"/g, 'MYSQL_PASSWORD="' + self.dbPass + '"');
           }
